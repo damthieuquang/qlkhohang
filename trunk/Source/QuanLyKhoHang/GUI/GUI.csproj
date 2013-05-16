@@ -46,14 +46,65 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.cs">
+    <Compile Include="ManHinhChinh.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="ManHinhChinh.Designer.cs">
+      <DependentUpon>ManHinhChinh.cs</DependentUpon>
+    </Compile>
+    <Compile Include="NhapHang.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NhapHang.Designer.cs">
+      <DependentUpon>NhapHang.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TaoDonHang.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TaoDonHang.Designer.cs">
+      <DependentUpon>TaoDonHang.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TraCuuDonHang.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TraCuuDonHang.Designer.cs">
+      <DependentUpon>TraCuuDonHang.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TraCuuNguoiBan.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TraCuuNguoiBan.Designer.cs">
+      <DependentUpon>TraCuuNguoiBan.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TraCuuNhapHang.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TraCuuNhapHang.Designer.cs">
+      <DependentUpon>TraCuuNhapHang.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TraCuuThanhVien.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TraCuuThanhVien.Designer.cs">
+      <DependentUpon>TraCuuThanhVien.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TraCuuXuatHang.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TraCuuXuatHang.Designer.cs">
+      <DependentUpon>TraCuuXuatHang.cs</DependentUpon>
+    </Compile>
+    <Compile Include="XuatHang.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="XuatHang.Designer.cs">
+      <DependentUpon>XuatHang.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="NhapHang.resx">
+      <DependentUpon>NhapHang.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -63,6 +114,27 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="TaoDonHang.resx">
+      <DependentUpon>TaoDonHang.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TraCuuDonHang.resx">
+      <DependentUpon>TraCuuDonHang.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TraCuuNguoiBan.resx">
+      <DependentUpon>TraCuuNguoiBan.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TraCuuNhapHang.resx">
+      <DependentUpon>TraCuuNhapHang.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TraCuuThanhVien.resx">
+      <DependentUpon>TraCuuThanhVien.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TraCuuXuatHang.resx">
+      <DependentUpon>TraCuuXuatHang.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="XuatHang.resx">
+      <DependentUpon>XuatHang.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -72,6 +144,16 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BUS\BUS.csproj">
+      <Project>{90D8573F-7C69-41A0-A754-A26C2FE6EE32}</Project>
+      <Name>BUS</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DTO\DTO.csproj">
+      <Project>{67B4FEE6-CA76-448B-9499-ED973EB3F5DE}</Project>
+      <Name>DTO</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
