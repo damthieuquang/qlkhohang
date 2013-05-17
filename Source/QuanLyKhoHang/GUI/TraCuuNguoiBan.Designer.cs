@@ -34,6 +34,12 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btnThoat = new System.Windows.Forms.Button();
             this.GridView_TraCuuNguoiBan = new System.Windows.Forms.DataGridView();
+            this.clSTT = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clMaNhanVien = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clTenNhanVien = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clNgayBan = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clSoTienNhan = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clSoTienChi = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.txtThoiGianBatDau = new System.Windows.Forms.TextBox();
             this.txtThoiGianKetThuc = new System.Windows.Forms.TextBox();
             this.txtMaNguoiBan = new System.Windows.Forms.TextBox();
@@ -42,12 +48,6 @@
             this.label3 = new System.Windows.Forms.Label();
             this.txtTenNguoiBan = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.clSTT = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clMaNhanVien = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clTenNhanVien = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clNgayBan = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clSoTienNhan = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clSoTienChi = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.GridView_TraCuuNguoiBan)).BeginInit();
             this.SuspendLayout();
             // 
@@ -111,6 +111,42 @@
             this.GridView_TraCuuNguoiBan.Name = "GridView_TraCuuNguoiBan";
             this.GridView_TraCuuNguoiBan.Size = new System.Drawing.Size(641, 150);
             this.GridView_TraCuuNguoiBan.TabIndex = 35;
+            // 
+            // clSTT
+            // 
+            this.clSTT.HeaderText = "STT";
+            this.clSTT.Name = "clSTT";
+            this.clSTT.ReadOnly = true;
+            // 
+            // clMaNhanVien
+            // 
+            this.clMaNhanVien.HeaderText = "Mã nhân viên";
+            this.clMaNhanVien.Name = "clMaNhanVien";
+            this.clMaNhanVien.ReadOnly = true;
+            // 
+            // clTenNhanVien
+            // 
+            this.clTenNhanVien.HeaderText = "Tên nhân viên";
+            this.clTenNhanVien.Name = "clTenNhanVien";
+            this.clTenNhanVien.ReadOnly = true;
+            // 
+            // clNgayBan
+            // 
+            this.clNgayBan.HeaderText = "Ngày bán";
+            this.clNgayBan.Name = "clNgayBan";
+            this.clNgayBan.ReadOnly = true;
+            // 
+            // clSoTienNhan
+            // 
+            this.clSoTienNhan.HeaderText = "Số tiền nhận";
+            this.clSoTienNhan.Name = "clSoTienNhan";
+            this.clSoTienNhan.ReadOnly = true;
+            // 
+            // clSoTienChi
+            // 
+            this.clSoTienChi.HeaderText = "Số tiền chi";
+            this.clSoTienChi.Name = "clSoTienChi";
+            this.clSoTienChi.ReadOnly = true;
             // 
             // txtThoiGianBatDau
             // 
@@ -176,42 +212,6 @@
             this.label5.TabIndex = 43;
             this.label5.Text = "Thời gian bán:";
             this.label5.Click += new System.EventHandler(this.label5_Click);
-            // 
-            // clSTT
-            // 
-            this.clSTT.HeaderText = "STT";
-            this.clSTT.Name = "clSTT";
-            this.clSTT.ReadOnly = true;
-            // 
-            // clMaNhanVien
-            // 
-            this.clMaNhanVien.HeaderText = "Mã nhân viên";
-            this.clMaNhanVien.Name = "clMaNhanVien";
-            this.clMaNhanVien.ReadOnly = true;
-            // 
-            // clTenNhanVien
-            // 
-            this.clTenNhanVien.HeaderText = "Tên nhân viên";
-            this.clTenNhanVien.Name = "clTenNhanVien";
-            this.clTenNhanVien.ReadOnly = true;
-            // 
-            // clNgayBan
-            // 
-            this.clNgayBan.HeaderText = "Ngày bán";
-            this.clNgayBan.Name = "clNgayBan";
-            this.clNgayBan.ReadOnly = true;
-            // 
-            // clSoTienNhan
-            // 
-            this.clSoTienNhan.HeaderText = "Số tiền nhận";
-            this.clSoTienNhan.Name = "clSoTienNhan";
-            this.clSoTienNhan.ReadOnly = true;
-            // 
-            // clSoTienChi
-            // 
-            this.clSoTienChi.HeaderText = "Số tiền chi";
-            this.clSoTienChi.Name = "clSoTienChi";
-            this.clSoTienChi.ReadOnly = true;
             // 
             // TraCuuNguoiBan
             // 
