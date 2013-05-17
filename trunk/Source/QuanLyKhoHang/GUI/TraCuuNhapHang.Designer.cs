@@ -1,6 +1,6 @@
 ﻿namespace GUI
 {
-    partial class TraCuuNhapHang
+    partial class FormTraCuuNhapHang
     {
         /// <summary>
         /// Required designer variable.
@@ -259,7 +259,7 @@
             this.btnThoat.Text = "Thoát";
             this.btnThoat.UseVisualStyleBackColor = true;
             // 
-            // TraCuuNhapHang
+            // FormTraCuuNhapHang
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -283,8 +283,8 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Name = "TraCuuNhapHang";
-            this.Text = "TraCuuNhapHang";
+            this.Name = "FormTraCuuNhapHang";
+            this.Text = "Tra Cứu Nhập Hàng";
             ((System.ComponentModel.ISupportInitialize)(this.GridView_TraCuuNhapHang)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

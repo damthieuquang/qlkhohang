@@ -1,6 +1,6 @@
 ﻿namespace GUI
 {
-    partial class TraCuuXuatHang
+    partial class FormTraCuuXuatHang
     {
         /// <summary>
         /// Required designer variable.
@@ -36,18 +36,18 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btnThoat = new System.Windows.Forms.Button();
             this.GridView_TraCuuXuatHang = new System.Windows.Forms.DataGridView();
-            this.txtThoiGianBatDau = new System.Windows.Forms.TextBox();
-            this.txtThoiGianKetThuc = new System.Windows.Forms.TextBox();
-            this.txtMaPhieuXuat = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
             this.clSTT = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clMaPhieuXuat = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clNgayBanHang = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clNguoiMua = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clSoLuong = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clSoTien = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.txtThoiGianBatDau = new System.Windows.Forms.TextBox();
+            this.txtThoiGianKetThuc = new System.Windows.Forms.TextBox();
+            this.txtMaPhieuXuat = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.GridView_TraCuuXuatHang)).BeginInit();
             this.SuspendLayout();
             // 
@@ -131,6 +131,42 @@
             this.GridView_TraCuuXuatHang.Size = new System.Drawing.Size(644, 150);
             this.GridView_TraCuuXuatHang.TabIndex = 21;
             // 
+            // clSTT
+            // 
+            this.clSTT.HeaderText = "STT";
+            this.clSTT.Name = "clSTT";
+            this.clSTT.ReadOnly = true;
+            // 
+            // clMaPhieuXuat
+            // 
+            this.clMaPhieuXuat.HeaderText = "Mã phiếu xuất";
+            this.clMaPhieuXuat.Name = "clMaPhieuXuat";
+            this.clMaPhieuXuat.ReadOnly = true;
+            // 
+            // clNgayBanHang
+            // 
+            this.clNgayBanHang.HeaderText = "Ngày bán hàng";
+            this.clNgayBanHang.Name = "clNgayBanHang";
+            this.clNgayBanHang.ReadOnly = true;
+            // 
+            // clNguoiMua
+            // 
+            this.clNguoiMua.HeaderText = "Người mua";
+            this.clNguoiMua.Name = "clNguoiMua";
+            this.clNguoiMua.ReadOnly = true;
+            // 
+            // clSoLuong
+            // 
+            this.clSoLuong.HeaderText = "Số lượng";
+            this.clSoLuong.Name = "clSoLuong";
+            this.clSoLuong.ReadOnly = true;
+            // 
+            // clSoTien
+            // 
+            this.clSoTien.HeaderText = "Số tiền";
+            this.clSoTien.Name = "clSoTien";
+            this.clSoTien.ReadOnly = true;
+            // 
             // txtThoiGianBatDau
             // 
             this.txtThoiGianBatDau.Location = new System.Drawing.Point(268, 130);
@@ -179,43 +215,7 @@
             this.label3.TabIndex = 16;
             this.label3.Text = "Từ";
             // 
-            // clSTT
-            // 
-            this.clSTT.HeaderText = "STT";
-            this.clSTT.Name = "clSTT";
-            this.clSTT.ReadOnly = true;
-            // 
-            // clMaPhieuXuat
-            // 
-            this.clMaPhieuXuat.HeaderText = "Mã phiếu xuất";
-            this.clMaPhieuXuat.Name = "clMaPhieuXuat";
-            this.clMaPhieuXuat.ReadOnly = true;
-            // 
-            // clNgayBanHang
-            // 
-            this.clNgayBanHang.HeaderText = "Ngày bán hàng";
-            this.clNgayBanHang.Name = "clNgayBanHang";
-            this.clNgayBanHang.ReadOnly = true;
-            // 
-            // clNguoiMua
-            // 
-            this.clNguoiMua.HeaderText = "Người mua";
-            this.clNguoiMua.Name = "clNguoiMua";
-            this.clNguoiMua.ReadOnly = true;
-            // 
-            // clSoLuong
-            // 
-            this.clSoLuong.HeaderText = "Số lượng";
-            this.clSoLuong.Name = "clSoLuong";
-            this.clSoLuong.ReadOnly = true;
-            // 
-            // clSoTien
-            // 
-            this.clSoTien.HeaderText = "Số tiền";
-            this.clSoTien.Name = "clSoTien";
-            this.clSoTien.ReadOnly = true;
-            // 
-            // TraCuuXuatHang
+            // FormTraCuuXuatHang
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -234,8 +234,8 @@
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label3);
-            this.Name = "TraCuuXuatHang";
-            this.Text = "TraCuuXuatHang";
+            this.Name = "FormTraCuuXuatHang";
+            this.Text = "Tra Cứu Xuất Hàng";
             ((System.ComponentModel.ISupportInitialize)(this.GridView_TraCuuXuatHang)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

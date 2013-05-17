@@ -1,6 +1,6 @@
 ﻿namespace GUI
 {
-    partial class NhapHang
+    partial class FormNhapHang
     {
         /// <summary>
         /// Required designer variable.
@@ -33,6 +33,13 @@
             this.btnLamLai = new System.Windows.Forms.Button();
             this.btnThoat = new System.Windows.Forms.Button();
             this.GridView_NhapHang = new System.Windows.Forms.DataGridView();
+            this.clSTT = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clMaSanPham = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clTenSanPham = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clSoLuong = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clDaNhan = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clConLai = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clGhiChu = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -47,13 +54,6 @@
             this.txtDonDatHang = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.txtMaPhieuNhap = new System.Windows.Forms.TextBox();
-            this.clSTT = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clMaSanPham = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clTenSanPham = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clSoLuong = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clDaNhan = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clConLai = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clGhiChu = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnTimPhieuNhap = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.GridView_NhapHang)).BeginInit();
             this.SuspendLayout();
@@ -109,6 +109,48 @@
             this.GridView_NhapHang.Name = "GridView_NhapHang";
             this.GridView_NhapHang.Size = new System.Drawing.Size(744, 150);
             this.GridView_NhapHang.TabIndex = 77;
+            // 
+            // clSTT
+            // 
+            this.clSTT.HeaderText = "STT";
+            this.clSTT.Name = "clSTT";
+            this.clSTT.ReadOnly = true;
+            // 
+            // clMaSanPham
+            // 
+            this.clMaSanPham.HeaderText = "Mã sản phẩm";
+            this.clMaSanPham.Name = "clMaSanPham";
+            this.clMaSanPham.ReadOnly = true;
+            // 
+            // clTenSanPham
+            // 
+            this.clTenSanPham.HeaderText = "Tên sản phẩm";
+            this.clTenSanPham.Name = "clTenSanPham";
+            this.clTenSanPham.ReadOnly = true;
+            // 
+            // clSoLuong
+            // 
+            this.clSoLuong.HeaderText = "Số lượng";
+            this.clSoLuong.Name = "clSoLuong";
+            this.clSoLuong.ReadOnly = true;
+            // 
+            // clDaNhan
+            // 
+            this.clDaNhan.HeaderText = "Đã nhận";
+            this.clDaNhan.Name = "clDaNhan";
+            this.clDaNhan.ReadOnly = true;
+            // 
+            // clConLai
+            // 
+            this.clConLai.HeaderText = "Còn lại";
+            this.clConLai.Name = "clConLai";
+            this.clConLai.ReadOnly = true;
+            // 
+            // clGhiChu
+            // 
+            this.clGhiChu.HeaderText = "Ghi chú";
+            this.clGhiChu.Name = "clGhiChu";
+            this.clGhiChu.ReadOnly = true;
             // 
             // label6
             // 
@@ -222,48 +264,6 @@
             this.txtMaPhieuNhap.Size = new System.Drawing.Size(154, 20);
             this.txtMaPhieuNhap.TabIndex = 87;
             // 
-            // clSTT
-            // 
-            this.clSTT.HeaderText = "STT";
-            this.clSTT.Name = "clSTT";
-            this.clSTT.ReadOnly = true;
-            // 
-            // clMaSanPham
-            // 
-            this.clMaSanPham.HeaderText = "Mã sản phẩm";
-            this.clMaSanPham.Name = "clMaSanPham";
-            this.clMaSanPham.ReadOnly = true;
-            // 
-            // clTenSanPham
-            // 
-            this.clTenSanPham.HeaderText = "Tên sản phẩm";
-            this.clTenSanPham.Name = "clTenSanPham";
-            this.clTenSanPham.ReadOnly = true;
-            // 
-            // clSoLuong
-            // 
-            this.clSoLuong.HeaderText = "Số lượng";
-            this.clSoLuong.Name = "clSoLuong";
-            this.clSoLuong.ReadOnly = true;
-            // 
-            // clDaNhan
-            // 
-            this.clDaNhan.HeaderText = "Đã nhận";
-            this.clDaNhan.Name = "clDaNhan";
-            this.clDaNhan.ReadOnly = true;
-            // 
-            // clConLai
-            // 
-            this.clConLai.HeaderText = "Còn lại";
-            this.clConLai.Name = "clConLai";
-            this.clConLai.ReadOnly = true;
-            // 
-            // clGhiChu
-            // 
-            this.clGhiChu.HeaderText = "Ghi chú";
-            this.clGhiChu.Name = "clGhiChu";
-            this.clGhiChu.ReadOnly = true;
-            // 
             // btnTimPhieuNhap
             // 
             this.btnTimPhieuNhap.Location = new System.Drawing.Point(385, 384);
@@ -273,10 +273,11 @@
             this.btnTimPhieuNhap.Text = "Tìm phiếu nhập";
             this.btnTimPhieuNhap.UseVisualStyleBackColor = true;
             // 
-            // NhapHang
+            // FormNhapHang
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(825, 436);
             this.Controls.Add(this.btnTimPhieuNhap);
             this.Controls.Add(this.label7);
@@ -298,8 +299,8 @@
             this.Controls.Add(this.txtSoTien);
             this.Controls.Add(this.txtNgayNhan);
             this.Controls.Add(this.txtDonDatHang);
-            this.Name = "NhapHang";
-            this.Text = "NhapHang";
+            this.Name = "FormNhapHang";
+            this.Text = "Nhập Hàng";
             ((System.ComponentModel.ISupportInitialize)(this.GridView_NhapHang)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

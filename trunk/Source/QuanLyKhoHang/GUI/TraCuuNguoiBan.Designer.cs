@@ -1,6 +1,6 @@
 ﻿namespace GUI
 {
-    partial class TraCuuNguoiBan
+    partial class FormTraCuuNguoiBan
     {
         /// <summary>
         /// Required designer variable.
@@ -213,7 +213,7 @@
             this.label5.Text = "Thời gian bán:";
             this.label5.Click += new System.EventHandler(this.label5_Click);
             // 
-            // TraCuuNguoiBan
+            // FormTraCuuNguoiBan
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -232,8 +232,8 @@
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label3);
-            this.Name = "TraCuuNguoiBan";
-            this.Text = "TraCuuNguoiBan";
+            this.Name = "FormTraCuuNguoiBan";
+            this.Text = "Tra Cứu Người Bán";
             ((System.ComponentModel.ISupportInitialize)(this.GridView_TraCuuNguoiBan)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

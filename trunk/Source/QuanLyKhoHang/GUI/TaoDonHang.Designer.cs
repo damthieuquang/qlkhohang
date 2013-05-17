@@ -1,6 +1,6 @@
 ﻿namespace GUI
 {
-    partial class TaoDonHang
+    partial class FormTaoDonHang
     {
         /// <summary>
         /// Required designer variable.
@@ -295,10 +295,11 @@
             this.btnThemSanPham.Text = "Thêm sản phẩm";
             this.btnThemSanPham.UseVisualStyleBackColor = true;
             // 
-            // TaoDonHang
+            // FormTaoDonHang
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(768, 474);
             this.Controls.Add(this.btnXoaSanPham);
             this.Controls.Add(this.btnCapNhatSanPham);
@@ -322,8 +323,8 @@
             this.Controls.Add(this.txtMaStockist);
             this.Controls.Add(this.txtNgayLap);
             this.Controls.Add(this.txtMaNhanVien);
-            this.Name = "TaoDonHang";
-            this.Text = "TaoDonHang";
+            this.Name = "FormTaoDonHang";
+            this.Text = "Tạo Đơn Hàng";
             ((System.ComponentModel.ISupportInitialize)(this.GridView_TaoDonNhapHang)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

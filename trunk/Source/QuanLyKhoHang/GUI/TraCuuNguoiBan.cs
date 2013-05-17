@@ -11,9 +11,9 @@ using BUS;
 
 namespace GUI
 {
-    public partial class TraCuuNguoiBan : Form
+    public partial class FormTraCuuNguoiBan : Form
     {
-        public TraCuuNguoiBan()
+        public FormTraCuuNguoiBan()
         {
             InitializeComponent();
         }

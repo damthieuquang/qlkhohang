@@ -1,6 +1,6 @@
 ﻿namespace GUI
 {
-    partial class ManHinhChinh
+    partial class FormManHinhChinh
     {
         /// <summary>
         /// Required designer variable.
@@ -39,15 +39,15 @@
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
-            // ManHinhChinh
+            // FormManHinhChinh
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(284, 261);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
-            this.Name = "ManHinhChinh";
-            this.Text = "ManHinhChinh";
+            this.Name = "FormManHinhChinh";
+            this.Text = "Quan Ly Kho Hang";
             this.ResumeLayout(false);
             this.PerformLayout();
 
