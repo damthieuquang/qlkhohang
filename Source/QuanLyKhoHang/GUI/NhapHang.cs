@@ -9,9 +9,9 @@ using System.Windows.Forms;
 
 namespace GUI
 {
-    public partial class NhapHang : Form
+    public partial class FormNhapHang : Form
     {
-        public NhapHang()
+        public FormNhapHang()
         {
             InitializeComponent();
         }

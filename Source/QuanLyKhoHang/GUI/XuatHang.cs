@@ -9,9 +9,9 @@ using System.Windows.Forms;
 
 namespace GUI
 {
-    public partial class XuatHang : Form
+    public partial class FormXuatHang : Form
     {
-        public XuatHang()
+        public FormXuatHang()
         {
             InitializeComponent();
         }

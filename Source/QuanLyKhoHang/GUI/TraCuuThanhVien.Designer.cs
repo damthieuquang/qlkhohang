@@ -1,6 +1,6 @@
 ﻿namespace GUI
 {
-    partial class TraCuuThanhVien
+    partial class FormTraCuuThanhVien
     {
         /// <summary>
         /// Required designer variable.
@@ -167,7 +167,7 @@
             this.btnTraCuu.Text = "Tra cứu";
             this.btnTraCuu.UseVisualStyleBackColor = true;
             // 
-            // TraCuuThanhVien
+            // FormTraCuuThanhVien
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -182,8 +182,8 @@
             this.Controls.Add(this.txtTenThanhVien);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
-            this.Name = "TraCuuThanhVien";
-            this.Text = "TraCuuThanhVien";
+            this.Name = "FormTraCuuThanhVien";
+            this.Text = "Tra Cứu Thành Viên";
             ((System.ComponentModel.ISupportInitialize)(this.GridView_TraCuuThanhVien)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

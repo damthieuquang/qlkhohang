@@ -9,9 +9,9 @@ using System.Windows.Forms;
 
 namespace GUI
 {
-    public partial class TaoDonHang : Form
+    public partial class FormTaoDonHang : Form
     {
-        public TaoDonHang()
+        public FormTaoDonHang()
         {
             InitializeComponent();
         }

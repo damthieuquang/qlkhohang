@@ -9,9 +9,9 @@ using System.Windows.Forms;
 
 namespace GUI
 {
-    public partial class ManHinhChinh : Form
+    public partial class FormManHinhChinh : Form
     {
-        public ManHinhChinh()
+        public FormManHinhChinh()
         {
             InitializeComponent();
         }
