@@ -102,6 +102,9 @@
     <Compile Include="XuatHang.Designer.cs">
       <DependentUpon>XuatHang.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="ManHinhChinh.resx">
+      <DependentUpon>ManHinhChinh.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="NhapHang.resx">
       <DependentUpon>NhapHang.cs</DependentUpon>
     </EmbeddedResource>
