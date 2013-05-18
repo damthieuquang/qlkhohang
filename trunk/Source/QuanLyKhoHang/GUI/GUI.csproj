@@ -150,11 +150,11 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BUS\BUS.csproj">
-      <Project>{90D8573F-7C69-41A0-A754-A26C2FE6EE32}</Project>
+      <Project>{005BF40C-EBD6-4B3E-B297-72770ECC861F}</Project>
       <Name>BUS</Name>
     </ProjectReference>
     <ProjectReference Include="..\DTO\DTO.csproj">
-      <Project>{67B4FEE6-CA76-448B-9499-ED973EB3F5DE}</Project>
+      <Project>{2EFC463D-DBB3-4186-94DB-9D71631CD41A}</Project>
       <Name>DTO</Name>
     </ProjectReference>
   </ItemGroup>
