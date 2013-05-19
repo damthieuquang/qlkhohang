@@ -33,13 +33,6 @@
             this.btnTraCuu = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.btnThoat = new System.Windows.Forms.Button();
-            this.GridView_TraCuuNguoiBan = new System.Windows.Forms.DataGridView();
-            this.clSTT = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clMaNhanVien = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clTenNhanVien = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clNgayBan = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clSoTienNhan = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clSoTienChi = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.txtThoiGianBatDau = new System.Windows.Forms.TextBox();
             this.txtThoiGianKetThuc = new System.Windows.Forms.TextBox();
             this.txtMaNguoiBan = new System.Windows.Forms.TextBox();
@@ -48,7 +41,14 @@
             this.label3 = new System.Windows.Forms.Label();
             this.txtTenNguoiBan = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.GridView_TraCuuNguoiBan)).BeginInit();
+            this.dataGridView_TraCuuNguoiBan = new System.Windows.Forms.DataGridView();
+            this.clSTT = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clMaNhanVien = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clTenNhanVien = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clNgayBan = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clSoTienNhan = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clSoTienChi = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_TraCuuNguoiBan)).BeginInit();
             this.SuspendLayout();
             // 
             // btnLamLai
@@ -96,57 +96,6 @@
             this.btnThoat.TabIndex = 41;
             this.btnThoat.Text = "Thoát";
             this.btnThoat.UseVisualStyleBackColor = true;
-            // 
-            // GridView_TraCuuNguoiBan
-            // 
-            this.GridView_TraCuuNguoiBan.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.GridView_TraCuuNguoiBan.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.clSTT,
-            this.clMaNhanVien,
-            this.clTenNhanVien,
-            this.clNgayBan,
-            this.clSoTienNhan,
-            this.clSoTienChi});
-            this.GridView_TraCuuNguoiBan.Location = new System.Drawing.Point(12, 182);
-            this.GridView_TraCuuNguoiBan.Name = "GridView_TraCuuNguoiBan";
-            this.GridView_TraCuuNguoiBan.Size = new System.Drawing.Size(641, 150);
-            this.GridView_TraCuuNguoiBan.TabIndex = 35;
-            // 
-            // clSTT
-            // 
-            this.clSTT.HeaderText = "STT";
-            this.clSTT.Name = "clSTT";
-            this.clSTT.ReadOnly = true;
-            // 
-            // clMaNhanVien
-            // 
-            this.clMaNhanVien.HeaderText = "Mã nhân viên";
-            this.clMaNhanVien.Name = "clMaNhanVien";
-            this.clMaNhanVien.ReadOnly = true;
-            // 
-            // clTenNhanVien
-            // 
-            this.clTenNhanVien.HeaderText = "Tên nhân viên";
-            this.clTenNhanVien.Name = "clTenNhanVien";
-            this.clTenNhanVien.ReadOnly = true;
-            // 
-            // clNgayBan
-            // 
-            this.clNgayBan.HeaderText = "Ngày bán";
-            this.clNgayBan.Name = "clNgayBan";
-            this.clNgayBan.ReadOnly = true;
-            // 
-            // clSoTienNhan
-            // 
-            this.clSoTienNhan.HeaderText = "Số tiền nhận";
-            this.clSoTienNhan.Name = "clSoTienNhan";
-            this.clSoTienNhan.ReadOnly = true;
-            // 
-            // clSoTienChi
-            // 
-            this.clSoTienChi.HeaderText = "Số tiền chi";
-            this.clSoTienChi.Name = "clSoTienChi";
-            this.clSoTienChi.ReadOnly = true;
             // 
             // txtThoiGianBatDau
             // 
@@ -213,11 +162,63 @@
             this.label5.Text = "Thời gian bán:";
             this.label5.Click += new System.EventHandler(this.label5_Click);
             // 
+            // dataGridView_TraCuuNguoiBan
+            // 
+            this.dataGridView_TraCuuNguoiBan.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView_TraCuuNguoiBan.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.clSTT,
+            this.clMaNhanVien,
+            this.clTenNhanVien,
+            this.clNgayBan,
+            this.clSoTienNhan,
+            this.clSoTienChi});
+            this.dataGridView_TraCuuNguoiBan.Location = new System.Drawing.Point(22, 182);
+            this.dataGridView_TraCuuNguoiBan.Name = "dataGridView_TraCuuNguoiBan";
+            this.dataGridView_TraCuuNguoiBan.Size = new System.Drawing.Size(640, 150);
+            this.dataGridView_TraCuuNguoiBan.TabIndex = 44;
+            // 
+            // clSTT
+            // 
+            this.clSTT.HeaderText = "STT";
+            this.clSTT.Name = "clSTT";
+            this.clSTT.ReadOnly = true;
+            // 
+            // clMaNhanVien
+            // 
+            this.clMaNhanVien.HeaderText = "Mã nhân viên";
+            this.clMaNhanVien.Name = "clMaNhanVien";
+            this.clMaNhanVien.ReadOnly = true;
+            // 
+            // clTenNhanVien
+            // 
+            this.clTenNhanVien.HeaderText = "Tên nhân viên";
+            this.clTenNhanVien.Name = "clTenNhanVien";
+            this.clTenNhanVien.ReadOnly = true;
+            // 
+            // clNgayBan
+            // 
+            this.clNgayBan.HeaderText = "Ngày bán";
+            this.clNgayBan.Name = "clNgayBan";
+            this.clNgayBan.ReadOnly = true;
+            // 
+            // clSoTienNhan
+            // 
+            this.clSoTienNhan.HeaderText = "Số tiền nhận";
+            this.clSoTienNhan.Name = "clSoTienNhan";
+            this.clSoTienNhan.ReadOnly = true;
+            // 
+            // clSoTienChi
+            // 
+            this.clSoTienChi.HeaderText = "Số tiền chi";
+            this.clSoTienChi.Name = "clSoTienChi";
+            this.clSoTienChi.ReadOnly = true;
+            // 
             // FormTraCuuNguoiBan
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(683, 437);
+            this.Controls.Add(this.dataGridView_TraCuuNguoiBan);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.txtTenNguoiBan);
             this.Controls.Add(this.btnLamLai);
@@ -225,7 +226,6 @@
             this.Controls.Add(this.btnTraCuu);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnThoat);
-            this.Controls.Add(this.GridView_TraCuuNguoiBan);
             this.Controls.Add(this.txtThoiGianBatDau);
             this.Controls.Add(this.txtThoiGianKetThuc);
             this.Controls.Add(this.txtMaNguoiBan);
@@ -233,8 +233,8 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label3);
             this.Name = "FormTraCuuNguoiBan";
-            this.Text = "Tra Cứu Người Bán";
-            ((System.ComponentModel.ISupportInitialize)(this.GridView_TraCuuNguoiBan)).EndInit();
+            this.Text = "Theo Dõi - Tra Cứu Người Bán";
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_TraCuuNguoiBan)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -247,7 +247,6 @@
         private System.Windows.Forms.Button btnTraCuu;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnThoat;
-        private System.Windows.Forms.DataGridView GridView_TraCuuNguoiBan;
         private System.Windows.Forms.TextBox txtThoiGianBatDau;
         private System.Windows.Forms.TextBox txtThoiGianKetThuc;
         private System.Windows.Forms.TextBox txtMaNguoiBan;
@@ -256,6 +255,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txtTenNguoiBan;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.DataGridView dataGridView_TraCuuNguoiBan;
         private System.Windows.Forms.DataGridViewTextBoxColumn clSTT;
         private System.Windows.Forms.DataGridViewTextBoxColumn clMaNhanVien;
         private System.Windows.Forms.DataGridViewTextBoxColumn clTenNhanVien;
