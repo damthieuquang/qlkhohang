@@ -46,7 +46,10 @@
             this.btnTaoMoi = new System.Windows.Forms.Button();
             this.btnTao = new System.Windows.Forms.Button();
             this.btnThoat = new System.Windows.Forms.Button();
-            this.GridView_TaoDonNhapHang = new System.Windows.Forms.DataGridView();
+            this.btnXoaSanPham = new System.Windows.Forms.Button();
+            this.btnCapNhatSanPham = new System.Windows.Forms.Button();
+            this.btnThemSanPham = new System.Windows.Forms.Button();
+            this.dataGridView_TaoDonHang = new System.Windows.Forms.DataGridView();
             this.clSTT = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clMaSanPham = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clTenSanPham = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -54,10 +57,7 @@
             this.clDonGia = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clSoLuong = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clThanhTien = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnXoaSanPham = new System.Windows.Forms.Button();
-            this.btnCapNhatSanPham = new System.Windows.Forms.Button();
-            this.btnThemSanPham = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.GridView_TaoDonNhapHang)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_TaoDonHang)).BeginInit();
             this.SuspendLayout();
             // 
             // txtTenNhanVien
@@ -210,10 +210,37 @@
             this.btnThoat.Text = "Thoát";
             this.btnThoat.UseVisualStyleBackColor = true;
             // 
-            // GridView_TaoDonNhapHang
+            // btnXoaSanPham
             // 
-            this.GridView_TaoDonNhapHang.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.GridView_TaoDonNhapHang.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.btnXoaSanPham.Location = new System.Drawing.Point(472, 370);
+            this.btnXoaSanPham.Name = "btnXoaSanPham";
+            this.btnXoaSanPham.Size = new System.Drawing.Size(110, 23);
+            this.btnXoaSanPham.TabIndex = 64;
+            this.btnXoaSanPham.Text = "Xóa sản phẩm";
+            this.btnXoaSanPham.UseVisualStyleBackColor = true;
+            // 
+            // btnCapNhatSanPham
+            // 
+            this.btnCapNhatSanPham.Location = new System.Drawing.Point(323, 370);
+            this.btnCapNhatSanPham.Name = "btnCapNhatSanPham";
+            this.btnCapNhatSanPham.Size = new System.Drawing.Size(110, 23);
+            this.btnCapNhatSanPham.TabIndex = 63;
+            this.btnCapNhatSanPham.Text = "Cập nhật sản phẩm";
+            this.btnCapNhatSanPham.UseVisualStyleBackColor = true;
+            // 
+            // btnThemSanPham
+            // 
+            this.btnThemSanPham.Location = new System.Drawing.Point(185, 370);
+            this.btnThemSanPham.Name = "btnThemSanPham";
+            this.btnThemSanPham.Size = new System.Drawing.Size(110, 23);
+            this.btnThemSanPham.TabIndex = 62;
+            this.btnThemSanPham.Text = "Thêm sản phẩm";
+            this.btnThemSanPham.UseVisualStyleBackColor = true;
+            // 
+            // dataGridView_TaoDonHang
+            // 
+            this.dataGridView_TaoDonHang.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView_TaoDonHang.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.clSTT,
             this.clMaSanPham,
             this.clTenSanPham,
@@ -221,10 +248,10 @@
             this.clDonGia,
             this.clSoLuong,
             this.clThanhTien});
-            this.GridView_TaoDonNhapHang.Location = new System.Drawing.Point(12, 205);
-            this.GridView_TaoDonNhapHang.Name = "GridView_TaoDonNhapHang";
-            this.GridView_TaoDonNhapHang.Size = new System.Drawing.Size(744, 150);
-            this.GridView_TaoDonNhapHang.TabIndex = 55;
+            this.dataGridView_TaoDonHang.Location = new System.Drawing.Point(12, 191);
+            this.dataGridView_TaoDonHang.Name = "dataGridView_TaoDonHang";
+            this.dataGridView_TaoDonHang.Size = new System.Drawing.Size(744, 150);
+            this.dataGridView_TaoDonHang.TabIndex = 65;
             // 
             // clSTT
             // 
@@ -268,39 +295,13 @@
             this.clThanhTien.Name = "clThanhTien";
             this.clThanhTien.ReadOnly = true;
             // 
-            // btnXoaSanPham
-            // 
-            this.btnXoaSanPham.Location = new System.Drawing.Point(472, 370);
-            this.btnXoaSanPham.Name = "btnXoaSanPham";
-            this.btnXoaSanPham.Size = new System.Drawing.Size(110, 23);
-            this.btnXoaSanPham.TabIndex = 64;
-            this.btnXoaSanPham.Text = "Xóa sản phẩm";
-            this.btnXoaSanPham.UseVisualStyleBackColor = true;
-            // 
-            // btnCapNhatSanPham
-            // 
-            this.btnCapNhatSanPham.Location = new System.Drawing.Point(323, 370);
-            this.btnCapNhatSanPham.Name = "btnCapNhatSanPham";
-            this.btnCapNhatSanPham.Size = new System.Drawing.Size(110, 23);
-            this.btnCapNhatSanPham.TabIndex = 63;
-            this.btnCapNhatSanPham.Text = "Cập nhật sản phẩm";
-            this.btnCapNhatSanPham.UseVisualStyleBackColor = true;
-            // 
-            // btnThemSanPham
-            // 
-            this.btnThemSanPham.Location = new System.Drawing.Point(185, 370);
-            this.btnThemSanPham.Name = "btnThemSanPham";
-            this.btnThemSanPham.Size = new System.Drawing.Size(110, 23);
-            this.btnThemSanPham.TabIndex = 62;
-            this.btnThemSanPham.Text = "Thêm sản phẩm";
-            this.btnThemSanPham.UseVisualStyleBackColor = true;
-            // 
             // FormTaoDonHang
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(768, 474);
+            this.Controls.Add(this.dataGridView_TaoDonHang);
             this.Controls.Add(this.btnXoaSanPham);
             this.Controls.Add(this.btnCapNhatSanPham);
             this.Controls.Add(this.btnThemSanPham);
@@ -310,7 +311,6 @@
             this.Controls.Add(this.btnTaoMoi);
             this.Controls.Add(this.btnTao);
             this.Controls.Add(this.btnThoat);
-            this.Controls.Add(this.GridView_TaoDonNhapHang);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
@@ -325,7 +325,7 @@
             this.Controls.Add(this.txtMaNhanVien);
             this.Name = "FormTaoDonHang";
             this.Text = "Tạo Đơn Hàng";
-            ((System.ComponentModel.ISupportInitialize)(this.GridView_TaoDonNhapHang)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_TaoDonHang)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -351,7 +351,10 @@
         private System.Windows.Forms.Button btnTaoMoi;
         private System.Windows.Forms.Button btnTao;
         private System.Windows.Forms.Button btnThoat;
-        private System.Windows.Forms.DataGridView GridView_TaoDonNhapHang;
+        private System.Windows.Forms.Button btnXoaSanPham;
+        private System.Windows.Forms.Button btnCapNhatSanPham;
+        private System.Windows.Forms.Button btnThemSanPham;
+        private System.Windows.Forms.DataGridView dataGridView_TaoDonHang;
         private System.Windows.Forms.DataGridViewTextBoxColumn clSTT;
         private System.Windows.Forms.DataGridViewTextBoxColumn clMaSanPham;
         private System.Windows.Forms.DataGridViewTextBoxColumn clTenSanPham;
@@ -359,8 +362,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clDonGia;
         private System.Windows.Forms.DataGridViewTextBoxColumn clSoLuong;
         private System.Windows.Forms.DataGridViewTextBoxColumn clThanhTien;
-        private System.Windows.Forms.Button btnXoaSanPham;
-        private System.Windows.Forms.Button btnCapNhatSanPham;
-        private System.Windows.Forms.Button btnThemSanPham;
     }
 }
