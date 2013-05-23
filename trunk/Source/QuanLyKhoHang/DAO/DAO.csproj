@@ -40,8 +40,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ChiTietDonHangDAO.cs" />
+    <Compile Include="ChiTietPhieuNhapDAO.cs" />
+    <Compile Include="ChiTietPhieuXuatDAO.cs" />
     <Compile Include="DataProvider.cs" />
+    <Compile Include="DonHangDAO.cs" />
+    <Compile Include="LoaiPhieuXuatDAO.cs" />
+    <Compile Include="LoaiSanPhamDAO.cs" />
+    <Compile Include="NhanVienDAO.cs" />
+    <Compile Include="PhieuNhapDAO.cs" />
+    <Compile Include="PhieuXuatDAO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SanPhamDAO.cs" />
+    <Compile Include="ThamSoDAO.cs" />
+    <Compile Include="ThanhVienDAO.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DTO\DTO.csproj">
