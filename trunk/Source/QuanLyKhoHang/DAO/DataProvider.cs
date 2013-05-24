@@ -54,7 +54,8 @@ namespace DAO
         }
 
         //ExecuteReader
-        public static SqlDataReader ExecuteReader(String spName, List<SqlParameter> sqlParams)
+        //ExecuteReader
+        public static DataTable ExecuteReader(String spName, List<SqlParameter> sqlParams)
         {
             //Kết nối Database
             SqlConnection connect = new SqlConnection(ConnectionString);
@@ -73,17 +74,22 @@ namespace DAO
             }
 
             //Thực thi câu truy vấn và nhận kết quả
-            SqlDataReader res = command.ExecuteReader();
+            SqlDataAdapter adapter = new SqlDataAdapter();
+            adapter.SelectCommand = command;
+            DataTable dt = new DataTable();
+            adapter.Fill(dt);
+
 
             //Đóng kết nối Database
             connect.Close();
-            return res;
+            return dt;
         }
 
-        public static SqlDataReader ExecuteReader(String spName)
+        public static DataTable ExecuteReader(String spName)
         {
             return ExecuteReader(spName, null);
         }
+
 
         //ExecuteScalar
         public static object ExecuteScalar(String spName, List<SqlParameter> sqlParams)
