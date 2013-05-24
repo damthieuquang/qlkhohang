@@ -40,45 +40,22 @@ namespace DAO
             sqlParams.Add(new SqlParameter("@MaDonHang", maDonHang));
             return DataProvider.ExecuteNoneQuery("usp_DeleteDonHangById", sqlParams);
         }
-        public List<DonHangDTO> SelectDonHangAll()
+
+        public static List<DonHangDTO> SelectDonHangAll()
         {
-            SqlDataReader reader = DataProvider.ExecuteReader("usp_SelectDonHangAll");
-            List<DonHangDTO> donHangDTO = new List<DonHangDTO>();
-
-            while (reader.Read())
+            DataTable dataTable = DataProvider.ExecuteReader("usp_SelectDonHangAll");
+            List<DonHangDTO> listDonHangDTO = new List<DonHangDTO>();
+            foreach (DataRow dataRow in dataTable.Rows)
             {
-                DonHangDTO row = new DonHangDTO();
-                row.MaDonHang = reader.GetString(0);
-                row.NgayLap = reader.GetDateTime(1);
-                row.MaNhanVien = reader.GetString(2);
-                row.ThanhTien = reader.GetFloat(3);
-                row.TrangThai = reader.GetString(4);
-                donHangDTO.Add(row);
+                DonHangDTO donHangDTO = new DonHangDTO();
+                donHangDTO.MaDonHang = dataRow["MaDonHang"].ToString();
+                donHangDTO.NgayLap = DateTime.Parse(dataRow["NgayLap"].ToString());
+                donHangDTO.MaNhanVien = dataRow["MaNhanVien"].ToString();
+                donHangDTO.ThanhTien = float.Parse(dataRow["ThanhTien"].ToString());
+                donHangDTO.TrangThai = dataRow["TrangThai"].ToString();
+                listDonHangDTO.Add(donHangDTO);
             }
-
-            return donHangDTO;
-        }
-        public List<DonHangDTO> SelectDonHangById(string maDonHang)
-        {
-            List<SqlParameter> sqlParams = new List<SqlParameter>();
-            sqlParams.Add(new SqlParameter("@MaDonHang", maDonHang));
-
-            SqlDataReader reader = DataProvider.ExecuteReader("usp_SelectDonHangById", sqlParams);
-            List<DonHangDTO> donHangDTO = new List<DonHangDTO>();
-
-            while (reader.Read())
-            {
-                DonHangDTO row = new DonHangDTO();
-                row.MaDonHang = reader.GetString(0);
-                row.NgayLap = reader.GetDateTime(1);
-                row.MaNhanVien = reader.GetString(2);
-                row.ThanhTien = reader.GetFloat(3);
-                row.TrangThai = reader.GetString(4);
-                donHangDTO.Add(row);
-            }
-
-            return donHangDTO;
-
+            return listDonHangDTO;
         }
     }
 

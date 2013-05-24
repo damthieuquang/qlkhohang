@@ -9,5 +9,9 @@ namespace BUS
 {
     public class DonHangBUS
     {
+        public static List<DonHangDTO> SelectDonHangAll()
+        {
+            return DonHangDAO.SelectDonHangAll();
+        }
     }
 }

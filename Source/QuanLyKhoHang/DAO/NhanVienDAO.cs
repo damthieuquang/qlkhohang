@@ -34,43 +34,6 @@ namespace DAO
             sqlParams.Add(new SqlParameter("@MaNhanVien", maNhanVien));
             return DataProvider.ExecuteNoneQuery("usp_DeleteNhanVienById", sqlParams);
         }
-        public List<NhanVienDTO> SelectNhanVienAll()
-        {
-            SqlDataReader reader = DataProvider.ExecuteReader("usp_SelectNhanVienAll");
-            List<NhanVienDTO> nhanVienDTO = new List<NhanVienDTO>();
-
-            while (reader.Read())
-            {
-                NhanVienDTO row = new NhanVienDTO();
-                row.MaNhanVien = reader.GetString(0);
-                row.TenNhanVien = reader.GetString(1);
-                row.MatKhau = reader.GetString(2);
-                row.LoaiNhanVien = reader.GetInt32(3);
-                nhanVienDTO.Add(row);
-            }
-
-            return nhanVienDTO;
-        }
-        public List<NhanVienDTO> SelectNhanVienById(string maNhanVien)
-        {
-            List<SqlParameter> sqlParams = new List<SqlParameter>();
-            sqlParams.Add(new SqlParameter("@MaNhanVien", maNhanVien));
-
-            SqlDataReader reader = DataProvider.ExecuteReader("usp_SelectNhanVienById", sqlParams);
-            List<NhanVienDTO> nhanVienDTO = new List<NhanVienDTO>();
-
-            while (reader.Read())
-            {
-                NhanVienDTO row = new NhanVienDTO();
-                row.MaNhanVien = reader.GetString(0);
-                row.TenNhanVien = reader.GetString(1);
-                row.MatKhau = reader.GetString(2);
-                row.LoaiNhanVien = reader.GetInt32(3);
-                nhanVienDTO.Add(row);
-            }
-
-            return nhanVienDTO;
-
-        }
+      
     }
 }
