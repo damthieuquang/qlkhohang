@@ -10,5 +10,9 @@ namespace DAO
 {
     public class LoaiSanPhamDAO
     {
+        public static string CreateLoaiSanPhamId()
+        {
+            return (string)DataProvider.ExecuteScalar("usp_CreateLoaiSanPhamId");
+        }
     }
 }
