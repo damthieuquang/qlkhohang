@@ -9,5 +9,29 @@ namespace BUS
 {
     public class SanPhamBUS
     {
+        public static List<SanPhamDTO> SelectSanPhamAll()
+        {
+            return SanPhamDAO.SelectSanPhamAll();
+        }
+
+        public static List<SanPhamDTO> SelectSanPhamById(string MaSanPham)
+        {
+            return SanPhamDAO.SelectSanPhamById(MaSanPham);
+        }
+
+        public static bool InsertSanPham(SanPhamDTO spDTO)
+        {
+            return SanPhamDAO.InsertSanPham(spDTO);
+        }
+
+        public static bool UpdateSanPhamById(SanPhamDTO spDTO)
+        {
+            return SanPhamDAO.UpdateSanPhamById(spDTO);
+        }
+
+        public static bool DeleteSanPhamById(string MaSanPham)
+        {
+            return SanPhamDAO.DeleteSanPhamById(MaSanPham);
+        }
     }
 }

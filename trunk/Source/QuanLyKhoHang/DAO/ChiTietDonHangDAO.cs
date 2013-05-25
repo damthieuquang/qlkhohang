@@ -10,5 +10,81 @@ namespace DAO
 {
     public class ChiTietDonHangDAO
     {
+        public static List<ChiTietDonHangDTO> SelectChiTietDonHangAll()
+        {
+            DataTable dataTable = new DataTable();
+            dataTable = DataProvider.ExecuteReader("usp_SelectChiTietDonHangAll");
+            List<ChiTietDonHangDTO> lstctdhDTO = new List<ChiTietDonHangDTO>();
+            foreach (DataRow dtRow in dataTable.Rows)
+            {
+                ChiTietDonHangDTO ctdhDTO = new ChiTietDonHangDTO();
+                ctdhDTO.MaChiTietDonHang = dtRow["MaChiTietDonHang"].ToString();
+                ctdhDTO.MaDonHang = dtRow["MaDonHang"].ToString();
+                ctdhDTO.MaSanPham = dtRow["MaSanPham"].ToString();
+                ctdhDTO.CV = int.Parse(dtRow["CV"].ToString());
+                ctdhDTO.SoLuong = int.Parse(dtRow["SoLuong"].ToString());
+                ctdhDTO.DonGia = float.Parse(dtRow["DonGia"].ToString());
+                ctdhDTO.ThanhTien = float.Parse(dtRow["ThanhTien"].ToString());
+                lstctdhDTO.Add(ctdhDTO);
+                //select ct.MaChiTietDonHang, ct.MaDonHang, ct.MaSanPham, ct.CV, ct.SoLuong, ct.DonGia, ct.ThanhTien
+            }
+            return lstctdhDTO;
+        }
+
+        public static List<ChiTietDonHangDTO> SelectChiTietDonHangById(string MaChiTietDonHang)
+        {
+            List<SqlParameter> sqlParams = new List<SqlParameter>();
+            sqlParams.Add(new SqlParameter("@MaChiTietDonHang",MaChiTietDonHang));
+            DataTable dataTable = new DataTable();
+            dataTable = DataProvider.ExecuteReader("usp_SelectChiTietDonHangById",sqlParams);
+            List<ChiTietDonHangDTO> lstctdhDTO = new List<ChiTietDonHangDTO>();
+            foreach (DataRow dtRow in dataTable.Rows)
+            {
+                ChiTietDonHangDTO ctdhDTO = new ChiTietDonHangDTO();
+                ctdhDTO.MaChiTietDonHang = dtRow["MaChiTietDonHang"].ToString();
+                ctdhDTO.MaDonHang = dtRow["MaDonHang"].ToString();
+                ctdhDTO.MaSanPham = dtRow["MaSanPham"].ToString();
+                ctdhDTO.CV = int.Parse(dtRow["CV"].ToString());
+                ctdhDTO.SoLuong = int.Parse(dtRow["SoLuong"].ToString());
+                ctdhDTO.DonGia = float.Parse(dtRow["DonGia"].ToString());
+                ctdhDTO.ThanhTien = float.Parse(dtRow["ThanhTien"].ToString());
+                lstctdhDTO.Add(ctdhDTO);
+                //select ct.MaChiTietDonHang, ct.MaDonHang, ct.MaSanPham, ct.CV, ct.SoLuong, ct.DonGia, ct.ThanhTien
+            }
+            return lstctdhDTO;
+        }
+
+        public static bool InsertChiTietDonHang(ChiTietDonHangDTO ctdhDTO)
+        {
+            List<SqlParameter> sqlParams = new List<SqlParameter>();
+            sqlParams.Add(new SqlParameter("@MaChiTietDonHang",ctdhDTO.MaChiTietDonHang));
+            sqlParams.Add(new SqlParameter("@MaDonHang", ctdhDTO.MaDonHang));
+            sqlParams.Add(new SqlParameter("@MaSanPham", ctdhDTO.MaSanPham));
+            sqlParams.Add(new SqlParameter("@CV", ctdhDTO.CV));
+            sqlParams.Add(new SqlParameter("@SoLuong", ctdhDTO.SoLuong));
+            sqlParams.Add(new SqlParameter("@DonGia", ctdhDTO.DonGia));
+            sqlParams.Add(new SqlParameter("@ThanhTien", ctdhDTO.ThanhTien));
+            return DataProvider.ExecuteNoneQuery("usp_InsertChiTietDonHang",sqlParams);
+        }
+
+        public static bool UpdateChiTietDonHangById(ChiTietDonHangDTO ctdhDTO)
+        {
+            List<SqlParameter> sqlParams = new List<SqlParameter>();
+            sqlParams.Add(new SqlParameter("@MaChiTietDonHang", ctdhDTO.MaChiTietDonHang));
+            sqlParams.Add(new SqlParameter("@MaDonHang", ctdhDTO.MaDonHang));
+            sqlParams.Add(new SqlParameter("@MaSanPham", ctdhDTO.MaSanPham));
+            sqlParams.Add(new SqlParameter("@CV", ctdhDTO.CV));
+            sqlParams.Add(new SqlParameter("@SoLuong", ctdhDTO.SoLuong));
+            sqlParams.Add(new SqlParameter("@DonGia", ctdhDTO.DonGia));
+            sqlParams.Add(new SqlParameter("@ThanhTien", ctdhDTO.ThanhTien));
+            return DataProvider.ExecuteNoneQuery("usp_UpdateChiTietDonHangById",sqlParams);
+        }
+
+        public static bool DeleteChiTietDonHangById(string MaChiTietDonHang)
+        {
+            List<SqlParameter> sqlParams = new List<SqlParameter>();
+            sqlParams.Add(new SqlParameter("@MaChiTietDonHang", MaChiTietDonHang));
+            return DataProvider.ExecuteNoneQuery("usp_InsertChiTietDonHang",sqlParams);
+        }
     }
 }

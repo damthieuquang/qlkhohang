@@ -9,5 +9,29 @@ namespace BUS
 {
     public class ChiTietDonHangBUS
     {
+        public static List<ChiTietDonHangDTO> SelectChiTietDonHangAll()
+        {
+            return ChiTietDonHangDAO.SelectChiTietDonHangAll();
+        }
+
+        public static List<ChiTietDonHangDTO> SelectChiTietDonHangById(string MaChiTietDonHang)
+        {
+            return ChiTietDonHangDAO.SelectChiTietDonHangById(MaChiTietDonHang);
+        }
+
+        public static bool InsertChiTietDonHang(ChiTietDonHangDTO ctdhDTO)
+        {
+            return ChiTietDonHangDAO.InsertChiTietDonHang(ctdhDTO);
+        }
+
+        public static bool UpdateChiTietDonHangById(ChiTietDonHangDTO ctdhDTO)
+        {
+            return ChiTietDonHangDAO.UpdateChiTietDonHangById(ctdhDTO);
+        }
+
+        public static bool DeleteChiTietDonHangById(string MaChiTietDonHang)
+        {
+            return ChiTietDonHangDAO.DeleteChiTietDonHangById(MaChiTietDonHang);
+        }
     }
 }
