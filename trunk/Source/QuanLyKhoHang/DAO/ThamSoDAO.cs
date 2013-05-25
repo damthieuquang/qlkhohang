@@ -10,5 +10,9 @@ namespace DAO
 {
     public class ThamSoDAO
     {
+        public static string CreateThamSoId()
+        {
+            return (string)DataProvider.ExecuteScalar("usp_CreateThamSoId");
+        }
     }
 }

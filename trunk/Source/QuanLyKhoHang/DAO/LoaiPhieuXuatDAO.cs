@@ -10,5 +10,9 @@ namespace DAO
 {
     public class LoaiPhieuXuatDAO
     {
+        public static string CreateLoaiPhieuXuatId()
+        {
+            return (string)DataProvider.ExecuteScalar("usp_CreateLoaiPhieuXuatId");
+        }
     }
 }

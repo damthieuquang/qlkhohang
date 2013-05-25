@@ -85,5 +85,10 @@ namespace DAO
             sqlParams.Add(new SqlParameter("@MaSanPham", MaSanPham));
             return DataProvider.ExecuteNoneQuery("usp_DeleteSanPhamById", sqlParams);
         }
+
+        public static string CreateSanPhamId()
+        {
+            return (string)DataProvider.ExecuteScalar("usp_CreateSanPhamId");
+        }
     }
 }
