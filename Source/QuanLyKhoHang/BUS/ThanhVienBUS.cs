@@ -9,5 +9,29 @@ namespace BUS
 {
     public class ThanhVienBUS
     {
+        public static List<ThanhVienDTO> SelectThanhVienAll()
+        {
+            return ThanhVienDAO.SelectThanhVienAll();
+        }
+
+        public static List<ThanhVienDTO> SelectThanhVienById(string MaThanhVien)
+        {
+            return ThanhVienDAO.SelectThanhVienById(MaThanhVien);
+        }
+        public static bool InsertThanhVien(ThanhVienDTO tvDTO)
+        {
+            return ThanhVienDAO.InsertThanhVien(tvDTO);
+        }
+
+        public static bool UpdateThanhVienById(ThanhVienDTO tvDTO)
+        {
+            return ThanhVienDAO.UpdateThanhVienById(tvDTO);
+        }
+
+        public static bool DeleteThanhVienById(string MaThanhVien)
+        {
+            return ThanhVienDAO.DeleteThanhVienById(MaThanhVien);
+        }
     }
+
 }
