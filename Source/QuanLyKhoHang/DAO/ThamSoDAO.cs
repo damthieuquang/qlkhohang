@@ -56,7 +56,7 @@ namespace DAO
         {
             List<SqlParameter> sqlParamas = new List<SqlParameter>();
             sqlParamas.Add(new SqlParameter("@MaThamSo", MaThamSo));
-            DataTable dataTable = DataProvider.ExecuteReader("usp_SelectThamSoById");
+            DataTable dataTable = DataProvider.ExecuteReader("usp_SelectThamSoById", sqlParamas);
             List<ThamSoDTO> listthamSoDTO = new List<ThamSoDTO>();
             foreach (DataRow dataRow in dataTable.Rows)
             {
