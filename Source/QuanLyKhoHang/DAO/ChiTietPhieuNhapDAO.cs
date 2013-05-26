@@ -32,7 +32,7 @@ namespace DAO
             sqlParams.Add(new SqlParameter("@SLDaNhan", chiTietPhieuNhapDTO.SLDaNhan));
             sqlParams.Add(new SqlParameter("@SLConLai", chiTietPhieuNhapDTO.SLConLai));
             sqlParams.Add(new SqlParameter("@GhiChu", chiTietPhieuNhapDTO.GhiChu));
-            return DataProvider.ExecuteNoneQuery("usp_InsertChiTietPhieuNhap", sqlParams);
+            return DataProvider.ExecuteNoneQuery("usp_UpdateChiTietPhieuNhapById", sqlParams);
         }
         public static bool DeleteChiTietPhieuNhap(string maChiTietPhieuNhap)
         {
@@ -40,9 +40,9 @@ namespace DAO
             sqlParams.Add(new SqlParameter("@MaChiTietPhieuNhap", maChiTietPhieuNhap));
             return DataProvider.ExecuteNoneQuery("usp_DeleteChiTietPhieuNhapById", sqlParams);
         }
-        public static List<ChiTietPhieuNhapDTO> SelectPhieuXuatAll()
+        public static List<ChiTietPhieuNhapDTO> SelectChiTietPhieuNhapAll()
         {
-            DataTable dataTable = DataProvider.ExecuteReader("usp_SelectPhieuXuatAll");
+            DataTable dataTable = DataProvider.ExecuteReader("usp_SelectChiTietPhieuNhapAll");
             List<ChiTietPhieuNhapDTO> listChiTietPhieuNhapDTO = new List<ChiTietPhieuNhapDTO>();
             foreach (DataRow dataRow in dataTable.Rows)
             {
