@@ -35,10 +35,34 @@ namespace DAO
             return DataProvider.ExecuteNoneQuery("usp_DeleteNhanVienById", sqlParams);
         }
 
+        public static NhanVienDTO SelectNhanVienById(string maNhanVien)
+        {
+            List<SqlParameter> sqlParams = new List<SqlParameter>();
+            sqlParams.Add(new SqlParameter("@MaNhanVien", maNhanVien));
+
+            DataTable dataTable  = DataProvider.ExecuteReader("usp_SelectNhanVienById", sqlParams);
+            NhanVienDTO nhanVienDTO = new NhanVienDTO();
+            if (dataTable.Rows.Count > 0)
+            {
+                DataRow dataRow = dataTable.Rows[0];
+                nhanVienDTO.MaNhanVien = dataRow["MaNhanVien"].ToString();
+                nhanVienDTO.TenNhanVien = dataRow["TenNhanVien"].ToString();
+                nhanVienDTO.MatKhau = dataRow["MatKhau"].ToString();
+                nhanVienDTO.LoaiNhanVien = int.Parse(dataRow["LoaiNhanVien"].ToString());
+            }
+            else
+            {
+                nhanVienDTO = null;
+            }
+
+            return nhanVienDTO;
+
+        }
+
         public static string CreateNhanVientId()
         {
             return (string)DataProvider.ExecuteScalar("usp_CreateNhanVienId");
         }
-      
+
     }
 }

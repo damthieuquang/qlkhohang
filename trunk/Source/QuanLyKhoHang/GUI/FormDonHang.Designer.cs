@@ -1,6 +1,6 @@
 ﻿namespace GUI
 {
-    partial class FormTaoDonHang
+    partial class FormDonHang
     {
         /// <summary>
         /// Required designer variable.
@@ -158,7 +158,7 @@
             // 
             // btnTimDonHang
             // 
-            this.btnTimDonHang.Location = new System.Drawing.Point(496, 413);
+            this.btnTimDonHang.Location = new System.Drawing.Point(496, 398);
             this.btnTimDonHang.Name = "btnTimDonHang";
             this.btnTimDonHang.Size = new System.Drawing.Size(86, 23);
             this.btnTimDonHang.TabIndex = 60;
@@ -167,7 +167,7 @@
             // 
             // btnXuatFile
             // 
-            this.btnXuatFile.Location = new System.Drawing.Point(367, 413);
+            this.btnXuatFile.Location = new System.Drawing.Point(367, 398);
             this.btnXuatFile.Name = "btnXuatFile";
             this.btnXuatFile.Size = new System.Drawing.Size(86, 23);
             this.btnXuatFile.TabIndex = 59;
@@ -176,7 +176,7 @@
             // 
             // btnLamLai
             // 
-            this.btnLamLai.Location = new System.Drawing.Point(256, 413);
+            this.btnLamLai.Location = new System.Drawing.Point(256, 398);
             this.btnLamLai.Name = "btnLamLai";
             this.btnLamLai.Size = new System.Drawing.Size(86, 23);
             this.btnLamLai.TabIndex = 58;
@@ -185,7 +185,7 @@
             // 
             // btnTaoMoi
             // 
-            this.btnTaoMoi.Location = new System.Drawing.Point(141, 413);
+            this.btnTaoMoi.Location = new System.Drawing.Point(141, 398);
             this.btnTaoMoi.Name = "btnTaoMoi";
             this.btnTaoMoi.Size = new System.Drawing.Size(86, 23);
             this.btnTaoMoi.TabIndex = 57;
@@ -194,7 +194,7 @@
             // 
             // btnTao
             // 
-            this.btnTao.Location = new System.Drawing.Point(30, 413);
+            this.btnTao.Location = new System.Drawing.Point(30, 398);
             this.btnTao.Name = "btnTao";
             this.btnTao.Size = new System.Drawing.Size(86, 23);
             this.btnTao.TabIndex = 56;
@@ -203,7 +203,7 @@
             // 
             // btnThoat
             // 
-            this.btnThoat.Location = new System.Drawing.Point(635, 413);
+            this.btnThoat.Location = new System.Drawing.Point(635, 398);
             this.btnThoat.Name = "btnThoat";
             this.btnThoat.Size = new System.Drawing.Size(86, 23);
             this.btnThoat.TabIndex = 61;
@@ -212,7 +212,7 @@
             // 
             // btnXoaSanPham
             // 
-            this.btnXoaSanPham.Location = new System.Drawing.Point(472, 370);
+            this.btnXoaSanPham.Location = new System.Drawing.Point(472, 355);
             this.btnXoaSanPham.Name = "btnXoaSanPham";
             this.btnXoaSanPham.Size = new System.Drawing.Size(110, 23);
             this.btnXoaSanPham.TabIndex = 64;
@@ -221,7 +221,7 @@
             // 
             // btnCapNhatSanPham
             // 
-            this.btnCapNhatSanPham.Location = new System.Drawing.Point(323, 370);
+            this.btnCapNhatSanPham.Location = new System.Drawing.Point(323, 355);
             this.btnCapNhatSanPham.Name = "btnCapNhatSanPham";
             this.btnCapNhatSanPham.Size = new System.Drawing.Size(110, 23);
             this.btnCapNhatSanPham.TabIndex = 63;
@@ -230,7 +230,7 @@
             // 
             // btnThemSanPham
             // 
-            this.btnThemSanPham.Location = new System.Drawing.Point(185, 370);
+            this.btnThemSanPham.Location = new System.Drawing.Point(185, 355);
             this.btnThemSanPham.Name = "btnThemSanPham";
             this.btnThemSanPham.Size = new System.Drawing.Size(110, 23);
             this.btnThemSanPham.TabIndex = 62;
@@ -248,7 +248,7 @@
             this.clDonGia,
             this.clSoLuong,
             this.clThanhTien});
-            this.dataGridView_TaoDonHang.Location = new System.Drawing.Point(12, 191);
+            this.dataGridView_TaoDonHang.Location = new System.Drawing.Point(12, 176);
             this.dataGridView_TaoDonHang.Name = "dataGridView_TaoDonHang";
             this.dataGridView_TaoDonHang.Size = new System.Drawing.Size(744, 150);
             this.dataGridView_TaoDonHang.TabIndex = 65;
@@ -295,12 +295,12 @@
             this.clThanhTien.Name = "clThanhTien";
             this.clThanhTien.ReadOnly = true;
             // 
-            // FormTaoDonHang
+            // FormDonHang
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(768, 474);
+            this.ClientSize = new System.Drawing.Size(884, 461);
             this.Controls.Add(this.dataGridView_TaoDonHang);
             this.Controls.Add(this.btnXoaSanPham);
             this.Controls.Add(this.btnCapNhatSanPham);
@@ -323,8 +323,9 @@
             this.Controls.Add(this.txtMaStockist);
             this.Controls.Add(this.txtNgayLap);
             this.Controls.Add(this.txtMaNhanVien);
-            this.Name = "FormTaoDonHang";
-            this.Text = "Tạo Đơn Hàng";
+            this.Name = "FormDonHang";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Đơn hàng";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_TaoDonHang)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

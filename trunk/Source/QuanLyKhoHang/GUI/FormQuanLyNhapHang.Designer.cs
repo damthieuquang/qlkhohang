@@ -1,6 +1,6 @@
 ﻿namespace GUI
 {
-    partial class FormTraCuuNhapHang
+    partial class FormQuanLyNhapHang
     {
         /// <summary>
         /// Required designer variable.
@@ -259,11 +259,11 @@
             this.clSoLuong.Name = "clSoLuong";
             this.clSoLuong.ReadOnly = true;
             // 
-            // FormTraCuuNhapHang
+            // FormQuanLyNhapHang
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(678, 458);
+            this.ClientSize = new System.Drawing.Size(884, 461);
             this.Controls.Add(this.dataGridView_TraCuuNhapHang);
             this.Controls.Add(this.btnThoat);
             this.Controls.Add(this.btnXoa);
@@ -283,8 +283,9 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Name = "FormTraCuuNhapHang";
-            this.Text = "Theo Dõi - Tra Cứu Nhập Hàng";
+            this.Name = "FormQuanLyNhapHang";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Quản lý nhập hàng";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_TraCuuNhapHang)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
