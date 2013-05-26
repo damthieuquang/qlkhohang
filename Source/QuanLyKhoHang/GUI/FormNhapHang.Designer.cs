@@ -278,7 +278,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(811, 436);
+            this.ClientSize = new System.Drawing.Size(884, 461);
             this.Controls.Add(this.dataGridView_NhapHang);
             this.Controls.Add(this.btnTimPhieuNhap);
             this.Controls.Add(this.label7);
@@ -300,7 +300,8 @@
             this.Controls.Add(this.txtNgayNhan);
             this.Controls.Add(this.txtDonDatHang);
             this.Name = "FormNhapHang";
-            this.Text = "Nhập Hàng";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Nhập hàng";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_NhapHang)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

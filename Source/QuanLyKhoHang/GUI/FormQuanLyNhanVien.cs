@@ -6,22 +6,24 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using DTO;
+using BUS;
 
 namespace GUI
 {
-    public partial class FormTraCuuXuatHang : Form
+    public partial class FormQuanLyNhanVien : Form
     {
-        public FormTraCuuXuatHang()
+        public FormQuanLyNhanVien()
         {
             InitializeComponent();
         }
 
-        private void btnThoat_Click(object sender, EventArgs e)
+        private void label1_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+
         }
 
-        private void label1_Click(object sender, EventArgs e)
+        private void label5_Click(object sender, EventArgs e)
         {
 
         }

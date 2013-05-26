@@ -9,5 +9,9 @@ namespace BUS
 {
     public class NhanVienBUS
     {
+        public static NhanVienDTO SelectNhanVienById (string maNhanVien)
+        {
+            return NhanVienDAO.SelectNhanVienById(maNhanVien);
+        }
     }
 }
