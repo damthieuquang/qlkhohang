@@ -5,7 +5,7 @@ using System.Text;
 
 namespace DTO
 {
-    class LoaiSanPhamDTO
+    public class LoaiSanPhamDTO
     {
         //Ma Loai San Pham
         private string _maLoaiSanPham;
