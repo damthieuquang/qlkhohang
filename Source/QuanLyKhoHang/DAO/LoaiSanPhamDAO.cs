@@ -42,30 +42,40 @@ namespace DAO
         {
             DataTable dataTable = DataProvider.ExecuteReader("usp_SelectLoaiSanPhamAll");
             List<LoaiSanPhamDTO> listLoaiSanPhamDTO = new List<LoaiSanPhamDTO>();
-            foreach (DataRow dataRow in dataTable.Rows)
+            if (dataTable.Rows.Count > 0)
             {
-                LoaiSanPhamDTO loaiSanPhamDTO = new LoaiSanPhamDTO();
-                loaiSanPhamDTO.MaLoaiSanPham = dataRow["MaLoaiSanPham"].ToString();
-                loaiSanPhamDTO.TenLoaiSanPham = dataRow["TenLoaiSanPham"].ToString();
-                listLoaiSanPhamDTO.Add(loaiSanPhamDTO);
+                foreach (DataRow dataRow in dataTable.Rows)
+                {
+                    LoaiSanPhamDTO loaiSanPhamDTO = new LoaiSanPhamDTO();
+                    loaiSanPhamDTO.MaLoaiSanPham = dataRow["MaLoaiSanPham"].ToString();
+                    loaiSanPhamDTO.TenLoaiSanPham = dataRow["TenLoaiSanPham"].ToString();
+                    listLoaiSanPhamDTO.Add(loaiSanPhamDTO);
+                }
+            }
+            else
+            {
+                listLoaiSanPhamDTO = null;
             }
             return listLoaiSanPhamDTO;
         }
 
-        public static List<LoaiSanPhamDTO> SelectLoaiSanPhamById(string MaLoaiSanPham)
+        public static LoaiSanPhamDTO SelectLoaiSanPhamById(string MaLoaiSanPham)
         {
             List<SqlParameter> sqlParamas = new List<SqlParameter>();
             sqlParamas.Add(new SqlParameter("@MaLoaiSanPham", MaLoaiSanPham));
             DataTable dataTable = DataProvider.ExecuteReader("usp_SelectLoaiSanPhamById", sqlParamas);
-            List<LoaiSanPhamDTO> listLoaiSanPhamDTO = new List<LoaiSanPhamDTO>();
-            foreach (DataRow dataRow in dataTable.Rows)
+            LoaiSanPhamDTO loaiSanPhamDTO = new LoaiSanPhamDTO();
+            if (dataTable.Rows.Count > 0)
             {
-                LoaiSanPhamDTO loaiSanPhamDTO = new LoaiSanPhamDTO();
+                DataRow dataRow =  dataTable.Rows[0];
                 loaiSanPhamDTO.MaLoaiSanPham = dataRow["MaLoaiSanPham"].ToString();
                 loaiSanPhamDTO.TenLoaiSanPham = dataRow["TenLoaiSanPham"].ToString();
-                listLoaiSanPhamDTO.Add(loaiSanPhamDTO);
             }
-            return listLoaiSanPhamDTO;
+            else
+            {
+                loaiSanPhamDTO = null;
+            }
+            return loaiSanPhamDTO;
         }
 
     }

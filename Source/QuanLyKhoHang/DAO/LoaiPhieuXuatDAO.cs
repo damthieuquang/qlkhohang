@@ -42,30 +42,42 @@ namespace DAO
         {
             DataTable dataTable = DataProvider.ExecuteReader("usp_SelectLoaiPhieuXuatAll");
             List<LoaiPhieuXuatDTO> listLoaiPhieuXuatDTO = new List<LoaiPhieuXuatDTO>();
-            foreach (DataRow dataRow in dataTable.Rows)
+            if (dataTable.Rows.Count > 0)
             {
-                LoaiPhieuXuatDTO loaiPhieuXuatDTO = new LoaiPhieuXuatDTO();
-                loaiPhieuXuatDTO.MaLoaiPhieuXuat = dataRow["MaLoaiPhieuXuat"].ToString();
-                loaiPhieuXuatDTO.TenLoaiPhieuXuat = dataRow["TenLoaiPhieuXuat"].ToString();
-                listLoaiPhieuXuatDTO.Add(loaiPhieuXuatDTO);
+                foreach (DataRow dataRow in dataTable.Rows)
+                {
+                    LoaiPhieuXuatDTO loaiPhieuXuatDTO = new LoaiPhieuXuatDTO();
+                    loaiPhieuXuatDTO.MaLoaiPhieuXuat = dataRow["MaLoaiPhieuXuat"].ToString();
+                    loaiPhieuXuatDTO.TenLoaiPhieuXuat = dataRow["TenLoaiPhieuXuat"].ToString();
+                    listLoaiPhieuXuatDTO.Add(loaiPhieuXuatDTO);
+                }
+            }
+            else
+            {
+                listLoaiPhieuXuatDTO = null;
             }
             return listLoaiPhieuXuatDTO;
         }
 
-        public static List<LoaiPhieuXuatDTO> SelectLoaiPhieuXuatById(string MaLoaiPhieuXuat)
+        public static LoaiPhieuXuatDTO SelectLoaiPhieuXuatById(string MaLoaiPhieuXuat)
         {
             List<SqlParameter> sqlParamas = new List<SqlParameter>();
             sqlParamas.Add(new SqlParameter("@MaLoaiPhieuXuat", MaLoaiPhieuXuat));
             DataTable dataTable = DataProvider.ExecuteReader("usp_SelectLoaiPhieuXuatById", sqlParamas);
-            List<LoaiPhieuXuatDTO> listLoaiPhieuXuatDTO = new List<LoaiPhieuXuatDTO>();
-            foreach (DataRow dataRow in dataTable.Rows)
+
+            LoaiPhieuXuatDTO loaiPhieuXuatDTO = new LoaiPhieuXuatDTO();
+            if (dataTable.Rows.Count > 0)
             {
-                LoaiPhieuXuatDTO loaiPhieuXuatDTO = new LoaiPhieuXuatDTO();
+                DataRow dataRow = dataTable.Rows[0];
                 loaiPhieuXuatDTO.MaLoaiPhieuXuat = dataRow["MaLoaiPhieuXuat"].ToString();
                 loaiPhieuXuatDTO.TenLoaiPhieuXuat = dataRow["TenLoaiPhieuXuat"].ToString();
-                listLoaiPhieuXuatDTO.Add(loaiPhieuXuatDTO);
             }
-            return listLoaiPhieuXuatDTO;
+            else
+            {
+                loaiPhieuXuatDTO = null;
+            }
+
+            return loaiPhieuXuatDTO;
         }
     }
 }
