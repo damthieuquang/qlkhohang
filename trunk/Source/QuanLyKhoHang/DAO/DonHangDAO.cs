@@ -45,35 +45,48 @@ namespace DAO
         {
             DataTable dataTable = DataProvider.ExecuteReader("usp_SelectDonHangAll");
             List<DonHangDTO> listDonHangDTO = new List<DonHangDTO>();
-            foreach (DataRow dataRow in dataTable.Rows)
+            if (dataTable.Rows.Count > 0)
             {
-                DonHangDTO donHangDTO = new DonHangDTO();
-                donHangDTO.MaDonHang = dataRow["MaDonHang"].ToString();
-                donHangDTO.NgayLap = DateTime.Parse(dataRow["NgayLap"].ToString());
-                donHangDTO.MaNhanVien = dataRow["MaNhanVien"].ToString();
-                donHangDTO.ThanhTien = float.Parse(dataRow["ThanhTien"].ToString());
-                donHangDTO.TrangThai = dataRow["TrangThai"].ToString();
-                listDonHangDTO.Add(donHangDTO);
+                foreach (DataRow dataRow in dataTable.Rows)
+                {
+                    DonHangDTO donHangDTO = new DonHangDTO();
+                    donHangDTO.MaDonHang = dataRow["MaDonHang"].ToString();
+                    donHangDTO.NgayLap = DateTime.Parse(dataRow["NgayLap"].ToString());
+                    donHangDTO.MaNhanVien = dataRow["MaNhanVien"].ToString();
+                    donHangDTO.ThanhTien = float.Parse(dataRow["ThanhTien"].ToString());
+                    donHangDTO.TrangThai = dataRow["TrangThai"].ToString();
+                    listDonHangDTO.Add(donHangDTO);
+                }
+            }
+            else
+            {
+                listDonHangDTO = null;
             }
             return listDonHangDTO;
         }
-        public static List<DonHangDTO> SelectDonHangById(string maDonHang)
+
+        public static DonHangDTO SelectDonHangById(string maDonHang)
         {
             List<SqlParameter> sqlParams = new List<SqlParameter>();
             sqlParams.Add(new SqlParameter("@MaDonHang", maDonHang));
             DataTable dataTable = DataProvider.ExecuteReader("usp_SelectDonHangById", sqlParams);
-            List<DonHangDTO> listDonHangDTO = new List<DonHangDTO>();
-            foreach (DataRow dataRow in dataTable.Rows)
+            
+            DonHangDTO donHangDTO = new DonHangDTO();
+            if (dataTable.Rows.Count > 0)
             {
-                DonHangDTO donHangDTO = new DonHangDTO();
+                DataRow dataRow = dataTable.Rows[0];
                 donHangDTO.MaDonHang = dataRow["MaDonHang"].ToString();
                 donHangDTO.NgayLap = DateTime.Parse(dataRow["NgayLap"].ToString());
                 donHangDTO.MaNhanVien = dataRow["MaNhanVien"].ToString();
                 donHangDTO.ThanhTien = float.Parse(dataRow["ThanhTien"].ToString());
                 donHangDTO.TrangThai = dataRow["TrangThai"].ToString();
-                listDonHangDTO.Add(donHangDTO);
             }
-            return listDonHangDTO;
+            else
+            {
+                donHangDTO = null;
+            }
+
+            return donHangDTO;
         }
     }
 
