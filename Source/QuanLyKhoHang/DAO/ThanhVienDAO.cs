@@ -16,39 +16,45 @@ namespace DAO
             DataTable dataTable = new DataTable();
             dataTable = DataProvider.ExecuteReader("usp_SelectThanhVienAll");
             List<ThanhVienDTO> lsttvDTO = new List<ThanhVienDTO>();
-            foreach (DataRow dtRow in dataTable.Rows)
+            if (dataTable.Rows.Count > 0)
             {
-                ThanhVienDTO tvDTO = new ThanhVienDTO();
-                tvDTO.MaThanhVien = dtRow["MaThanhVien"].ToString();
-                tvDTO.TenThanhVien = dtRow["TenThanhVien"].ToString();
-                tvDTO.CV = int.Parse(dtRow["CV"].ToString());
-                tvDTO.DiaChi = dtRow["DiaChi"].ToString();
-                tvDTO.TienNo = float.Parse(dtRow["TienNo"].ToString());
-          
-                //select sp.MaSanPham, sp.TenSanPham, sp.CV, sp.DonGia, sp.DonGiaTV, sp.SoLuongTon, sp.MaLoaiSanPham
-                lsttvDTO.Add(tvDTO);
+                foreach (DataRow dtRow in dataTable.Rows)
+                {
+                    ThanhVienDTO tvDTO = new ThanhVienDTO();
+                    tvDTO.MaThanhVien = dtRow["MaThanhVien"].ToString();
+                    tvDTO.TenThanhVien = dtRow["TenThanhVien"].ToString();
+                    tvDTO.CV = int.Parse(dtRow["CV"].ToString());
+                    tvDTO.DiaChi = dtRow["DiaChi"].ToString();
+                    tvDTO.TienNo = float.Parse(dtRow["TienNo"].ToString());
+                    lsttvDTO.Add(tvDTO);
+                }
             }
+            else
+                lsttvDTO = null;
             return lsttvDTO;
         }
 
-        public static List<ThanhVienDTO> SelectThanhVienById(string MaThanhVien)
+        public static ThanhVienDTO SelectThanhVienById(string MaThanhVien)
         {
             List<SqlParameter> sqlParams = new List<SqlParameter>();
             sqlParams.Add(new SqlParameter("@MaThanhVien",MaThanhVien));
             DataTable dataTable = new DataTable();
             dataTable = DataProvider.ExecuteReader("usp_SelectThanhVienById", sqlParams);
-            List<ThanhVienDTO> lsttvDTO = new List<ThanhVienDTO>();
-            foreach (DataRow dtRow in dataTable.Rows)
+            ThanhVienDTO tvDTO = new ThanhVienDTO();
+            //List<ThanhVienDTO> lsttvDTO = new List<ThanhVienDTO>();
+            if (dataTable.Rows.Count > 0)
             {
-                ThanhVienDTO tvDTO = new ThanhVienDTO();
+                DataRow dtRow = dataTable.Rows[0];
                 tvDTO.MaThanhVien = dtRow["MaThanhVien"].ToString();
                 tvDTO.TenThanhVien = dtRow["TenThanhVien"].ToString();
                 tvDTO.CV = int.Parse(dtRow["CV"].ToString());
                 tvDTO.DiaChi = dtRow["DiaChi"].ToString();
                 tvDTO.TienNo = float.Parse(dtRow["TienNo"].ToString());
-                lsttvDTO.Add(tvDTO);
+                //lsttvDTO.Add(tvDTO);
             }
-            return lsttvDTO;
+            else
+                tvDTO = null;
+            return tvDTO;
         }
 
         public static bool InsertThanhVien(ThanhVienDTO tvDTO)
@@ -78,11 +84,6 @@ namespace DAO
             List<SqlParameter> sqlParams = new List<SqlParameter>();
             sqlParams.Add(new SqlParameter("@MaThanhVien",MaThanhVien));
             return DataProvider.ExecuteNoneQuery("usp_DeleteThanhVienById", sqlParams);
-        }
-
-        public static string CreateThanhVienId()
-        {
-            return (string)DataProvider.ExecuteScalar("usp_CreateThanhVienId");
         }
     }
 }

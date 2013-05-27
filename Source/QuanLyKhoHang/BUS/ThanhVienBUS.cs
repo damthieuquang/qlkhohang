@@ -14,7 +14,7 @@ namespace BUS
             return ThanhVienDAO.SelectThanhVienAll();
         }
 
-        public static List<ThanhVienDTO> SelectThanhVienById(string MaThanhVien)
+        public static ThanhVienDTO SelectThanhVienById(string MaThanhVien)
         {
             return ThanhVienDAO.SelectThanhVienById(MaThanhVien);
         }
