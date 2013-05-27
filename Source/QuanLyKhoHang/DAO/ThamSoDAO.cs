@@ -41,32 +41,45 @@ namespace DAO
         {
             DataTable dataTable = DataProvider.ExecuteReader("usp_SelectThamSoAll");
             List<ThamSoDTO> listThamSoDTO = new List<ThamSoDTO>();
-            foreach (DataRow dataRow in dataTable.Rows)
+
+            if (dataTable.Rows.Count > 0)
             {
-                ThamSoDTO thamSoDTO = new ThamSoDTO();
-                thamSoDTO.MaThamSo = dataRow["MaThamSo"].ToString();
-                thamSoDTO.TenThamSo = dataRow["TenThamSo"].ToString();
-                thamSoDTO.GiaTri = dataRow["GiaTri"].ToString();
-                listThamSoDTO.Add(thamSoDTO);
+                foreach (DataRow dataRow in dataTable.Rows)
+                {
+                    ThamSoDTO thamSoDTO = new ThamSoDTO();
+                    thamSoDTO.MaThamSo = dataRow["MaThamSo"].ToString();
+                    thamSoDTO.TenThamSo = dataRow["TenThamSo"].ToString();
+                    thamSoDTO.GiaTri = dataRow["GiaTri"].ToString();
+                    listThamSoDTO.Add(thamSoDTO);
+                }
             }
+            else
+            {
+                listThamSoDTO = null;
+            }
+            
             return listThamSoDTO;
         }
 
-        public static List<ThamSoDTO> SelectThamSoById(string MaThamSo)
+        public static ThamSoDTO SelectThamSoById(string MaThamSo)
         {
             List<SqlParameter> sqlParamas = new List<SqlParameter>();
             sqlParamas.Add(new SqlParameter("@MaThamSo", MaThamSo));
             DataTable dataTable = DataProvider.ExecuteReader("usp_SelectThamSoById", sqlParamas);
-            List<ThamSoDTO> listthamSoDTO = new List<ThamSoDTO>();
-            foreach (DataRow dataRow in dataTable.Rows)
+
+            ThamSoDTO thamSoDTO = new ThamSoDTO();
+            if (dataTable.Rows.Count > 0)
             {
-                ThamSoDTO thamSoDTO = new ThamSoDTO();
+                DataRow dataRow = dataTable.Rows[0];
                 thamSoDTO.MaThamSo = dataRow["MaThamSo"].ToString();
                 thamSoDTO.TenThamSo = dataRow["TenThamSo"].ToString();
                 thamSoDTO.GiaTri = dataRow["GiaTri"].ToString();
-                listthamSoDTO.Add(thamSoDTO);
             }
-            return listthamSoDTO;
+            else
+            {
+                thamSoDTO = null;
+            }
+            return thamSoDTO;
         }
 
         public static string CreateThamSoId()

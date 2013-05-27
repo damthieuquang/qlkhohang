@@ -14,7 +14,7 @@ namespace BUS
             return PhieuXuatDAO.SelectPhieuXuatAll();
         }
 
-        public static List<PhieuXuatDTO> SelectPhieuXuatById(string MaPhieuXuat)
+        public static PhieuXuatDTO SelectPhieuXuatById(string MaPhieuXuat)
         {
             return PhieuXuatDAO.SelectPhieuXuatById(MaPhieuXuat);
         }
