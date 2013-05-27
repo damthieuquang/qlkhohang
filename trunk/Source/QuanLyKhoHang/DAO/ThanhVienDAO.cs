@@ -85,6 +85,11 @@ namespace DAO
             sqlParams.Add(new SqlParameter("@MaThanhVien",MaThanhVien));
             return DataProvider.ExecuteNoneQuery("usp_DeleteThanhVienById", sqlParams);
         }
+
+        public static string CreateThanhVienId()
+        {
+            return (string)DataProvider.ExecuteScalar("usp_CreateThanhVienId");
+        }
     }
 }
 
