@@ -48,30 +48,40 @@ namespace DAO
         {
             DataTable dataTable = DataProvider.ExecuteReader("usp_SelectPhieuXuatAll");
             List<PhieuXuatDTO> listPhieuXuatDTO = new List<PhieuXuatDTO>();
-            foreach (DataRow dataRow in dataTable.Rows)
+
+            if (dataTable.Rows.Count > 0)
             {
-                PhieuXuatDTO phieuXuatDTO = new PhieuXuatDTO();
-                phieuXuatDTO.MaPhieuXuat = dataRow["MaPhieuXuat"].ToString();
-                phieuXuatDTO.NgayBan = DateTime.Parse(dataRow["NgayBan"].ToString());
-                phieuXuatDTO.MaThanhVien = dataRow["MaThanhVien"].ToString();
-                phieuXuatDTO.MaNhanVien = dataRow["MaNhanVien"].ToString();
-                phieuXuatDTO.TenKhachHang = dataRow["TenKhachHang"].ToString();
-                phieuXuatDTO.DiaChi = dataRow["DiaChi"].ToString();
-                phieuXuatDTO.MaLoaiPhieuXuat = dataRow["MaLoaiPhieuXuat"].ToString();
-                listPhieuXuatDTO.Add(phieuXuatDTO);
+                foreach (DataRow dataRow in dataTable.Rows)
+                {
+                    PhieuXuatDTO phieuXuatDTO = new PhieuXuatDTO();
+                    phieuXuatDTO.MaPhieuXuat = dataRow["MaPhieuXuat"].ToString();
+                    phieuXuatDTO.NgayBan = DateTime.Parse(dataRow["NgayBan"].ToString());
+                    phieuXuatDTO.MaThanhVien = dataRow["MaThanhVien"].ToString();
+                    phieuXuatDTO.MaNhanVien = dataRow["MaNhanVien"].ToString();
+                    phieuXuatDTO.TenKhachHang = dataRow["TenKhachHang"].ToString();
+                    phieuXuatDTO.DiaChi = dataRow["DiaChi"].ToString();
+                    phieuXuatDTO.MaLoaiPhieuXuat = dataRow["MaLoaiPhieuXuat"].ToString();
+                    listPhieuXuatDTO.Add(phieuXuatDTO);
+                }
             }
+            else
+            {
+                listPhieuXuatDTO = null;
+            }
+            
             return listPhieuXuatDTO;
         }
 
-        public static List<PhieuXuatDTO> SelectPhieuXuatById(string MaPhieuXuat)
+        public static PhieuXuatDTO SelectPhieuXuatById(string MaPhieuXuat)
         {
             List<SqlParameter> sqlParamas = new List<SqlParameter>();
             sqlParamas.Add(new SqlParameter("@MaPhieuXuat", MaPhieuXuat));
             DataTable dataTable = DataProvider.ExecuteReader("usp_SelectPhieuXuatById", sqlParamas);
-            List<PhieuXuatDTO> listphieuXuatDTO = new List<PhieuXuatDTO>();
-            foreach (DataRow dataRow in dataTable.Rows)
+
+            PhieuXuatDTO phieuXuatDTO = new PhieuXuatDTO();
+            if (dataTable.Rows.Count > 0)
             {
-                PhieuXuatDTO phieuXuatDTO = new PhieuXuatDTO();
+                DataRow dataRow = dataTable.Rows[0];
                 phieuXuatDTO.MaPhieuXuat = dataRow["MaPhieuXuat"].ToString();
                 phieuXuatDTO.NgayBan = DateTime.Parse(dataRow["NgayBan"].ToString());
                 phieuXuatDTO.MaThanhVien = dataRow["MaThanhVien"].ToString();
@@ -79,9 +89,12 @@ namespace DAO
                 phieuXuatDTO.TenKhachHang = dataRow["TenKhachHang"].ToString();
                 phieuXuatDTO.DiaChi = dataRow["DiaChi"].ToString();
                 phieuXuatDTO.MaLoaiPhieuXuat = dataRow["MaLoaiPhieuXuat"].ToString();
-                listphieuXuatDTO.Add(phieuXuatDTO);
             }
-            return listphieuXuatDTO;
+            else
+            {
+                phieuXuatDTO = null;
+            }
+            return phieuXuatDTO;
         }
     }
 }

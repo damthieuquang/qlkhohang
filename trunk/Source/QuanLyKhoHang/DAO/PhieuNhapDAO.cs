@@ -42,34 +42,46 @@ namespace DAO
         {
             DataTable dataTable = DataProvider.ExecuteReader("usp_SelectPhieuNhapAll");
             List<PhieuNhapDTO> listPhieuNhapDTO = new List<PhieuNhapDTO>();
-            foreach (DataRow dataRow in dataTable.Rows)
+            if (dataTable.Rows.Count > 0)
             {
-                PhieuNhapDTO phieuNhapDTO = new PhieuNhapDTO();
-                phieuNhapDTO.MaPhieuNhap = dataRow["MaPhieuNhap"].ToString();
-                phieuNhapDTO.MaDonHang = dataRow["MaDonHang"].ToString();
-                phieuNhapDTO.NgayNhan = DateTime.Parse(dataRow["NgayNhan"].ToString());
-                phieuNhapDTO.MaNhanVien = dataRow["MaNhanVien"].ToString();
-                listPhieuNhapDTO.Add(phieuNhapDTO);
+                foreach (DataRow dataRow in dataTable.Rows)
+                {
+                    PhieuNhapDTO phieuNhapDTO = new PhieuNhapDTO();
+                    phieuNhapDTO.MaPhieuNhap = dataRow["MaPhieuNhap"].ToString();
+                    phieuNhapDTO.MaDonHang = dataRow["MaDonHang"].ToString();
+                    phieuNhapDTO.NgayNhan = DateTime.Parse(dataRow["NgayNhan"].ToString());
+                    phieuNhapDTO.MaNhanVien = dataRow["MaNhanVien"].ToString();
+                    listPhieuNhapDTO.Add(phieuNhapDTO);
+                }
             }
+            else
+            {
+                listPhieuNhapDTO = null;
+            }
+            
             return listPhieuNhapDTO;
         }
 
-        public static List<PhieuNhapDTO> SelectPhieuNhapById(string MaPhieuNhap)
+        public static PhieuNhapDTO SelectPhieuNhapById(string MaPhieuNhap)
         {
             List<SqlParameter> sqlParamas = new List<SqlParameter>();
             sqlParamas.Add(new SqlParameter("@MaPhieuNhap",MaPhieuNhap));
             DataTable dataTable = DataProvider.ExecuteReader("usp_SelectPhieuNhapById", sqlParamas);
-            List<PhieuNhapDTO> listphieuNhapDTO = new List<PhieuNhapDTO>();
-            foreach (DataRow dataRow in dataTable.Rows)
+
+            PhieuNhapDTO phieuNhapDTO = new PhieuNhapDTO();
+            if (dataTable.Rows.Count > 0)
             {
-                PhieuNhapDTO phieuNhapDTO = new PhieuNhapDTO();
+                DataRow dataRow = dataTable.Rows[0];
                 phieuNhapDTO.MaPhieuNhap = dataRow["MaPhieuNhap"].ToString();
                 phieuNhapDTO.MaDonHang = dataRow["MaDonHang"].ToString();
                 phieuNhapDTO.NgayNhan = DateTime.Parse(dataRow["NgayNhan"].ToString());
                 phieuNhapDTO.MaNhanVien = dataRow["MaNhanVien"].ToString();
-                listphieuNhapDTO.Add(phieuNhapDTO);
             }
-            return listphieuNhapDTO;
+            else
+            {
+                phieuNhapDTO = null;
+            }
+            return phieuNhapDTO;
         }
     }
 }
