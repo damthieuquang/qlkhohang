@@ -14,7 +14,7 @@ namespace BUS
             return ChiTietDonHangDAO.SelectChiTietDonHangAll();
         }
 
-        public static List<ChiTietDonHangDTO> SelectChiTietDonHangById(string MaChiTietDonHang)
+        public static ChiTietDonHangDTO SelectChiTietDonHangById(string MaChiTietDonHang)
         {
             return ChiTietDonHangDAO.SelectChiTietDonHangById(MaChiTietDonHang);
         }

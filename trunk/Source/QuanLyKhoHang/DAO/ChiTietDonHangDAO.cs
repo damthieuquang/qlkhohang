@@ -15,32 +15,41 @@ namespace DAO
             DataTable dataTable = new DataTable();
             dataTable = DataProvider.ExecuteReader("usp_SelectChiTietDonHangAll");
             List<ChiTietDonHangDTO> lstctdhDTO = new List<ChiTietDonHangDTO>();
-            foreach (DataRow dtRow in dataTable.Rows)
+            if (dataTable.Rows.Count > 0)
             {
-                ChiTietDonHangDTO ctdhDTO = new ChiTietDonHangDTO();
-                ctdhDTO.MaChiTietDonHang = dtRow["MaChiTietDonHang"].ToString();
-                ctdhDTO.MaDonHang = dtRow["MaDonHang"].ToString();
-                ctdhDTO.MaSanPham = dtRow["MaSanPham"].ToString();
-                ctdhDTO.CV = int.Parse(dtRow["CV"].ToString());
-                ctdhDTO.SoLuong = int.Parse(dtRow["SoLuong"].ToString());
-                ctdhDTO.DonGia = float.Parse(dtRow["DonGia"].ToString());
-                ctdhDTO.ThanhTien = float.Parse(dtRow["ThanhTien"].ToString());
-                lstctdhDTO.Add(ctdhDTO);
-                //select ct.MaChiTietDonHang, ct.MaDonHang, ct.MaSanPham, ct.CV, ct.SoLuong, ct.DonGia, ct.ThanhTien
+                foreach (DataRow dtRow in dataTable.Rows)
+                {
+                    ChiTietDonHangDTO ctdhDTO = new ChiTietDonHangDTO();
+                    ctdhDTO.MaChiTietDonHang = dtRow["MaChiTietDonHang"].ToString();
+                    ctdhDTO.MaDonHang = dtRow["MaDonHang"].ToString();
+                    ctdhDTO.MaSanPham = dtRow["MaSanPham"].ToString();
+                    ctdhDTO.CV = int.Parse(dtRow["CV"].ToString());
+                    ctdhDTO.SoLuong = int.Parse(dtRow["SoLuong"].ToString());
+                    ctdhDTO.DonGia = float.Parse(dtRow["DonGia"].ToString());
+                    ctdhDTO.ThanhTien = float.Parse(dtRow["ThanhTien"].ToString());
+                    lstctdhDTO.Add(ctdhDTO);
+                    //select ct.MaChiTietDonHang, ct.MaDonHang, ct.MaSanPham, ct.CV, ct.SoLuong, ct.DonGia, ct.ThanhTien
+                }
             }
+            else
+                lstctdhDTO = null;
             return lstctdhDTO;
         }
 
-        public static List<ChiTietDonHangDTO> SelectChiTietDonHangById(string MaChiTietDonHang)
+        public static ChiTietDonHangDTO SelectChiTietDonHangById(string MaChiTietDonHang)
         {
             List<SqlParameter> sqlParams = new List<SqlParameter>();
             sqlParams.Add(new SqlParameter("@MaChiTietDonHang",MaChiTietDonHang));
             DataTable dataTable = new DataTable();
             dataTable = DataProvider.ExecuteReader("usp_SelectChiTietDonHangById",sqlParams);
-            List<ChiTietDonHangDTO> lstctdhDTO = new List<ChiTietDonHangDTO>();
-            foreach (DataRow dtRow in dataTable.Rows)
+            ChiTietDonHangDTO ctdhDTO = new ChiTietDonHangDTO();
+            
+            if (dataTable.Rows.Count > 0)
             {
-                ChiTietDonHangDTO ctdhDTO = new ChiTietDonHangDTO();
+                //<ChiTietDonHangDTO> lstctdhDTO = new List<ChiTietDonHangDTO>();
+
+                DataRow dtRow = dataTable.Rows[0];
+
                 ctdhDTO.MaChiTietDonHang = dtRow["MaChiTietDonHang"].ToString();
                 ctdhDTO.MaDonHang = dtRow["MaDonHang"].ToString();
                 ctdhDTO.MaSanPham = dtRow["MaSanPham"].ToString();
@@ -48,10 +57,12 @@ namespace DAO
                 ctdhDTO.SoLuong = int.Parse(dtRow["SoLuong"].ToString());
                 ctdhDTO.DonGia = float.Parse(dtRow["DonGia"].ToString());
                 ctdhDTO.ThanhTien = float.Parse(dtRow["ThanhTien"].ToString());
-                lstctdhDTO.Add(ctdhDTO);
+                // lstctdhDTO.Add(ctdhDTO);
                 //select ct.MaChiTietDonHang, ct.MaDonHang, ct.MaSanPham, ct.CV, ct.SoLuong, ct.DonGia, ct.ThanhTien
             }
-            return lstctdhDTO;
+            else
+                ctdhDTO = null;
+            return ctdhDTO;
         }
 
         public static bool InsertChiTietDonHang(ChiTietDonHangDTO ctdhDTO)

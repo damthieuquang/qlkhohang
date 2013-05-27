@@ -14,7 +14,7 @@ namespace BUS
             return SanPhamDAO.SelectSanPhamAll();
         }
 
-        public static List<SanPhamDTO> SelectSanPhamById(string MaSanPham)
+        public static SanPhamDTO SelectSanPhamById(string MaSanPham)
         {
             return SanPhamDAO.SelectSanPhamById(MaSanPham);
         }
