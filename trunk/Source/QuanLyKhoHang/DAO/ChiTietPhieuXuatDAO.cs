@@ -47,40 +47,51 @@ namespace DAO
         {
             DataTable dataTable = DataProvider.ExecuteReader("usp_SelectChiTietPhieuXuatAll");
             List<ChiTietPhieuXuatDTO> listChiTietPhieuXuatDTO = new List<ChiTietPhieuXuatDTO>();
-            foreach (DataRow dataRow in dataTable.Rows)
+            if (dataTable.Rows.Count > 0)
             {
-                ChiTietPhieuXuatDTO chiTietPhieuXuatDTO = new ChiTietPhieuXuatDTO();
-                chiTietPhieuXuatDTO.MaChiTietPhieuXuat = dataRow["MaChiTietPhieuXuat"].ToString();
-                chiTietPhieuXuatDTO.MaPhieuXuat = dataRow["MaPhieuXuat"].ToString();
-                chiTietPhieuXuatDTO.MaSanPham = dataRow["MaSanPham"].ToString();
-                chiTietPhieuXuatDTO.CV = Int32.Parse(dataRow["CV"].ToString());
-                chiTietPhieuXuatDTO.DonGia = Int32.Parse(dataRow["DonGia"].ToString());
-                chiTietPhieuXuatDTO.SoLuong = Int32.Parse(dataRow["SoLuong"].ToString());
-                chiTietPhieuXuatDTO.ThanhTien = Int32.Parse(dataRow["ThanhTien"].ToString());
-                listChiTietPhieuXuatDTO.Add(chiTietPhieuXuatDTO);
+                foreach (DataRow dataRow in dataTable.Rows)
+                {
+                    ChiTietPhieuXuatDTO chiTietPhieuXuatDTO = new ChiTietPhieuXuatDTO();
+                    chiTietPhieuXuatDTO.MaChiTietPhieuXuat = dataRow["MaChiTietPhieuXuat"].ToString();
+                    chiTietPhieuXuatDTO.MaPhieuXuat = dataRow["MaPhieuXuat"].ToString();
+                    chiTietPhieuXuatDTO.MaSanPham = dataRow["MaSanPham"].ToString();
+                    chiTietPhieuXuatDTO.CV = Int32.Parse(dataRow["CV"].ToString());
+                    chiTietPhieuXuatDTO.DonGia = Int32.Parse(dataRow["DonGia"].ToString());
+                    chiTietPhieuXuatDTO.SoLuong = Int32.Parse(dataRow["SoLuong"].ToString());
+                    chiTietPhieuXuatDTO.ThanhTien = Int32.Parse(dataRow["ThanhTien"].ToString());
+                    listChiTietPhieuXuatDTO.Add(chiTietPhieuXuatDTO);
+                }
+            }
+            else
+            {
+                listChiTietPhieuXuatDTO = null;
             }
             return listChiTietPhieuXuatDTO;
         }
 
-        public static List<ChiTietPhieuXuatDTO> SelectChiTietPhieuXuatById(string MaChiTietPhieuXuat)
+        public static ChiTietPhieuXuatDTO SelectChiTietPhieuXuatById(string MaChiTietPhieuXuat)
         {
             List<SqlParameter> sqlParamas = new List<SqlParameter>();
             sqlParamas.Add(new SqlParameter("@MaChiTietPhieuXuat", MaChiTietPhieuXuat));
             DataTable dataTable = DataProvider.ExecuteReader("usp_SelectChiTietPhieuXuatById", sqlParamas);
-            List<ChiTietPhieuXuatDTO> listChiTietPhieuXuatDTO = new List<ChiTietPhieuXuatDTO>();
-            foreach (DataRow dataRow in dataTable.Rows)
+            ChiTietPhieuXuatDTO chiTietPhieuXuatDTO = new ChiTietPhieuXuatDTO();
+            if (dataTable.Rows.Count > 0)
             {
-                ChiTietPhieuXuatDTO chiTietPhieuXuatDTO = new ChiTietPhieuXuatDTO();
+                DataRow dataRow = dataTable.Rows[0];
                 chiTietPhieuXuatDTO.MaChiTietPhieuXuat = dataRow["MaChiTietPhieuXuat"].ToString();
                 chiTietPhieuXuatDTO.MaPhieuXuat = dataRow["MaPhieuXuat"].ToString();
                 chiTietPhieuXuatDTO.MaSanPham = dataRow["MaSanPham"].ToString();
                 chiTietPhieuXuatDTO.CV = Int32.Parse(dataRow["CV"].ToString());
                 chiTietPhieuXuatDTO.DonGia = Int32.Parse(dataRow["DonGia"].ToString());
                 chiTietPhieuXuatDTO.SoLuong = Int32.Parse(dataRow["SoLuong"].ToString());
-                chiTietPhieuXuatDTO.ThanhTien = Int32.Parse(dataRow["ThanhTien"].ToString());
-                listChiTietPhieuXuatDTO.Add(chiTietPhieuXuatDTO);
+
             }
-            return listChiTietPhieuXuatDTO;
+            else
+            {
+                chiTietPhieuXuatDTO = null;
+            }
+
+            return chiTietPhieuXuatDTO;
         }
     }
 }
