@@ -19,7 +19,7 @@ namespace DAO
             sqlParams.Add(new SqlParameter("@LoaiNhanVien", nhanVienDTO.LoaiNhanVien));
             return DataProvider.ExecuteNoneQuery("usp_InsertNhanVien", sqlParams);
         }
-        public static bool UpdateNhanVien(NhanVienDTO nhanVienDTO)
+        public static bool UpdateNhanVienById(NhanVienDTO nhanVienDTO)
         {
             List<SqlParameter> sqlParams = new List<SqlParameter>();
             sqlParams.Add(new SqlParameter("@MaNhanVien", nhanVienDTO.MaNhanVien));
@@ -28,13 +28,28 @@ namespace DAO
             sqlParams.Add(new SqlParameter("@LoaiNhanVien", nhanVienDTO.LoaiNhanVien));
             return DataProvider.ExecuteNoneQuery("usp_UpdateNhanVienById", sqlParams);
         }
-        public static bool DeleteNhanVien(string maNhanVien)
+        public static bool DeleteNhanVienById(string maNhanVien)
         {
             List<SqlParameter> sqlParams = new List<SqlParameter>();
             sqlParams.Add(new SqlParameter("@MaNhanVien", maNhanVien));
             return DataProvider.ExecuteNoneQuery("usp_DeleteNhanVienById", sqlParams);
         }
+        public static List<NhanVienDTO> SelectNhanVienAll()
+        {
+            DataTable dataTable = DataProvider.ExecuteReader("usp_SelectNhanVienAll");
+            List<NhanVienDTO> listNhanVienDTO = new List<NhanVienDTO>();
+            foreach (DataRow dataRow in dataTable.Rows)
+            {
+                NhanVienDTO nhanVienDTO = new NhanVienDTO();
+                nhanVienDTO.MaNhanVien = dataRow["MaNhanVien"].ToString();
+                nhanVienDTO.TenNhanVien = dataRow["TenNhanVien"].ToString();
+                nhanVienDTO.MatKhau = dataRow["MatKhau"].ToString();
+                nhanVienDTO.LoaiNhanVien = Int32.Parse(dataRow["LoaiNhanVien"].ToString());
 
+                listNhanVienDTO.Add(nhanVienDTO);
+            }
+            return listNhanVienDTO;
+        }
         public static NhanVienDTO SelectNhanVienById(string maNhanVien)
         {
             List<SqlParameter> sqlParams = new List<SqlParameter>();

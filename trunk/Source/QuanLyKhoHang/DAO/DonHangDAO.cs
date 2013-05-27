@@ -24,7 +24,7 @@ namespace DAO
             return DataProvider.ExecuteNoneQuery("usp_InsertDonHang ", sqlParams);
 
         }
-        public static bool UpdateDonHang(DonHangDTO donHangDTO)
+        public static bool UpdateDonHangById(DonHangDTO donHangDTO)
         {
             List<SqlParameter> sqlParams = new List<SqlParameter>();
             sqlParams.Add(new SqlParameter("@MaDonHang", donHangDTO.MaDonHang));
@@ -34,7 +34,7 @@ namespace DAO
             sqlParams.Add(new SqlParameter("@TrangThai", donHangDTO.TrangThai));
             return DataProvider.ExecuteNoneQuery("usp_UpdateDonHangById ", sqlParams);
         }
-        public static bool DeleteDonHang(string maDonHang)
+        public static bool DeleteDonHangById(string maDonHang)
         {
             List<SqlParameter> sqlParams = new List<SqlParameter>();
             sqlParams.Add(new SqlParameter("@MaDonHang", maDonHang));
