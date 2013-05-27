@@ -65,7 +65,7 @@ namespace DAO
         public static bool InsertSanPham(SanPhamDTO spDTO)
         {
             List<SqlParameter> sqlParams = new List<SqlParameter>();
-            sqlParams.Add(new SqlParameter("@MaSanPham", spDTO.MaSanPham));
+            sqlParams.Add(new SqlParameter("@MaSanPham",spDTO.MaSanPham));
             sqlParams.Add(new SqlParameter("@TenSanPham", spDTO.TenSanPham));
             sqlParams.Add(new SqlParameter("@CV", spDTO.CV));
             sqlParams.Add(new SqlParameter("@DonGia", spDTO.DonGia));
@@ -93,6 +93,11 @@ namespace DAO
             List<SqlParameter> sqlParams = new List<SqlParameter>();
             sqlParams.Add(new SqlParameter("@MaSanPham", MaSanPham));
             return DataProvider.ExecuteNoneQuery("usp_DeleteSanPhamById", sqlParams);
+        }
+
+        public static string CreateSanPhamId()
+        {
+            return (string)DataProvider.ExecuteScalar("usp_CreateSanPhamId");
         }
     }
 }
