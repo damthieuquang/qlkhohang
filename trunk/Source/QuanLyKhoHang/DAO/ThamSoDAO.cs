@@ -29,10 +29,10 @@ namespace DAO
             return DataProvider.ExecuteNoneQuery("usp_UpdateThamSoById", sqlParamas);
         }
 
-        public static bool DeleteThamSo(ThamSoDTO thamSoDTO)
+        public static bool DeleteThamSo(string maThamSo)
         {
             List<SqlParameter> sqlParamas = new List<SqlParameter>();
-            sqlParamas.Add(new SqlParameter("@MaThamSo", thamSoDTO.MaThamSo));
+            sqlParamas.Add(new SqlParameter("@MaThamSo", maThamSo));
             //SqlParameter para = new SqlParameter("@MaPhieuNhap",phieuNhapDTO.MaPhieuNhap); mot cach viet khac
             return DataProvider.ExecuteNoneQuery("usp_DeleteThamSoById", sqlParamas);
         }

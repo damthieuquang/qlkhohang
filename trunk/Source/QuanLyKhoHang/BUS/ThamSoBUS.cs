@@ -29,9 +29,14 @@ namespace BUS
             return ThamSoDAO.UpdateThamSo(thamSoDTO);
         }
 
-        public static bool DeletePhieuNhap(ThamSoDTO thamSoDTO)
+        public static bool DeleteThamSo(string maThamSo)
         {
-            return ThamSoDAO.DeleteThamSo(thamSoDTO);
+            return ThamSoDAO.DeleteThamSo(maThamSo);
+        }
+
+        public static string CreateThamSoId()
+        {
+            return ThamSoDAO.CreateThamSoId();
         }
     }
 }
