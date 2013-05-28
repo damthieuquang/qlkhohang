@@ -38,7 +38,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.tatMaNhanVien = new System.Windows.Forms.TextBox();
+            this.txtMaNhanVien = new System.Windows.Forms.TextBox();
             this.txtNhanVienNhanHang = new System.Windows.Forms.TextBox();
             this.txtNgayDat = new System.Windows.Forms.TextBox();
             this.txtSoTien = new System.Windows.Forms.TextBox();
@@ -66,6 +66,7 @@
             this.btnTao.TabIndex = 82;
             this.btnTao.Text = "Tạo";
             this.btnTao.UseVisualStyleBackColor = true;
+            this.btnTao.Click += new System.EventHandler(this.btnTao_Click);
             // 
             // btnTaoMoi
             // 
@@ -75,6 +76,7 @@
             this.btnTaoMoi.TabIndex = 81;
             this.btnTaoMoi.Text = "Tạo mới";
             this.btnTaoMoi.UseVisualStyleBackColor = true;
+            this.btnTaoMoi.Click += new System.EventHandler(this.btnTaoMoi_Click);
             // 
             // btnLamLai
             // 
@@ -84,6 +86,7 @@
             this.btnLamLai.TabIndex = 80;
             this.btnLamLai.Text = "Làm lại";
             this.btnLamLai.UseVisualStyleBackColor = true;
+            this.btnLamLai.Click += new System.EventHandler(this.btnLamLai_Click);
             // 
             // btnThoat
             // 
@@ -93,6 +96,7 @@
             this.btnThoat.TabIndex = 83;
             this.btnThoat.Text = "Thoát";
             this.btnThoat.UseVisualStyleBackColor = true;
+            this.btnThoat.Click += new System.EventHandler(this.btnThoat_Click);
             // 
             // label6
             // 
@@ -148,12 +152,12 @@
             this.label1.TabIndex = 71;
             this.label1.Text = "Đơn đặt hàng";
             // 
-            // tatMaNhanVien
+            // txtMaNhanVien
             // 
-            this.tatMaNhanVien.Location = new System.Drawing.Point(556, 108);
-            this.tatMaNhanVien.Name = "tatMaNhanVien";
-            this.tatMaNhanVien.Size = new System.Drawing.Size(154, 20);
-            this.tatMaNhanVien.TabIndex = 70;
+            this.txtMaNhanVien.Location = new System.Drawing.Point(556, 108);
+            this.txtMaNhanVien.Name = "txtMaNhanVien";
+            this.txtMaNhanVien.Size = new System.Drawing.Size(154, 20);
+            this.txtMaNhanVien.TabIndex = 70;
             // 
             // txtNhanVienNhanHang
             // 
@@ -189,6 +193,7 @@
             this.txtDonDatHang.Name = "txtDonDatHang";
             this.txtDonDatHang.Size = new System.Drawing.Size(154, 20);
             this.txtDonDatHang.TabIndex = 65;
+            this.txtDonDatHang.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtDonDatHang_KeyUp);
             // 
             // label7
             // 
@@ -214,9 +219,15 @@
             this.btnTimPhieuNhap.TabIndex = 89;
             this.btnTimPhieuNhap.Text = "Tìm phiếu nhập";
             this.btnTimPhieuNhap.UseVisualStyleBackColor = true;
+            this.btnTimPhieuNhap.Click += new System.EventHandler(this.btnTimPhieuNhap_Click);
             // 
             // dataGridView_NhapHang
             // 
+            this.dataGridView_NhapHang.AllowUserToAddRows = false;
+            this.dataGridView_NhapHang.AllowUserToDeleteRows = false;
+            this.dataGridView_NhapHang.AllowUserToResizeColumns = false;
+            this.dataGridView_NhapHang.AllowUserToResizeRows = false;
+            this.dataGridView_NhapHang.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView_NhapHang.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView_NhapHang.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.clSTT,
@@ -226,52 +237,59 @@
             this.clDaNhan,
             this.clConLai,
             this.clGhiChu});
-            this.dataGridView_NhapHang.Location = new System.Drawing.Point(34, 195);
+            this.dataGridView_NhapHang.Location = new System.Drawing.Point(58, 228);
             this.dataGridView_NhapHang.Name = "dataGridView_NhapHang";
+            this.dataGridView_NhapHang.RowHeadersVisible = false;
             this.dataGridView_NhapHang.Size = new System.Drawing.Size(745, 150);
             this.dataGridView_NhapHang.TabIndex = 90;
+            this.dataGridView_NhapHang.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_NhapHang_CellEndEdit);
             // 
             // clSTT
             // 
             this.clSTT.HeaderText = "STT";
             this.clSTT.Name = "clSTT";
             this.clSTT.ReadOnly = true;
+            this.clSTT.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // clMaSanPham
             // 
             this.clMaSanPham.HeaderText = "Mã sản phẩm";
             this.clMaSanPham.Name = "clMaSanPham";
             this.clMaSanPham.ReadOnly = true;
+            this.clMaSanPham.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // clTenSanPham
             // 
             this.clTenSanPham.HeaderText = "Tên sản phẩm";
             this.clTenSanPham.Name = "clTenSanPham";
             this.clTenSanPham.ReadOnly = true;
+            this.clTenSanPham.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // clSoLuong
             // 
             this.clSoLuong.HeaderText = "Số lượng";
             this.clSoLuong.Name = "clSoLuong";
             this.clSoLuong.ReadOnly = true;
+            this.clSoLuong.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // clDaNhan
             // 
             this.clDaNhan.HeaderText = "Đã nhận";
             this.clDaNhan.Name = "clDaNhan";
-            this.clDaNhan.ReadOnly = true;
+            this.clDaNhan.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // clConLai
             // 
             this.clConLai.HeaderText = "Còn lại";
             this.clConLai.Name = "clConLai";
             this.clConLai.ReadOnly = true;
+            this.clConLai.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // clGhiChu
             // 
             this.clGhiChu.HeaderText = "Ghi chú";
             this.clGhiChu.Name = "clGhiChu";
-            this.clGhiChu.ReadOnly = true;
+            this.clGhiChu.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // FormNhapHang
             // 
@@ -293,7 +311,7 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.tatMaNhanVien);
+            this.Controls.Add(this.txtMaNhanVien);
             this.Controls.Add(this.txtNhanVienNhanHang);
             this.Controls.Add(this.txtNgayDat);
             this.Controls.Add(this.txtSoTien);
@@ -302,6 +320,7 @@
             this.Name = "FormNhapHang";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Nhập hàng";
+            this.Load += new System.EventHandler(this.FormNhapHang_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_NhapHang)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -320,7 +339,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox tatMaNhanVien;
+        private System.Windows.Forms.TextBox txtMaNhanVien;
         private System.Windows.Forms.TextBox txtNhanVienNhanHang;
         private System.Windows.Forms.TextBox txtNgayDat;
         private System.Windows.Forms.TextBox txtSoTien;

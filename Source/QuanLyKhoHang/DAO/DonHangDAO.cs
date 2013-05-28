@@ -88,6 +88,29 @@ namespace DAO
 
             return donHangDTO;
         }
+        public static DonHangDTO SearchDonHangById(string maDonHang)
+        {
+            List<SqlParameter> sqlParams = new List<SqlParameter>();
+            sqlParams.Add(new SqlParameter("@MaDonHang", maDonHang));
+            DataTable dataTable = DataProvider.ExecuteReader("usp_SearchDonHangById", sqlParams);
+
+            DonHangDTO donHangDTO = new DonHangDTO();
+            if (dataTable.Rows.Count > 0)
+            {
+                DataRow dataRow = dataTable.Rows[0];
+                donHangDTO.MaDonHang = dataRow["MaDonHang"].ToString();
+                donHangDTO.NgayLap = DateTime.Parse(dataRow["NgayLap"].ToString());
+                donHangDTO.MaNhanVien = dataRow["MaNhanVien"].ToString();
+                donHangDTO.ThanhTien = float.Parse(dataRow["ThanhTien"].ToString());
+                donHangDTO.TrangThai = dataRow["TrangThai"].ToString();
+            }
+            else
+            {
+                donHangDTO = null;
+            }
+
+            return donHangDTO;
+        }
     }
 
 }

@@ -65,6 +65,38 @@ namespace DAO
             return ctdhDTO;
         }
 
+        public static List<ChiTietDonHangDTO> SelectChiTietDonHangByMaDonHang(string MaDonHang)
+        {
+            List<SqlParameter> sqlParams = new List<SqlParameter>();
+            sqlParams.Add(new SqlParameter("@MaDonHang", MaDonHang));
+            DataTable dataTable = new DataTable();
+            dataTable = DataProvider.ExecuteReader("usp_SelectChiTietDonHangByMaDonHang", sqlParams);
+            List<ChiTietDonHangDTO> lstctdhDTO = new List<ChiTietDonHangDTO>();
+          
+            if (dataTable.Rows.Count > 0)
+            {
+
+                //<ChiTietDonHangDTO> lstctdhDTO = new List<ChiTietDonHangDTO>();
+                foreach (DataRow dtRow in dataTable.Rows)
+                {
+                    ChiTietDonHangDTO ctdhDTO = new ChiTietDonHangDTO();
+
+                    ctdhDTO.MaChiTietDonHang = dtRow["MaChiTietDonHang"].ToString();
+                    ctdhDTO.MaDonHang = dtRow["MaDonHang"].ToString();
+                    ctdhDTO.MaSanPham = dtRow["MaSanPham"].ToString();
+                    ctdhDTO.CV = int.Parse(dtRow["CV"].ToString());
+                    ctdhDTO.SoLuong = int.Parse(dtRow["SoLuong"].ToString());
+                    ctdhDTO.DonGia = float.Parse(dtRow["DonGia"].ToString());
+                    ctdhDTO.ThanhTien = float.Parse(dtRow["ThanhTien"].ToString());
+                     lstctdhDTO.Add(ctdhDTO);
+                    //select ct.MaChiTietDonHang, ct.MaDonHang, ct.MaSanPham, ct.CV, ct.SoLuong, ct.DonGia, ct.ThanhTien
+                }
+            }
+            else
+                lstctdhDTO = null;
+            return lstctdhDTO;
+        }
+
         public static bool InsertChiTietDonHang(ChiTietDonHangDTO ctdhDTO)
         {
             List<SqlParameter> sqlParams = new List<SqlParameter>();
