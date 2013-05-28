@@ -58,6 +58,7 @@
             this.clSoLuong = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clThanhTien = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.labelTongTien = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_TaoDonHang)).BeginInit();
             this.SuspendLayout();
             // 
@@ -65,6 +66,7 @@
             // 
             this.txtTenNhanVien.Location = new System.Drawing.Point(201, 87);
             this.txtTenNhanVien.Name = "txtTenNhanVien";
+            this.txtTenNhanVien.ReadOnly = true;
             this.txtTenNhanVien.Size = new System.Drawing.Size(154, 20);
             this.txtTenNhanVien.TabIndex = 46;
             // 
@@ -72,6 +74,7 @@
             // 
             this.txtMaStockist.Location = new System.Drawing.Point(201, 141);
             this.txtMaStockist.Name = "txtMaStockist";
+            this.txtMaStockist.ReadOnly = true;
             this.txtMaStockist.Size = new System.Drawing.Size(154, 20);
             this.txtMaStockist.TabIndex = 45;
             // 
@@ -79,6 +82,7 @@
             // 
             this.txtNgayLap.Location = new System.Drawing.Point(569, 36);
             this.txtNgayLap.Name = "txtNgayLap";
+            this.txtNgayLap.ReadOnly = true;
             this.txtNgayLap.Size = new System.Drawing.Size(154, 20);
             this.txtNgayLap.TabIndex = 44;
             // 
@@ -86,6 +90,7 @@
             // 
             this.txtMaNhanVien.Location = new System.Drawing.Point(201, 36);
             this.txtMaNhanVien.Name = "txtMaNhanVien";
+            this.txtMaNhanVien.ReadOnly = true;
             this.txtMaNhanVien.Size = new System.Drawing.Size(154, 20);
             this.txtMaNhanVien.TabIndex = 43;
             // 
@@ -93,6 +98,7 @@
             // 
             this.txtMaDonHang.Location = new System.Drawing.Point(569, 87);
             this.txtMaDonHang.Name = "txtMaDonHang";
+            this.txtMaDonHang.ReadOnly = true;
             this.txtMaDonHang.Size = new System.Drawing.Size(154, 20);
             this.txtMaDonHang.TabIndex = 48;
             // 
@@ -100,6 +106,7 @@
             // 
             this.txtDiaChiStockist.Location = new System.Drawing.Point(569, 141);
             this.txtDiaChiStockist.Name = "txtDiaChiStockist";
+            this.txtDiaChiStockist.ReadOnly = true;
             this.txtDiaChiStockist.Size = new System.Drawing.Size(154, 20);
             this.txtDiaChiStockist.TabIndex = 47;
             // 
@@ -183,6 +190,7 @@
             this.btnLamLai.TabIndex = 58;
             this.btnLamLai.Text = "Làm lại";
             this.btnLamLai.UseVisualStyleBackColor = true;
+            this.btnLamLai.Click += new System.EventHandler(this.btnLamLai_Click);
             // 
             // btnTaoMoi
             // 
@@ -192,6 +200,7 @@
             this.btnTaoMoi.TabIndex = 57;
             this.btnTaoMoi.Text = "Tạo mới";
             this.btnTaoMoi.UseVisualStyleBackColor = true;
+            this.btnTaoMoi.Click += new System.EventHandler(this.btnTaoMoi_Click);
             // 
             // btnTao
             // 
@@ -201,6 +210,7 @@
             this.btnTao.TabIndex = 56;
             this.btnTao.Text = "Tạo";
             this.btnTao.UseVisualStyleBackColor = true;
+            this.btnTao.Click += new System.EventHandler(this.btnTao_Click);
             // 
             // btnThoat
             // 
@@ -240,6 +250,12 @@
             // 
             // dataGridView_TaoDonHang
             // 
+            this.dataGridView_TaoDonHang.AllowUserToAddRows = false;
+            this.dataGridView_TaoDonHang.AllowUserToDeleteRows = false;
+            this.dataGridView_TaoDonHang.AllowUserToResizeColumns = false;
+            this.dataGridView_TaoDonHang.AllowUserToResizeRows = false;
+            this.dataGridView_TaoDonHang.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridView_TaoDonHang.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
             this.dataGridView_TaoDonHang.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView_TaoDonHang.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.clSTT,
@@ -251,6 +267,7 @@
             this.clThanhTien});
             this.dataGridView_TaoDonHang.Location = new System.Drawing.Point(53, 171);
             this.dataGridView_TaoDonHang.Name = "dataGridView_TaoDonHang";
+            this.dataGridView_TaoDonHang.RowHeadersVisible = false;
             this.dataGridView_TaoDonHang.Size = new System.Drawing.Size(744, 150);
             this.dataGridView_TaoDonHang.TabIndex = 65;
             this.dataGridView_TaoDonHang.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_TaoDonHang_CellEndEdit);
@@ -260,40 +277,47 @@
             this.clSTT.HeaderText = "STT";
             this.clSTT.Name = "clSTT";
             this.clSTT.ReadOnly = true;
+            this.clSTT.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // clMaSanPham
             // 
             this.clMaSanPham.HeaderText = "Mã sản phẩm";
             this.clMaSanPham.Name = "clMaSanPham";
+            this.clMaSanPham.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // clTenSanPham
             // 
             this.clTenSanPham.HeaderText = "Tên sản phẩm";
             this.clTenSanPham.Name = "clTenSanPham";
             this.clTenSanPham.ReadOnly = true;
+            this.clTenSanPham.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // clCV
             // 
             this.clCV.HeaderText = "CV";
             this.clCV.Name = "clCV";
             this.clCV.ReadOnly = true;
+            this.clCV.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // clDonGia
             // 
             this.clDonGia.HeaderText = "Đơn giá";
             this.clDonGia.Name = "clDonGia";
             this.clDonGia.ReadOnly = true;
+            this.clDonGia.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // clSoLuong
             // 
             this.clSoLuong.HeaderText = "Số lượng";
             this.clSoLuong.Name = "clSoLuong";
+            this.clSoLuong.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // clThanhTien
             // 
             this.clThanhTien.HeaderText = "Thành tiền";
             this.clThanhTien.Name = "clThanhTien";
             this.clThanhTien.ReadOnly = true;
+            this.clThanhTien.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // dateTimePicker1
             // 
@@ -301,7 +325,15 @@
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(200, 20);
             this.dateTimePicker1.TabIndex = 66;
-            this.dateTimePicker1.MouseCaptureChanged += new System.EventHandler(this.dateTimePicker1_MouseCaptureChanged);
+            this.dateTimePicker1.ValueChanged += new System.EventHandler(this.dateTimePicker1_MouseCaptureChanged);
+            // 
+            // labelTongTien
+            // 
+            this.labelTongTien.AutoSize = true;
+            this.labelTongTien.Location = new System.Drawing.Point(697, 350);
+            this.labelTongTien.Name = "labelTongTien";
+            this.labelTongTien.Size = new System.Drawing.Size(0, 13);
+            this.labelTongTien.TabIndex = 67;
             // 
             // FormDonHang
             // 
@@ -309,6 +341,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(884, 461);
+            this.Controls.Add(this.labelTongTien);
             this.Controls.Add(this.dateTimePicker1);
             this.Controls.Add(this.dataGridView_TaoDonHang);
             this.Controls.Add(this.btnXoaSanPham);
@@ -366,6 +399,7 @@
         private System.Windows.Forms.Button btnCapNhatSanPham;
         private System.Windows.Forms.Button btnThemSanPham;
         private System.Windows.Forms.DataGridView dataGridView_TaoDonHang;
+        private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.DataGridViewTextBoxColumn clSTT;
         private System.Windows.Forms.DataGridViewTextBoxColumn clMaSanPham;
         private System.Windows.Forms.DataGridViewTextBoxColumn clTenSanPham;
@@ -373,6 +407,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clDonGia;
         private System.Windows.Forms.DataGridViewTextBoxColumn clSoLuong;
         private System.Windows.Forms.DataGridViewTextBoxColumn clThanhTien;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.Label labelTongTien;
     }
 }
