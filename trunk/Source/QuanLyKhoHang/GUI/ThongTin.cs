@@ -15,5 +15,13 @@ namespace GUI
             get { return ThongTin._nhanVienDTO; }
             set { ThongTin._nhanVienDTO = value; }
         }
+
+        private static DonHangDTO _donHangDTO;
+
+        public static DonHangDTO DonHangDTO
+        {
+            get { return ThongTin._donHangDTO; }
+            set { ThongTin._donHangDTO = value; }
+        }
     }
 }
