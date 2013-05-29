@@ -27,6 +27,7 @@ namespace DAO
                     ctdhDTO.SoLuong = int.Parse(dtRow["SoLuong"].ToString());
                     ctdhDTO.DonGia = float.Parse(dtRow["DonGia"].ToString());
                     ctdhDTO.ThanhTien = float.Parse(dtRow["ThanhTien"].ToString());
+                    ctdhDTO.SLDaNhan = int.Parse(dtRow["SLDaNhan"].ToString());
                     lstctdhDTO.Add(ctdhDTO);
                     //select ct.MaChiTietDonHang, ct.MaDonHang, ct.MaSanPham, ct.CV, ct.SoLuong, ct.DonGia, ct.ThanhTien
                 }
@@ -57,6 +58,7 @@ namespace DAO
                 ctdhDTO.SoLuong = int.Parse(dtRow["SoLuong"].ToString());
                 ctdhDTO.DonGia = float.Parse(dtRow["DonGia"].ToString());
                 ctdhDTO.ThanhTien = float.Parse(dtRow["ThanhTien"].ToString());
+                ctdhDTO.SLDaNhan = int.Parse(dtRow["SLDaNhan"].ToString());
                 // lstctdhDTO.Add(ctdhDTO);
                 //select ct.MaChiTietDonHang, ct.MaDonHang, ct.MaSanPham, ct.CV, ct.SoLuong, ct.DonGia, ct.ThanhTien
             }
@@ -88,6 +90,7 @@ namespace DAO
                     ctdhDTO.SoLuong = int.Parse(dtRow["SoLuong"].ToString());
                     ctdhDTO.DonGia = float.Parse(dtRow["DonGia"].ToString());
                     ctdhDTO.ThanhTien = float.Parse(dtRow["ThanhTien"].ToString());
+                    ctdhDTO.SLDaNhan = int.Parse(dtRow["SLDaNhan"].ToString());
                      lstctdhDTO.Add(ctdhDTO);
                     //select ct.MaChiTietDonHang, ct.MaDonHang, ct.MaSanPham, ct.CV, ct.SoLuong, ct.DonGia, ct.ThanhTien
                 }
@@ -107,6 +110,7 @@ namespace DAO
             sqlParams.Add(new SqlParameter("@SoLuong", ctdhDTO.SoLuong));
             sqlParams.Add(new SqlParameter("@DonGia", ctdhDTO.DonGia));
             sqlParams.Add(new SqlParameter("@ThanhTien", ctdhDTO.ThanhTien));
+            sqlParams.Add(new SqlParameter("@SLDaNhan", ctdhDTO.SLDaNhan));
             return DataProvider.ExecuteNoneQuery("usp_InsertChiTietDonHang",sqlParams);
         }
 
@@ -120,6 +124,7 @@ namespace DAO
             sqlParams.Add(new SqlParameter("@SoLuong", ctdhDTO.SoLuong));
             sqlParams.Add(new SqlParameter("@DonGia", ctdhDTO.DonGia));
             sqlParams.Add(new SqlParameter("@ThanhTien", ctdhDTO.ThanhTien));
+            sqlParams.Add(new SqlParameter("@SLDaNhan", ctdhDTO.SLDaNhan));
             return DataProvider.ExecuteNoneQuery("usp_UpdateChiTietDonHangById",sqlParams);
         }
 
