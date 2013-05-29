@@ -53,7 +53,7 @@
             this.clTenSanPham = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clSoLuong = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clDaNhan = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clConLai = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clSLNhan = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clGhiChu = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_NhapHang)).BeginInit();
             this.SuspendLayout();
@@ -156,6 +156,7 @@
             // 
             this.txtMaNhanVien.Location = new System.Drawing.Point(556, 108);
             this.txtMaNhanVien.Name = "txtMaNhanVien";
+            this.txtMaNhanVien.ReadOnly = true;
             this.txtMaNhanVien.Size = new System.Drawing.Size(154, 20);
             this.txtMaNhanVien.TabIndex = 70;
             // 
@@ -163,6 +164,7 @@
             // 
             this.txtNhanVienNhanHang.Location = new System.Drawing.Point(556, 151);
             this.txtNhanVienNhanHang.Name = "txtNhanVienNhanHang";
+            this.txtNhanVienNhanHang.ReadOnly = true;
             this.txtNhanVienNhanHang.Size = new System.Drawing.Size(154, 20);
             this.txtNhanVienNhanHang.TabIndex = 69;
             // 
@@ -170,6 +172,7 @@
             // 
             this.txtNgayDat.Location = new System.Drawing.Point(188, 108);
             this.txtNgayDat.Name = "txtNgayDat";
+            this.txtNgayDat.ReadOnly = true;
             this.txtNgayDat.Size = new System.Drawing.Size(154, 20);
             this.txtNgayDat.TabIndex = 68;
             // 
@@ -177,6 +180,7 @@
             // 
             this.txtSoTien.Location = new System.Drawing.Point(188, 151);
             this.txtSoTien.Name = "txtSoTien";
+            this.txtSoTien.ReadOnly = true;
             this.txtSoTien.Size = new System.Drawing.Size(154, 20);
             this.txtSoTien.TabIndex = 67;
             // 
@@ -184,6 +188,7 @@
             // 
             this.txtNgayNhan.Location = new System.Drawing.Point(556, 66);
             this.txtNgayNhan.Name = "txtNgayNhan";
+            this.txtNgayNhan.ReadOnly = true;
             this.txtNgayNhan.Size = new System.Drawing.Size(154, 20);
             this.txtNgayNhan.TabIndex = 66;
             // 
@@ -208,6 +213,7 @@
             // 
             this.txtMaPhieuNhap.Location = new System.Drawing.Point(395, 22);
             this.txtMaPhieuNhap.Name = "txtMaPhieuNhap";
+            this.txtMaPhieuNhap.ReadOnly = true;
             this.txtMaPhieuNhap.Size = new System.Drawing.Size(154, 20);
             this.txtMaPhieuNhap.TabIndex = 87;
             // 
@@ -235,7 +241,7 @@
             this.clTenSanPham,
             this.clSoLuong,
             this.clDaNhan,
-            this.clConLai,
+            this.clSLNhan,
             this.clGhiChu});
             this.dataGridView_NhapHang.Location = new System.Drawing.Point(58, 228);
             this.dataGridView_NhapHang.Name = "dataGridView_NhapHang";
@@ -276,14 +282,14 @@
             // 
             this.clDaNhan.HeaderText = "Đã nhận";
             this.clDaNhan.Name = "clDaNhan";
+            this.clDaNhan.ReadOnly = true;
             this.clDaNhan.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
-            // clConLai
+            // clSLNhan
             // 
-            this.clConLai.HeaderText = "Còn lại";
-            this.clConLai.Name = "clConLai";
-            this.clConLai.ReadOnly = true;
-            this.clConLai.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.clSLNhan.HeaderText = "SL Nhận";
+            this.clSLNhan.Name = "clSLNhan";
+            this.clSLNhan.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // clGhiChu
             // 
@@ -354,7 +360,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clTenSanPham;
         private System.Windows.Forms.DataGridViewTextBoxColumn clSoLuong;
         private System.Windows.Forms.DataGridViewTextBoxColumn clDaNhan;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clConLai;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clSLNhan;
         private System.Windows.Forms.DataGridViewTextBoxColumn clGhiChu;
     }
 }
