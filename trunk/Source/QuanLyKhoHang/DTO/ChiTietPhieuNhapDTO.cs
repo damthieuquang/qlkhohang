@@ -34,31 +34,15 @@ namespace DTO
             set { _maSanPham = value; }
         }
 
-        //So Luong
-        private int _soLuong;
-
-        public int SoLuong
-        {
-            get { return _soLuong; }
-            set { _soLuong = value; }
-        }
+      
 
         //So Luong Da Nhan
-        private int _slDaNhan;
+        private int _slNhan;
 
-        public int SLDaNhan
+        public int SLNhan
         {
-            get { return _slDaNhan; }
-            set { _slDaNhan = value; }
-        }
-
-        //So Luong COn Lai
-        private int slConLai;
-
-        public int SLConLai
-        {
-            get { return slConLai; }
-            set { slConLai = value; }
+            get { return _slNhan; }
+            set { _slNhan = value; }
         }
 
         //Ghi Chu

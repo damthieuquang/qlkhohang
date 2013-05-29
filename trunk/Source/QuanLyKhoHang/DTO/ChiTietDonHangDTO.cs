@@ -70,5 +70,14 @@ namespace DTO
             get { return _thanhTien; }
             set { _thanhTien = value; }
         }
+
+        private int _slDaNhan;
+
+        public int SLDaNhan
+        {
+            get { return _slDaNhan; }
+            set { _slDaNhan = value; }
+        }
+
     }
 }

@@ -16,9 +16,7 @@ namespace DAO
             sqlParams.Add(new SqlParameter("@MaChiTietPhieuNhap", chiTietPhieuNhapDTO.MaChiTietPhieuNhap));
             sqlParams.Add(new SqlParameter("@MaPhieuNhap", chiTietPhieuNhapDTO.MaPhieuNhap));
             sqlParams.Add(new SqlParameter("@MaSanPham", chiTietPhieuNhapDTO.MaSanPham));
-            sqlParams.Add(new SqlParameter("@SoLuong", chiTietPhieuNhapDTO.SoLuong));
-            sqlParams.Add(new SqlParameter("@SLDaNhan", chiTietPhieuNhapDTO.SLDaNhan));
-            sqlParams.Add(new SqlParameter("@SLConLai", chiTietPhieuNhapDTO.SLConLai));
+            sqlParams.Add(new SqlParameter("@SLNhan", chiTietPhieuNhapDTO.SLNhan));
             sqlParams.Add(new SqlParameter("@GhiChu", chiTietPhieuNhapDTO.GhiChu));
             return DataProvider.ExecuteNoneQuery("usp_InsertChiTietPhieuNhap", sqlParams);
         }
@@ -28,9 +26,7 @@ namespace DAO
             sqlParams.Add(new SqlParameter("@MaChiTietPhieuNhap", chiTietPhieuNhapDTO.MaChiTietPhieuNhap));
             sqlParams.Add(new SqlParameter("@MaPhieuNhap", chiTietPhieuNhapDTO.MaPhieuNhap));
             sqlParams.Add(new SqlParameter("@MaSanPham", chiTietPhieuNhapDTO.MaSanPham));
-            sqlParams.Add(new SqlParameter("@SoLuong", chiTietPhieuNhapDTO.SoLuong));
-            sqlParams.Add(new SqlParameter("@SLDaNhan", chiTietPhieuNhapDTO.SLDaNhan));
-            sqlParams.Add(new SqlParameter("@SLConLai", chiTietPhieuNhapDTO.SLConLai));
+            sqlParams.Add(new SqlParameter("@SLNhan", chiTietPhieuNhapDTO.SLNhan));
             sqlParams.Add(new SqlParameter("@GhiChu", chiTietPhieuNhapDTO.GhiChu));
             return DataProvider.ExecuteNoneQuery("usp_UpdateChiTietPhieuNhapById", sqlParams);
         }
@@ -52,9 +48,7 @@ namespace DAO
                     chiTietPhieuNhapDTO.MaChiTietPhieuNhap = dataRow["MaChiTietPhieuNhap"].ToString();
                     chiTietPhieuNhapDTO.MaPhieuNhap = dataRow["MaPhieuNhap"].ToString();
                     chiTietPhieuNhapDTO.MaSanPham = dataRow["MaPhieuNhap"].ToString();
-                    chiTietPhieuNhapDTO.SoLuong = Int32.Parse(dataRow["SoLuong"].ToString());
-                    chiTietPhieuNhapDTO.SLDaNhan = Int32.Parse(dataRow["SLDaNhan"].ToString());
-                    chiTietPhieuNhapDTO.SLConLai = Int32.Parse(dataRow["SLConLai"].ToString());
+                    chiTietPhieuNhapDTO.SLNhan = Int32.Parse(dataRow["SLNhan"].ToString());
                     chiTietPhieuNhapDTO.GhiChu = dataRow["GhiChu"].ToString();
                     listChiTietPhieuNhapDTO.Add(chiTietPhieuNhapDTO);
                 }
@@ -78,9 +72,7 @@ namespace DAO
                 chiTietPhieuNhapDTO.MaChiTietPhieuNhap = dataRow["MaChiTietPhieuNhap"].ToString();
                 chiTietPhieuNhapDTO.MaPhieuNhap = dataRow["MaPhieuNhap"].ToString();
                 chiTietPhieuNhapDTO.MaSanPham = dataRow["MaSanPham"].ToString();
-                chiTietPhieuNhapDTO.SoLuong = Int32.Parse(dataRow["SoLuong"].ToString());
-                chiTietPhieuNhapDTO.SLDaNhan = Int32.Parse(dataRow["SLDaNhan"].ToString());
-                chiTietPhieuNhapDTO.SLConLai = Int32.Parse(dataRow["SLConLai"].ToString());
+                chiTietPhieuNhapDTO.SLNhan = Int32.Parse(dataRow["SLNhan"].ToString());
                 chiTietPhieuNhapDTO.GhiChu = dataRow["GhiChu"].ToString();
             }
             else
