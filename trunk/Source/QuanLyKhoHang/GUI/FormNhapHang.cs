@@ -25,13 +25,7 @@ namespace GUI
             return "PN" + DateTime.Now.ToString("yyMMddhhmmss");
         }
 
-        private static void LamLai()
-        {
-            txtNgayDat.Text = null;
-            txtSoTien.Text = null;
-            txtDonDatHang.Text = null;
-            dataGridView_NhapHang.Rows.Clear();
-        }
+     
         private void FormNhapHang_Load(object sender, EventArgs e)
         {
             txtMaPhieuNhap.Text = CreatePhieuNhapId();
@@ -52,12 +46,12 @@ namespace GUI
                 txtNgayDat.Text = donHangDTO.NgayLap.ToString("dd/MM/yyyy");
                 txtSoTien.Text = donHangDTO.ThanhTien.ToString();
                 List<ChiTietDonHangDTO> LchiTietDonHangDTO = ChiTietDonHangBUS.SelectChiTietDonHangByMaDonHang(id);
-                // SanPhamDTO sanPhamDTO = SanPhamBUS.SelectSanPhamById(chiTietDonHangDTO.MaSanPham.ToString());
+            
                 for (int i = 0; i < LchiTietDonHangDTO.Count; i++)
                 {
                     ChiTietDonHangDTO chiTietDonHangDTO = LchiTietDonHangDTO[i];
                     SanPhamDTO sanPhamDTO = SanPhamBUS.SelectSanPhamById(chiTietDonHangDTO.MaSanPham.ToString());
-                    dataGridView_NhapHang.Rows.Add((i + 1).ToString(), chiTietDonHangDTO.MaSanPham.ToString(), sanPhamDTO.TenSanPham.ToString(), chiTietDonHangDTO.SoLuong.ToString(), "", "", "");
+                    dataGridView_NhapHang.Rows.Add((i + 1).ToString(), chiTietDonHangDTO.MaSanPham.ToString(), sanPhamDTO.TenSanPham.ToString(), chiTietDonHangDTO.SoLuong.ToString(), chiTietDonHangDTO.SLDaNhan.ToString(), "", "");
                 }
             }
             else
@@ -78,9 +72,12 @@ namespace GUI
 
         private void btnLamLai_Click(object sender, EventArgs e)
         {
-           
+            txtNgayDat.Text = null;
+            txtSoTien.Text = null;
+            txtDonDatHang.Text = null;
+            dataGridView_NhapHang.Rows.Clear();
         }
-
+    
         private void dataGridView_NhapHang_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
             if (e.ColumnIndex == 4)
@@ -141,32 +138,12 @@ namespace GUI
                 fQLNhapHang.Show();
             }
         }
-
-        private void btnTaoMoi_Click(object sender, EventArgs e)
-        {
-            DialogResult result = MessageBox.Show("Bạn Muốn Lưu Đơn Nhập Hàng Không:", "Phiếu Nhập", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
-            if (result == DialogResult.Yes)
-            {
-
-            }
-            else if (result == DialogResult.No)
-            {
-
-                txtMaPhieuNhap.Text = CreatePhieuNhapId();
-                DateTime ngayNhan = DateTime.Now;
-                txtNgayNhan.Text = ngayNhan.ToString("dd/MM/yyyy");
-                txtMaNhanVien.Text = ThongTin.NhanVienDTO.MaNhanVien;
-                txtNhanVienNhanHang.Text = ThongTin.NhanVienDTO.TenNhanVien;
-                dataGridView_NhapHang.Rows.Clear();
-            }
-
-        }
-
-        private void btnTao_Click(object sender, EventArgs e)
+        bool flag;
+        private bool KiemTraTao()
         {
             PhieuNhapDTO phieuNhapDTO = new PhieuNhapDTO();
             string loi = "";
-            bool flag = true;
+            flag = true;
             if (txtDonDatHang.Text == "")
             {
                 loi = "Ma DOn Hang Khong dc de trong";
@@ -216,18 +193,17 @@ namespace GUI
 
                     chiTietPhieuNhapDTO.MaPhieuNhap = txtMaPhieuNhap.Text;
                     chiTietPhieuNhapDTO.MaSanPham = dataGridView_NhapHang.Rows[i].Cells["clMaSanPham"].Value.ToString();
-                    chiTietPhieuNhapDTO.SoLuong = int.Parse(dataGridView_NhapHang.Rows[i].Cells["clSoLuong"].Value.ToString());
                     if (dataGridView_NhapHang.Rows[i].Cells["clDaNhan"].Value.ToString() == "")
                     {
                         loi = "Khong Duoc De Trong So Luong Da Nhan";
                         flag = false;
+                     
                     }
                     else
                     {
-                        chiTietPhieuNhapDTO.SLDaNhan = int.Parse(dataGridView_NhapHang.Rows[i].Cells["clDaNhan"].Value.ToString());
-                         chiTietPhieuNhapDTO.SLConLai = int.Parse(dataGridView_NhapHang.Rows[i].Cells["clConLai"].Value.ToString());
+                        chiTietPhieuNhapDTO.SLNhan = int.Parse(dataGridView_NhapHang.Rows[i].Cells["clSLNhan"].Value.ToString());
                     }
-                   
+
                     chiTietPhieuNhapDTO.GhiChu = dataGridView_NhapHang.Rows[i].Cells["clGhiChu"].Value.ToString();
                     ListChiTietPhieuNhapDTO.Add(chiTietPhieuNhapDTO);
 
@@ -246,7 +222,8 @@ namespace GUI
                         //MessageBox.Show(ct.MaSanPham + ct.SoLuong.ToString());
                         ChiTietPhieuNhapBUS.InsertChiTietPhieuNhap(ct);
                     }
-                    
+                    MessageBox.Show("Tạo Thành Công");
+
                 }
                 else
                 {
@@ -257,9 +234,52 @@ namespace GUI
             {
                 MessageBox.Show(loi);
             }
+            return flag;
 
         }
 
+        private void btnTaoMoi_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show("Bạn Muốn Lưu Đơn Nhập Hàng Không:", "Phiếu Nhập", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
+            if (result == DialogResult.Yes)
+            {
+                flag = KiemTraTao();
+                if (flag == true)
+                {
+
+                    txtMaPhieuNhap.Text = CreatePhieuNhapId();
+                    DateTime ngayNhan = DateTime.Now;
+                    NgayNhap = ngayNhan;
+                    txtNgayNhan.Text = ngayNhan.ToString("dd/MM/yyyy");
+                    txtMaNhanVien.Text = ThongTin.NhanVienDTO.MaNhanVien;
+                    txtNhanVienNhanHang.Text = ThongTin.NhanVienDTO.TenNhanVien;
+                    txtNgayDat.Text = null;
+                    txtSoTien.Text = null;
+                    txtDonDatHang.Text = null;
+                    dataGridView_NhapHang.Rows.Clear();
+                }
+                
+            }
+            else if (result == DialogResult.No)
+            {
+
+                txtMaPhieuNhap.Text = CreatePhieuNhapId();
+                DateTime ngayNhan = DateTime.Now;
+                txtNgayNhan.Text = ngayNhan.ToString("dd/MM/yyyy");
+                txtMaNhanVien.Text = ThongTin.NhanVienDTO.MaNhanVien;
+                txtNhanVienNhanHang.Text = ThongTin.NhanVienDTO.TenNhanVien;
+                txtNgayDat.Text = null;
+                txtSoTien.Text = null;
+                txtDonDatHang.Text = null;
+                dataGridView_NhapHang.Rows.Clear();
+            }
+
+        }
+        private void btnTao_Click(object sender, EventArgs e)
+        {
+            KiemTraTao();
+        }
+        
 
     }
 }

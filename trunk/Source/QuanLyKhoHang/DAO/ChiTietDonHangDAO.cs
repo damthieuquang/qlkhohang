@@ -90,7 +90,7 @@ namespace DAO
                     ctdhDTO.SoLuong = int.Parse(dtRow["SoLuong"].ToString());
                     ctdhDTO.DonGia = float.Parse(dtRow["DonGia"].ToString());
                     ctdhDTO.ThanhTien = float.Parse(dtRow["ThanhTien"].ToString());
-                    ctdhDTO.SLDaNhan = int.Parse(dtRow["SLDaNhan"].ToString());
+                   ctdhDTO.SLDaNhan = int.Parse(dtRow["SLDaNhan"].ToString());
                      lstctdhDTO.Add(ctdhDTO);
                     //select ct.MaChiTietDonHang, ct.MaDonHang, ct.MaSanPham, ct.CV, ct.SoLuong, ct.DonGia, ct.ThanhTien
                 }
