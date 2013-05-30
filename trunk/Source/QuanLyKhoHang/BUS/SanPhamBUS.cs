@@ -33,5 +33,10 @@ namespace BUS
         {
             return SanPhamDAO.DeleteSanPhamById(MaSanPham);
         }
+
+	public static string CreateSanPhamId()
+        {
+            return SanPhamDAO.CreateSanPhamId();
+        }
     }
 }
