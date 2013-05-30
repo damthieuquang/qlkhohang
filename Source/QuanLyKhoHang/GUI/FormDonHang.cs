@@ -107,15 +107,7 @@ namespace GUI
                 dataGridView_TaoDonHang.Rows.Add(i + 1, listSanPhamDTO[i].MaSanPham.ToString(), listSanPhamDTO[i].TenSanPham.ToString(), listSanPhamDTO[i].CV, listSanPhamDTO[i].DonGia, 0, 0);
             }
             //Chose_Product();
-        }
-
-        private void Chose_Product()
-        {
-           
-            FormChonSanPham frm = new FormChonSanPham();
-            frm.Show();
-            //frm.Activate();
-        }
+        }        
 
         private void FormDonHang_Load(object sender, EventArgs e)
         {
