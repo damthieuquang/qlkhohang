@@ -31,10 +31,10 @@ namespace DAO
             return DataProvider.ExecuteNoneQuery("usp_UpdateLoaiSanPhamById ", sqlParamas);
         }
 
-        public static bool DeleteLoaiSanPham(LoaiSanPhamDTO loaiSanPhamDTO)
+        public static bool DeleteLoaiSanPham(string maLoaiSanPham)
         {
             List<SqlParameter> sqlParamas = new List<SqlParameter>();
-            sqlParamas.Add(new SqlParameter("@MaLoaiSanPham", loaiSanPhamDTO.MaLoaiSanPham));
+            sqlParamas.Add(new SqlParameter("@MaLoaiSanPham", maLoaiSanPham));
             return DataProvider.ExecuteNoneQuery("usp_DeleteLoaiSanPhamById", sqlParamas);
         }
 

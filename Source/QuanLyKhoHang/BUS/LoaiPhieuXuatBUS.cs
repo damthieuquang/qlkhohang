@@ -19,9 +19,9 @@ namespace BUS
             return LoaiPhieuXuatDAO.UpdateLoaiPhieuXuat(loaiPhieuXuatDTO);
         }
 
-        public static bool DeleteLoaiPhieuXuat(LoaiPhieuXuatDTO loaiPhieuXuatDTO)
+        public static bool DeleteLoaiPhieuXuat(string maLoaiPhieuXuat)
         {
-            return LoaiPhieuXuatDAO.DeleteLoaiPhieuXuat(loaiPhieuXuatDTO);
+            return LoaiPhieuXuatDAO.DeleteLoaiPhieuXuat(maLoaiPhieuXuat);
         }
 
         public static List<LoaiPhieuXuatDTO> SelectLoaiPhieuXuatAll()
