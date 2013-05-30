@@ -13,7 +13,7 @@ namespace DAO
 
         public static string ConnectionString
         {
-            get { return @"Data Source=localhost;Initial Catalog=QLKhoHang;Integrated Security=True"; }
+            get { return @"Data Source=localhost\SQLEXPRESS;Initial Catalog=QLKhoHang;Integrated Security=True"; }
             set { _connectionString = value; }
         }
 

@@ -98,7 +98,6 @@ namespace GUI
                         dataGridView_NhapHang.CurrentCell = cell;
                         dataGridView_NhapHang.CurrentCell.Selected = true;
 
-
                     }
                     else
                     {
