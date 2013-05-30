@@ -334,7 +334,7 @@
             this.groupBox1.Size = new System.Drawing.Size(860, 134);
             this.groupBox1.TabIndex = 68;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "groupBox1";
+            this.groupBox1.Text = "Thông tin";
             // 
             // groupBox2
             // 
@@ -344,7 +344,7 @@
             this.groupBox2.Size = new System.Drawing.Size(860, 234);
             this.groupBox2.TabIndex = 69;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "groupBox2";
+            this.groupBox2.Text = "Thông tin sản phẩm";
             // 
             // label_TongTienTruoc
             // 
