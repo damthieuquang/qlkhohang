@@ -80,7 +80,7 @@ namespace GUI
 
         private void dataGridView_NhapHang_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.ColumnIndex == 4)
+            if (e.ColumnIndex == 5)
             {
 
                 DataGridViewCell cell = dataGridView_NhapHang.CurrentCell;
@@ -89,7 +89,8 @@ namespace GUI
                 if (int.TryParse(chuoi, out so))
                 {
 
-                    int SoLuong = int.Parse(dataGridView_NhapHang.CurrentRow.Cells[e.ColumnIndex - 1].Value.ToString());
+                    int SoLuong = int.Parse(dataGridView_NhapHang.CurrentRow.Cells[e.ColumnIndex - 2].Value.ToString());
+                    int DaNhan  =  int.Parse(dataGridView_NhapHang.CurrentRow.Cells[e.ColumnIndex - 1].Value.ToString());
                     if (SoLuong < so)
                     {
                         cell.Value = "";
@@ -99,10 +100,13 @@ namespace GUI
                         dataGridView_NhapHang.CurrentCell.Selected = true;
 
                     }
-                    else
+                    else if(SoLuong == DaNhan)
                     {
-                        int kq = SoLuong - so;
-                        dataGridView_NhapHang.CurrentRow.Cells[e.ColumnIndex + 1].Value = kq.ToString();
+                        /*int kq = SoLuong - so;
+                        dataGridView_NhapHang.CurrentRow.Cells[e.ColumnIndex + 1].Value = kq.ToString();*/
+                        MessageBox.Show("Số Lượng Đã Nhận Đủ");
+                        btnTao.Enabled = false;
+                        cell.Value = "";
                     }
 
                 }
@@ -317,12 +321,13 @@ namespace GUI
 
         private void btnTaoMoi_Click(object sender, EventArgs e)
         {
-          
-            DialogResult result = MessageBox.Show("Bạn Muốn Lưu Đơn Nhập Hàng Không:", "Phiếu Nhập", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
-            if (result == DialogResult.Yes)
+            if (btnCapNhap.Enabled == false)
             {
-                if (btnCapNhap.Visible == false)
+                DialogResult result = MessageBox.Show("Bạn Muốn Lưu Đơn Nhập Hàng Không", "Phiếu Nhập", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
+                if (result == DialogResult.Yes)
                 {
+                    // if (btnCapNhap.Visible == false)
+                    // {
                     flag = KiemTraTao();
                     if (flag == true)
                     {
@@ -333,32 +338,54 @@ namespace GUI
                         txtNgayNhan.Text = ngayNhan.ToString("dd/MM/yyyy");
                         txtMaNhanVien.Text = ThongTin.NhanVienDTO.MaNhanVien;
                         txtNhanVienNhanHang.Text = ThongTin.NhanVienDTO.TenNhanVien;
-                        txtNgayDat.Text = null;
-                        txtSoTien.Text = null;
-                        txtDonDatHang.Text = null;
+                        txtNgayDat.Text = "";
+                        txtSoTien.Text = "";
+                        txtDonDatHang.Text = "";
                         dataGridView_NhapHang.Rows.Clear();
                         txtDonDatHang.ReadOnly = false;
                     }
                     btnTao.Visible = true;
+                    // }
+                }
+                else if (result == DialogResult.No)
+                {
+
+                    txtMaPhieuNhap.Text = CreatePhieuNhapId();
+                    DateTime ngayNhan = DateTime.Now;
+                    txtNgayNhan.Text = ngayNhan.ToString("dd/MM/yyyy");
+                    txtMaNhanVien.Text = ThongTin.NhanVienDTO.MaNhanVien;
+                    txtNhanVienNhanHang.Text = ThongTin.NhanVienDTO.TenNhanVien;
+                    txtNgayDat.Text = "";
+                    txtSoTien.Text = "";
+                    txtDonDatHang.Text = "";
+                    dataGridView_NhapHang.Rows.Clear();
+
+                    btnTao.Visible = true;
+                    btnCapNhap.Enabled = false;
+                    txtDonDatHang.ReadOnly = false;
+
                 }
             }
-            else if (result == DialogResult.No)
+            else
             {
+                DialogResult result = MessageBox.Show("Bạn Muốn Tạo Đơn Nhập Hàng Mới Không", "Phiếu Nhập", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
+                if (result == DialogResult.Yes)
+                {
 
-                txtMaPhieuNhap.Text = CreatePhieuNhapId();
-                DateTime ngayNhan = DateTime.Now;
-                txtNgayNhan.Text = ngayNhan.ToString("dd/MM/yyyy");
-                txtMaNhanVien.Text = ThongTin.NhanVienDTO.MaNhanVien;
-                txtNhanVienNhanHang.Text = ThongTin.NhanVienDTO.TenNhanVien;
-                txtNgayDat.Text = null;
-                txtSoTien.Text = null;
-                txtDonDatHang.Text = null;
-                dataGridView_NhapHang.Rows.Clear();
+                    txtMaPhieuNhap.Text = CreatePhieuNhapId();
+                    DateTime ngayNhan = DateTime.Now;
+                    txtNgayNhan.Text = ngayNhan.ToString("dd/MM/yyyy");
+                    txtMaNhanVien.Text = ThongTin.NhanVienDTO.MaNhanVien;
+                    txtNhanVienNhanHang.Text = ThongTin.NhanVienDTO.TenNhanVien;
+                    txtNgayDat.Text = "";
+                    txtSoTien.Text = "";
+                    txtDonDatHang.Text = "";
+                    dataGridView_NhapHang.Rows.Clear();
 
-                btnTao.Visible = true;
-                btnCapNhap.Enabled = false;
-                txtDonDatHang.ReadOnly = false;
-  
+                    btnTao.Visible = true;
+                    btnCapNhap.Enabled = false;
+                    txtDonDatHang.ReadOnly = false;
+                }
             }
 
         }

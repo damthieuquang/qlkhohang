@@ -32,9 +32,9 @@ namespace BUS
             return PhieuNhapDAO.UpdatePhieuNhap(phieuNhapDTO);
         }
 
-        public static bool DeletePhieuNhap(PhieuNhapDTO phieuNhapDTO)
+        public static bool DeletePhieuNhapByID(string phieuNhapDTO)
         {
-            return PhieuNhapDAO.DeletePhieuNhap(phieuNhapDTO);
+            return PhieuNhapDAO.DeletePhieuNhapById(phieuNhapDTO);
         }
     }
 }
