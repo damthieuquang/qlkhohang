@@ -248,7 +248,6 @@
             this.dataGridView_TaoDonHang.Size = new System.Drawing.Size(848, 210);
             this.dataGridView_TaoDonHang.TabIndex = 65;
             this.dataGridView_TaoDonHang.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_TaoDonHang_CellEndEdit);
-            this.dataGridView_TaoDonHang.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_TaoDonHang_CellValueChanged);
             this.dataGridView_TaoDonHang.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.dataGridView_TaoDonHang_EditingControlShowing);
             // 
             // clSTT
