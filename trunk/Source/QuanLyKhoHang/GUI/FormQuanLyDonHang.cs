@@ -154,6 +154,8 @@ namespace GUI
         private void btnXemChiTiet_Click(object sender, EventArgs e)
         {
             FormDonHang fQLDonHang = new FormDonHang();
+            fQLDonHang.MaDonHang = dataGridView_TraCuuDonHang.CurrentRow.Cells["clMaDonHang"].Value.ToString();
+            fQLDonHang.Status = 1;
             fQLDonHang.ShowDialog();
         }
 

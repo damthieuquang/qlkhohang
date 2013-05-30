@@ -174,6 +174,7 @@
             this.btnTimDonHang.TabIndex = 60;
             this.btnTimDonHang.Text = "Tìm đơn hàng";
             this.btnTimDonHang.UseVisualStyleBackColor = true;
+            this.btnTimDonHang.Click += new System.EventHandler(this.btnTimDonHang_Click);
             // 
             // btnXuatFile
             // 
