@@ -14,14 +14,14 @@ namespace BUS
             return ChiTietPhieuXuatDAO.InsertChiTietPhieuXuat(chiTietPhieuXuatDTO);
         }
 
-        public static bool UpdateChiTietPhieuXuat(ChiTietPhieuXuatDTO chiTietPhieuXuatDTO)
+        public static bool UpdateChiTietPhieuXuatById(ChiTietPhieuXuatDTO chiTietPhieuXuatDTO)
         {
-            return ChiTietPhieuXuatDAO.UpdateChiTietPhieuXuat(chiTietPhieuXuatDTO);
+            return ChiTietPhieuXuatDAO.UpdateChiTietPhieuXuatById(chiTietPhieuXuatDTO);
         }
 
-        public static bool DeleteChiTietPhieuXuat(string maChiTietPhieuXuat)
+        public static bool DeleteChiTietPhieuXuatById(string maChiTietPhieuXuat)
         {
-            return ChiTietPhieuXuatDAO.DeleteChiTietPhieuXuat(maChiTietPhieuXuat);
+            return ChiTietPhieuXuatDAO.DeleteChiTietPhieuXuatById(maChiTietPhieuXuat);
         }
 
         public static List<ChiTietPhieuXuatDTO> SelectChiTietPhieuXuatAll()

@@ -9,19 +9,23 @@ namespace BUS
 {
     public class LoaiSanPhamBUS
     {
+        public static string CreateLoaiSanPhamId()
+        {
+            return LoaiSanPhamDAO.CreateLoaiSanPhamId();
+        }
         public static bool InsertLoaiSanPham(LoaiSanPhamDTO loaiSanPhamDTO)
         {
             return LoaiSanPhamDAO.InsertLoaiSanPham(loaiSanPhamDTO);
         }
 
-        public static bool UpdateLoaiSanPham(LoaiSanPhamDTO loaiSanPhamDTO)
+        public static bool UpdateLoaiSanPhamById(LoaiSanPhamDTO loaiSanPhamDTO)
         {
-            return LoaiSanPhamDAO.UpdateLoaiSanPham(loaiSanPhamDTO);
+            return LoaiSanPhamDAO.UpdateLoaiSanPhamById(loaiSanPhamDTO);
         }
 
-        public static bool DeleteLoaiSanPham(string maLoaiSanPham)
+        public static bool DeleteLoaiSanPhamById(string maLoaiSanPham)
         {
-            return LoaiSanPhamDAO.DeleteLoaiSanPham(maLoaiSanPham);
+            return LoaiSanPhamDAO.DeleteLoaiSanPhamById(maLoaiSanPham);
         }
 
         public static List<LoaiSanPhamDTO> SelectLoaiSanPhamAll()

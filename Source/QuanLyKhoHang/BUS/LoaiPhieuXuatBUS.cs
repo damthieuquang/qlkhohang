@@ -9,19 +9,23 @@ namespace BUS
 {
     public class LoaiPhieuXuatBUS
     {
+        public static string CreateLoaiPhieuXuatId()
+        {
+            return LoaiPhieuXuatDAO.CreateLoaiPhieuXuatId();
+        }
         public static bool InsertLoaiPhieuXuat(LoaiPhieuXuatDTO loaiPhieuXuatDTO)
         {
             return LoaiPhieuXuatDAO.InsertLoaiPhieuXuat(loaiPhieuXuatDTO);
         }
 
-        public static bool UpdateLoaiPhieuXuat(LoaiPhieuXuatDTO loaiPhieuXuatDTO)
+        public static bool UpdateLoaiPhieuXuatById(LoaiPhieuXuatDTO loaiPhieuXuatDTO)
         {
-            return LoaiPhieuXuatDAO.UpdateLoaiPhieuXuat(loaiPhieuXuatDTO);
+            return LoaiPhieuXuatDAO.UpdateLoaiPhieuXuatById(loaiPhieuXuatDTO);
         }
 
-        public static bool DeleteLoaiPhieuXuat(string maLoaiPhieuXuat)
+        public static bool DeleteLoaiPhieuXuatById(string maLoaiPhieuXuat)
         {
-            return LoaiPhieuXuatDAO.DeleteLoaiPhieuXuat(maLoaiPhieuXuat);
+            return LoaiPhieuXuatDAO.DeleteLoaiPhieuXuatById(maLoaiPhieuXuat);
         }
 
         public static List<LoaiPhieuXuatDTO> SelectLoaiPhieuXuatAll()

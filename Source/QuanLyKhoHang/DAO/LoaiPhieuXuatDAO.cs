@@ -23,7 +23,7 @@ namespace DAO
             return DataProvider.ExecuteNoneQuery("usp_InsertLoaiPhieuXuat", sqlParamas);
         }
 
-        public static bool UpdateLoaiPhieuXuat(LoaiPhieuXuatDTO loaiPhieuXuatDTO)
+        public static bool UpdateLoaiPhieuXuatById(LoaiPhieuXuatDTO loaiPhieuXuatDTO)
         {
             List<SqlParameter> sqlParamas = new List<SqlParameter>();
             sqlParamas.Add(new SqlParameter("@MaLoaiPhieuXuat", loaiPhieuXuatDTO.MaLoaiPhieuXuat));
@@ -31,7 +31,7 @@ namespace DAO
             return DataProvider.ExecuteNoneQuery("usp_UpdateLoaiPhieuXuatById", sqlParamas);
         }
 
-        public static bool DeleteLoaiPhieuXuat(string maLoaiPhieuXuat)
+        public static bool DeleteLoaiPhieuXuatById(string maLoaiPhieuXuat)
         {
             List<SqlParameter> sqlParamas = new List<SqlParameter>();
             sqlParamas.Add(new SqlParameter("@MaLoaiPhieuXuat", maLoaiPhieuXuat));
