@@ -19,9 +19,9 @@ namespace BUS
             return LoaiSanPhamDAO.UpdateLoaiSanPham(loaiSanPhamDTO);
         }
 
-        public static bool DeleteLoaiSanPham(LoaiSanPhamDTO loaiSanPhamDTO)
+        public static bool DeleteLoaiSanPham(string maLoaiSanPham)
         {
-            return LoaiSanPhamDAO.DeleteLoaiSanPham(loaiSanPhamDTO);
+            return LoaiSanPhamDAO.DeleteLoaiSanPham(maLoaiSanPham);
         }
 
         public static List<LoaiSanPhamDTO> SelectLoaiSanPhamAll()

@@ -36,10 +36,10 @@ namespace DAO
             return DataProvider.ExecuteNoneQuery("usp_UpdateChiTietPhieuXuatById", sqlParams);
         }
 
-        public static bool DeleteChiTietPhieuXuat(ChiTietPhieuXuatDTO chiTietPhieuXuatDTO)
+        public static bool DeleteChiTietPhieuXuat(string maChiTietPhieuXuat)
         {
             List<SqlParameter> sqlParamas = new List<SqlParameter>();
-            sqlParamas.Add(new SqlParameter("@MaChiTietPhieuXuat", chiTietPhieuXuatDTO.MaChiTietPhieuXuat));
+            sqlParamas.Add(new SqlParameter("@MaChiTietPhieuXuat", maChiTietPhieuXuat));
             return DataProvider.ExecuteNoneQuery("usp_DeleteChiTietPhieuXuatById", sqlParamas);
         }
 
@@ -93,5 +93,7 @@ namespace DAO
 
             return chiTietPhieuXuatDTO;
         }
+
+        public static object maChiTietPhieuXuat { get; set; }
     }
 }

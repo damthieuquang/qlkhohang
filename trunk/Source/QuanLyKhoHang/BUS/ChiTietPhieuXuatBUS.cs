@@ -19,9 +19,9 @@ namespace BUS
             return ChiTietPhieuXuatDAO.UpdateChiTietPhieuXuat(chiTietPhieuXuatDTO);
         }
 
-        public static bool DeleteChiTietPhieuXuat(ChiTietPhieuXuatDTO chiTietPhieuXuatDTO)
+        public static bool DeleteChiTietPhieuXuat(string maChiTietPhieuXuat)
         {
-            return ChiTietPhieuXuatDAO.DeleteChiTietPhieuXuat(chiTietPhieuXuatDTO);
+            return ChiTietPhieuXuatDAO.DeleteChiTietPhieuXuat(maChiTietPhieuXuat);
         }
 
         public static List<ChiTietPhieuXuatDTO> SelectChiTietPhieuXuatAll()
