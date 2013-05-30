@@ -61,7 +61,7 @@
             // 
             // btnTao
             // 
-            this.btnTao.Location = new System.Drawing.Point(138, 383);
+            this.btnTao.Location = new System.Drawing.Point(188, 383);
             this.btnTao.Name = "btnTao";
             this.btnTao.Size = new System.Drawing.Size(86, 23);
             this.btnTao.TabIndex = 82;
@@ -71,7 +71,7 @@
             // 
             // btnTaoMoi
             // 
-            this.btnTaoMoi.Location = new System.Drawing.Point(254, 384);
+            this.btnTaoMoi.Location = new System.Drawing.Point(318, 383);
             this.btnTaoMoi.Name = "btnTaoMoi";
             this.btnTaoMoi.Size = new System.Drawing.Size(86, 23);
             this.btnTaoMoi.TabIndex = 81;
@@ -81,7 +81,7 @@
             // 
             // btnLamLai
             // 
-            this.btnLamLai.Location = new System.Drawing.Point(531, 384);
+            this.btnLamLai.Location = new System.Drawing.Point(598, 383);
             this.btnLamLai.Name = "btnLamLai";
             this.btnLamLai.Size = new System.Drawing.Size(86, 23);
             this.btnLamLai.TabIndex = 80;
@@ -91,7 +91,7 @@
             // 
             // btnThoat
             // 
-            this.btnThoat.Location = new System.Drawing.Point(668, 384);
+            this.btnThoat.Location = new System.Drawing.Point(717, 383);
             this.btnThoat.Name = "btnThoat";
             this.btnThoat.Size = new System.Drawing.Size(86, 23);
             this.btnThoat.TabIndex = 83;
@@ -220,7 +220,7 @@
             // 
             // btnTimPhieuNhap
             // 
-            this.btnTimPhieuNhap.Location = new System.Drawing.Point(385, 384);
+            this.btnTimPhieuNhap.Location = new System.Drawing.Point(443, 383);
             this.btnTimPhieuNhap.Name = "btnTimPhieuNhap";
             this.btnTimPhieuNhap.Size = new System.Drawing.Size(108, 23);
             this.btnTimPhieuNhap.TabIndex = 89;
@@ -301,7 +301,7 @@
             // btnCapNhap
             // 
             this.btnCapNhap.Enabled = false;
-            this.btnCapNhap.Location = new System.Drawing.Point(31, 383);
+            this.btnCapNhap.Location = new System.Drawing.Point(58, 383);
             this.btnCapNhap.Name = "btnCapNhap";
             this.btnCapNhap.Size = new System.Drawing.Size(86, 23);
             this.btnCapNhap.TabIndex = 91;
