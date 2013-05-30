@@ -47,7 +47,7 @@ namespace DAO
                     ChiTietPhieuNhapDTO chiTietPhieuNhapDTO = new ChiTietPhieuNhapDTO();
                     chiTietPhieuNhapDTO.MaChiTietPhieuNhap = dataRow["MaChiTietPhieuNhap"].ToString();
                     chiTietPhieuNhapDTO.MaPhieuNhap = dataRow["MaPhieuNhap"].ToString();
-                    chiTietPhieuNhapDTO.MaSanPham = dataRow["MaPhieuNhap"].ToString();
+                    chiTietPhieuNhapDTO.MaSanPham = dataRow["MaSanPham"].ToString();
                     chiTietPhieuNhapDTO.SLNhan = Int32.Parse(dataRow["SLNhan"].ToString());
                     chiTietPhieuNhapDTO.GhiChu = dataRow["GhiChu"].ToString();
                     listChiTietPhieuNhapDTO.Add(chiTietPhieuNhapDTO);
@@ -59,6 +59,8 @@ namespace DAO
             }
             return listChiTietPhieuNhapDTO;
         }
+
+
         public static ChiTietPhieuNhapDTO SelectChiTietPhieuNhapById(string maChiTietPhieuNhap)
         {
             List<SqlParameter> sqlParams = new List<SqlParameter>();
@@ -81,6 +83,32 @@ namespace DAO
             }
 
             return chiTietPhieuNhapDTO;
+        }
+
+        public static List<ChiTietPhieuNhapDTO> SelectChiTietPhieuNhapByMaPhieuNhap(string maPhieuNhap)
+        {
+            List<SqlParameter> sqlParams = new List<SqlParameter>();
+            sqlParams.Add(new SqlParameter("@MaPhieuNhap", maPhieuNhap));
+            DataTable dataTable = DataProvider.ExecuteReader("usp_SelectChiTietPhieuNhapByMaPhieuNhap", sqlParams);
+            List<ChiTietPhieuNhapDTO> listChiTietPhieuNhapDTO = new List<ChiTietPhieuNhapDTO>();
+            if (dataTable.Rows.Count > 0)
+            {
+                foreach (DataRow dataRow in dataTable.Rows)
+                {
+                    ChiTietPhieuNhapDTO chiTietPhieuNhapDTO = new ChiTietPhieuNhapDTO();
+                    chiTietPhieuNhapDTO.MaChiTietPhieuNhap = dataRow["MaChiTietPhieuNhap"].ToString();
+                    chiTietPhieuNhapDTO.MaPhieuNhap = dataRow["MaPhieuNhap"].ToString();
+                    chiTietPhieuNhapDTO.MaSanPham = dataRow["MaSanPham"].ToString();
+                    chiTietPhieuNhapDTO.SLNhan = Int32.Parse(dataRow["SLNhan"].ToString());
+                    chiTietPhieuNhapDTO.GhiChu = dataRow["GhiChu"].ToString();
+                    listChiTietPhieuNhapDTO.Add(chiTietPhieuNhapDTO);
+                }
+            }
+            else
+            {
+                listChiTietPhieuNhapDTO = null;
+            }
+            return listChiTietPhieuNhapDTO;
         }
     }
 }

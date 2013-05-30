@@ -55,12 +55,13 @@
             this.clDaNhan = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clSLNhan = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clGhiChu = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnCapNhap = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_NhapHang)).BeginInit();
             this.SuspendLayout();
             // 
             // btnTao
             // 
-            this.btnTao.Location = new System.Drawing.Point(109, 384);
+            this.btnTao.Location = new System.Drawing.Point(138, 383);
             this.btnTao.Name = "btnTao";
             this.btnTao.Size = new System.Drawing.Size(86, 23);
             this.btnTao.TabIndex = 82;
@@ -297,12 +298,24 @@
             this.clGhiChu.Name = "clGhiChu";
             this.clGhiChu.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
+            // btnCapNhap
+            // 
+            this.btnCapNhap.Enabled = false;
+            this.btnCapNhap.Location = new System.Drawing.Point(31, 383);
+            this.btnCapNhap.Name = "btnCapNhap";
+            this.btnCapNhap.Size = new System.Drawing.Size(86, 23);
+            this.btnCapNhap.TabIndex = 91;
+            this.btnCapNhap.Text = "Cập Nhập";
+            this.btnCapNhap.UseVisualStyleBackColor = true;
+            this.btnCapNhap.Click += new System.EventHandler(this.btnCapNhap_Click);
+            // 
             // FormNhapHang
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(884, 461);
+            this.Controls.Add(this.btnCapNhap);
             this.Controls.Add(this.dataGridView_NhapHang);
             this.Controls.Add(this.btnTimPhieuNhap);
             this.Controls.Add(this.label7);
@@ -362,5 +375,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clDaNhan;
         private System.Windows.Forms.DataGridViewTextBoxColumn clSLNhan;
         private System.Windows.Forms.DataGridViewTextBoxColumn clGhiChu;
+        private System.Windows.Forms.Button btnCapNhap;
     }
 }
