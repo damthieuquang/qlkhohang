@@ -315,19 +315,7 @@ namespace GUI
         private void btnXuatFile_Click(object sender, EventArgs e)
         {
             
-        }
-
-        private void dataGridView_TaoDonHang_CellValueChanged(object sender, DataGridViewCellEventArgs e)
-        {          
-            //if (dataGridView_TaoDonHang.Rows.Count > 0 && e.ColumnIndex == 5)
-            //{
-            //    int dongia = int.Parse(dataGridView_TaoDonHang.CurrentRow.Cells["clDonGia"].Value.ToString());
-            //    int soluong = int.Parse(dataGridView_TaoDonHang.CurrentRow.Cells["clSoLuong"].Value.ToString());
-            //    dataGridView_TaoDonHang.CurrentRow.Cells["clThanhTien"].Value = (dongia * soluong).ToString();
-            //}
-            //int Money = CalcMoney(dataGridView_TaoDonHang);
-            //label_TongTienTruoc.Text = Money.ToString();                
-        }
+        }       
 
         private void dataGridView_TaoDonHang_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
         {
