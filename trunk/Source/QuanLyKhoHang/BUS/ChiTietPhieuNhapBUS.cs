@@ -13,6 +13,10 @@ namespace BUS
         {
             return ChiTietPhieuNhapDAO.SelectChiTietPhieuNhapById(maChiTietPhieuNhap);
         }
+        public static List<ChiTietPhieuNhapDTO> SelectChiTietPhieuNhapByMaPhieuNhap(string maPhieuNhap)
+        {
+            return ChiTietPhieuNhapDAO.SelectChiTietPhieuNhapByMaPhieuNhap(maPhieuNhap);
+        }
         public static List<ChiTietPhieuNhapDTO> SelectChiTietPhieuNhapAll()
         {
             return ChiTietPhieuNhapDAO.SelectChiTietPhieuNhapAll();
@@ -25,6 +29,7 @@ namespace BUS
         {
             return ChiTietPhieuNhapDAO.UpdateChiTietPhieuNhapById(chiTietPhieuNhapDTO);
         }
+
         public static bool DeleteChiTietPhieuNhapById(string maChiTietPhieuNhap)
         {
             return ChiTietPhieuNhapDAO.DeleteChiTietPhieuNhapById(maChiTietPhieuNhap);
