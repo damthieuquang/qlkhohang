@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.groupBoxTimKiem = new System.Windows.Forms.GroupBox();
             this.textBoxGiaTri = new System.Windows.Forms.TextBox();
             this.textBoxTenThamSo = new System.Windows.Forms.TextBox();
@@ -38,6 +38,10 @@
             this.textBoxMaThamSo = new System.Windows.Forms.TextBox();
             this.groupBoxDSThamSo = new System.Windows.Forms.GroupBox();
             this.dataGridViewThamSo = new System.Windows.Forms.DataGridView();
+            this.ColSTT = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColMaThamSo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColTenThamSo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColGiaTri = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panelTimKiem = new System.Windows.Forms.Panel();
             this.buttonThoat = new System.Windows.Forms.Button();
             this.buttonXoa = new System.Windows.Forms.Button();
@@ -47,10 +51,6 @@
             this.panelYesNo = new System.Windows.Forms.Panel();
             this.buttonNo = new System.Windows.Forms.Button();
             this.buttonYes = new System.Windows.Forms.Button();
-            this.ColSTT = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColMaThamSo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColTenThamSo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColGiaTri = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBoxTimKiem.SuspendLayout();
             this.groupBoxDSThamSo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewThamSo)).BeginInit();
@@ -141,14 +141,14 @@
             this.dataGridViewThamSo.AllowUserToResizeColumns = false;
             this.dataGridViewThamSo.AllowUserToResizeRows = false;
             this.dataGridViewThamSo.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewThamSo.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewThamSo.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridViewThamSo.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewThamSo.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ColSTT,
@@ -161,6 +161,34 @@
             this.dataGridViewThamSo.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridViewThamSo.Size = new System.Drawing.Size(835, 243);
             this.dataGridViewThamSo.TabIndex = 0;
+            // 
+            // ColSTT
+            // 
+            this.ColSTT.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.ColSTT.HeaderText = "STT";
+            this.ColSTT.Name = "ColSTT";
+            this.ColSTT.ReadOnly = true;
+            this.ColSTT.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.ColSTT.Width = 50;
+            // 
+            // ColMaThamSo
+            // 
+            this.ColMaThamSo.HeaderText = "Mã tham số";
+            this.ColMaThamSo.Name = "ColMaThamSo";
+            this.ColMaThamSo.ReadOnly = true;
+            this.ColMaThamSo.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // ColTenThamSo
+            // 
+            this.ColTenThamSo.HeaderText = "Tên tham số";
+            this.ColTenThamSo.Name = "ColTenThamSo";
+            this.ColTenThamSo.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // ColGiaTri
+            // 
+            this.ColGiaTri.HeaderText = "Giá trị";
+            this.ColGiaTri.Name = "ColGiaTri";
+            this.ColGiaTri.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // panelTimKiem
             // 
@@ -253,34 +281,6 @@
             this.buttonYes.Text = "Yes";
             this.buttonYes.UseVisualStyleBackColor = true;
             this.buttonYes.Click += new System.EventHandler(this.buttonYes_Click);
-            // 
-            // ColSTT
-            // 
-            this.ColSTT.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.ColSTT.HeaderText = "STT";
-            this.ColSTT.Name = "ColSTT";
-            this.ColSTT.ReadOnly = true;
-            this.ColSTT.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.ColSTT.Width = 50;
-            // 
-            // ColMaThamSo
-            // 
-            this.ColMaThamSo.HeaderText = "Mã tham số";
-            this.ColMaThamSo.Name = "ColMaThamSo";
-            this.ColMaThamSo.ReadOnly = true;
-            this.ColMaThamSo.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // ColTenThamSo
-            // 
-            this.ColTenThamSo.HeaderText = "Tên tham số";
-            this.ColTenThamSo.Name = "ColTenThamSo";
-            this.ColTenThamSo.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // ColGiaTri
-            // 
-            this.ColGiaTri.HeaderText = "Giá trị";
-            this.ColGiaTri.Name = "ColGiaTri";
-            this.ColGiaTri.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // FormQuanLyThamSo
             // 

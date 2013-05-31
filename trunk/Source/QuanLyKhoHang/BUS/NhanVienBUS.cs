@@ -29,6 +29,11 @@ namespace BUS
         {
             return NhanVienDAO.DeleteNhanVienById(maNhanVien);
         }
+
+        public static string CreateNhanVienById()
+        {
+            return NhanVienDAO.CreateNhanVientId();
+        }
        
     }
 }
