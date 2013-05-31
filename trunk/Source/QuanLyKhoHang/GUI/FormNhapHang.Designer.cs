@@ -199,7 +199,8 @@
             this.txtDonDatHang.Name = "txtDonDatHang";
             this.txtDonDatHang.Size = new System.Drawing.Size(154, 20);
             this.txtDonDatHang.TabIndex = 65;
-            this.txtDonDatHang.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtDonDatHang_KeyUp);
+           
+           this.txtDonDatHang.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtDonDatHang_KeyUp);
             // 
             // label7
             // 

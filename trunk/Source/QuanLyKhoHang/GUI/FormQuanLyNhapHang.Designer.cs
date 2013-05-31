@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.groupBoxTimKiem = new System.Windows.Forms.GroupBox();
             this.dateTimePickerDen = new System.Windows.Forms.DateTimePicker();
             this.dateTimePickerTu = new System.Windows.Forms.DateTimePicker();
@@ -77,6 +77,7 @@
             this.dateTimePickerDen.Name = "dateTimePickerDen";
             this.dateTimePickerDen.Size = new System.Drawing.Size(150, 20);
             this.dateTimePickerDen.TabIndex = 6;
+            this.dateTimePickerDen.ValueChanged += new System.EventHandler(this.dateTimePickerDen_ValueChanged);
             // 
             // dateTimePickerTu
             // 
@@ -87,6 +88,7 @@
             this.dateTimePickerTu.Name = "dateTimePickerTu";
             this.dateTimePickerTu.Size = new System.Drawing.Size(150, 20);
             this.dateTimePickerTu.TabIndex = 5;
+            this.dateTimePickerTu.ValueChanged += new System.EventHandler(this.dateTimePickerTu_ValueChanged);
             // 
             // txtMaPhieuNhap
             // 
@@ -140,14 +142,14 @@
             this.dataGridView_TraCuuNhapHang.AllowUserToResizeColumns = false;
             this.dataGridView_TraCuuNhapHang.AllowUserToResizeRows = false;
             this.dataGridView_TraCuuNhapHang.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView_TraCuuNhapHang.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView_TraCuuNhapHang.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridView_TraCuuNhapHang.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView_TraCuuNhapHang.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.clSTT,
