@@ -21,7 +21,7 @@ namespace GUI
         public FormDonHang()
         {
             InitializeComponent();
-        }
+        }    
         // Toàn cục
         private DateTime DateTimeSystem;
         private float MoneySum = 0;   
@@ -77,8 +77,15 @@ namespace GUI
         private void Load_Create()
         {
             Load_Default();
+            //Cho chọn sản phẩm
+            FormChonSanPham ChonSanPham = new FormChonSanPham();
+            ChonSanPham.ShowDialog();
             int stt = 1;
-            List<SanPhamDTO> listSanPhamDTO = SanPhamBUS.SelectSanPhamAll();
+            List<SanPhamDTO> listSanPhamDTO = new List<SanPhamDTO>();
+            for (int i = 0; i < ChonSanPham.listsanPhamDTO_ChonSanPham.Count; i++)
+            {
+                listSanPhamDTO.Add(SanPhamBUS.SelectSanPhamById(ChonSanPham.listsanPhamDTO_ChonSanPham[i].MaSanPham.ToString()));
+            }
 
             foreach (SanPhamDTO sanPhamDTO in listSanPhamDTO)
             {
@@ -136,8 +143,8 @@ namespace GUI
             btnTao.Text = "Cập nhật";
             Load_Update();
         }
-
-        private bool CheckDataOn_Row_DataGridView(DataGridView data)// kiểm tra tồn tại dòng có thành tiền khác 0
+        // kiểm tra tồn tại dòng có thành tiền khác 0
+        private bool CheckDataOn_Row_DataGridView(DataGridView data)
         {
             for (int i = 0; i < data.Rows.Count; i++)
             {
@@ -301,15 +308,24 @@ namespace GUI
 
             label_TongTienSau.Text = "Tổng tiền: " + string.Format("{0:0,0.##}", (MoneyCurrent - (MoneyCurrent * ChietKhau)).ToString());
         }
-
+        //Kiểm tra datagridview có rỗng không
+        private bool CheckOut()
+        {
+            if (dataGridView_TaoDonHang.Rows.Count != 0)
+            {
+                return true;
+            }
+            return false;
+        }
         private void btnTao_Click(object sender, EventArgs e)
         {
             if (Status == 0)
             {
-                if (Process_Button())
+                if (CheckOut())
                 {
+                    Process_Button();
                     dataGridView_TaoDonHang.Rows.Clear();
-                    FormDonHang_Load(sender, e);
+                    FormDonHang_Load(sender, e);                    
                 }
                 return;
             }
@@ -321,6 +337,12 @@ namespace GUI
         {
             if (Status == 0)
             {
+                if (CheckOut() == false)
+                {
+                    dataGridView_TaoDonHang.Rows.Clear();
+                    FormDonHang_Load(sender, e);
+                    return;
+                }
                 DialogResult result = MessageBox.Show("Bạn Muốn Lưu Đơn Hàng Không:", "Đơn hàng", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
                 if (result == DialogResult.Yes)
                 {
@@ -350,12 +372,13 @@ namespace GUI
                 currentWorksheet.Columns.ColumnWidth = 18;
                 if (dgView.Rows.Count > 0)
                 {
-                    //currentWorksheet.Cells[1, 1] = DateTime.Now.ToString("s");
+                    currentWorksheet.Cells[1, 1] = "Ngày tạo:";
+                    currentWorksheet.Cells[1, 2] = DateTime.Now.ToString("s");
                     int i = 1;
                     foreach (DataGridViewColumn dgviewColumn in dgView.Columns)
                     {
                         // Excel work sheet indexing starts with 1
-                        currentWorksheet.Cells[1, i] = dgviewColumn.HeaderText.ToString().ToUpper();
+                        currentWorksheet.Cells[2, i] = dgviewColumn.HeaderText.ToString().ToUpper();
                         ++i;
                     }
                     Microsoft.Office.Interop.Excel.Range headerColumnRange = currentWorksheet.get_Range("A2", "G2");
@@ -378,11 +401,13 @@ namespace GUI
                 }
                 else
                 {
-                    string timeStamp = DateTime.Now.ToString("s");
-                    timeStamp = timeStamp.Replace(':', '-');
-                    timeStamp = timeStamp.Replace("T", "__");
-                    currentWorksheet.Cells[1, 1] = timeStamp;
-                    currentWorksheet.Cells[1, 2] = "No error occured";
+                    MessageBox.Show("Không có dữ liệu để xuất", "Xuất file", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                    //string timeStamp = DateTime.Now.ToString("s");
+                    //timeStamp = timeStamp.Replace(':', '-');
+                    //timeStamp = timeStamp.Replace("T", "__");
+                    //currentWorksheet.Cells[1, 1] = timeStamp;
+                    //currentWorksheet.Cells[1, 2] = "No error occured";
                 }
                 using (SaveFileDialog exportSaveFileDialog = new SaveFileDialog())
                 {
