@@ -20,6 +20,7 @@ namespace GUI
         private void FormQuanLySanPham_Load(object sender, EventArgs e)
         {
             panelYesNo.Location = new Point(12, 400);
+            panelYesNo.Parent = this;
             KhoiTao();
         }
 
@@ -61,14 +62,25 @@ namespace GUI
         {
             List<SanPhamDTO> listSanPhamDTO = SanPhamBUS.SelectSanPhamAll();
             List<LoaiSanPhamDTO> lstcbspDTO = LoaiSanPhamBUS.SelectLoaiSanPhamAll();
-            if (lstcbspDTO != null)
-            {
-                foreach (LoaiSanPhamDTO dtRow in lstcbspDTO)
-                {
-                    cmbMaLoaiSanPham.Items.Add(dtRow.MaLoaiSanPham);
-                }
-            }
-            cmbMaLoaiSanPham.SelectedItem = null;
+
+            LoaiSanPhamDTO all = new LoaiSanPhamDTO();
+            all.MaLoaiSanPham = "";
+            all.TenLoaiSanPham = "Tất cả";
+
+            lstcbspDTO.Insert(0, all);
+
+            cmbMaLoaiSanPham.DisplayMember = "TenLoaiSanPham";
+            cmbMaLoaiSanPham.ValueMember = "MaLoaiSanPham";
+            cmbMaLoaiSanPham.DataSource = lstcbspDTO;
+            cmbMaLoaiSanPham.SelectedIndex = 0;
+
+            List<LoaiSanPhamDTO> lstcbspDTO2 = LoaiSanPhamBUS.SelectLoaiSanPhamAll();
+            ColLoaiSanPham.DisplayMember = "TenLoaiSanPham";
+            ColLoaiSanPham.ValueMember = "MaLoaiSanPham";
+            ColLoaiSanPham.DataSource = lstcbspDTO2;
+            ColLoaiSanPham.DisplayStyle = DataGridViewComboBoxDisplayStyle.Nothing;
+            
+
             if (listSanPhamDTO != null)
             {
                 SanPhamDTO item = new SanPhamDTO();
@@ -76,9 +88,10 @@ namespace GUI
                 for (int i = 0; i < listSanPhamDTO.Count; i++)
                 {
                     item = listSanPhamDTO[i];
-                    dataGridView_QuanLySanPham.Rows.Add((i + 1).ToString(), item.MaSanPham, item.TenSanPham, item.CV,item.DonGia, item.DonGiaTV, item.SoLuongTon,item.MaLoaiSanPham);
+                    dataGridView_QuanLySanPham.Rows.Add((i + 1).ToString(), item.MaSanPham, item.TenSanPham, item.CV.ToString(),item.DonGia.ToString(), item.DonGiaTV.ToString(), item.SoLuongTon.ToString(), item.MaLoaiSanPham);
                     dataGridView_QuanLySanPham.Rows[i].ReadOnly = true;
                 }
+
             }
 
         }
@@ -92,18 +105,19 @@ namespace GUI
             int stt = 0;
             for (int i = 0; i < dataGridView_QuanLySanPham.RowCount; i++)
             {
+                
                 dataGridView_QuanLySanPham.Rows[i].Visible = false;
                 if (dataGridView_QuanLySanPham.Rows[i].Cells["ColMaSanPham"].Value.ToString().ToUpper().IndexOf(textBoxMaSanPham.Text.ToString().ToUpper()) >= 0
                     && dataGridView_QuanLySanPham.Rows[i].Cells["ColTenSanPham"].Value.ToString().ToUpper().IndexOf(textBoxTenSanPham.Text.ToString().ToUpper()) >= 0
                     && dataGridView_QuanLySanPham.Rows[i].Cells["ColCV"].Value.ToString().ToUpper().IndexOf(textBoxCV.Text.ToString().ToUpper()) >= 0
                     && dataGridView_QuanLySanPham.Rows[i].Cells["ColDonGia"].Value.ToString().ToUpper().IndexOf(textBoxDonGia.Text.ToString().ToUpper()) >= 0
-                    && dataGridView_QuanLySanPham.Rows[i].Cells["ColDonGiaTV"].Value.ToString().ToUpper().IndexOf(textBoxDonGiaTV.Text.ToString().ToUpper()) >= 0
-                    && dataGridView_QuanLySanPham.Rows[i].Cells["ColSoLuongTon"].Value.ToString().ToUpper().IndexOf(textBoxSoLuongTon.Text.ToString().ToUpper()) >= 0
-                    && dataGridView_QuanLySanPham.Rows[i].Cells["ColMaLoaiSanPham"].Value.ToString().ToUpper().IndexOf(cmbMaLoaiSanPham.SelectedValue.ToString().ToUpper()) >= 0)
+                    && dataGridView_QuanLySanPham.Rows[i].Cells["ColDonGiaTV"].Value.ToString().ToUpper().IndexOf(textBoxDonGiaTV.Text.ToString().ToUpper()) >= 0    
+                   &&( cmbMaLoaiSanPham.SelectedValue.ToString() == ""  ||  dataGridView_QuanLySanPham.Rows[i].Cells["ColLoaiSanPham"].Value.ToString().ToUpper().IndexOf(cmbMaLoaiSanPham.SelectedValue.ToString().ToUpper()) >= 0))
                 {
                     stt++;
                     dataGridView_QuanLySanPham.Rows[i].Visible = true;
                     dataGridView_QuanLySanPham.Rows[i].Cells["ColSTT"].Value = stt.ToString();
+                    
                 }
             }
         }
@@ -119,12 +133,14 @@ namespace GUI
 
             dataGridView_QuanLySanPham.Columns["ColSTT"].Visible = true;
             dataGridView_QuanLySanPham.Columns["ColMaSanPham"].Visible = true;
+            ColLoaiSanPham.DisplayStyle = DataGridViewComboBoxDisplayStyle.Nothing;
 
 
             //Cập nhật lại các giá trị ban đầu cho Pannel
             panelYesNo.Visible = false;
-            groupBoxTimKiem.Visible = true;
-            groupBoxDSThamSo.Text = "Danh sách sản phẩm";
+            panelTimKiem.Visible = true;
+            groupBoxTimKiem.Enabled = true;
+            groupBoxDanhSach.Text = "Danh sách sản phẩm";
 
             Status = 0;
             Index = -1;
@@ -137,23 +153,6 @@ namespace GUI
             dataGridView_QuanLySanPham.CurrentCell = dataGridView_QuanLySanPham.Rows[0].Cells[0];
         }
 
-
-
-
-        private void textBoxTenSanPham_TextChanged(object sender, EventArgs e)
-        {
-            Search();
-        }
-
-        private void textBoxMaSanPham_TextChanged(object sender, EventArgs e)
-        {
-            Search();
-        }
-
-       
-
-        
-        
 
         private void buttonThoat_Click(object sender, EventArgs e)
         {
@@ -180,19 +179,24 @@ namespace GUI
             dataGridView_QuanLySanPham.Columns["ColSTT"].Visible = false;
             dataGridView_QuanLySanPham.Columns["ColMaSanPham"].Visible = false;
 
+            //Hien cot loai sa pham
+            ColLoaiSanPham.DisplayStyle = DataGridViewComboBoxDisplayStyle.DropDownButton;
+            dataGridView_QuanLySanPham.Rows[i].Cells[ColLoaiSanPham.Index].Value = "LSP01";
+
+
             //Đưa cột Mã loại sản phẩm về dạng combobox
-            //dataGridView_QuanLySanPham.Columns["ColMaLoaiSanPham"].DisplayIndex = 1;
+            //dataGridView_QuanLySanPham.Columns["ColLoaiSanPham"].DisplayIndex = 1;
 
             //Set mặc định ô sẽ chỉnh sữa đầu tiên
             dataGridView_QuanLySanPham.CurrentCell = dataGridView_QuanLySanPham.Rows[i].Cells["ColTenSanPham"];
             dataGridView_QuanLySanPham.BeginEdit(true);
 
             //Show panel thêm và ẩn đi panel tìm kiếm
-            panelYesNo.Location = new Point(12, 400);
             panelYesNo.Visible = true;
+            panelTimKiem.Visible = false;
             buttonYes.Text = "Thêm";
-            groupBoxTimKiem.Visible = false;
-            groupBoxDSThamSo.Text = "Thêm sản phẩm mới";
+            groupBoxTimKiem.Enabled = false;
+            groupBoxDanhSach.Text = "Thêm sản phẩm mới";
 
             //Lưu trạng thái đang thực hiện
             Status = 1;//Thêm tham số
@@ -212,7 +216,7 @@ namespace GUI
             backup.DonGia = float.Parse(dataGridView_QuanLySanPham.CurrentRow.Cells["ColDonGia"].Value.ToString());
             backup.DonGiaTV = float.Parse(dataGridView_QuanLySanPham.CurrentRow.Cells["ColDonGiaTV"].Value.ToString());
             backup.SoLuongTon = int.Parse(dataGridView_QuanLySanPham.CurrentRow.Cells["ColSoLuongTon"].Value.ToString());
-            backup.MaLoaiSanPham = dataGridView_QuanLySanPham.CurrentRow.Cells["ColMaLoaiSanPham"].Value.ToString();
+            backup.MaLoaiSanPham = dataGridView_QuanLySanPham.CurrentRow.Cells["ColLoaiSanPham"].Value.ToString();
             BackupSanPhamDTO = backup;
 
 
@@ -237,11 +241,11 @@ namespace GUI
             dataGridView_QuanLySanPham.BeginEdit(true);
 
             //Show panel thêm và ẩn đi panel tìm kiếm
-            panelYesNo.Location = new Point(12, 400);
             panelYesNo.Visible = true;
+            panelTimKiem.Visible = false;
             buttonYes.Text = "Cập Nhật";
-            groupBoxTimKiem.Visible = false;
-            groupBoxDSThamSo.Text = "Cập nhật sản phẩm";
+            groupBoxTimKiem.Enabled = false;
+            groupBoxDanhSach.Text = "Cập nhật sản phẩm";
 
             Status = 2;//cập nhật tham số
 
@@ -273,7 +277,6 @@ namespace GUI
             textBoxCV.Text = null;
             textBoxDonGia.Text = null;
             textBoxDonGiaTV.Text = null;
-            textBoxSoLuongTon.Text = null;
             cmbMaLoaiSanPham.SelectedItem = null;
         }
 
@@ -315,10 +318,10 @@ namespace GUI
                 dataGridView_QuanLySanPham.BeginEdit(true);
                 flag = false;
             }
-            else if (dataGridView_QuanLySanPham.Rows[Index].Cells["ColMaLoaiSanPham"].Value == null)
+            else if (dataGridView_QuanLySanPham.Rows[Index].Cells["ColLoaiSanPham"].Value == null)
             {
                 MessageBox.Show("Giá trị mã loại sản phẩm không được để trống");
-                dataGridView_QuanLySanPham.CurrentCell = dataGridView_QuanLySanPham.Rows[Index].Cells["ColMaLoaiSanPham"];
+                dataGridView_QuanLySanPham.CurrentCell = dataGridView_QuanLySanPham.Rows[Index].Cells["ColLoaiSanPham"];
                 dataGridView_QuanLySanPham.BeginEdit(true);
                 flag = false;
             }
@@ -331,7 +334,7 @@ namespace GUI
                 sanphamDTO.DonGia = float.Parse(dataGridView_QuanLySanPham.Rows[Index].Cells["ColDonGia"].Value.ToString());
                 sanphamDTO.DonGiaTV = float.Parse(dataGridView_QuanLySanPham.Rows[Index].Cells["ColDonGiaTV"].Value.ToString());
                 sanphamDTO.SoLuongTon = int.Parse(dataGridView_QuanLySanPham.Rows[Index].Cells["ColSoLuongTon"].Value.ToString());
-                sanphamDTO.MaLoaiSanPham = dataGridView_QuanLySanPham.Rows[Index].Cells["ColMaLoaiSanPham"].Value.ToString();
+                sanphamDTO.MaLoaiSanPham = dataGridView_QuanLySanPham.Rows[Index].Cells["ColLoaiSanPham"].Value.ToString();
                 if (Status == 1)//Them tham so
                 {
                     sanphamDTO.MaSanPham = SanPhamBUS.CreateSanPhamId();
@@ -364,7 +367,7 @@ namespace GUI
                         dataGridView_QuanLySanPham.Rows[Index].Cells["ColDonGia"].Value = BackupSanPhamDTO.DonGia;
                         dataGridView_QuanLySanPham.Rows[Index].Cells["ColDonGiaTV"].Value = BackupSanPhamDTO.DonGiaTV;
                         dataGridView_QuanLySanPham.Rows[Index].Cells["ColSoLuongTon"].Value = BackupSanPhamDTO.SoLuongTon;
-                        dataGridView_QuanLySanPham.Rows[Index].Cells["ColMaLoaiSanPham"].Value = BackupSanPhamDTO.MaLoaiSanPham;
+                        dataGridView_QuanLySanPham.Rows[Index].Cells["ColLoaiSanPham"].Value = BackupSanPhamDTO.MaLoaiSanPham;
                         dataGridView_QuanLySanPham.Rows[Index].ReadOnly = true;
                     }
                 }
@@ -387,23 +390,41 @@ namespace GUI
                 dataGridView_QuanLySanPham.Rows[Index].Cells["ColDonGia"].Value = BackupSanPhamDTO.DonGia;
                 dataGridView_QuanLySanPham.Rows[Index].Cells["ColDonGiaTV"].Value = BackupSanPhamDTO.DonGiaTV;
                 dataGridView_QuanLySanPham.Rows[Index].Cells["ColSoLuongTon"].Value = BackupSanPhamDTO.SoLuongTon;
-                dataGridView_QuanLySanPham.Rows[Index].Cells["ColMaLoaiSanPham"].Value = BackupSanPhamDTO.MaLoaiSanPham;
+                dataGridView_QuanLySanPham.Rows[Index].Cells["ColLoaiSanPham"].Value = BackupSanPhamDTO.MaLoaiSanPham;
                 dataGridView_QuanLySanPham.Rows[Index].ReadOnly = true;
             }
 
             Reset();
         }
 
-        private void textBoxMaSanPham_TextChanged_1(object sender, EventArgs e)
+        private void textBoxMaSanPham_TextChanged(object sender, EventArgs e)
         {
             Search();
         }
 
-        private void textBoxTenSanPham_TextChanged_1(object sender, EventArgs e)
+        private void cmbMaLoaiSanPham_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Search();
+            Search(); 
         }
-       
-        
+
+        private void textBoxTenSanPham_TextChanged(object sender, EventArgs e)
+        {
+            Search(); 
+        }
+
+        private void textBoxCV_TextChanged(object sender, EventArgs e)
+        {
+            Search(); 
+        }
+
+        private void textBoxDonGia_TextChanged(object sender, EventArgs e)
+        {
+            Search(); 
+        }
+
+        private void textBoxDonGiaTV_TextChanged(object sender, EventArgs e)
+        {
+            Search(); 
+        }
     }
 }
