@@ -134,5 +134,19 @@ namespace DAO
             sqlParams.Add(new SqlParameter("@MaChiTietDonHang", MaChiTietDonHang));
             return DataProvider.ExecuteNoneQuery("usp_InsertChiTietDonHang",sqlParams);
         }
+
+        public static bool UpdateChiTietDonHangByMaDonHang(ChiTietDonHangDTO ctdhDTO)
+        {
+            List<SqlParameter> sqlParams = new List<SqlParameter>();
+            //sqlParams.Add(new SqlParameter("@MaChiTietDonHang", ctdhDTO.MaChiTietDonHang));
+            sqlParams.Add(new SqlParameter("@MaDonHang", ctdhDTO.MaDonHang));
+            sqlParams.Add(new SqlParameter("@MaSanPham", ctdhDTO.MaSanPham));
+            //sqlParams.Add(new SqlParameter("@CV", ctdhDTO.CV));
+            sqlParams.Add(new SqlParameter("@SoLuong", ctdhDTO.SoLuong));
+            //sqlParams.Add(new SqlParameter("@DonGia", ctdhDTO.DonGia));
+            sqlParams.Add(new SqlParameter("@ThanhTien", ctdhDTO.ThanhTien));
+            //sqlParams.Add(new SqlParameter("@SLDaNhan", ctdhDTO.SLDaNhan));
+            return DataProvider.ExecuteNoneQuery("usp_UpdateChiTietDonHangByMaDonHang", sqlParams);
+        }
     }
 }
