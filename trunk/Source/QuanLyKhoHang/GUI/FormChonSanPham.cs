@@ -42,15 +42,39 @@ namespace GUI
             }
         }
 
+        private bool CheckOut_Selected()
+        {
+            for (int i = 0; i < dataGridView_ChoSanPham.Rows.Count; i++)
+            {
+                if (dataGridView_ChoSanPham.Rows[i].Cells["clCheck"].Selected)
+                    return false;
+            }
+            return true;
+        }
+
         private void btn_Xong_Click(object sender, EventArgs e)
         {
+            if (CheckOut_Selected() == true)
+            {
+                DialogResult result = MessageBox.Show("Chưa có sản phẩm nào được chọn, bạn muốn thoát?", "Sản phẩm", MessageBoxButtons.YesNo, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
+                if (result == DialogResult.Yes)
+                {
+                    btn_Huy_Click(sender, e);
+                }
+                else if (result == DialogResult.No)
+                {                    
+                    //FormChonSanPham_Load(sender, e);
+                }
+                return;
+            }
             Close();
         }
 
         private void btn_Huy_Click(object sender, EventArgs e)
         {
             listsanPhamDTO_ChonSanPham.Clear();
-            Close();
+            
+            Dispose();
         }
     }
 }

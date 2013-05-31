@@ -21,7 +21,7 @@ namespace GUI
           private bool boolTu = false;
           private bool boolDen = false;
 
-        private void KhoiTaoComboBoxTrangThai()
+          private void KhoiTaoComboBoxTrangThai()
         {
             DataTable dt = new DataTable();
             dt.Columns.Add("text");
@@ -56,6 +56,16 @@ namespace GUI
                         item.TrangThai);
                 }
             }
+        }
+        //true nếu không tồn tại, ngược lại tồn tại
+        private bool KiemTraDong_KhongTonTai()
+        {
+            for (int i = 0; i < dataGridView_TraCuuDonHang.Rows.Count; i++)
+            {
+                dataGridView_TraCuuDonHang.Rows[i].Visible = true;
+                return false;
+            }
+            return true;
         }
 
         private void Search()
@@ -153,16 +163,33 @@ namespace GUI
 
         private void btnXemChiTiet_Click(object sender, EventArgs e)
         {
-            FormDonHang fQLDonHang = new FormDonHang();
-            fQLDonHang.MaDonHang = dataGridView_TraCuuDonHang.CurrentRow.Cells["clMaDonHang"].Value.ToString();
-            fQLDonHang.Status = 1;
-            fQLDonHang.ShowDialog();
+            if (KiemTraDong_KhongTonTai() == false)
+            {
+                FormDonHang fQLDonHang = new FormDonHang();
+                fQLDonHang.MaDonHang = dataGridView_TraCuuDonHang.CurrentRow.Cells["clMaDonHang"].Value.ToString();
+                fQLDonHang.Status = 1;
+                fQLDonHang.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("Không có dữ liệu", "Quản lý đơn hàng");
+            }                                   
         }
 
         private void btnCapNhat_Click(object sender, EventArgs e)
         {
-            FormDonHang fQLDonHang = new FormDonHang();
-            fQLDonHang.ShowDialog();
+            if (KiemTraDong_KhongTonTai() == false)
+            {
+                FormDonHang fQLDonHang = new FormDonHang();
+                fQLDonHang.Status = 2;
+                fQLDonHang.MaDonHang = dataGridView_TraCuuDonHang.CurrentRow.Cells[clMaDonHang.Index].Value.ToString();
+                fQLDonHang.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("Không có dữ liệu để cập nhật", "Quản lý đơn hàng");
+            }
+            
         }
 
         private void btnXoa_Click(object sender, EventArgs e)

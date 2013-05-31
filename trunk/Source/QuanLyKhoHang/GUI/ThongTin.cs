@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using DTO;
+using System.Windows.Forms;
 
 namespace GUI
 {
@@ -16,12 +17,22 @@ namespace GUI
             set { ThongTin._nhanVienDTO = value; }
         }
 
-        private ThamSoDTO _thamSoDTO;
+        private static ThamSoDTO _thamSoDTO;
         
-        public ThamSoDTO ThamSoDTO
+        public static ThamSoDTO ThamSoDTO
         {
             get { return _thamSoDTO; }
             set { _thamSoDTO = value; }
+        }
+
+        //Kiểm tra datagridview có rỗng không
+        public static bool CheckOut(DataGridView data)
+        {
+            if (data.Rows.Count != 0)
+            {
+                return true;
+            }
+            return false;
         }
     }
 }

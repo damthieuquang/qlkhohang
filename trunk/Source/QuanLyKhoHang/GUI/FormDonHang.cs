@@ -101,33 +101,28 @@ namespace GUI
         private void Load_Update()
         {
             Load_Default();
+            panelYesNo.Location = new Point(16, 409);
+
             // Thay đổi button Tạo thành Cập nhật
             btnTao.Text = "Cập nhật";
 
-            // Thay đổi button Làm lại thành Hủy
-            btnLamLai.Text = "Hủy";
-
-            // Thay đổi button Tạo mới thành Xong
-            btnTaoMoi.Text = "Xong";
-
-            // Ẩn button tìm đơn hàng
+            btnTaoMoi.Visible = false;
+            btnLamLai.Visible = false;
             btnTimDonHang.Visible = false;
+            //Doi vi tri button Xuat File
+            btnXuatFile.Location = new Point(158, 11);
 
-            // Aar button Thoát
-            btnThoat.Visible = false;
-
-            // Nhận Mã đơn hàng từ Quản lý Đơn Hàng
-            DonHangDTO donHangDTO = new DonHangDTO();
-            donHangDTO.MaDonHang = MaDonHang;
 
             // Truy vấn lấy ra Chi tiết đơn hàng theo mã đơn hàng
             List<ChiTietDonHangDTO> listctDonHangDTO = new List<ChiTietDonHangDTO>();
-            listctDonHangDTO = ChiTietDonHangBUS.SelectChiTietDonHangByMaDonHang(donHangDTO.MaDonHang.ToString());
+            listctDonHangDTO = ChiTietDonHangBUS.SelectChiTietDonHangByMaDonHang(MaDonHang);
 
+            dataGridView_TaoDonHang.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             // Lấy tên sản phẩm
             for (int i = 0; i < listctDonHangDTO.Count; i++)
             {
                 dataGridView_TaoDonHang.Rows.Add(i + 1, listctDonHangDTO[i].MaSanPham, SanPhamBUS.SelectSanPhamById(listctDonHangDTO[i].MaSanPham).TenSanPham, listctDonHangDTO[i].CV, listctDonHangDTO[i].DonGia, listctDonHangDTO[i].SoLuong, listctDonHangDTO[i].ThanhTien);
+                dataGridView_TaoDonHang.Rows[i].ReadOnly = true;
             }
             Show_Label();
             
@@ -140,8 +135,17 @@ namespace GUI
                 Load_Create();
                 return;
             }
-            btnTao.Text = "Cập nhật";
-            Load_Update();
+            else if (Status == 1)
+            {
+                btnTao.Text = "Cập nhật";
+                Load_Update(); 
+            }
+            else
+            {
+                Load_Update();
+                Update();
+            }
+                       
         }
         // kiểm tra tồn tại dòng có thành tiền khác 0
         private bool CheckDataOn_Row_DataGridView(DataGridView data)
@@ -229,10 +233,18 @@ namespace GUI
                 return false;
             
         }
-        // Thực thi khi button Tạo có status = 1
-        private void Update_Button()
+        // Thay đổi FormDonHang khi Status = 2
+        private void Update()
         {
-            
+            panelYesNo.Visible = true;
+            panelYesNo.Parent = this;
+            panelChucNang.Visible = false;
+            dataGridView_TaoDonHang.SelectionMode = DataGridViewSelectionMode.CellSelect;
+            for (int i = 0; i < dataGridView_TaoDonHang.RowCount; i++)
+            {
+                dataGridView_TaoDonHang.Rows[i].ReadOnly = false;
+            }
+
         }
         // Thực thi khi button Làm Lại có status = 0
         private void Process_ButtonRemake()
@@ -306,22 +318,14 @@ namespace GUI
             float MoneyCurrent = CalcMoney(dataGridView_TaoDonHang);
             label_TongTienTruoc.Text = "Tổng tiền trước: " + string.Format("{0:0,0.##}", MoneyCurrent.ToString());
 
-            label_TongTienSau.Text = "Tổng tiền: " + string.Format("{0:0,0.##}", (MoneyCurrent - (MoneyCurrent * ChietKhau)).ToString());
+            label_TongTienSau.Text = "Tổng tiền: " + string.Format("{0:0,0.##}", (MoneyCurrent*0.96).ToString());
         }
-        //Kiểm tra datagridview có rỗng không
-        private bool CheckOut()
-        {
-            if (dataGridView_TaoDonHang.Rows.Count != 0)
-            {
-                return true;
-            }
-            return false;
-        }
+
         private void btnTao_Click(object sender, EventArgs e)
         {
             if (Status == 0)
             {
-                if (CheckOut())
+                if (ThongTin.CheckOut(dataGridView_TaoDonHang))
                 {
                     Process_Button();
                     dataGridView_TaoDonHang.Rows.Clear();
@@ -329,15 +333,17 @@ namespace GUI
                 }
                 return;
             }
-            // Ngược lại là 1, nút cập nhật
-            Update_Button();
+            else if (Status == 1 || Status == 2)
+            {
+                Update();
+            }            
         }
 
         private void btnTaoMoi_Click(object sender, EventArgs e)
         {
             if (Status == 0)
             {
-                if (CheckOut() == false)
+                if (ThongTin.CheckOut(dataGridView_TaoDonHang) == false)
                 {
                     dataGridView_TaoDonHang.Rows.Clear();
                     FormDonHang_Load(sender, e);
@@ -355,7 +361,11 @@ namespace GUI
                 }
                 return;
             }
-            Close();
+            else
+            {
+                Close();
+            }
+            
         }
 
         // Hàm xử lý xuất file Excel sử dụng thư viện Microsoft
@@ -480,9 +490,28 @@ namespace GUI
         //Chuyển sang quản lý đơn hàng
         private void btnTimDonHang_Click(object sender, EventArgs e)
         {
+           
             FormQuanLyDonHang QLDonHang = new FormQuanLyDonHang();
             QLDonHang.ShowDialog();
         }
 
+        private void buttonNo_Click(object sender, EventArgs e)
+        {
+            Dispose();// tat va giai phong tai nguyen
+        }
+        // Cập nhật lại đơn hàng
+        private void btnYes_Click(object sender, EventArgs e)
+        {
+            List<ChiTietDonHangDTO> listctDonHangDTO = new List<ChiTietDonHangDTO>();
+            listctDonHangDTO = ChiTietDonHangBUS.SelectChiTietDonHangByMaDonHang(MaDonHang);
+
+            for (int i = 0; i < listctDonHangDTO.Count; i++)
+            {
+                listctDonHangDTO[i].SoLuong = int.Parse(dataGridView_TaoDonHang.Rows[i].Cells["clSoLuong"].Value.ToString());
+                listctDonHangDTO[i].ThanhTien = float.Parse(dataGridView_TaoDonHang.Rows[i].Cells["clThanhTien"].Value.ToString());
+                ChiTietDonHangBUS.UpdateChiTietDonHangById(listctDonHangDTO[i]);
+            }
+            MessageBox.Show("Cập nhật thành công", "Cập nhật đơn hàng");
+        }        
     }
 }
