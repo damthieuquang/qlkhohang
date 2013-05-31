@@ -120,6 +120,8 @@ namespace GUI
         private void btnXemChiTiet_Click(object sender, EventArgs e)
         {
             FormNhapHang fQLNhapHang = new FormNhapHang();
+            fQLNhapHang.MaPhieuNhap = dataGridView_TraCuuNhapHang.CurrentRow.Cells["clMaPhieuNhap"].Value.ToString();
+            fQLNhapHang.Status = 1;
             fQLNhapHang.ShowDialog();
         }
 
