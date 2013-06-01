@@ -19,19 +19,19 @@ namespace BUS
             return PhieuXuatDAO.SelectPhieuXuatById(MaPhieuXuat);
         }
 
-        public static bool InsertPhieuXuat(PhieuXuatDTO phieuXuatDTO)
+        public static bool InsertPhieuXuatBy(PhieuXuatDTO phieuXuatDTO)
         {
             return PhieuXuatDAO.InsertPhieuXuat(phieuXuatDTO);
         }
 
-        public static bool UpdatePhieuXuat(PhieuXuatDTO phieuXuatDTO)
+        public static bool UpdatePhieuXuatById(PhieuXuatDTO phieuXuatDTO)
         {
-            return PhieuXuatDAO.UpdatePhieuXuat(phieuXuatDTO);
+            return PhieuXuatDAO.UpdatePhieuXuatById(phieuXuatDTO);
         }
 
-        public static bool DeletePhieuXuat(PhieuXuatDTO phieuXuatDTO)
+        public static bool DeletePhieuXuatById(PhieuXuatDTO phieuXuatDTO)
         {
-            return PhieuXuatDAO.DeletePhieuXuat(phieuXuatDTO);
+            return PhieuXuatDAO.DeletePhieuXuatById(phieuXuatDTO);
         }
     }
 }
