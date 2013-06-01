@@ -35,7 +35,7 @@ namespace BUS
 	
 		public static string CreateThanhVienId()
 		{
-			return ThanhVienDAO.CreateThanhVien();	
+			return ThanhVienDAO.CreateThanhVienId();	
 		}
     }
 
