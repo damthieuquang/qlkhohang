@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panelTimKiem = new System.Windows.Forms.Panel();
             this.buttonThoat = new System.Windows.Forms.Button();
             this.buttonXoa = new System.Windows.Forms.Button();
@@ -98,7 +98,7 @@
             this.buttonXoa.TabIndex = 4;
             this.buttonXoa.Text = "Xóa";
             this.buttonXoa.UseVisualStyleBackColor = true;
-            this.buttonXoa.Click += new System.EventHandler(this.buttonXoa_Click_1);
+            this.buttonXoa.Click += new System.EventHandler(this.buttonXoa_Click);
             // 
             // buttonCapNhat
             // 
@@ -108,7 +108,7 @@
             this.buttonCapNhat.TabIndex = 3;
             this.buttonCapNhat.Text = "Cập nhật";
             this.buttonCapNhat.UseVisualStyleBackColor = true;
-            this.buttonCapNhat.Click += new System.EventHandler(this.buttonCapNhat_Click_1);
+            this.buttonCapNhat.Click += new System.EventHandler(this.buttonCapNhat_Click);
             // 
             // buttonThem
             // 
@@ -118,7 +118,7 @@
             this.buttonThem.TabIndex = 2;
             this.buttonThem.Text = "Thêm";
             this.buttonThem.UseVisualStyleBackColor = true;
-            this.buttonThem.Click += new System.EventHandler(this.buttonThem_Click_1);
+            this.buttonThem.Click += new System.EventHandler(this.buttonThem_Click);
             // 
             // buttonLamLai
             // 
@@ -128,7 +128,7 @@
             this.buttonLamLai.TabIndex = 1;
             this.buttonLamLai.Text = "Làm lại";
             this.buttonLamLai.UseVisualStyleBackColor = true;
-            this.buttonLamLai.Click += new System.EventHandler(this.buttonLamLai_Click_1);
+            this.buttonLamLai.Click += new System.EventHandler(this.buttonLamLai_Click);
             // 
             // textBoxCV
             // 
@@ -261,14 +261,14 @@
             this.dataGridView_QuanLySanPham.AllowUserToResizeColumns = false;
             this.dataGridView_QuanLySanPham.AllowUserToResizeRows = false;
             this.dataGridView_QuanLySanPham.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView_QuanLySanPham.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView_QuanLySanPham.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridView_QuanLySanPham.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView_QuanLySanPham.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ColSTT,
@@ -378,6 +378,7 @@
             this.buttonNo.TabIndex = 1;
             this.buttonNo.Text = "Hủy";
             this.buttonNo.UseVisualStyleBackColor = true;
+            this.buttonNo.Click += new System.EventHandler(this.buttonNo_Click);
             // 
             // buttonYes
             // 
@@ -387,6 +388,7 @@
             this.buttonYes.TabIndex = 0;
             this.buttonYes.Text = "Yes";
             this.buttonYes.UseVisualStyleBackColor = true;
+            this.buttonYes.Click += new System.EventHandler(this.buttonYes_Click);
             // 
             // FormQuanLySanPham
             // 

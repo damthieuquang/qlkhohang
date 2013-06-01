@@ -17,6 +17,7 @@ namespace GUI
             InitializeComponent();
         }
 
+        
         private void FormQuanLySanPham_Load(object sender, EventArgs e)
         {
             panelYesNo.Location = new Point(12, 400);
@@ -24,6 +25,8 @@ namespace GUI
             KhoiTao();
         }
 
+        //Biến đếm:
+        //public int dem = 0;
         //Status = 1: Thêm tham số
         //Status = 2: Cập nhật Tham Số
         //Status = 0: Hoàn thành xử lý
@@ -120,6 +123,23 @@ namespace GUI
                     
                 }
             }
+            int dem = 0;
+            for (int i = 0; i < dataGridView_QuanLySanPham.Rows.Count; i++)
+            {
+                if (dataGridView_QuanLySanPham.Rows[i].Visible == true)
+                    dem++;
+
+            }
+            if (dem == 0)
+            {
+                buttonCapNhat.Enabled = false;
+                buttonXoa.Enabled = false;
+            }
+            else
+            {
+                buttonCapNhat.Enabled = true;
+                buttonXoa.Enabled = true;
+            }
         }
 
         /*
@@ -133,6 +153,7 @@ namespace GUI
 
             dataGridView_QuanLySanPham.Columns["ColSTT"].Visible = true;
             dataGridView_QuanLySanPham.Columns["ColMaSanPham"].Visible = true;
+            dataGridView_QuanLySanPham.Columns["ColSoLuongTon"].Visible = true;
             ColLoaiSanPham.DisplayStyle = DataGridViewComboBoxDisplayStyle.Nothing;
 
 
@@ -159,7 +180,7 @@ namespace GUI
             Dispose();
         }
 
-        private void buttonThem_Click_1(object sender, EventArgs e)
+        private void buttonThem_Click(object sender, EventArgs e)
         {
             int i;
             //Ẩn các dòng không cần thiết
@@ -178,6 +199,7 @@ namespace GUI
             //Ẩn các cột không cần thiết (STT và mã)
             dataGridView_QuanLySanPham.Columns["ColSTT"].Visible = false;
             dataGridView_QuanLySanPham.Columns["ColMaSanPham"].Visible = false;
+            dataGridView_QuanLySanPham.Columns["ColSoLuongTon"].Visible = false;
 
             //Hien cot loai sa pham
             ColLoaiSanPham.DisplayStyle = DataGridViewComboBoxDisplayStyle.DropDownButton;
@@ -203,199 +225,128 @@ namespace GUI
             Index = i;
         }
 
-        private void buttonCapNhat_Click_1(object sender, EventArgs e)
+        private void buttonCapNhat_Click(object sender, EventArgs e)
         {
-            //Lấy vị trí cần cập nhật
-            Index = dataGridView_QuanLySanPham.CurrentRow.Index;
-
-            //Lưu lại giá trị cần cập nhật, khôi phục lại khi cập nhật không thành công hoặc hủy
-            SanPhamDTO backup = new SanPhamDTO();
-            backup.MaSanPham = dataGridView_QuanLySanPham.CurrentRow.Cells["ColMaSanPham"].Value.ToString();
-            backup.TenSanPham = dataGridView_QuanLySanPham.CurrentRow.Cells["ColTenSanPham"].Value.ToString();
-            backup.CV = int.Parse(dataGridView_QuanLySanPham.CurrentRow.Cells["ColCV"].Value.ToString());
-            backup.DonGia = float.Parse(dataGridView_QuanLySanPham.CurrentRow.Cells["ColDonGia"].Value.ToString());
-            backup.DonGiaTV = float.Parse(dataGridView_QuanLySanPham.CurrentRow.Cells["ColDonGiaTV"].Value.ToString());
-            backup.SoLuongTon = int.Parse(dataGridView_QuanLySanPham.CurrentRow.Cells["ColSoLuongTon"].Value.ToString());
-            backup.MaLoaiSanPham = dataGridView_QuanLySanPham.CurrentRow.Cells["ColLoaiSanPham"].Value.ToString();
-            BackupSanPhamDTO = backup;
-
-
-            //Ẩn các dòng không cần thiết
-            for (int i = 0; i < dataGridView_QuanLySanPham.RowCount; i++)
+           // MessageBox.Show(dataGridView_QuanLySanPham.CurrentRow.ToString());
+            //if (dem != 0)
+            //{
+            int dem = 0;
+            for (int i = 0; i < dataGridView_QuanLySanPham.Rows.Count; i++)
             {
-                if (i != Index)
-                {
-                    dataGridView_QuanLySanPham.Rows[i].Visible = false;
-                }
+                if (dataGridView_QuanLySanPham.Rows[i].Visible == true)
+                    dem++;
             }
+            if (dem == 0)
+            {
+                MessageBox.Show("alo");
+            }
+            else
+            {
+               // if (dataGridView_QuanLySanPham.CurrentRow.Index >=0)
+                //{
+               // MessageBox.Show(dataGridView_QuanLySanPham.CurrentRow.Index.ToString());
+                    //Lấy vị trí cần cập nhật
 
-            //chuyển sang chế độ select cell, cập nhật lại thuộc tính readOnly cho phép chỉnh sữa
-            dataGridView_QuanLySanPham.SelectionMode = DataGridViewSelectionMode.CellSelect;
-            dataGridView_QuanLySanPham.Rows[Index].ReadOnly = false;
+                    Index = dataGridView_QuanLySanPham.CurrentRow.Index;
 
-            //Ẩn các cột không cần thiết (STT)
-            dataGridView_QuanLySanPham.Columns["ColSTT"].Visible = false;
+                    //Lưu lại giá trị cần cập nhật, khôi phục lại khi cập nhật không thành công hoặc hủy
+                    SanPhamDTO backup = new SanPhamDTO();
+                    backup.MaSanPham = dataGridView_QuanLySanPham.CurrentRow.Cells["ColMaSanPham"].Value.ToString();
+                    backup.TenSanPham = dataGridView_QuanLySanPham.CurrentRow.Cells["ColTenSanPham"].Value.ToString();
+                    backup.CV = int.Parse(dataGridView_QuanLySanPham.CurrentRow.Cells["ColCV"].Value.ToString());
+                    backup.DonGia = float.Parse(dataGridView_QuanLySanPham.CurrentRow.Cells["ColDonGia"].Value.ToString());
+                    backup.DonGiaTV = float.Parse(dataGridView_QuanLySanPham.CurrentRow.Cells["ColDonGiaTV"].Value.ToString());
+                    //backup.SoLuongTon = int.Parse(dataGridView_QuanLySanPham.CurrentRow.Cells["ColSoLuongTon"].Value.ToString());
+                    backup.MaLoaiSanPham = dataGridView_QuanLySanPham.CurrentRow.Cells["ColLoaiSanPham"].Value.ToString();
+                    BackupSanPhamDTO = backup;
 
-            //Set mặc định ô sẽ chỉnh sữa đầu tiên
-            dataGridView_QuanLySanPham.CurrentCell = dataGridView_QuanLySanPham.Rows[Index].Cells["ColTenSanPham"];
-            dataGridView_QuanLySanPham.BeginEdit(true);
 
-            //Show panel thêm và ẩn đi panel tìm kiếm
-            panelYesNo.Visible = true;
-            panelTimKiem.Visible = false;
-            buttonYes.Text = "Cập Nhật";
-            groupBoxTimKiem.Enabled = false;
-            groupBoxDanhSach.Text = "Cập nhật sản phẩm";
+                    //Ẩn các dòng không cần thiết
+                    for (int i = 0; i < dataGridView_QuanLySanPham.RowCount; i++)
+                    {
+                        if (i != Index)
+                        {
+                            dataGridView_QuanLySanPham.Rows[i].Visible = false;
+                        }
+                    }
 
-            Status = 2;//cập nhật tham số
+                    //chuyển sang chế độ select cell, cập nhật lại thuộc tính readOnly cho phép chỉnh sữa
+                    dataGridView_QuanLySanPham.SelectionMode = DataGridViewSelectionMode.CellSelect;
+                    dataGridView_QuanLySanPham.Rows[Index].ReadOnly = false;
 
+                    //Ẩn các cột không cần thiết (STT)
+                    dataGridView_QuanLySanPham.Columns["ColSTT"].Visible = false;
+                    dataGridView_QuanLySanPham.Columns["ColSoLuongTon"].Visible = false;
+
+                    //Set mặc định ô sẽ chỉnh sữa đầu tiên
+                    dataGridView_QuanLySanPham.CurrentCell = dataGridView_QuanLySanPham.Rows[Index].Cells["ColTenSanPham"];
+                    dataGridView_QuanLySanPham.BeginEdit(true);
+
+                    //Show panel thêm và ẩn đi panel tìm kiếm
+                    panelYesNo.Visible = true;
+                    panelTimKiem.Visible = false;
+                    buttonYes.Text = "Cập Nhật";
+                    groupBoxTimKiem.Enabled = false;
+                    groupBoxDanhSach.Text = "Cập nhật sản phẩm";
+
+                    Status = 2;//cập nhật tham số
+           //     }
+                
+            }
         }
 
-        private void buttonXoa_Click_1(object sender, EventArgs e)
+        private void buttonXoa_Click(object sender, EventArgs e)
         {
-            DialogResult res = MessageBox.Show("Xóa sản phẩm", "Sản Phẩm", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1);
-            //Lấy vị trí cần xóa
-            if (res == DialogResult.Yes)
+            int dem = 0;
+            for (int i = 0; i < dataGridView_QuanLySanPham.Rows.Count; i++)
             {
-                Index = dataGridView_QuanLySanPham.CurrentRow.Index;
-                string id = dataGridView_QuanLySanPham.CurrentRow.Cells["ColMaSanPham"].Value.ToString();
-                if (SanPhamBUS.DeleteSanPhamById(id))
+                if (dataGridView_QuanLySanPham.Rows[i].Visible == true)
                 {
-                    dataGridView_QuanLySanPham.Rows.RemoveAt(Index);
-                    for (int i = Index; i < dataGridView_QuanLySanPham.RowCount; i++)
+                    //Index = 0;
+                    dem++;
+                }
+            }
+            if (dem == 0)
+            {
+               // buttonXoa.Enabled = false;
+                MessageBox.Show("alo");
+            }
+            else
+            {
+                DialogResult res = MessageBox.Show("Xóa sản phẩm", "Sản Phẩm", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1);
+                //Lấy vị trí cần xóa
+                if (res == DialogResult.Yes)
+                {
+                    //if(dem)
+                    Index = dataGridView_QuanLySanPham.CurrentRow.Index;
+                    string id = dataGridView_QuanLySanPham.CurrentRow.Cells["ColMaSanPham"].Value.ToString();
+                    if (SanPhamBUS.DeleteSanPhamById(id))
                     {
-                        dataGridView_QuanLySanPham.Rows[i].Cells["ColSTT"].Value = (i + 1).ToString();
+                        dataGridView_QuanLySanPham.Rows.RemoveAt(Index);
+                        for (int i = Index; i < dataGridView_QuanLySanPham.RowCount; i++)
+                        {
+                            dataGridView_QuanLySanPham.Rows[i].Cells["ColSTT"].Value = (i + 1).ToString();
+                        }
                     }
                 }
             }
         }
 
-        private void buttonLamLai_Click_1(object sender, EventArgs e)
+        private void buttonLamLai_Click(object sender, EventArgs e)
         {
+           
+            cmbMaLoaiSanPham.SelectedItem = 0;
             textBoxMaSanPham.Text = null;
             textBoxTenSanPham.Text = null;
             textBoxCV.Text = null;
             textBoxDonGia.Text = null;
             textBoxDonGiaTV.Text = null;
-            cmbMaLoaiSanPham.SelectedItem = null;
+            Reset(); 
         }
 
-        private void buttonYes_Click_1(object sender, EventArgs e)
-        {
-            bool flag = true;
-            if (dataGridView_QuanLySanPham.Rows[Index].Cells["ColTenSanPham"].Value == null)
-            {
-                MessageBox.Show("Tên sản phẩm không được để trống");
-                dataGridView_QuanLySanPham.CurrentCell = dataGridView_QuanLySanPham.Rows[Index].Cells["ColTenSanPham"];
-                dataGridView_QuanLySanPham.BeginEdit(true);
-                flag = false;
-            }
-            else if (dataGridView_QuanLySanPham.Rows[Index].Cells["ColCV"].Value == null)
-            {
-                MessageBox.Show("Giá trị CV không được để trống");
-                dataGridView_QuanLySanPham.CurrentCell = dataGridView_QuanLySanPham.Rows[Index].Cells["ColCV"];
-                dataGridView_QuanLySanPham.BeginEdit(true);
-                flag = false;
-            }
-            else if (dataGridView_QuanLySanPham.Rows[Index].Cells["ColDonGia"].Value == null)
-            {
-                MessageBox.Show("Giá trị đơn giá không được để trống");
-                dataGridView_QuanLySanPham.CurrentCell = dataGridView_QuanLySanPham.Rows[Index].Cells["ColDonGia"];
-                dataGridView_QuanLySanPham.BeginEdit(true);
-                flag = false;
-            }
-            else if (dataGridView_QuanLySanPham.Rows[Index].Cells["ColDonGiaTV"].Value == null)
-            {
-                MessageBox.Show("Giá trị đơn giá TV không được để trống");
-                dataGridView_QuanLySanPham.CurrentCell = dataGridView_QuanLySanPham.Rows[Index].Cells["ColDonGiaTV"];
-                dataGridView_QuanLySanPham.BeginEdit(true);
-                flag = false;
-            }
-            else if (dataGridView_QuanLySanPham.Rows[Index].Cells["ColSoLuongTon"].Value == null)
-            {
-                MessageBox.Show("Giá trị số lượng tồn không được để trống");
-                dataGridView_QuanLySanPham.CurrentCell = dataGridView_QuanLySanPham.Rows[Index].Cells["ColSoLuongTon"];
-                dataGridView_QuanLySanPham.BeginEdit(true);
-                flag = false;
-            }
-            else if (dataGridView_QuanLySanPham.Rows[Index].Cells["ColLoaiSanPham"].Value == null)
-            {
-                MessageBox.Show("Giá trị mã loại sản phẩm không được để trống");
-                dataGridView_QuanLySanPham.CurrentCell = dataGridView_QuanLySanPham.Rows[Index].Cells["ColLoaiSanPham"];
-                dataGridView_QuanLySanPham.BeginEdit(true);
-                flag = false;
-            }
+        
 
-            if (flag)
-            {
-                SanPhamDTO sanphamDTO = new SanPhamDTO();
-                sanphamDTO.TenSanPham = dataGridView_QuanLySanPham.Rows[Index].Cells["ColTenSanPham"].Value.ToString();
-                sanphamDTO.CV = int.Parse(dataGridView_QuanLySanPham.Rows[Index].Cells["ColCV"].Value.ToString());
-                sanphamDTO.DonGia = float.Parse(dataGridView_QuanLySanPham.Rows[Index].Cells["ColDonGia"].Value.ToString());
-                sanphamDTO.DonGiaTV = float.Parse(dataGridView_QuanLySanPham.Rows[Index].Cells["ColDonGiaTV"].Value.ToString());
-                sanphamDTO.SoLuongTon = int.Parse(dataGridView_QuanLySanPham.Rows[Index].Cells["ColSoLuongTon"].Value.ToString());
-                sanphamDTO.MaLoaiSanPham = dataGridView_QuanLySanPham.Rows[Index].Cells["ColLoaiSanPham"].Value.ToString();
-                if (Status == 1)//Them tham so
-                {
-                    sanphamDTO.MaSanPham = SanPhamBUS.CreateSanPhamId();
-                    dataGridView_QuanLySanPham.Rows[Index].Cells["ColSanPham"].Value = sanphamDTO.MaSanPham;
-                    dataGridView_QuanLySanPham.Rows[Index].Cells["ColSTT"].Value = (Index + 1).ToString();
-                    if (SanPhamBUS.InsertSanPham(sanphamDTO))
-                    {
-                        dataGridView_QuanLySanPham.Rows[Index].ReadOnly = true;
-                        MessageBox.Show("Thêm thành công");
-                    }
-                    else
-                    {
-                        dataGridView_QuanLySanPham.Rows.RemoveAt(Index);
-                        MessageBox.Show("Thêm thất bại");
-                    }
-                }
-                else if (Status == 2)
-                {
-                    sanphamDTO.MaSanPham = dataGridView_QuanLySanPham.Rows[Index].Cells["ColMaSanPham"].Value.ToString();
-                    if (SanPhamBUS.UpdateSanPhamById(sanphamDTO))
-                    {
-                        dataGridView_QuanLySanPham.Rows[Index].ReadOnly = true;
-                        MessageBox.Show("Cập nhật thành công");
-                    }
-                    else
-                    {
-                        MessageBox.Show("Cập nhật thất bại");
-                        dataGridView_QuanLySanPham.Rows[Index].Cells["ColTenSanPham"].Value = BackupSanPhamDTO.TenSanPham;
-                        dataGridView_QuanLySanPham.Rows[Index].Cells["ColCV"].Value = BackupSanPhamDTO.CV;
-                        dataGridView_QuanLySanPham.Rows[Index].Cells["ColDonGia"].Value = BackupSanPhamDTO.DonGia;
-                        dataGridView_QuanLySanPham.Rows[Index].Cells["ColDonGiaTV"].Value = BackupSanPhamDTO.DonGiaTV;
-                        dataGridView_QuanLySanPham.Rows[Index].Cells["ColSoLuongTon"].Value = BackupSanPhamDTO.SoLuongTon;
-                        dataGridView_QuanLySanPham.Rows[Index].Cells["ColLoaiSanPham"].Value = BackupSanPhamDTO.MaLoaiSanPham;
-                        dataGridView_QuanLySanPham.Rows[Index].ReadOnly = true;
-                    }
-                }
-
-                Reset();
-            }
-
-        }
-
-        private void buttonNo_Click_1(object sender, EventArgs e)
-        {
-            if (Status == 1)
-            {
-                dataGridView_QuanLySanPham.Rows.RemoveAt(Index);
-            }
-            else if (Status == 2)
-            {
-                dataGridView_QuanLySanPham.Rows[Index].Cells["ColTenSanPham"].Value = BackupSanPhamDTO.TenSanPham;
-                dataGridView_QuanLySanPham.Rows[Index].Cells["ColCV"].Value = BackupSanPhamDTO.CV;
-                dataGridView_QuanLySanPham.Rows[Index].Cells["ColDonGia"].Value = BackupSanPhamDTO.DonGia;
-                dataGridView_QuanLySanPham.Rows[Index].Cells["ColDonGiaTV"].Value = BackupSanPhamDTO.DonGiaTV;
-                dataGridView_QuanLySanPham.Rows[Index].Cells["ColSoLuongTon"].Value = BackupSanPhamDTO.SoLuongTon;
-                dataGridView_QuanLySanPham.Rows[Index].Cells["ColLoaiSanPham"].Value = BackupSanPhamDTO.MaLoaiSanPham;
-                dataGridView_QuanLySanPham.Rows[Index].ReadOnly = true;
-            }
-
-            Reset();
-        }
+        
 
         private void textBoxMaSanPham_TextChanged(object sender, EventArgs e)
         {
@@ -425,6 +376,145 @@ namespace GUI
         private void textBoxDonGiaTV_TextChanged(object sender, EventArgs e)
         {
             Search(); 
+        }
+
+        private void buttonYes_Click(object sender, EventArgs e)
+        {
+            int k;
+            float j;
+            
+            bool flag = true;
+            if (dataGridView_QuanLySanPham.Rows[Index].Cells["ColTenSanPham"].Value == null)
+            {
+                MessageBox.Show("Tên sản phẩm không được để trống");
+                dataGridView_QuanLySanPham.CurrentCell = dataGridView_QuanLySanPham.Rows[Index].Cells["ColTenSanPham"];
+                dataGridView_QuanLySanPham.BeginEdit(true);
+                flag = false;
+            }
+            else if (dataGridView_QuanLySanPham.Rows[Index].Cells["ColCV"].Value == null)
+            {
+                MessageBox.Show("Giá trị CV không được để trống");
+                dataGridView_QuanLySanPham.CurrentCell = dataGridView_QuanLySanPham.Rows[Index].Cells["ColCV"];
+                dataGridView_QuanLySanPham.BeginEdit(true);
+                flag = false;
+            }
+            else if (int.TryParse(dataGridView_QuanLySanPham.Rows[Index].Cells["ColCV"].Value.ToString(),out k) == false)
+            {
+                MessageBox.Show("Giá trị CV phải là số");
+                dataGridView_QuanLySanPham.CurrentCell = dataGridView_QuanLySanPham.Rows[Index].Cells["ColCV"];
+                dataGridView_QuanLySanPham.BeginEdit(true);
+                flag = false;
+            }
+            else if (dataGridView_QuanLySanPham.Rows[Index].Cells["ColDonGia"].Value == null)
+            {
+                MessageBox.Show("Giá trị đơn giá không được để trống");
+                dataGridView_QuanLySanPham.CurrentCell = dataGridView_QuanLySanPham.Rows[Index].Cells["ColDonGia"];
+                dataGridView_QuanLySanPham.BeginEdit(true);
+                flag = false;
+            }
+            else if (float.TryParse(dataGridView_QuanLySanPham.Rows[Index].Cells["ColDonGia"].Value.ToString(), out j) == false)
+            {
+                MessageBox.Show("Giá trị đơn giá phải là số");
+                dataGridView_QuanLySanPham.CurrentCell = dataGridView_QuanLySanPham.Rows[Index].Cells["ColDonGia"];
+                dataGridView_QuanLySanPham.BeginEdit(true);
+                flag = false;
+            }
+            else if (dataGridView_QuanLySanPham.Rows[Index].Cells["ColDonGiaTV"].Value == null)
+            {
+                MessageBox.Show("Giá trị đơn giá TV không được để trống");
+                dataGridView_QuanLySanPham.CurrentCell = dataGridView_QuanLySanPham.Rows[Index].Cells["ColDonGiaTV"];
+                dataGridView_QuanLySanPham.BeginEdit(true);
+                flag = false;
+            }
+            else if (float.TryParse(dataGridView_QuanLySanPham.Rows[Index].Cells["ColDonGiaTV"].Value.ToString(), out j) == false)
+            {
+                MessageBox.Show("Giá trị đơn giá thành viên phải là số");
+                dataGridView_QuanLySanPham.CurrentCell = dataGridView_QuanLySanPham.Rows[Index].Cells["ColDonGiaTV"];
+                dataGridView_QuanLySanPham.BeginEdit(true);
+                flag = false;
+            }
+            else if (dataGridView_QuanLySanPham.Rows[Index].Cells["ColLoaiSanPham"].Value == null)
+            {
+                MessageBox.Show("Giá trị mã loại sản phẩm không được để trống");
+                dataGridView_QuanLySanPham.CurrentCell = dataGridView_QuanLySanPham.Rows[Index].Cells["ColLoaiSanPham"];
+                dataGridView_QuanLySanPham.BeginEdit(true);
+                flag = false;
+            }
+
+            if (flag)
+            {
+                SanPhamDTO sanphamDTO = new SanPhamDTO();
+                sanphamDTO.TenSanPham = dataGridView_QuanLySanPham.Rows[Index].Cells["ColTenSanPham"].Value.ToString();
+                sanphamDTO.CV = int.Parse(dataGridView_QuanLySanPham.Rows[Index].Cells["ColCV"].Value.ToString());
+                sanphamDTO.DonGia = float.Parse(dataGridView_QuanLySanPham.Rows[Index].Cells["ColDonGia"].Value.ToString());
+                sanphamDTO.DonGiaTV = float.Parse(dataGridView_QuanLySanPham.Rows[Index].Cells["ColDonGiaTV"].Value.ToString());
+                sanphamDTO.SoLuongTon = 0;//int.Parse(dataGridView_QuanLySanPham.Rows[Index].Cells["ColSoLuongTon"].Value.ToString());
+                sanphamDTO.MaLoaiSanPham = dataGridView_QuanLySanPham.Rows[Index].Cells["ColLoaiSanPham"].Value.ToString();
+                if (Status == 1)//Them tham so
+                {
+                    sanphamDTO.MaSanPham = SanPhamBUS.CreateSanPhamId();
+                    dataGridView_QuanLySanPham.Rows[Index].Cells["ColMaSanPham"].Value = sanphamDTO.MaSanPham;
+                    dataGridView_QuanLySanPham.Rows[Index].Cells["ColSTT"].Value = (Index + 1).ToString();
+                    if (SanPhamBUS.InsertSanPham(sanphamDTO))
+                    {
+                        dataGridView_QuanLySanPham.Rows[Index].ReadOnly = true;
+                        dataGridView_QuanLySanPham.Rows[dataGridView_QuanLySanPham.Rows.Count - 1].Cells["ColSoLuongTon"].Value = sanphamDTO.SoLuongTon;
+                        MessageBox.Show("Thêm thành công");
+                    }
+                    else
+                    {
+                        dataGridView_QuanLySanPham.Rows.RemoveAt(Index);
+                        MessageBox.Show("Thêm thất bại");
+                    }
+                }
+                else if (Status == 2)
+                {
+                    sanphamDTO.SoLuongTon = int.Parse(dataGridView_QuanLySanPham.Rows[Index].Cells["ColSoLuongTon"].Value.ToString());
+                    sanphamDTO.MaSanPham = dataGridView_QuanLySanPham.Rows[Index].Cells["ColMaSanPham"].Value.ToString();
+                    if (SanPhamBUS.UpdateSanPhamById(sanphamDTO))
+                    {
+                        dataGridView_QuanLySanPham.Rows[Index].ReadOnly = true;
+                        MessageBox.Show("Cập nhật thành công");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Cập nhật thất bại");
+                        dataGridView_QuanLySanPham.Rows[Index].Cells["ColTenSanPham"].Value = BackupSanPhamDTO.TenSanPham;
+                        dataGridView_QuanLySanPham.Rows[Index].Cells["ColCV"].Value = BackupSanPhamDTO.CV;
+                        dataGridView_QuanLySanPham.Rows[Index].Cells["ColDonGia"].Value = BackupSanPhamDTO.DonGia;
+                        dataGridView_QuanLySanPham.Rows[Index].Cells["ColDonGiaTV"].Value = BackupSanPhamDTO.DonGiaTV;
+                        dataGridView_QuanLySanPham.Rows[Index].Cells["ColSoLuongTon"].Value = BackupSanPhamDTO.SoLuongTon;
+                        dataGridView_QuanLySanPham.Rows[Index].Cells["ColLoaiSanPham"].Value = BackupSanPhamDTO.MaLoaiSanPham;
+                        dataGridView_QuanLySanPham.Rows[Index].ReadOnly = true;
+                    }
+                }
+
+                Reset();
+            }
+
+        
+        }
+
+        private void buttonNo_Click(object sender, EventArgs e)
+        {
+        
+            if (Status == 1)
+            {
+                dataGridView_QuanLySanPham.Rows.RemoveAt(Index);
+            }
+            else if (Status == 2)
+            {
+                dataGridView_QuanLySanPham.Rows[Index].Cells["ColTenSanPham"].Value = BackupSanPhamDTO.TenSanPham;
+                dataGridView_QuanLySanPham.Rows[Index].Cells["ColCV"].Value = BackupSanPhamDTO.CV;
+                dataGridView_QuanLySanPham.Rows[Index].Cells["ColDonGia"].Value = BackupSanPhamDTO.DonGia;
+                dataGridView_QuanLySanPham.Rows[Index].Cells["ColDonGiaTV"].Value = BackupSanPhamDTO.DonGiaTV;
+                dataGridView_QuanLySanPham.Rows[Index].Cells["ColSoLuongTon"].Value = BackupSanPhamDTO.SoLuongTon;
+                dataGridView_QuanLySanPham.Rows[Index].Cells["ColLoaiSanPham"].Value = BackupSanPhamDTO.MaLoaiSanPham;
+                dataGridView_QuanLySanPham.Rows[Index].ReadOnly = true;
+            }
+
+            Reset();
+        
         }
     }
 }
