@@ -34,5 +34,15 @@ namespace GUI
             }
             return false;
         }
+
+        public static Form KiemTraTonTai(Type formType, Form form)
+        {
+            foreach (Form f in form.MdiChildren)
+            {
+                if (f.GetType() == formType)
+                    return f;
+            }
+            return null;
+        }
     }
 }

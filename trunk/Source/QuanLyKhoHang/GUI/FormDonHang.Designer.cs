@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.txtTenNhanVien = new System.Windows.Forms.TextBox();
             this.txtMaStockist = new System.Windows.Forms.TextBox();
             this.txtNgayLap = new System.Windows.Forms.TextBox();
@@ -63,6 +64,7 @@
             this.Label_ChietKhau = new System.Windows.Forms.Label();
             this.label_TongTienSau = new System.Windows.Forms.Label();
             this.panelChucNang = new System.Windows.Forms.Panel();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_TaoDonHang)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -423,6 +425,10 @@
             this.panelChucNang.Size = new System.Drawing.Size(854, 47);
             this.panelChucNang.TabIndex = 74;
             // 
+            // timer1
+            // 
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
             // FormDonHang
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -438,6 +444,7 @@
             this.Name = "FormDonHang";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Đơn hàng";
+            this.Activated += new System.EventHandler(this.FormDonHang_Activated);
             this.Load += new System.EventHandler(this.FormDonHang_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_TaoDonHang)).EndInit();
             this.groupBox1.ResumeLayout(false);
@@ -487,5 +494,6 @@
         private System.Windows.Forms.Button btnNo;
         private System.Windows.Forms.Button btnYes;
         private System.Windows.Forms.Panel panelChucNang;
+        private System.Windows.Forms.Timer timer1;
     }
 }
