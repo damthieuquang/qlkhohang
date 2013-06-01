@@ -20,7 +20,7 @@ namespace DAO
             return DataProvider.ExecuteNoneQuery("usp_InsertPhieuNhap",sqlParamas);
         }
 
-        public static bool UpdatePhieuNhap(PhieuNhapDTO phieuNhapDTO)
+        public static bool UpdatePhieuNhapById(PhieuNhapDTO phieuNhapDTO)
         {
             List<SqlParameter> sqlParamas = new List<SqlParameter>();
             sqlParamas.Add(new SqlParameter("@MaPhieuNhap", phieuNhapDTO.MaPhieuNhap));

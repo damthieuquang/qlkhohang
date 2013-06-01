@@ -361,7 +361,7 @@ namespace GUI
             }
             if (flag == true)
             {
-                if (PhieuNhapBUS.UpdatePhieuNhap(phieuNhapDTO))
+                if (PhieuNhapBUS.UpdatePhieuNhapById(phieuNhapDTO))
                 {
                     foreach (ChiTietPhieuNhapDTO ct in ListChiTietPhieuNhapDTO)
                     {

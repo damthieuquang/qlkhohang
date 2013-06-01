@@ -272,7 +272,7 @@ namespace GUI
                 else if (Status == 2)
                 {
                     thamSoDTO.MaThamSo = dataGridViewThamSo.Rows[Index].Cells["ColMaThamSo"].Value.ToString();
-                    if (ThamSoBUS.UpdateThamSo(thamSoDTO))
+                    if (ThamSoBUS.UpdateThamSoById(thamSoDTO))
                     {
                         dataGridViewThamSo.Rows[Index].ReadOnly = true;
                         MessageBox.Show("Cập nhật thành công");
@@ -315,7 +315,7 @@ namespace GUI
             {
                 Index = dataGridViewThamSo.CurrentRow.Index;
                 string id = dataGridViewThamSo.CurrentRow.Cells["ColMaThamSo"].Value.ToString();
-                if (ThamSoBUS.DeleteThamSo(id))
+                if (ThamSoBUS.DeleteThamSoById(id))
                 {
                     dataGridViewThamSo.Rows.RemoveAt(Index);
                     for (int i = Index; i < dataGridViewThamSo.RowCount; i++)

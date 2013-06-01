@@ -24,14 +24,14 @@ namespace BUS
             return ThamSoDAO.InsertThamSo(thamSoDTO);
         }
 
-        public static bool UpdateThamSo(ThamSoDTO thamSoDTO)
+        public static bool UpdateThamSoById(ThamSoDTO thamSoDTO)
         {
-            return ThamSoDAO.UpdateThamSo(thamSoDTO);
+            return ThamSoDAO.UpdateThamSoById(thamSoDTO);
         }
 
-        public static bool DeleteThamSo(string maThamSo)
+        public static bool DeleteThamSoById(string maThamSo)
         {
-            return ThamSoDAO.DeleteThamSo(maThamSo);
+            return ThamSoDAO.DeleteThamSoById(maThamSo);
         }
 
         public static string CreateThamSoId()

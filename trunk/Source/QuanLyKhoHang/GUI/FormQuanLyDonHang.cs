@@ -62,8 +62,10 @@ namespace GUI
         {
             for (int i = 0; i < dataGridView_TraCuuDonHang.Rows.Count; i++)
             {
-                dataGridView_TraCuuDonHang.Rows[i].Visible = true;
-                return false;
+                if (dataGridView_TraCuuDonHang.Rows[i].Visible)
+                {                    
+                    return false;                    
+                } 
             }
             return true;
         }
@@ -159,6 +161,8 @@ namespace GUI
             txtMaDonHang.Text = null;
             txtNguoiDat.Text = null;
             txtThanhTien.Text = null;
+
+            dataGridView_TraCuuDonHang.CurrentCell = dataGridView_TraCuuDonHang.Rows[0].Cells[0];
         }
 
         private void btnXemChiTiet_Click(object sender, EventArgs e)
@@ -166,8 +170,8 @@ namespace GUI
             if (KiemTraDong_KhongTonTai() == false)
             {
                 FormDonHang fQLDonHang = new FormDonHang();
-                fQLDonHang.MaDonHang = dataGridView_TraCuuDonHang.CurrentRow.Cells["clMaDonHang"].Value.ToString();
-                fQLDonHang.Status = 1;
+                fQLDonHang.MaDonHang = dataGridView_TraCuuDonHang.CurrentRow.Cells[clMaDonHang.Index].Value.ToString();
+                fQLDonHang.Status = 1;                
                 fQLDonHang.ShowDialog();
             }
             else
@@ -201,7 +205,7 @@ namespace GUI
                 int Index = dataGridView_TraCuuDonHang.CurrentRow.Index;
                 string id = dataGridView_TraCuuDonHang.CurrentRow.Cells["clMaDonHang"].Value.ToString();
                 if (DonHangBUS.DeleteDonHangById(id))
-                {
+                {                    
                     dataGridView_TraCuuDonHang.Rows.RemoveAt(Index);
                     for (int i = Index; i < dataGridView_TraCuuDonHang.RowCount; i++)
                     {
