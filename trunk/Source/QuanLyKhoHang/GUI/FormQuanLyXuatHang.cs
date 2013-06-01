@@ -24,7 +24,7 @@ namespace GUI
 
         private void KhoiTao()
         {
-            List<PhieuXuatDTO> listPhieuXuatDTO = new List<PhieuXuatDTO>();
+            List<PhieuXuatDTO> listPhieuXuatDTO = PhieuXuatBUS.SelectPhieuXuatAll();
             List<ChiTietPhieuXuatDTO> listChiTietPhieuXuatDTO = new List<ChiTietPhieuXuatDTO>();
             int soLuong = 0;
             float thanhTien = 0; 
@@ -51,8 +51,8 @@ namespace GUI
                         phieuXuatDTO.NgayBan.ToString("dd/MM/yyyy"),
                         phieuXuatDTO.TenKhachHang,
                         NhanVienBUS.SelectNhanVienById(phieuXuatDTO.MaNhanVien).TenNhanVien,
-                        string.Format("{0:0,0.##}",thanhTien),
-                        soLuong.ToString());
+                        soLuong.ToString(),
+                        string.Format("{0:0,0.##}",thanhTien));
                 }
             }
         }
@@ -95,7 +95,7 @@ namespace GUI
             int stt = 0;
             for (int i = 0; i < dataGridView_TraCuuXuatHang.RowCount;i++)
             {
-                string[] chuoi = dataGridView_TraCuuXuatHang.Rows[i].Cells["clNgayBan"].Value.ToString().Split('/');
+                string[] chuoi = dataGridView_TraCuuXuatHang.Rows[i].Cells["clNgayBanHang"].Value.ToString().Split('/');
                 dateHienTai = new DateTime(int.Parse(chuoi[2]), int.Parse(chuoi[1]), int.Parse(chuoi[0])).Date;
                 dataGridView_TraCuuXuatHang.Rows[i].Visible = false;
                 if (dataGridView_TraCuuXuatHang.Rows[i].Cells["clMaPhieuXuat"].Value.ToString().ToUpper().IndexOf(txtMaPhieuXuat.Text.ToString().ToUpper()) >= 0
@@ -144,7 +144,7 @@ namespace GUI
         private void dateTimePickerTu_ValueChanged(object sender, EventArgs e)
         {
             boolTu = true;
-            Search();
+            Search();//
             boolTu = false;
         }
 

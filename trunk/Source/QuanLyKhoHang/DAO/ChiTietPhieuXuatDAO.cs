@@ -94,6 +94,36 @@ namespace DAO
             return chiTietPhieuXuatDTO;
         }
 
+        public static List<ChiTietPhieuXuatDTO> SelectChiTietPhieuXuatByMaPhieuXuat(string MaPhieuXuat)
+        {
+            List<SqlParameter> sqlParamas = new List<SqlParameter>();
+            sqlParamas.Add(new SqlParameter("@MaPhieuXuat", MaPhieuXuat));
+            DataTable dataTable = new DataTable();
+            dataTable = DataProvider.ExecuteReader("usp_SelectChiTietPhieuXuatByMaPhieuXuat", sqlParamas);
+            List<ChiTietPhieuXuatDTO> listChiTietPhieuXuatDTO = new List<ChiTietPhieuXuatDTO>();
+            
+            if (dataTable.Rows.Count > 0)
+            {
+                foreach (DataRow dataRow in dataTable.Rows)
+                {
+                    ChiTietPhieuXuatDTO chiTietPhieuXuatDTO = new ChiTietPhieuXuatDTO();
+                    chiTietPhieuXuatDTO.MaChiTietPhieuXuat = dataRow["MaChiTietPhieuXuat"].ToString();
+                    chiTietPhieuXuatDTO.MaPhieuXuat = dataRow["MaPhieuXuat"].ToString();
+                    chiTietPhieuXuatDTO.MaSanPham = dataRow["MaSanPham"].ToString();
+                    chiTietPhieuXuatDTO.CV = Int32.Parse(dataRow["CV"].ToString());
+                    chiTietPhieuXuatDTO.DonGia = Int32.Parse(dataRow["DonGia"].ToString());
+                    chiTietPhieuXuatDTO.SoLuong = Int32.Parse(dataRow["SoLuong"].ToString());
+                    chiTietPhieuXuatDTO.ThanhTien = Int32.Parse(dataRow["ThanhTien"].ToString());
+                    listChiTietPhieuXuatDTO.Add(chiTietPhieuXuatDTO);
+                }
+            }
+            else
+            {
+                listChiTietPhieuXuatDTO = null;
+            }
+            return listChiTietPhieuXuatDTO;
+        }
+
         public static object maChiTietPhieuXuat { get; set; }
     }
 }
