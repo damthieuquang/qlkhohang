@@ -123,7 +123,8 @@ namespace GUI
                     
                 }
             }
-            int dem = 0;
+            //int dem = 0;
+			/*
             for (int i = 0; i < dataGridView_QuanLySanPham.Rows.Count; i++)
             {
                 if (dataGridView_QuanLySanPham.Rows[i].Visible == true)
@@ -140,6 +141,7 @@ namespace GUI
                 buttonCapNhat.Enabled = true;
                 buttonXoa.Enabled = true;
             }
+			*/
         }
 
         /*
