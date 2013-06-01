@@ -28,7 +28,8 @@ namespace GUI
         private float MoneySum = 0;
         public int Status = 0;// Biến trạng thái của Form 0: Tạo, 1: Cập nhật
         float ChietKhau = 0;
-        public string MaDonHang;        
+        public string MaDonHang;
+        private bool huy = false;
 
         #endregion
 
@@ -84,22 +85,21 @@ namespace GUI
             //Cho chọn sản phẩm
             FormChonSanPham ChonSanPham = new FormChonSanPham();
             ChonSanPham.ShowDialog();
-            int stt = 1;
-            List<SanPhamDTO> listSanPhamDTO = new List<SanPhamDTO>();
-            for (int i = 0; i < ChonSanPham.listsanPhamDTO_ChonSanPham.Count; i++)
+            huy = ChonSanPham.huy;
+            if (!huy)
             {
-                listSanPhamDTO.Add(SanPhamBUS.SelectSanPhamById(ChonSanPham.listsanPhamDTO_ChonSanPham[i].MaSanPham.ToString()));
+                int stt = 1;
+                List<SanPhamDTO> listSanPhamDTO =  ChonSanPham.listsanPhamDTO_ChonSanPham;
+
+                foreach (SanPhamDTO sanPhamDTO in listSanPhamDTO)
+                {
+                    dataGridView_TaoDonHang.Rows.Add(stt, sanPhamDTO.MaSanPham, sanPhamDTO.TenSanPham, sanPhamDTO.CV, sanPhamDTO.DonGia, 0, 0);
+                    stt++;
+                }
+                label_TongTienTruoc.Text = "Tổng tiền trước chiết khấu: 0";
+                label_TongTienSau.Text = "Tổng tiền: 0";
+
             }
-
-            foreach (SanPhamDTO sanPhamDTO in listSanPhamDTO)
-            {
-
-
-                dataGridView_TaoDonHang.Rows.Add(stt, sanPhamDTO.MaSanPham, sanPhamDTO.TenSanPham, sanPhamDTO.CV, sanPhamDTO.DonGia, 0, 0);
-                stt++;
-            }
-            label_TongTienTruoc.Text = "Tổng tiền trước chiết khấu: 0";
-            label_TongTienSau.Text = "Tổng tiền: 0";
         }
         //Load khi status = 1
         private void Load_Update()
@@ -244,6 +244,9 @@ namespace GUI
                 dataGridView_TaoDonHang.Rows[i].Cells["clThanhTien"].Value = 0;
             }
 
+            label_TongTienTruoc.Text = "Tổng tiền trước chiết khấu: 0";
+            label_TongTienSau.Text = "Tổng tiền: 0";
+
         }
         // Thực thi khi button Làm Lại có status = 1
         private void Update_ButtonRemake()
@@ -285,7 +288,7 @@ namespace GUI
 
         private void btnThoat_Click(object sender, EventArgs e)
         {
-            Close();
+            this.Dispose();
         }
         //Bắt sự kiện thay đổi dữ liện liên quan đến số lượng
         private void dataGridView_TaoDonHang_CellEndEdit(object sender, DataGridViewCellEventArgs e)
@@ -423,15 +426,18 @@ namespace GUI
 
         private void btnTao_Click(object sender, EventArgs e)
         {
-            if (Status == 0)
+            if (Status == 0 || Status == 4)
             {
-                if (ThongTin.CheckOut(dataGridView_TaoDonHang)&&CheckDataOn_Row_DataGridView(dataGridView_TaoDonHang))
+                if (CheckDataOn_Row_DataGridView(dataGridView_TaoDonHang))
                 {
                     Process_Button();
                     dataGridView_TaoDonHang.Rows.Clear();
                     FormDonHang_Load(sender, e);
                 }
-                return;
+                else
+                {
+                    MessageBox.Show("Đơn hàng không hợp lệ, tất cả số lượng sản phẩm đều bằng không", "Đơn hàng");
+                }
             }
             else if (Status == 1 || Status == 2)
             {
@@ -441,14 +447,8 @@ namespace GUI
 
         private void btnTaoMoi_Click(object sender, EventArgs e)
         {
-            if (Status == 0)
+            if (Status == 0  || Status == 4)
             {
-                if (ThongTin.CheckOut(dataGridView_TaoDonHang) == false)
-                {
-                    dataGridView_TaoDonHang.Rows.Clear();
-                    FormDonHang_Load(sender, e);
-                    return;
-                }
                 DialogResult result = MessageBox.Show("Bạn Muốn Lưu Đơn Hàng Không:", "Đơn hàng", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
                 if (result == DialogResult.Yes)
                 {
@@ -459,8 +459,15 @@ namespace GUI
                     dataGridView_TaoDonHang.Rows.Clear();
                     FormDonHang_Load(sender, e);
                 }
+                else if (Status == 4)
+                {
+                    dataGridView_TaoDonHang.Rows.Clear();
+                    FormDonHang_Load(sender, e);
+                }
+
                 return;
             }
+            
             else
             {
                 Close();
@@ -471,9 +478,15 @@ namespace GUI
         //Chuyển sang quản lý đơn hàng
         private void btnTimDonHang_Click(object sender, EventArgs e)
         {
-
-            FormQuanLyDonHang QLDonHang = new FormQuanLyDonHang();
-            QLDonHang.ShowDialog();
+            Form frm = ThongTin.KiemTraTonTai(typeof(FormQuanLyDonHang), this.ParentForm);
+            if (frm != null)
+                frm.Activate();
+            else
+            {
+                FormQuanLyDonHang fQLDonHang = new FormQuanLyDonHang();
+                fQLDonHang.MdiParent = this.ParentForm;
+                fQLDonHang.Show();
+            }
         }
 
         private void buttonNo_Click(object sender, EventArgs e)
@@ -512,11 +525,11 @@ namespace GUI
         #endregion
        
         private void FormDonHang_Load(object sender, EventArgs e)
-        {            
-            if (Status == 0)
+        {
+
+            if (Status == 0 || Status == 4)
             {
                 Load_Create();
-                return;
             }
             else if (Status == 1)
             {
@@ -528,7 +541,24 @@ namespace GUI
                 Load_Update();
                 Update();
             }
-            
+            timer1.Start();
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            timer1.Stop();
+            if (huy)
+            {
+                this.Dispose();
+            }
+        }
+
+        private void FormDonHang_Activated(object sender, EventArgs e)
+        {
+            if (Status == 4)
+            {
+                btnTaoMoi_Click(sender, e);
+            }
         }
     }
 }

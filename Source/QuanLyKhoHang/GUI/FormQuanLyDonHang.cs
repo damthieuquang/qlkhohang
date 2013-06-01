@@ -57,6 +57,8 @@ namespace GUI
                 }
             }
         }
+
+
         //true nếu không tồn tại, ngược lại tồn tại
         private bool KiemTraDong_KhongTonTai()
         {
@@ -94,11 +96,13 @@ namespace GUI
             }
 
             int stt = 0;
-            for (int i = 0; i < dataGridView_TraCuuDonHang.RowCount; i++)
+            for (int i = dataGridView_TraCuuDonHang.RowCount - 1; i >= 0 ; i--)
             {
                 string[] chuoi = dataGridView_TraCuuDonHang.Rows[i].Cells["clNgayDat"].Value.ToString().Split('/');
                 dateHienTai = new DateTime(int.Parse(chuoi[2]), int.Parse(chuoi[1]), int.Parse(chuoi[0])).Date;
                 dataGridView_TraCuuDonHang.Rows[i].Visible = false;
+                int vt = -1;
+
                 if (dataGridView_TraCuuDonHang.Rows[i].Cells["clMaDonHang"].Value.ToString().ToUpper().IndexOf(txtMaDonHang.Text.ToString().ToUpper()) >= 0
                     && dataGridView_TraCuuDonHang.Rows[i].Cells["clNguoiDat"].Value.ToString().ToUpper().IndexOf(txtNguoiDat.Text.ToString().ToUpper()) >= 0
                     && dataGridView_TraCuuDonHang.Rows[i].Cells["clThanhTien"].Value.ToString().ToUpper().IndexOf(txtThanhTien.Text.ToString().ToUpper()) >= 0
@@ -109,6 +113,22 @@ namespace GUI
                     stt++;
                     dataGridView_TraCuuDonHang.Rows[i].Visible = true;
                     dataGridView_TraCuuDonHang.Rows[i].Cells["clSTT"].Value = stt.ToString();
+                    vt = i;
+                }
+
+                if (vt == -1)
+                {
+                    btnXemChiTiet.Enabled = false;
+                    btnCapNhat.Enabled = false;
+                    btnXoa.Enabled = false;
+                }
+                else
+                {
+                    btnXemChiTiet.Enabled = true;
+                    btnCapNhat.Enabled = true;
+                    btnXoa.Enabled = true;
+                    dataGridView_TraCuuDonHang.CurrentCell = dataGridView_TraCuuDonHang.Rows[vt].Cells[0];
+                    dataGridView_TraCuuDonHang.CurrentCell.Selected = true;
                 }
             }
         }
@@ -218,6 +238,29 @@ namespace GUI
         private void btnThoat_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Form frm = ThongTin.KiemTraTonTai(typeof(FormDonHang), this.ParentForm);
+            if (frm != null)
+            {
+                FormDonHang f = (FormDonHang)frm;
+                f.Status = 4;
+                f.Activate();
+            }
+            else
+            {
+                FormDonHang fQLDonHang = new FormDonHang();
+                fQLDonHang.MdiParent = this.ParentForm;
+                fQLDonHang.Show();
+            }
+        }
+
+        private void FormQuanLyDonHang_Activated(object sender, EventArgs e)
+        {
+            FormQuanLyDonHang_Load(sender, e);
+            btnLamLai_Click(sender, e);
         }
 
     }
