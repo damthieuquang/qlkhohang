@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.groupBoxTimKiem = new System.Windows.Forms.GroupBox();
             this.dateTimePickerDen = new System.Windows.Forms.DateTimePicker();
             this.dateTimePickerTu = new System.Windows.Forms.DateTimePicker();
@@ -46,7 +46,6 @@
             this.clSoLuong = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnXoa = new System.Windows.Forms.Button();
             this.btnThoat = new System.Windows.Forms.Button();
-            this.btnCapNhat = new System.Windows.Forms.Button();
             this.btnLamLai = new System.Windows.Forms.Button();
             this.btnXemChiTiet = new System.Windows.Forms.Button();
             this.groupBoxTimKiem.SuspendLayout();
@@ -142,14 +141,14 @@
             this.dataGridView_TraCuuNhapHang.AllowUserToResizeColumns = false;
             this.dataGridView_TraCuuNhapHang.AllowUserToResizeRows = false;
             this.dataGridView_TraCuuNhapHang.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView_TraCuuNhapHang.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView_TraCuuNhapHang.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridView_TraCuuNhapHang.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView_TraCuuNhapHang.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.clSTT,
@@ -209,7 +208,7 @@
             // 
             // btnXoa
             // 
-            this.btnXoa.Location = new System.Drawing.Point(516, 422);
+            this.btnXoa.Location = new System.Drawing.Point(496, 426);
             this.btnXoa.Name = "btnXoa";
             this.btnXoa.Size = new System.Drawing.Size(100, 23);
             this.btnXoa.TabIndex = 20;
@@ -219,7 +218,7 @@
             // 
             // btnThoat
             // 
-            this.btnThoat.Location = new System.Drawing.Point(680, 422);
+            this.btnThoat.Location = new System.Drawing.Point(680, 426);
             this.btnThoat.Name = "btnThoat";
             this.btnThoat.Size = new System.Drawing.Size(100, 23);
             this.btnThoat.TabIndex = 21;
@@ -227,19 +226,9 @@
             this.btnThoat.UseVisualStyleBackColor = true;
             this.btnThoat.Click += new System.EventHandler(this.btnThoat_Click);
             // 
-            // btnCapNhat
-            // 
-            this.btnCapNhat.Location = new System.Drawing.Point(350, 422);
-            this.btnCapNhat.Name = "btnCapNhat";
-            this.btnCapNhat.Size = new System.Drawing.Size(100, 23);
-            this.btnCapNhat.TabIndex = 19;
-            this.btnCapNhat.Text = "Cập nhật";
-            this.btnCapNhat.UseVisualStyleBackColor = true;
-            this.btnCapNhat.Click += new System.EventHandler(this.btnCapNhat_Click);
-            // 
             // btnLamLai
             // 
-            this.btnLamLai.Location = new System.Drawing.Point(194, 422);
+            this.btnLamLai.Location = new System.Drawing.Point(288, 426);
             this.btnLamLai.Name = "btnLamLai";
             this.btnLamLai.Size = new System.Drawing.Size(100, 23);
             this.btnLamLai.TabIndex = 18;
@@ -249,7 +238,7 @@
             // 
             // btnXemChiTiet
             // 
-            this.btnXemChiTiet.Location = new System.Drawing.Point(50, 422);
+            this.btnXemChiTiet.Location = new System.Drawing.Point(83, 426);
             this.btnXemChiTiet.Name = "btnXemChiTiet";
             this.btnXemChiTiet.Size = new System.Drawing.Size(100, 23);
             this.btnXemChiTiet.TabIndex = 17;
@@ -266,7 +255,6 @@
             this.Controls.Add(this.groupBoxDanhSach);
             this.Controls.Add(this.btnXoa);
             this.Controls.Add(this.btnThoat);
-            this.Controls.Add(this.btnCapNhat);
             this.Controls.Add(this.btnLamLai);
             this.Controls.Add(this.btnXemChiTiet);
             this.Name = "FormQuanLyNhapHang";
@@ -294,7 +282,6 @@
         private System.Windows.Forms.DataGridView dataGridView_TraCuuNhapHang;
         private System.Windows.Forms.Button btnXoa;
         private System.Windows.Forms.Button btnThoat;
-        private System.Windows.Forms.Button btnCapNhat;
         private System.Windows.Forms.Button btnLamLai;
         private System.Windows.Forms.Button btnXemChiTiet;
         private System.Windows.Forms.DataGridViewTextBoxColumn clSTT;

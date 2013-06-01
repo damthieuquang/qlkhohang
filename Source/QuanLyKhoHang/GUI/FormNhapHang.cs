@@ -75,6 +75,27 @@ namespace GUI
                 dataGridView_NhapHang.Rows.Clear();
             }
         }
+        private void Load_Update()//Khởi Tạo Load Update
+        {
+            PhieuNhapDTO phieuNhapDTO = PhieuNhapBUS.SelectPhieuNhapById(MaPhieuNhap);
+            txtMaPhieuNhap.Text = MaPhieuNhap;
+            NgayNhap = phieuNhapDTO.NgayNhan;
+            txtNgayNhan.Text = NgayNhap.ToString("dd/MM/yyyy");
+            txtMaNhanVien.Text = phieuNhapDTO.MaNhanVien.ToString();
+            NhanVienDTO nhanVienDTO = NhanVienBUS.SelectNhanVienById(phieuNhapDTO.MaNhanVien.ToString());
+            txtNhanVienNhanHang.Text = nhanVienDTO.TenNhanVien.ToString();
+            txtDonDatHang.ReadOnly = true;
+            txtDonDatHang.Text = phieuNhapDTO.MaDonHang.ToString();
+            KhoiTaoNhapMaDonHang();
+
+        }
+        private void KhoiTaoNutUpDate()//Khởi Tạo Nút Update
+        {
+            btnTao.Enabled = false;
+            btnLamLai.Enabled = false;
+            btnTaoMoi.Enabled = false;
+            btnCapNhap.Enabled = true;
+        }
         private void FormNhapHang_Load(object sender, EventArgs e)//Khời Tạo Giá Trị Khi Form Load Ban Dau
         {
             if (Status == 0)//Status = 0 Khởi Tạo
@@ -83,7 +104,9 @@ namespace GUI
             }
             else
             {
-
+                Load_Update();
+                KhoiTaoNutUpDate();
+                MessageBox.Show(Status.ToString());
             }
         }
         private void txtDonDatHang_KeyUp(object sender, KeyEventArgs e)//Khởi Tạo Giá Trị Datagridview Khi Nhập Mã Đơn Hàng
@@ -256,9 +279,6 @@ namespace GUI
                     foreach (ChiTietDonHangDTO ctdh in listchiTietDonHangDTO)
                     {
                         ChiTietDonHangBUS.UpdateChiTietDonHangById(ctdh);
-                       
-                      
-                        
                     }
                     MessageBox.Show("Tạo Thành Công");
                 }
