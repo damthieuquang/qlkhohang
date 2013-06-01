@@ -19,7 +19,7 @@ namespace BUS
             return PhieuXuatDAO.SelectPhieuXuatById(MaPhieuXuat);
         }
 
-        public static bool InsertPhieuXuatBy(PhieuXuatDTO phieuXuatDTO)
+        public static bool InsertPhieuXuat(PhieuXuatDTO phieuXuatDTO)
         {
             return PhieuXuatDAO.InsertPhieuXuat(phieuXuatDTO);
         }
@@ -29,9 +29,11 @@ namespace BUS
             return PhieuXuatDAO.UpdatePhieuXuatById(phieuXuatDTO);
         }
 
-        public static bool DeletePhieuXuatById(PhieuXuatDTO phieuXuatDTO)
+        public static bool DeletePhieuXuatById(string maPhieuXuat)
         {
-            return PhieuXuatDAO.DeletePhieuXuatById(phieuXuatDTO);
+            return PhieuXuatDAO.DeletePhieuXuatById(maPhieuXuat);
         }
+
+       
     }
 }
