@@ -32,6 +32,11 @@ namespace BUS
         {
             return ThanhVienDAO.DeleteThanhVienById(MaThanhVien);
         }
+	
+		public static string CreateThanhVienId()
+		{
+			return ThanhVienDAO.CreateThanhVien();	
+		}
     }
 
 }
