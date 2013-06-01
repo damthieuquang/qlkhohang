@@ -33,6 +33,12 @@ namespace BUS
         {
             return ChiTietPhieuXuatDAO.SelectChiTietPhieuXuatById(MaChiTietPhieuXuat);
         }
+
+        public static List<ChiTietPhieuXuatDTO> SelectChiTietPhieuXuatByMaPhieuXuat(string MaPhieuXuat)
+        {
+            return ChiTietPhieuXuatDAO.SelectChiTietPhieuXuatByMaPhieuXuat(MaPhieuXuat);
+        }
+
     }
 
 }
