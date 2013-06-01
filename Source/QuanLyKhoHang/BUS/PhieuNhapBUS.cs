@@ -27,9 +27,9 @@ namespace BUS
             return PhieuNhapDAO.InsertPhieuNhap(phieuNhapDTO);
         }
 
-        public static bool UpdatePhieuNhap(PhieuNhapDTO phieuNhapDTO)
+        public static bool UpdatePhieuNhapById(PhieuNhapDTO phieuNhapDTO)
         {
-            return PhieuNhapDAO.UpdatePhieuNhap(phieuNhapDTO);
+            return PhieuNhapDAO.UpdatePhieuNhapById(phieuNhapDTO);
         }
 
         public static bool DeletePhieuNhapByID(string phieuNhapDTO)

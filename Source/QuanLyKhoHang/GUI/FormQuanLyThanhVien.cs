@@ -141,7 +141,7 @@ namespace GUI
                 {
                     Index = dataGridView_QuanLyThanhVien.CurrentRow.Index;
                     string id = dataGridView_QuanLyThanhVien.CurrentRow.Cells["ColMaThanhVien"].Value.ToString();
-                    if (ThamSoBUS.DeleteThamSo(id))
+                    if (ThamSoBUS.DeleteThamSoById(id))
                     {
                         dataGridView_QuanLyThanhVien.Rows.RemoveAt(Index);
                         for (int i = Index; i < dataGridView_QuanLyThanhVien.RowCount; i++)
