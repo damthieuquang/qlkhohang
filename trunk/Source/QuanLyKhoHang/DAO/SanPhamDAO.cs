@@ -87,7 +87,13 @@ namespace DAO
             sqlParams.Add(new SqlParameter("@MaLoaiSanPham", spDTO.MaLoaiSanPham));
             return DataProvider.ExecuteNoneQuery("usp_UpdateSanPhamById", sqlParams);
         }
-
+        public static bool UpdateSanPhamByMaSanPham(string MaSanPham,int SoLuongTon)
+        {
+            List<SqlParameter> sqlParams = new List<SqlParameter>();
+            sqlParams.Add(new SqlParameter("@MaSanPham", MaSanPham));
+            sqlParams.Add(new SqlParameter("@SoLuongTon", SoLuongTon));
+            return DataProvider.ExecuteNoneQuery("usp_UpdateSanPhamByMaSanPham", sqlParams);
+        }
         public static bool DeleteSanPhamById(string MaSanPham)
         {
             List<SqlParameter> sqlParams = new List<SqlParameter>();

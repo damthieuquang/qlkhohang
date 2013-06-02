@@ -28,7 +28,10 @@ namespace BUS
         {
             return SanPhamDAO.UpdateSanPhamById(spDTO);
         }
-
+        public static bool UpdateSanPhamByMaSanPham(string MaSanPham,int SoLuong)
+        {
+            return SanPhamDAO.UpdateSanPhamByMaSanPham(MaSanPham, SoLuong);
+        }
         public static bool DeleteSanPhamById(string MaSanPham)
         {
             return SanPhamDAO.DeleteSanPhamById(MaSanPham);

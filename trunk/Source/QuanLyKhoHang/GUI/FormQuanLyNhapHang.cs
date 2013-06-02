@@ -151,8 +151,17 @@ namespace GUI
 
         private void btnCapNhat_Click(object sender, EventArgs e)
         {
-            FormNhapHang fQLNhapHang = new FormNhapHang();
-            fQLNhapHang.ShowDialog();
+            if (dataGridView_TraCuuNhapHang.RowCount > 0)
+            {
+                FormNhapHang fQLNhapHang = new FormNhapHang();
+                fQLNhapHang.MaPhieuNhap = dataGridView_TraCuuNhapHang.CurrentRow.Cells["clMaPhieuNhap"].Value.ToString();
+                fQLNhapHang.Status = 1;
+                fQLNhapHang.ShowDialog();
+            }
+            else
+            {
+                btnCapNhat.Enabled = false;
+            }
         }
     }
 }
