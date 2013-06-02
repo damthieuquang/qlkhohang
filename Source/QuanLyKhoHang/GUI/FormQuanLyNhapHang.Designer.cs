@@ -48,6 +48,7 @@
             this.btnThoat = new System.Windows.Forms.Button();
             this.btnLamLai = new System.Windows.Forms.Button();
             this.btnXemChiTiet = new System.Windows.Forms.Button();
+            this.btnCapNhat = new System.Windows.Forms.Button();
             this.groupBoxTimKiem.SuspendLayout();
             this.groupBoxDanhSach.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_TraCuuNhapHang)).BeginInit();
@@ -208,7 +209,7 @@
             // 
             // btnXoa
             // 
-            this.btnXoa.Location = new System.Drawing.Point(496, 426);
+            this.btnXoa.Location = new System.Drawing.Point(572, 426);
             this.btnXoa.Name = "btnXoa";
             this.btnXoa.Size = new System.Drawing.Size(100, 23);
             this.btnXoa.TabIndex = 20;
@@ -218,7 +219,7 @@
             // 
             // btnThoat
             // 
-            this.btnThoat.Location = new System.Drawing.Point(680, 426);
+            this.btnThoat.Location = new System.Drawing.Point(759, 426);
             this.btnThoat.Name = "btnThoat";
             this.btnThoat.Size = new System.Drawing.Size(100, 23);
             this.btnThoat.TabIndex = 21;
@@ -228,7 +229,7 @@
             // 
             // btnLamLai
             // 
-            this.btnLamLai.Location = new System.Drawing.Point(288, 426);
+            this.btnLamLai.Location = new System.Drawing.Point(393, 426);
             this.btnLamLai.Name = "btnLamLai";
             this.btnLamLai.Size = new System.Drawing.Size(100, 23);
             this.btnLamLai.TabIndex = 18;
@@ -238,7 +239,7 @@
             // 
             // btnXemChiTiet
             // 
-            this.btnXemChiTiet.Location = new System.Drawing.Point(83, 426);
+            this.btnXemChiTiet.Location = new System.Drawing.Point(28, 426);
             this.btnXemChiTiet.Name = "btnXemChiTiet";
             this.btnXemChiTiet.Size = new System.Drawing.Size(100, 23);
             this.btnXemChiTiet.TabIndex = 17;
@@ -246,11 +247,22 @@
             this.btnXemChiTiet.UseVisualStyleBackColor = true;
             this.btnXemChiTiet.Click += new System.EventHandler(this.btnXemChiTiet_Click);
             // 
+            // btnCapNhat
+            // 
+            this.btnCapNhat.Location = new System.Drawing.Point(196, 426);
+            this.btnCapNhat.Name = "btnCapNhat";
+            this.btnCapNhat.Size = new System.Drawing.Size(103, 23);
+            this.btnCapNhat.TabIndex = 24;
+            this.btnCapNhat.Text = "Cập Nhật";
+            this.btnCapNhat.UseVisualStyleBackColor = true;
+            this.btnCapNhat.Click += new System.EventHandler(this.btnCapNhat_Click);
+            // 
             // FormQuanLyNhapHang
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(884, 461);
+            this.Controls.Add(this.btnCapNhat);
             this.Controls.Add(this.groupBoxTimKiem);
             this.Controls.Add(this.groupBoxDanhSach);
             this.Controls.Add(this.btnXoa);
@@ -290,6 +302,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clNgayNhan;
         private System.Windows.Forms.DataGridViewTextBoxColumn clNguoiNhan;
         private System.Windows.Forms.DataGridViewTextBoxColumn clSoLuong;
+        private System.Windows.Forms.Button btnCapNhat;
 
 
     }
