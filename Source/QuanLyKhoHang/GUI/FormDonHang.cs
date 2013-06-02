@@ -99,6 +99,7 @@ namespace GUI
                     dataGridView_TaoDonHang.Rows.Add(stt, sanPhamDTO.MaSanPham, sanPhamDTO.TenSanPham, sanPhamDTO.CV, sanPhamDTO.DonGia, 0, 0);
                     stt++;
                 }
+
                 label_TongTienTruoc.Text = "Tổng tiền trước chiết khấu: 0";
                 label_TongTienSau.Text = "Tổng tiền: 0";
 
@@ -310,6 +311,7 @@ namespace GUI
         //Bắt sự kiện thay đổi dữ liện liên quan đến số lượng
         private void dataGridView_TaoDonHang_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
+            btnTao.Enabled = true;
             float kq = 0;
             DataGridViewCell cell = dataGridView_TaoDonHang.CurrentCell;
             // Sửa lỗi trường hợp để ô ở cột số lượng rỗng
@@ -594,6 +596,13 @@ namespace GUI
             {
                 Update();
             }
+            else if (Status == 0)
+            {
+                dataGridView_TaoDonHang.CurrentCell = dataGridView_TaoDonHang.Rows[0].Cells[clSoLuong.Index];
+                dataGridView_TaoDonHang.CurrentCell.Selected = true;
+                dataGridView_TaoDonHang.BeginEdit(true);
+            }
+           
         }
 
         private void FormDonHang_Activated(object sender, EventArgs e)

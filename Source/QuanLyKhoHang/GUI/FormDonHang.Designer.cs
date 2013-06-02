@@ -216,6 +216,7 @@
             // 
             // btnTao
             // 
+            this.btnTao.Enabled = false;
             this.btnTao.Location = new System.Drawing.Point(47, 11);
             this.btnTao.Name = "btnTao";
             this.btnTao.Size = new System.Drawing.Size(86, 23);
@@ -342,7 +343,7 @@
             this.groupBox1.Size = new System.Drawing.Size(860, 134);
             this.groupBox1.TabIndex = 68;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Thông tin";
+            this.groupBox1.Text = "Thông tin đơn hàng";
             // 
             // groupBox2
             // 
@@ -353,7 +354,7 @@
             this.groupBox2.Size = new System.Drawing.Size(860, 234);
             this.groupBox2.TabIndex = 69;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Thông tin sản phẩm";
+            this.groupBox2.Text = "Chi tiết đơn hàng";
             // 
             // panelYesNo
             // 
