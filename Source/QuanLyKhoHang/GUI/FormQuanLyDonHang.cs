@@ -21,21 +21,35 @@ namespace GUI
           private bool boolTu = false;
           private bool boolDen = false;
 
-          private void KhoiTaoComboBoxTrangThai()
-        {
-            DataTable dt = new DataTable();
-            dt.Columns.Add("text");
-            dt.Columns.Add("value");
-            dt.Rows.Add("Tất cả", "");
-            dt.Rows.Add("Đã nhận", "Đã nhận");
-            dt.Rows.Add("Chưa nhận", "Chưa nhận");
-            dt.Rows.Add("Nhận một phần", "Nhận một phần");
+          private void buttonEnabled()
+          {
+              btnXemChiTiet.Enabled = true;
+              btnCapNhat.Enabled = true;
+              btnXoa.Enabled = true;
+          }
 
-            
-            comboBoxTrangThai.DisplayMember = "text";
-            comboBoxTrangThai.ValueMember = "value";
-            comboBoxTrangThai.DataSource = dt;
-        }
+          private void buttonDisabled()
+          {
+              btnXemChiTiet.Enabled = false;
+              btnCapNhat.Enabled = false;
+              btnXoa.Enabled = false;
+          }
+
+          private void KhoiTaoComboBoxTrangThai()
+          {
+              DataTable dt = new DataTable();
+              dt.Columns.Add("text");
+              dt.Columns.Add("value");
+              dt.Rows.Add("Tất cả", "");
+              dt.Rows.Add("Đã nhận", "Đã nhận");
+              dt.Rows.Add("Chưa nhận", "Chưa nhận");
+              dt.Rows.Add("Nhận một phần", "Nhận một phần");
+
+
+              comboBoxTrangThai.DisplayMember = "text";
+              comboBoxTrangThai.ValueMember = "value";
+              comboBoxTrangThai.DataSource = dt;
+          }
 
         private void KhoiTao()
         {
@@ -48,13 +62,19 @@ namespace GUI
                 {
                     item = listDonHangDTO[i];
                     dataGridView_TraCuuDonHang.Rows.Add(
-                        (i + 1).ToString(), 
-                        item.MaDonHang, 
+                        (i + 1).ToString(),
+                        item.MaDonHang,
                         item.NgayLap.ToString("dd/MM/yyy"),
-                        NhanVienBUS.SelectNhanVienById(item.MaNhanVien).TenNhanVien, 
-                        string.Format("{0:0,0.##}", item.ThanhTien), 
+                        NhanVienBUS.SelectNhanVienById(item.MaNhanVien).TenNhanVien,
+                        string.Format("{0:#,0.##}", item.ThanhTien),
                         item.TrangThai);
                 }
+                btnLamLai.Enabled = true;
+            }
+            else
+            {
+                buttonDisabled();
+                btnLamLai.Enabled = false;
             }
         }
 
@@ -118,15 +138,11 @@ namespace GUI
 
                 if (vt == -1)
                 {
-                    btnXemChiTiet.Enabled = false;
-                    btnCapNhat.Enabled = false;
-                    btnXoa.Enabled = false;
+                    buttonDisabled();
                 }
                 else
                 {
-                    btnXemChiTiet.Enabled = true;
-                    btnCapNhat.Enabled = true;
-                    btnXoa.Enabled = true;
+                    buttonEnabled();
                     dataGridView_TraCuuDonHang.CurrentCell = dataGridView_TraCuuDonHang.Rows[vt].Cells[0];
                     dataGridView_TraCuuDonHang.CurrentCell.Selected = true;
                 }
@@ -181,8 +197,10 @@ namespace GUI
             txtMaDonHang.Text = null;
             txtNguoiDat.Text = null;
             txtThanhTien.Text = null;
-
-            dataGridView_TraCuuDonHang.CurrentCell = dataGridView_TraCuuDonHang.Rows[0].Cells[0];
+            if (dataGridView_TraCuuDonHang.RowCount > 0)
+            {
+                dataGridView_TraCuuDonHang.CurrentCell = dataGridView_TraCuuDonHang.Rows[0].Cells[0];
+            }
         }
 
         private void btnXemChiTiet_Click(object sender, EventArgs e)
@@ -191,8 +209,14 @@ namespace GUI
             {
                 FormDonHang fQLDonHang = new FormDonHang();
                 fQLDonHang.MaDonHang = dataGridView_TraCuuDonHang.CurrentRow.Cells[clMaDonHang.Index].Value.ToString();
-                fQLDonHang.Status = 1;                
+                fQLDonHang.Status = 1;
                 fQLDonHang.ShowDialog();
+                if (fQLDonHang.Status == 2)
+                {
+                    DonHangDTO donHangDTO = DonHangBUS.SelectDonHangById(fQLDonHang.MaDonHang);
+                    dataGridView_TraCuuDonHang.CurrentRow.Cells[clThanhTien.Index].Value = string.Format("{0:#,0.##}", donHangDTO.ThanhTien);
+                }
+                
             }
             else
             {
@@ -204,10 +228,21 @@ namespace GUI
         {
             if (KiemTraDong_KhongTonTai() == false)
             {
-                FormDonHang fQLDonHang = new FormDonHang();
-                fQLDonHang.Status = 2;
-                fQLDonHang.MaDonHang = dataGridView_TraCuuDonHang.CurrentRow.Cells[clMaDonHang.Index].Value.ToString();
-                fQLDonHang.ShowDialog();
+                if (dataGridView_TraCuuDonHang.CurrentRow.Cells[clTrangThai.Index].Value.ToString() == "Chưa nhận")
+                {
+                    FormDonHang fQLDonHang = new FormDonHang();
+                    fQLDonHang.Status = 2;
+                    fQLDonHang.MaDonHang = dataGridView_TraCuuDonHang.CurrentRow.Cells[clMaDonHang.Index].Value.ToString();
+                    fQLDonHang.ShowDialog();
+                    DonHangDTO donHangDTO = DonHangBUS.SelectDonHangById(fQLDonHang.MaDonHang);
+                    dataGridView_TraCuuDonHang.CurrentRow.Cells[clThanhTien.Index].Value = string.Format("{0:#,0.##}", donHangDTO.ThanhTien);
+
+                }
+                else
+                {
+                    MessageBox.Show("Đơn hàng đã nhận, không cho phép cập nhật", "Quản lý đơn hàng");
+                }
+               
             }
             else
             {
@@ -227,9 +262,16 @@ namespace GUI
                 if (DonHangBUS.DeleteDonHangById(id))
                 {                    
                     dataGridView_TraCuuDonHang.Rows.RemoveAt(Index);
-                    for (int i = Index; i < dataGridView_TraCuuDonHang.RowCount; i++)
+                    if (dataGridView_TraCuuDonHang.RowCount > 0)
                     {
-                        dataGridView_TraCuuDonHang.Rows[i].Cells["clSTT"].Value = (i + 1).ToString();
+                        for (int i = Index; i < dataGridView_TraCuuDonHang.RowCount; i++)
+                        {
+                            dataGridView_TraCuuDonHang.Rows[i].Cells["clSTT"].Value = (i + 1).ToString();
+                        }
+                    }
+                    else
+                    {
+                        buttonDisabled();
                     }
                 }
             }
@@ -240,7 +282,7 @@ namespace GUI
             this.Close();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void buttonTaoMoi_Click(object sender, EventArgs e)
         {
             Form frm = ThongTin.KiemTraTonTai(typeof(FormDonHang), this.ParentForm);
             if (frm != null)
