@@ -284,6 +284,7 @@ namespace GUI
             if (res == DialogResult.Yes)
             {
                 int Index = dataGridView_TraCuuDonHang.CurrentRow.Index;
+                int stt = int.Parse(dataGridView_TraCuuDonHang.CurrentRow.Cells[clSTT.Index].Value.ToString());
                 string id = dataGridView_TraCuuDonHang.CurrentRow.Cells["clMaDonHang"].Value.ToString();
                 if (DonHangBUS.DeleteDonHangById(id))
                 {                    
@@ -296,13 +297,15 @@ namespace GUI
                             if (dataGridView_TraCuuDonHang.Rows[i].Visible == true)
                             {
                                 f = true;
+                                break;
                             }
                         } 
                         for (int i = Index; i < dataGridView_TraCuuDonHang.RowCount; i++)
                         {
                             if (dataGridView_TraCuuDonHang.Rows[i].Visible == true)
                             {
-                                dataGridView_TraCuuDonHang.Rows[i].Cells["clSTT"].Value = i.ToString();
+                                dataGridView_TraCuuDonHang.Rows[i].Cells["clSTT"].Value = stt.ToString();
+                                stt++;
                                 f = true;
                             }
                         }
@@ -310,7 +313,11 @@ namespace GUI
                         if (f == false)
                         {
                             buttonDisabled();
-                        }  
+                        }
+                        else
+                        {
+                            buttonEnabled();
+                        }
                     }
                     else
                     {
