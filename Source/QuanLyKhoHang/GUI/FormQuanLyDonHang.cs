@@ -20,7 +20,6 @@ namespace GUI
 
           private bool  boolTu = false;
           private bool boolDen = false;
-          public bool activeForm = false;
 
           private void buttonEnabled()
           {
@@ -176,8 +175,8 @@ namespace GUI
         private void FormQuanLyDonHang_Load(object sender, EventArgs e)
         {
             
-            KhoiTao();
-            KhoiTaoComboBoxTrangThai();
+            //KhoiTao();
+           // KhoiTaoComboBoxTrangThai();
         }
 
         private void txtMaDonHang_TextChanged(object sender, EventArgs e)
@@ -345,11 +344,8 @@ namespace GUI
 
         private void FormQuanLyDonHang_Activated(object sender, EventArgs e)
         {
-            if (activeForm)
-            {
-                FormQuanLyDonHang_Load(sender, e);
-                btnLamLai_Click(sender, e);
-            }
+             KhoiTao();
+             KhoiTaoComboBoxTrangThai();
         }
 
     }
