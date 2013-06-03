@@ -115,24 +115,54 @@ namespace GUI
             }
 
             int stt = 0;
+            int vt = -1;
             for (int i = 0; i < dataGridView_TraCuuXuatHang.RowCount;i++)
             {
                 string[] chuoi = dataGridView_TraCuuXuatHang.Rows[i].Cells["clNgayBanHang"].Value.ToString().Split('/');
                 dateHienTai = new DateTime(int.Parse(chuoi[2]), int.Parse(chuoi[1]), int.Parse(chuoi[0])).Date;
                 dataGridView_TraCuuXuatHang.Rows[i].Visible = false;
-                int vt = -1;
+                
                 if (dataGridView_TraCuuXuatHang.Rows[i].Cells["clMaPhieuXuat"].Value.ToString().ToUpper().IndexOf(txtMaPhieuXuat.Text.ToString().ToUpper()) >= 0
                     && dataGridView_TraCuuXuatHang.Rows[i].Cells["clNguoiBan"].Value.ToString().ToUpper().IndexOf(txtNguoiBan.Text.ToString().ToUpper()) >= 0
                     && dataGridView_TraCuuXuatHang.Rows[i].Cells["clNguoiMua"].Value.ToString().ToUpper().IndexOf(txtNguoiMua.Text.ToString().ToUpper()) >= 0
                     && dataGridView_TraCuuXuatHang.Rows[i].Cells["clSoLuong"].Value.ToString().ToUpper().IndexOf(txtSoLuong.Text.ToString().ToUpper()) >= 0
-                    && dataGridView_TraCuuXuatHang.Rows[i].Cells["clSoTien"].Value.ToString().ToUpper().IndexOf(txtSoTien.Text.ToString().ToUpper()) >= 0)
+                    && dataGridView_TraCuuXuatHang.Rows[i].Cells["clSoTien"].Value.ToString().ToUpper().IndexOf(txtSoTien.Text.ToString().ToUpper()) >= 0
+                    && dateTu.CompareTo(dateHienTai)<=0 && dateDen.CompareTo(dateHienTai)>=0
+                    && dateTu.CompareTo(dateDen) <=0
+                    )
                 {
                     stt++;
                     dataGridView_TraCuuXuatHang.Rows[i].Visible = true;
                     dataGridView_TraCuuXuatHang.Rows[i].Cells["clSTT"].Value = stt.ToString();
                     vt = i;
+                    break;
                 }
-                if (vt == -1)
+                
+            }
+
+
+            for(int i=vt+1;i<dataGridView_TraCuuXuatHang.RowCount;i++)
+            {
+                string[] chuoi = dataGridView_TraCuuXuatHang.Rows[i].Cells["clNgayBanHang"].Value.ToString().Split('/');
+                dateHienTai = new DateTime(int.Parse(chuoi[2]), int.Parse(chuoi[1]), int.Parse(chuoi[0])).Date;
+                dataGridView_TraCuuXuatHang.Rows[i].Visible = false;
+
+                if (dataGridView_TraCuuXuatHang.Rows[i].Cells["clMaPhieuXuat"].Value.ToString().ToUpper().IndexOf(txtMaPhieuXuat.Text.ToString().ToUpper()) >= 0
+                    && dataGridView_TraCuuXuatHang.Rows[i].Cells["clNguoiBan"].Value.ToString().ToUpper().IndexOf(txtNguoiBan.Text.ToString().ToUpper()) >= 0
+                    && dataGridView_TraCuuXuatHang.Rows[i].Cells["clNguoiMua"].Value.ToString().ToUpper().IndexOf(txtNguoiMua.Text.ToString().ToUpper()) >= 0
+                    && dataGridView_TraCuuXuatHang.Rows[i].Cells["clSoLuong"].Value.ToString().ToUpper().IndexOf(txtSoLuong.Text.ToString().ToUpper()) >= 0
+                    && dataGridView_TraCuuXuatHang.Rows[i].Cells["clSoTien"].Value.ToString().ToUpper().IndexOf(txtSoTien.Text.ToString().ToUpper()) >= 0
+                    && dateTu.CompareTo(dateHienTai) <= 0 && dateDen.CompareTo(dateHienTai) >= 0
+                    && dateTu.CompareTo(dateDen) <= 0
+                    )
+                {
+                    stt++;
+                    dataGridView_TraCuuXuatHang.Rows[i].Visible = true;
+                    dataGridView_TraCuuXuatHang.Rows[i].Cells["clSTT"].Value = stt.ToString();
+                    
+                }
+            }
+            if (vt == -1)
                 {
                     buttonDisabled();
                 }
@@ -142,12 +172,13 @@ namespace GUI
                     dataGridView_TraCuuXuatHang.CurrentCell = dataGridView_TraCuuXuatHang.Rows[vt].Cells[0]; // QUAN TRONG  
                     dataGridView_TraCuuXuatHang.CurrentCell.Selected = true;     // QUAN TRONG  
                 }
-            }
+
+
         }
         
         private void FormQuanLyXuatHang_Load(object sender, EventArgs e)
         {
-            KhoiTao();
+            //KhoiTao();
         }
 
         private void txtMaPhieuXuat_TextChanged(object sender, EventArgs e)
@@ -179,14 +210,12 @@ namespace GUI
         {
             boolTu = true;
             Search();//
-            boolTu = false;
         }
 
         private void dateTimePickerDen_ValueChanged(object sender, EventArgs e)
         {
             boolDen = true;
             Search();
-            boolDen = false;
         }
 
         private void Clear_ThanhPhanNhap()
@@ -200,8 +229,11 @@ namespace GUI
         private void btnLamLai_Click(object sender, EventArgs e)
         {
             dateTimePickerTu.Value = DateTime.Now;
+            boolTu = false;
             dateTimePickerDen.Value = DateTime.Now;
+            boolDen = false;
             Clear_ThanhPhanNhap();
+
             if (dataGridView_TraCuuXuatHang.RowCount > 0)
             {
                 dataGridView_TraCuuXuatHang.CurrentCell = dataGridView_TraCuuXuatHang.Rows[0].Cells[0];
@@ -319,36 +351,38 @@ namespace GUI
 
         private void btnXoa_Click(object sender, EventArgs e)
         {    
-            /*int dem = 0;
-            for (int i = 0; i < dataGridView_TraCuuXuatHang.Rows.Count; i++)
-            {
-                if (dataGridView_TraCuuXuatHang.Rows[i].Visible == true)
-                    dem++;
-            }
-            if (dem == 0)
-            {
-                MessageBox.Show("Không có dữ liệu để xóa");
-            }
-            if(KiemTraDong_KhongTonTai() == true)
-            {
-                MessageBox.Show("Không có dữ liệu để xóa");
-            }
-            else
-            {*/
+            
             DialogResult result = MessageBox.Show("Xóa phiếu xuất", "Phiếu xuất", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1);
             //Lấy vị trí cần xóa
             if (result == DialogResult.Yes)
             {
-                int Index = dataGridView_TraCuuXuatHang.CurrentRow.Index;//LOI
+                int Index = dataGridView_TraCuuXuatHang.CurrentRow.Index;
                 string id = dataGridView_TraCuuXuatHang.CurrentRow.Cells["clMaPhieuXuat"].Value.ToString();
                 if (PhieuXuatBUS.DeletePhieuXuatById(id))
                 {
                     dataGridView_TraCuuXuatHang.Rows.RemoveAt(Index);
                     if (dataGridView_TraCuuXuatHang.RowCount > 0)
                     {
+                        bool f = false;
+                        for (int i = 0; i < Index;i++ )
+                        {
+                            if(dataGridView_TraCuuXuatHang.Rows[i].Visible == true)
+                            {
+                                f = true;
+                            }
+                        }
+
                         for (int i = Index; i < dataGridView_TraCuuXuatHang.RowCount; i++)
                         {
-                            dataGridView_TraCuuXuatHang.Rows[i].Cells["clSTT"].Value = (i + 1).ToString();
+                            if (dataGridView_TraCuuXuatHang.Rows[i].Visible == true)
+                            {
+                                dataGridView_TraCuuXuatHang.Rows[i].Cells["clSTT"].Value = i.ToString();
+                                f = true;
+                            }
+                        }
+                        if(f == false)
+                        {
+                            buttonDisabled();
                         }
                     }
                     else
@@ -362,7 +396,7 @@ namespace GUI
 
         private void btnThoat_Click(object sender, EventArgs e)
         {
-            Close();
+            Dispose();
         }
 
         private void btnTaoMoi_Click(object sender, EventArgs e)
@@ -384,8 +418,7 @@ namespace GUI
 
         private void FormQuanLyXuatHang_Activated(object sender, EventArgs e)
         {
-            FormQuanLyXuatHang_Load(sender, e);
-            btnLamLai_Click(sender, e);
+            KhoiTao();
         }
 
        
