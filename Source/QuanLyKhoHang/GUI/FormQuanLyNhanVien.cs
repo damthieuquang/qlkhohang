@@ -182,6 +182,20 @@ namespace GUI
             }
 
             dataGridView_NhanVien.CurrentCell = dataGridView_NhanVien.Rows[0].Cells[0];
+            //Khởi động lại các nút:
+            if (dataGridView_NhanVien.Rows.Count > 0)
+            {
+                for (int i = 0; i < dataGridView_NhanVien.Rows.Count; i++)
+                {
+                    if (dataGridView_NhanVien.Rows[i].Visible == true)
+                    {
+                        buttonEnabled();
+                        break;
+                    }
+                }
+            }
+            else
+                buttonDisabled();
         }
 
         private void FormQuanLyNhanVien_Load(object sender, EventArgs e)

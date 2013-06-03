@@ -392,6 +392,20 @@ namespace GUI
             }
 
             dataGridView_QuanLyLoaiSanPham .CurrentCell = dataGridView_QuanLyLoaiSanPham.Rows[0].Cells[0];
+            //Khởi động lại các nút:
+            if (dataGridView_QuanLyLoaiSanPham.Rows.Count > 0)
+            {
+                for (int i = 0; i < dataGridView_QuanLyLoaiSanPham.Rows.Count; i++)
+                {
+                    if (dataGridView_QuanLyLoaiSanPham.Rows[i].Visible == true)
+                    {
+                        buttonEnabled();
+                        break;
+                    }
+                }
+            }
+            else
+                buttonDisabled();
         }
 
 
