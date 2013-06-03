@@ -16,8 +16,10 @@ namespace GUI
         {
             InitializeComponent();
         }
-        private bool boolTu = false;
-        private bool boolDen = false;
+        private bool boolNgayDatTu = false;
+        private bool boolNgayDatDen = false;
+        private bool boolNgayNhanTu = false;
+        private bool boolNgayNhanDen = false;
 
         private void enableButton()
         {
@@ -42,52 +44,105 @@ namespace GUI
             {
                 dataGridView_TraCuuNhapHang.Rows.Clear();
                 PhieuNhapDTO item = new PhieuNhapDTO();
-            
+
                 for (int i = 0; i < listPhieuNhapDTO.Count; i++)
                 {
                     item = listPhieuNhapDTO[i];
                     dataGridView_TraCuuNhapHang.Rows.Add(
                            (stt++).ToString(),
                            item.MaPhieuNhap,
+                           DonHangBUS.SelectDonHangById(item.MaDonHang).MaDonHang,
                           DonHangBUS.SelectDonHangById(item.MaDonHang).NgayLap.ToString("dd/MM/yyy"),
                           item.NgayNhan.ToString("dd/MM/yyy"),
                            NhanVienBUS.SelectNhanVienById(item.MaNhanVien).TenNhanVien);
                 }
+                //Data
+                enableButton();
+            }
+            else
+            {
+                disableButton();
             }
 
         }
 
         private void Search()
         {
-            DateTime dateTu = new DateTime();
-            DateTime dateDen = new DateTime();
-            DateTime dateHienTai = new DateTime();
-            if (boolTu)
-            {
-                dateTu = dateTimePickerTu.Value.Date;
-            }
-            else
-            {
-                dateTu = new DateTime(1, 1, 1).Date;
-            }
+            DateTime dateNgayDatTu = new DateTime();
+            DateTime dateNgayDatDen = new DateTime();
+            DateTime dateNgayDatHienTai = new DateTime();
 
-            if (boolDen)
-            {
-                dateDen = dateTimePickerDen.Value.Date;
-            }
+            DateTime dateNgayNhanTu = new DateTime();
+            DateTime dateNgayNhanDen = new DateTime();
+            DateTime dateNgayNhanHienTai = new DateTime();
+
+            if (boolNgayDatTu)
+                dateNgayDatTu = dateTimePickerNgayDatTu.Value.Date;
             else
-            {
-                dateDen = DateTime.Now.Date;
-            }
+                dateNgayDatTu = new DateTime(1, 1, 1).Date;
+
+
+            if (boolNgayDatDen)
+                dateNgayDatDen = dateTimePickerNgayDatDen.Value.Date;
+            else
+                dateNgayDatDen = DateTime.Now.Date;
+
+            if (boolNgayNhanTu)
+                dateNgayNhanTu = dateTimePickerNgayDatTu.Value.Date;
+            else
+                dateNgayNhanTu = new DateTime(1, 1, 1).Date;
+
+
+            if (boolNgayNhanDen)
+                dateNgayNhanDen = dateTimePickerNgayNhanDen.Value.Date;
+            else
+                dateNgayNhanDen = DateTime.Now.Date;
+
+
 
             int stt = 0;
+            int vt = -1;
             for (int i = 0; i < dataGridView_TraCuuNhapHang.RowCount; i++)
             {
-                string[] chuoi = dataGridView_TraCuuNhapHang.Rows[i].Cells["clNgayDat"].Value.ToString().Split('/');
-                dateHienTai = new DateTime(int.Parse(chuoi[2]), int.Parse(chuoi[1]), int.Parse(chuoi[0])).Date;
+                string[] chuoiNgayDat = dataGridView_TraCuuNhapHang.Rows[i].Cells[clNgayDat.Index].Value.ToString().Split('/');
+                dateNgayDatHienTai = new DateTime(int.Parse(chuoiNgayDat[2]), int.Parse(chuoiNgayDat[1]), int.Parse(chuoiNgayDat[0])).Date;
+
+                string[] chuoiNgayNhan = dataGridView_TraCuuNhapHang.Rows[i].Cells[clNgayNhan.Index].Value.ToString().Split('/');
+                dateNgayNhanHienTai = new DateTime(int.Parse(chuoiNgayNhan[2]), int.Parse(chuoiNgayNhan[1]), int.Parse(chuoiNgayNhan[0])).Date;
                 dataGridView_TraCuuNhapHang.Rows[i].Visible = false;
-                if (dataGridView_TraCuuNhapHang.Rows[i].Cells["clMaPhieuNhap"].Value.ToString().ToUpper().IndexOf(txtMaPhieuNhap.Text.ToString().ToUpper()) >= 0
-                    && dateTu.CompareTo(dateHienTai) <= 0 && dateDen.CompareTo(dateHienTai) >= 0
+                if (dataGridView_TraCuuNhapHang.Rows[i].Cells[clMaPhieuNhap.Index].Value.ToString().ToUpper().IndexOf(txtMaPhieuNhap.Text.ToString().ToUpper()) >= 0
+                    && dataGridView_TraCuuNhapHang.Rows[i].Cells[clMaDonHang.Index].Value.ToString().ToUpper().IndexOf(txtMaDonHang.Text.ToString().ToUpper()) >= 0
+                    && dataGridView_TraCuuNhapHang.Rows[i].Cells[clNguoiNhan.Index].Value.ToString().ToUpper().IndexOf(txtNguoiNhan.Text.ToString().ToUpper()) >= 0
+                    && dateNgayDatTu.CompareTo(dateNgayDatHienTai) <= 0 && dateNgayDatDen.CompareTo(dateNgayDatHienTai) >= 0
+                    && dateNgayDatTu.CompareTo(dateNgayDatDen) <= 0
+                    && dateNgayNhanTu.CompareTo(dateNgayNhanHienTai) <= 0 && dateNgayNhanDen.CompareTo(dateNgayNhanHienTai) >= 0
+                    && dateNgayNhanTu.CompareTo(dateNgayNhanDen) <= 0
+                   )
+                {
+                    stt++;
+                    dataGridView_TraCuuNhapHang.Rows[i].Visible = true;
+                    dataGridView_TraCuuNhapHang.Rows[i].Cells["clSTT"].Value = stt.ToString();
+                    vt = i;
+                    break;
+                }
+            }
+
+            for (int i = vt + 1; i < dataGridView_TraCuuNhapHang.RowCount; i++)
+            {
+                string[] chuoiNgayDat = dataGridView_TraCuuNhapHang.Rows[i].Cells[clNgayDat.Index].Value.ToString().Split('/');
+                dateNgayDatHienTai = new DateTime(int.Parse(chuoiNgayDat[2]), int.Parse(chuoiNgayDat[1]), int.Parse(chuoiNgayDat[0])).Date;
+
+                string[] chuoiNgayNhan = dataGridView_TraCuuNhapHang.Rows[i].Cells[clNgayNhan.Index].Value.ToString().Split('/');
+                dateNgayNhanHienTai = new DateTime(int.Parse(chuoiNgayNhan[2]), int.Parse(chuoiNgayNhan[1]), int.Parse(chuoiNgayNhan[0])).Date;
+
+                dataGridView_TraCuuNhapHang.Rows[i].Visible = false;
+                if (dataGridView_TraCuuNhapHang.Rows[i].Cells[clMaPhieuNhap.Index].Value.ToString().ToUpper().IndexOf(txtMaPhieuNhap.Text.ToString().ToUpper()) >= 0
+                    && dataGridView_TraCuuNhapHang.Rows[i].Cells[clMaDonHang.Index].Value.ToString().ToUpper().IndexOf(txtMaDonHang.Text.ToString().ToUpper()) >= 0
+                    && dataGridView_TraCuuNhapHang.Rows[i].Cells[clNguoiNhan.Index].Value.ToString().ToUpper().IndexOf(txtNguoiNhan.Text.ToString().ToUpper()) >= 0
+                    && dateNgayDatTu.CompareTo(dateNgayDatHienTai) <= 0 && dateNgayDatDen.CompareTo(dateNgayDatHienTai) >= 0
+                    && dateNgayDatTu.CompareTo(dateNgayDatDen) <= 0
+                    && dateNgayNhanTu.CompareTo(dateNgayNhanHienTai) <= 0 && dateNgayNhanDen.CompareTo(dateNgayNhanHienTai) >= 0
+                    && dateNgayNhanTu.CompareTo(dateNgayNhanDen) <= 0
                    )
                 {
                     stt++;
@@ -95,36 +150,78 @@ namespace GUI
                     dataGridView_TraCuuNhapHang.Rows[i].Cells["clSTT"].Value = stt.ToString();
                 }
             }
+
+            if (vt == -1)
+            {
+                disableButton();
+            }
+            else
+            {
+                enableButton();
+                dataGridView_TraCuuNhapHang.CurrentCell = dataGridView_TraCuuNhapHang.Rows[vt].Cells[0];
+                dataGridView_TraCuuNhapHang.CurrentCell.Selected = true;
+            }
         }
 
-        private void FormQuanLyNhapHang_Load(object sender, EventArgs e)
-        {
-           // KhoiTao();
-        }
-        private void dateTimePickerTu_ValueChanged(object sender, EventArgs e)
-        {
-            boolTu = true;
-            Search();
-            boolTu = false;
-        }
-
-        private void dateTimePickerDen_ValueChanged(object sender, EventArgs e)
-        {
-            boolDen = true;
-            Search();
-            boolDen = false;
-        }
 
         private void txtMaPhieuNhap_TextChanged(object sender, EventArgs e)
         {
             Search();
         }
 
+        private void txtMaDonHang_TextChanged(object sender, EventArgs e)
+        {
+            Search();
+        }
+
+        private void txtNguoiNhan_TextChanged(object sender, EventArgs e)
+        {
+            Search();
+        }
+
+        private void dateTimePickerNgayDatTu_ValueChanged(object sender, EventArgs e)
+        {
+            boolNgayDatTu = true;
+            Search();
+        }
+
+        private void dateTimePickerNgayDatDen_ValueChanged(object sender, EventArgs e)
+        {
+            boolNgayDatDen = true;
+            Search();
+        }
+
+        private void dateTimePickerNgayNhanTu_ValueChanged(object sender, EventArgs e)
+        {
+            boolNgayNhanTu = true;
+            Search();
+        }
+
+        private void dateTimePickerNgayNhanDen_ValueChanged(object sender, EventArgs e)
+        {
+            boolNgayNhanDen = true;
+            Search();
+        }
+
         private void btnLamLai_Click(object sender, EventArgs e)
         {
-            dateTimePickerTu.Value = DateTime.Now;
-            dateTimePickerDen.Value = DateTime.Now;
-            txtMaPhieuNhap = null;
+            dateTimePickerNgayDatTu.Value = DateTime.Now;
+            boolNgayDatTu = false;
+            dateTimePickerNgayDatDen.Value = DateTime.Now;
+            boolNgayDatDen = false;
+            dateTimePickerNgayNhanTu.Value = DateTime.Now;
+            boolNgayNhanTu = false;
+            dateTimePickerNgayNhanDen.Value = DateTime.Now;
+            boolNgayNhanDen = false;
+            txtMaPhieuNhap.Text = null;
+            txtMaDonHang.Text = null;
+            txtNguoiNhan.Text = null;
+
+            if (dataGridView_TraCuuNhapHang.RowCount > 0)
+            {
+                dataGridView_TraCuuNhapHang.CurrentCell = dataGridView_TraCuuNhapHang.Rows[0].Cells[0];
+                dataGridView_TraCuuNhapHang.CurrentCell.Selected = true;
+            }
         }
 
         private void btnXemChiTiet_Click(object sender, EventArgs e)
@@ -147,36 +244,119 @@ namespace GUI
             if (res == DialogResult.Yes)
             {
                 int Index = dataGridView_TraCuuNhapHang.CurrentRow.Index;
+                int stt = int.Parse(dataGridView_TraCuuNhapHang.CurrentRow.Cells[clSTT.Index].Value.ToString());
                 string id = dataGridView_TraCuuNhapHang.CurrentRow.Cells["clMaPhieuNhap"].Value.ToString();
+                List<ChiTietPhieuNhapDTO> listChiTietPhieuNhapDTO = ChiTietPhieuNhapBUS.SelectChiTietPhieuNhapByMaPhieuNhap(id);
+                string maDonHang = PhieuNhapBUS.SelectPhieuNhapById(id).MaDonHang;
                 if (PhieuNhapBUS.DeletePhieuNhapByID(id))
                 {
                     dataGridView_TraCuuNhapHang.Rows.RemoveAt(Index);
-                    for (int i = Index; i < dataGridView_TraCuuNhapHang.RowCount; i++)
+                    if (dataGridView_TraCuuNhapHang.RowCount > 0)
                     {
-                        dataGridView_TraCuuNhapHang.Rows[i].Cells["clSTT"].Value = (i + 1).ToString();
+                        bool f = false;
+                        for (int i = 0; i < Index; i++)
+                        {
+                            if (dataGridView_TraCuuNhapHang.Rows[i].Visible == true)
+                            {
+                                f = true;
+                                break;
+                            }
+                        }
+
+
+                        for (int i = Index; i < dataGridView_TraCuuNhapHang.RowCount; i++)
+                        {
+                            if (dataGridView_TraCuuNhapHang.Rows[i].Visible == true)
+                            {
+                                dataGridView_TraCuuNhapHang.Rows[i].Cells["clSTT"].Value = stt.ToString();
+                                stt++;
+                                f = true;
+                            }
+                        }
+
+                        if (f == false)
+                        {
+                            disableButton();
+                        }
+                        else
+                        {
+                            enableButton();
+                        }
                     }
+                    else
+                    {
+                        disableButton();
+                    }
+
+                    //Update
+
+                    //Up date  so luong da nhan trong bang chi tiet don hang va so luong ton
+                    List<ChiTietDonHangDTO> listchiTietDonHangDTO = ChiTietDonHangBUS.SelectChiTietDonHangByMaDonHang(maDonHang);
+                    SanPhamDTO sanPhamDTO = new SanPhamDTO();
+                    bool falg = true;
+                    for (int i = 0; i < listchiTietDonHangDTO.Count; i++)
+                    {
+                        //chi tiet don hang
+                        listchiTietDonHangDTO[i].SLDaNhan = listchiTietDonHangDTO[i].SLDaNhan - listChiTietPhieuNhapDTO[i].SLNhan;
+                        ChiTietDonHangBUS.UpdateChiTietDonHangById(listchiTietDonHangDTO[i]);
+                        if (listchiTietDonHangDTO[i].SLDaNhan != listchiTietDonHangDTO[i].SoLuong)
+                        {
+                            falg = false;
+                        }
+
+                        //so luong ton
+                        sanPhamDTO = SanPhamBUS.SelectSanPhamById(listChiTietPhieuNhapDTO[i].MaSanPham);
+                        sanPhamDTO.SoLuongTon = sanPhamDTO.SoLuongTon - listChiTietPhieuNhapDTO[i].SLNhan;
+                        SanPhamBUS.UpdateSanPhamById(sanPhamDTO);
+                    }
+
+                    //update trang thai don hang
+                    DonHangDTO donHangDTO = DonHangBUS.SelectDonHangById(maDonHang);
+                    if (falg)//Da nhan (tat ca SlDaNhan == SoLuong)
+                    {
+                        donHangDTO.TrangThai = "Đã nhận";
+                    }
+                    else//Nhan mot phan (con it nhat mot san pham chua nhan het)
+                    {
+                        donHangDTO.TrangThai = "Nhận một phần";
+                    }
+                    DonHangBUS.UpdateDonHangById(donHangDTO);
+
+                    MessageBox.Show("Xóa thành công");
                 }
+
             }
         }
 
         private void btnCapNhat_Click(object sender, EventArgs e)
         {
-            if (dataGridView_TraCuuNhapHang.RowCount > 0)
-            {
-                FormNhapHang fQLNhapHang = new FormNhapHang();
-                fQLNhapHang.MaPhieuNhap = dataGridView_TraCuuNhapHang.CurrentRow.Cells["clMaPhieuNhap"].Value.ToString();
-                fQLNhapHang.Status = 1;
-                fQLNhapHang.ShowDialog();
-            }
-            else
-            {
-                btnCapNhat.Enabled = false;
-            }
+            FormNhapHang fQLNhapHang = new FormNhapHang();
+            fQLNhapHang.MaPhieuNhap = dataGridView_TraCuuNhapHang.CurrentRow.Cells["clMaPhieuNhap"].Value.ToString();
+            fQLNhapHang.Status = 4;
+            fQLNhapHang.ShowDialog();
         }
 
         private void FormQuanLyNhapHang_Activated(object sender, EventArgs e)
         {
             KhoiTao();
         }
+
+        private void btnTaoMoi_Click(object sender, EventArgs e)
+        {
+            FormNhapHang frm = (FormNhapHang)ThongTin.KiemTraTonTai(typeof(FormNhapHang), this.ParentForm);
+            if (frm != null)
+            {
+                frm.taoMoi = true;
+                frm.Activate();
+            }
+            else
+            {
+                FormNhapHang fNhapHang = new FormNhapHang();
+                fNhapHang.taoMoi = true;
+                fNhapHang.MdiParent = this.ParentForm;
+                fNhapHang.Show();
+            }
+        }
+
     }
 }
