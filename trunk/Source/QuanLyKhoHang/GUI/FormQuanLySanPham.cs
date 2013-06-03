@@ -339,6 +339,7 @@ namespace GUI
                 //if(dem)
                 Index = dataGridView_QuanLySanPham.CurrentRow.Index;
                 string id = dataGridView_QuanLySanPham.CurrentRow.Cells["ColMaSanPham"].Value.ToString().Trim();
+                int stt = int.Parse(dataGridView_QuanLySanPham.CurrentRow.Cells["ColSTT"].Value.ToString());
                 if (SanPhamBUS.DeleteSanPhamById(id))
                 {
                     dataGridView_QuanLySanPham.Rows.RemoveAt(Index);
@@ -357,6 +358,7 @@ namespace GUI
                             if (dataGridView_QuanLySanPham .Rows[i].Visible == true)
                             {
                                 dataGridView_QuanLySanPham .Rows[i].Cells["ColSTT"].Value = i.ToString();
+                                stt++;
                                 flag = true;
                             }
                         }

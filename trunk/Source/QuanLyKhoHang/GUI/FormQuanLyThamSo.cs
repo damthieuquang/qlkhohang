@@ -375,7 +375,8 @@ namespace GUI
             if (res == DialogResult.Yes)
             {
                 Index = dataGridViewThamSo.CurrentRow.Index;
-                string id = dataGridViewThamSo.CurrentRow.Cells["ColMaThamSo"].Value.ToString();
+                string id = dataGridViewThamSo.CurrentRow.Cells["ColMaThamSo"].Value.ToString().Trim();
+                int stt = int.Parse(dataGridViewThamSo.CurrentRow.Cells["ColSTT"].Value.ToString());
                 if (ThamSoBUS.DeleteThamSoById(id))
                 {
                     dataGridViewThamSo.Rows.RemoveAt(Index);
@@ -393,7 +394,8 @@ namespace GUI
                         {
                             if (dataGridViewThamSo.Rows[i].Visible == true)
                             {
-                                dataGridViewThamSo.Rows[i].Cells["ColSTT"].Value = (i).ToString();
+                                dataGridViewThamSo.Rows[i].Cells["ColSTT"].Value = stt.ToString();
+                                stt++;
                                 flag = true;
                             }
                         }

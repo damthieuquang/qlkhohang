@@ -415,7 +415,8 @@ namespace GUI
             if (res == DialogResult.Yes)
             {
                 Index = dataGridView_NhanVien.CurrentRow.Index;
-                string id = dataGridView_NhanVien.CurrentRow.Cells["clMaNhanVien"].Value.ToString();
+                string id = dataGridView_NhanVien.CurrentRow.Cells["clMaNhanVien"].Value.ToString().Trim();
+                int stt = int.Parse(dataGridView_NhanVien.CurrentRow.Cells["clSTT"].Value.ToString());
                 if (NhanVienBUS.DeleteNhanVienById(id))
                 {
                     dataGridView_NhanVien.Rows.RemoveAt(Index);
@@ -433,7 +434,8 @@ namespace GUI
                         {
                             if (dataGridView_NhanVien.Rows[i].Visible == true)
                             {
-                                dataGridView_NhanVien.Rows[i].Cells["clSTT"].Value = i.ToString();
+                                dataGridView_NhanVien.Rows[i].Cells["clSTT"].Value = stt.ToString();
+                                stt++;
                                 flag = true;
                             }
                         }
