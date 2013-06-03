@@ -121,8 +121,8 @@ namespace GUI
             {
                 Index = dataGridView_QuanLyThanhVien.CurrentRow.Index;
                 string id = dataGridView_QuanLyThanhVien.CurrentRow.Cells["ColMaThanhVien"].Value.ToString().Trim();
-                bool xoa = ThanhVienBUS.DeleteThanhVienById(id);
-                if (xoa == true)
+                int stt = int.Parse(dataGridView_QuanLyThanhVien.CurrentRow.Cells["ColSTT"].Value.ToString());
+                if (ThanhVienBUS.DeleteThanhVienById(id))
                 {
                     dataGridView_QuanLyThanhVien.Rows.RemoveAt(Index);
                     if (dataGridView_QuanLyThanhVien.Rows.Count > 0)
@@ -139,7 +139,8 @@ namespace GUI
                         {
                             if (dataGridView_QuanLyThanhVien.Rows[i].Visible == true)
                             {
-                                dataGridView_QuanLyThanhVien.Rows[i].Cells["ColSTT"].Value = (i).ToString();
+                                dataGridView_QuanLyThanhVien.Rows[i].Cells["ColSTT"].Value = stt.ToString();
+                                stt++;
                                 flag = true;
                             }
                         }

@@ -185,7 +185,8 @@ namespace GUI
             if (res == DialogResult.Yes)
             {
                 Index = dataGridView_QuanLyLoaiSanPham.CurrentRow.Index;
-                string id = dataGridView_QuanLyLoaiSanPham.CurrentRow.Cells["ColMaLoaiSanPham"].Value.ToString();                
+                string id = dataGridView_QuanLyLoaiSanPham.CurrentRow.Cells["ColMaLoaiSanPham"].Value.ToString().Trim();
+                int stt = int.Parse(dataGridView_QuanLyLoaiSanPham.CurrentRow.Cells["ColSTT"].Value.ToString());
                 if (LoaiSanPhamBUS.DeleteLoaiSanPhamById(id))
                 {    
                 
@@ -204,7 +205,8 @@ namespace GUI
                         {
                             if (dataGridView_QuanLyLoaiSanPham.Rows[i].Visible == true)
                             {
-                                dataGridView_QuanLyLoaiSanPham.Rows[i].Cells["ColSTT"].Value = (i + 1).ToString();
+                                dataGridView_QuanLyLoaiSanPham.Rows[i].Cells["ColSTT"].Value = stt.ToString();
+                                stt++;
                                 flag = true;
                             }
                         }
