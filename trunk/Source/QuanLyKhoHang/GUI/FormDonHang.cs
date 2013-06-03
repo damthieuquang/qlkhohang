@@ -511,10 +511,9 @@ namespace GUI
         //Chuyển sang quản lý đơn hàng
         private void btnTimDonHang_Click(object sender, EventArgs e)
         {
-            FormQuanLyDonHang frm = (FormQuanLyDonHang)ThongTin.KiemTraTonTai(typeof(FormQuanLyDonHang), this.ParentForm);
+            Form frm = ThongTin.KiemTraTonTai(typeof(FormQuanLyDonHang), this.ParentForm);
             if (frm != null)
             {
-                frm.activeForm = true;
                 frm.Activate();
             }
             else
