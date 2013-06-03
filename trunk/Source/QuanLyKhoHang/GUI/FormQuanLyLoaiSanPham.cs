@@ -212,7 +212,7 @@ namespace GUI
                             buttonDisabled();
                     }
                     else
-                        buttonEnabled();                    
+                        buttonDisabled();                    
                 }
             }
         }
@@ -290,6 +290,7 @@ namespace GUI
                     dataGridView_QuanLyLoaiSanPham.Rows[i].ReadOnly = true;
                 }
                 buttonLamLai.Enabled = true;
+                buttonEnabled();
             }
             else
             {

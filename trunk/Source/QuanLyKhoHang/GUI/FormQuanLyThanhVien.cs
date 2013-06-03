@@ -149,11 +149,12 @@ namespace GUI
                             buttonDisabled();
                         }
                     }
+                    else
+                    {
+                        buttonDisabled();
+                    }
                 }
-                else
-                {
-                    buttonEnabled();
-                }
+                
             }
         }
 
@@ -331,6 +332,7 @@ namespace GUI
                     dataGridView_QuanLyThanhVien.Rows[i].ReadOnly = true;
                 }
                 buttonLamLai.Enabled = true;
+                buttonEnabled();
             }
             else
             {

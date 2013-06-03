@@ -95,6 +95,7 @@ namespace GUI
                     dataGridView_QuanLySanPham.Rows[i].ReadOnly = true;
                 }
                 buttonLamLai.Enabled = true;
+                buttonEnabled();
             }
             else
             {
