@@ -65,8 +65,29 @@ namespace GUI
                     dataGridViewThamSo.Rows.Add((i + 1).ToString(), item.MaThamSo, item.TenThamSo, item.GiaTri);
                     dataGridViewThamSo.Rows[i].ReadOnly = true;
                 }
+                buttonLamLai.Enabled = true;
+                buttonEnabled();
+                
+                
+            }
+            else
+            {
+                buttonDisabled();
+                buttonLamLai.Enabled = false;
             }
 
+        }
+        //Hàm hiệu chỉnh các button:
+        private void buttonEnabled()
+        {            
+            buttonCapNhat.Enabled = true;
+            buttonXoa.Enabled = true;
+        }
+
+        private void buttonDisabled()
+        {
+            buttonCapNhat.Enabled = false;
+            buttonXoa.Enabled = false;
         }
 
         /*
@@ -76,7 +97,8 @@ namespace GUI
         private void Search()
         {
             int stt = 0;
-            for (int i = 0; i < dataGridViewThamSo.RowCount; i++)
+            int vt = -1;
+            for (int i = 0; i < dataGridViewThamSo.Rows.Count; i++)
             {
                 dataGridViewThamSo.Rows[i].Visible = false;
                 if (dataGridViewThamSo.Rows[i].Cells["ColMaThamSo"].Value.ToString().ToUpper().IndexOf(textBoxMaThamSo.Text.ToString().ToUpper()) >= 0
@@ -86,7 +108,31 @@ namespace GUI
                     stt++;
                     dataGridViewThamSo.Rows[i].Visible = true;
                     dataGridViewThamSo.Rows[i].Cells["ColSTT"].Value = stt.ToString();
+                    vt = i;
+                    break;
                 }
+            }
+            for (int i = vt + 1; i < dataGridViewThamSo.Rows.Count; i++)
+            {
+                dataGridViewThamSo.Rows[i].Visible = false;
+                if (dataGridViewThamSo.Rows[i].Cells["ColMaThamSo"].Value.ToString().ToUpper().IndexOf(textBoxMaThamSo.Text.ToString().ToUpper()) >= 0
+                    && dataGridViewThamSo.Rows[i].Cells["ColTenThamSo"].Value.ToString().ToUpper().IndexOf(textBoxTenThamSo.Text.ToString().ToUpper()) >= 0
+                    && dataGridViewThamSo.Rows[i].Cells["ColGiaTri"].Value.ToString().ToUpper().IndexOf(textBoxGiaTri.Text.ToString().ToUpper()) >= 0)
+                {
+                    stt++;
+                    dataGridViewThamSo.Rows[i].Visible = true;
+                    dataGridViewThamSo.Rows[i].Cells["ColSTT"].Value = stt.ToString();                  
+                }
+            }
+            if (vt == -1)// khon co dong nao thoa
+            {
+                buttonDisabled();
+            }
+            else
+            {
+                buttonEnabled();
+                dataGridViewThamSo.CurrentCell = dataGridViewThamSo.Rows[vt].Cells[0];
+                dataGridViewThamSo.CurrentCell.Selected = true;
             }
         }
 
@@ -117,6 +163,21 @@ namespace GUI
             }
 
             dataGridViewThamSo.CurrentCell = dataGridViewThamSo.Rows[0].Cells[0];
+            //Khởi động lại các nút:
+            if (dataGridViewThamSo.Rows.Count > 0)
+            {
+                for (int i = 0; i < dataGridViewThamSo.Rows.Count; i++)
+                {
+                    if (dataGridViewThamSo.Rows[i].Visible == true)
+                    {
+                        buttonEnabled();
+                        break;
+                    }
+                }
+            }
+            else
+                buttonDisabled();
+
         }
 
         private void FormQuanLyThamSo_Load(object sender, EventArgs e)
@@ -190,11 +251,11 @@ namespace GUI
         {
             //Lấy vị trí cần cập nhật
             Index = dataGridViewThamSo.CurrentRow.Index;
-            
+           
             //Lưu lại giá trị cần cập nhật, khôi phục lại khi cập nhật không thành công hoặc hủy
             ThamSoDTO backup = new ThamSoDTO();
-            backup.MaThamSo = dataGridViewThamSo.CurrentRow.Cells["ColMaThamSo"].Value.ToString();
-            backup.TenThamSo = dataGridViewThamSo.CurrentRow.Cells["ColTenThamSo"].Value.ToString();
+            backup.MaThamSo = dataGridViewThamSo.CurrentRow.Cells["ColMaThamSo"].Value.ToString().Trim();
+            backup.TenThamSo = dataGridViewThamSo.CurrentRow.Cells["ColTenThamSo"].Value.ToString().Trim();
             backup.GiaTri = dataGridViewThamSo.CurrentRow.Cells["ColGiaTri"].Value.ToString();
             BackupThamSoDTO = backup;
             
@@ -318,9 +379,30 @@ namespace GUI
                 if (ThamSoBUS.DeleteThamSoById(id))
                 {
                     dataGridViewThamSo.Rows.RemoveAt(Index);
-                    for (int i = Index; i < dataGridViewThamSo.RowCount; i++)
+                    if (dataGridViewThamSo.Rows.Count > 0)
                     {
-                        dataGridViewThamSo.Rows[i].Cells["ColSTT"].Value = (i + 1).ToString();
+                        bool flag = false;
+                        for (int i = 0; i < Index; i++)
+                        {
+                            if (dataGridViewThamSo.Rows[i].Visible == true)
+                            {
+                                flag = true;
+                            }
+                        }
+                        for (int i = Index; i < dataGridViewThamSo.Rows.Count; i++)
+                        {
+                            if (dataGridViewThamSo.Rows[i].Visible == true)
+                            {
+                                dataGridViewThamSo.Rows[i].Cells["ColSTT"].Value = (i).ToString();
+                                flag = true;
+                            }
+                        }
+                        if (flag == false)
+                            buttonDisabled();
+                    }
+                    else
+                    {
+                         buttonDisabled();
                     }
                 }
             }
@@ -328,7 +410,7 @@ namespace GUI
 
         private void buttonThoat_Click(object sender, EventArgs e)
         {
-            this.Close();
+            Dispose();
         }
     }
 }

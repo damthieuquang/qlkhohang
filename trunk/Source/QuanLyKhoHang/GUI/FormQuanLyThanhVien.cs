@@ -20,7 +20,6 @@ namespace GUI
         private void FormQuanLyThanhVien_Load(object sender, EventArgs e)
         {
             panelYesNo.Location = new Point(12, 350);
-
             KhoiTao();
         }
 
@@ -153,8 +152,7 @@ namespace GUI
                     {
                         buttonDisabled();
                     }
-                }
-                
+                }               
             }
         }
 
@@ -441,6 +439,20 @@ namespace GUI
                 dataGridView_QuanLyThanhVien.Rows[i].Visible = true;
             }
 			dataGridView_QuanLyThanhVien.CurrentCell = dataGridView_QuanLyThanhVien.Rows[0].Cells[0];
+            //Khởi động lại các nút:
+            if (dataGridView_QuanLyThanhVien .Rows.Count > 0)
+            {
+                for (int i = 0; i < dataGridView_QuanLyThanhVien .Rows.Count; i++)
+                {
+                    if (dataGridView_QuanLyThanhVien.Rows[i].Visible == true)
+                    {
+                        buttonEnabled();
+                        break;
+                    }
+                }
+            }
+            else
+                buttonDisabled();
         }
     }
 }
