@@ -438,7 +438,7 @@ namespace GUI
             {
                 dataGridView_QuanLyThanhVien.Rows[i].Visible = true;
             }
-
+			dataGridView_QuanLyThanhVien.CurrentCell = dataGridView_QuanLyThanhVien.Rows[0].Cells[0];
         }
     }
 }
