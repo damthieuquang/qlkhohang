@@ -67,9 +67,9 @@ namespace GUI
             clComboBoxLoaiNhanVien.DataSource = dt2;
             clComboBoxLoaiNhanVien.DisplayMember = "text";
             clComboBoxLoaiNhanVien.ValueMember = "value";
-           
-          
-            
+
+
+
         }
 
         private void KhoiTao()
@@ -85,12 +85,35 @@ namespace GUI
                     dataGridView_NhanVien.Rows.Add((i + 1).ToString(), item.MaNhanVien, item.TenNhanVien, item.MatKhau, item.LoaiNhanVien.ToString());
                     dataGridView_NhanVien.Rows[i].ReadOnly = true;
                 }
+                buttonLamLai.Enabled = true;
+                buttonEnabled();
+            }
+            else
+            {
+                buttonLamLai.Enabled = false;
+                buttonDisabled();
             }
         }
+        //ham hieu chinh cac nut:
+        private void buttonEnabled()
+        {
+            buttonXemChiTiet.Enabled = true;
+            buttonCapNhat.Enabled = true;
+            buttonXoa.Enabled = true;
+        }
 
+        private void buttonDisabled()
+        {
+            buttonXemChiTiet.Enabled = false;
+            buttonCapNhat.Enabled = false;
+            buttonXoa.Enabled = false;
+        }
+
+        //Ham search:
         private void Search()
         {
             int stt = 0;
+            int vt = -1;
             for (int i = 0; i < dataGridView_NhanVien.RowCount; i++)
             {
                 dataGridView_NhanVien.Rows[i].Visible = false;
@@ -101,7 +124,34 @@ namespace GUI
                     stt++;
                     dataGridView_NhanVien.Rows[i].Visible = true;
                     dataGridView_NhanVien.Rows[i].Cells["clSTT"].Value = stt.ToString();
+                    vt = i;
+                    break;
                 }
+            }
+           
+            for (int i = vt + 1; i < dataGridView_NhanVien.RowCount; i++)
+            {
+
+                dataGridView_NhanVien.Rows[i].Visible = false;
+                if (dataGridView_NhanVien.Rows[i].Cells["clMaNhanVien"].Value.ToString().ToUpper().IndexOf(txtMaNhanVien.Text.ToString().ToUpper()) >= 0
+                     && dataGridView_NhanVien.Rows[i].Cells["clTenNhanVien"].Value.ToString().ToUpper().IndexOf(txtTenNhanVien.Text.ToString().ToUpper()) >= 0
+                     && (comboBoxLoaiNhanVien.SelectedValue.ToString() == "" || dataGridView_NhanVien.Rows[i].Cells["clComboBoxLoaiNhanVien"].Value.ToString().ToUpper().IndexOf(comboBoxLoaiNhanVien.SelectedValue.ToString().ToUpper()) >= 0))
+                {
+                    stt++;
+                    dataGridView_NhanVien.Rows[i].Visible = true;
+                    dataGridView_NhanVien.Rows[i].Cells["clSTT"].Value = stt.ToString();
+                }
+            }
+
+            if (vt == -1)// khon co dong nao thoa
+            {
+                buttonDisabled();
+            }
+            else
+            {
+                buttonEnabled();
+                dataGridView_NhanVien.CurrentCell = dataGridView_NhanVien.Rows[vt].Cells[0];
+                dataGridView_NhanVien.CurrentCell.Selected = true;
             }
         }
 
@@ -140,7 +190,7 @@ namespace GUI
             KhoiTao();
             panelYesNo.Parent = panelFull;
             panelYesNo.Location = new Point(17, 390);
-            
+
         }
 
         private void FormQuanLyNhanVien_Resize(object sender, EventArgs e)
@@ -289,7 +339,7 @@ namespace GUI
                     nhanVienDTO.MaNhanVien = NhanVienBUS.CreateNhanVienById();
                     dataGridView_NhanVien.Rows[Index].Cells["clMaNhanVien"].Value = nhanVienDTO.MaNhanVien;
                     dataGridView_NhanVien.Rows[Index].Cells["clSTT"].Value = (Index + 1).ToString();
-                   
+
 
                     if (NhanVienBUS.InsertNhanVien(nhanVienDTO))
                     {
@@ -355,10 +405,32 @@ namespace GUI
                 if (NhanVienBUS.DeleteNhanVienById(id))
                 {
                     dataGridView_NhanVien.Rows.RemoveAt(Index);
-                    for (int i = Index; i < dataGridView_NhanVien.RowCount; i++)
+                    if (dataGridView_NhanVien.Rows.Count > 0)
                     {
-                        dataGridView_NhanVien.Rows[i].Cells["clSTT"].Value = (i + 1).ToString();
+                        bool flag = false;
+                        for (int i = 0; i < Index; i++)
+                        {
+                            if (dataGridView_NhanVien.Rows[i].Visible == true)
+                            {
+                                flag = true;
+                            }
+                        }
+                        for (int i = Index; i < dataGridView_NhanVien.RowCount; i++)
+                        {
+                            if (dataGridView_NhanVien.Rows[i].Visible == true)
+                            {
+                                dataGridView_NhanVien.Rows[i].Cells["clSTT"].Value = i.ToString();
+                                flag = true;
+                            }
+                        }
+
+                        if (flag == false)
+                        {
+                            buttonDisabled();
+                        }
                     }
+                    else
+                        buttonDisabled();
                 }
             }
         }
