@@ -18,8 +18,9 @@ namespace GUI
             InitializeComponent();
         }
 
-          private bool boolTu = false;
+          private bool  boolTu = false;
           private bool boolDen = false;
+          public bool activeForm = false;
 
           private void buttonEnabled()
           {
@@ -116,43 +117,67 @@ namespace GUI
             }
 
             int stt = 0;
-            for (int i = dataGridView_TraCuuDonHang.RowCount - 1; i >= 0 ; i--)
+            int vt = -1;
+            for (int i = 0; i < dataGridView_TraCuuDonHang.RowCount; i++)
             {
                 string[] chuoi = dataGridView_TraCuuDonHang.Rows[i].Cells["clNgayDat"].Value.ToString().Split('/');
                 dateHienTai = new DateTime(int.Parse(chuoi[2]), int.Parse(chuoi[1]), int.Parse(chuoi[0])).Date;
                 dataGridView_TraCuuDonHang.Rows[i].Visible = false;
-                int vt = -1;
 
                 if (dataGridView_TraCuuDonHang.Rows[i].Cells["clMaDonHang"].Value.ToString().ToUpper().IndexOf(txtMaDonHang.Text.ToString().ToUpper()) >= 0
                     && dataGridView_TraCuuDonHang.Rows[i].Cells["clNguoiDat"].Value.ToString().ToUpper().IndexOf(txtNguoiDat.Text.ToString().ToUpper()) >= 0
                     && dataGridView_TraCuuDonHang.Rows[i].Cells["clThanhTien"].Value.ToString().ToUpper().IndexOf(txtThanhTien.Text.ToString().ToUpper()) >= 0
                     && dataGridView_TraCuuDonHang.Rows[i].Cells["clTrangThai"].Value.ToString().ToUpper().IndexOf(comboBoxTrangThai.SelectedValue.ToString().ToUpper()) >= 0
-                    && dateTu.CompareTo(dateHienTai) <= 0 && dateDen.CompareTo(dateHienTai)>=0
+                    && dateTu.CompareTo(dateHienTai) <= 0 && dateDen.CompareTo(dateHienTai) >= 0
+                    && dateTu.CompareTo(dateDen) <=0
                    )
                 {
                     stt++;
                     dataGridView_TraCuuDonHang.Rows[i].Visible = true;
                     dataGridView_TraCuuDonHang.Rows[i].Cells["clSTT"].Value = stt.ToString();
                     vt = i;
+                    break;
                 }
+            }
 
-                if (vt == -1)
+            for (int i = vt + 1; i< dataGridView_TraCuuDonHang.RowCount; i++)
+            {
+                string[] chuoi = dataGridView_TraCuuDonHang.Rows[i].Cells["clNgayDat"].Value.ToString().Split('/');
+                dateHienTai = new DateTime(int.Parse(chuoi[2]), int.Parse(chuoi[1]), int.Parse(chuoi[0])).Date;
+                dataGridView_TraCuuDonHang.Rows[i].Visible = false;
+
+              
+                if (dataGridView_TraCuuDonHang.Rows[i].Cells["clMaDonHang"].Value.ToString().ToUpper().IndexOf(txtMaDonHang.Text.ToString().ToUpper()) >= 0
+                    && dataGridView_TraCuuDonHang.Rows[i].Cells["clNguoiDat"].Value.ToString().ToUpper().IndexOf(txtNguoiDat.Text.ToString().ToUpper()) >= 0
+                    && dataGridView_TraCuuDonHang.Rows[i].Cells["clThanhTien"].Value.ToString().ToUpper().IndexOf(txtThanhTien.Text.ToString().ToUpper()) >= 0
+                    && dataGridView_TraCuuDonHang.Rows[i].Cells["clTrangThai"].Value.ToString().ToUpper().IndexOf(comboBoxTrangThai.SelectedValue.ToString().ToUpper()) >= 0
+                    && dateTu.CompareTo(dateHienTai) <= 0 && dateDen.CompareTo(dateHienTai) >= 0
+                      && dateTu.CompareTo(dateDen) <= 0
+                   )
                 {
-                    buttonDisabled();
+                    stt++;
+                    dataGridView_TraCuuDonHang.Rows[i].Visible = true;
+                    dataGridView_TraCuuDonHang.Rows[i].Cells["clSTT"].Value = stt.ToString();
                 }
-                else
-                {
-                    buttonEnabled();
-                    dataGridView_TraCuuDonHang.CurrentCell = dataGridView_TraCuuDonHang.Rows[vt].Cells[0];
-                    dataGridView_TraCuuDonHang.CurrentCell.Selected = true;
-                }
+            }
+
+            if (vt == -1)
+            {
+                buttonDisabled();
+            }
+            else
+            {
+                buttonEnabled();
+                dataGridView_TraCuuDonHang.CurrentCell = dataGridView_TraCuuDonHang.Rows[vt].Cells[0];
+                dataGridView_TraCuuDonHang.CurrentCell.Selected = true;
             }
         }
 
         private void FormQuanLyDonHang_Load(object sender, EventArgs e)
         {
-            KhoiTaoComboBoxTrangThai();
+            
             KhoiTao();
+            KhoiTaoComboBoxTrangThai();
         }
 
         private void txtMaDonHang_TextChanged(object sender, EventArgs e)
@@ -177,26 +202,28 @@ namespace GUI
 
         private void dateTimePickerTu_ValueChanged(object sender, EventArgs e)
         {
-            boolTu = true;
+           boolTu = true;
             Search();
-            boolTu = false;
         }
 
         private void dateTimePickerDen_ValueChanged(object sender, EventArgs e)
         {
-            boolDen = true;
-            Search();
-            boolDen = false;
+           boolDen = true;
+           Search();
         }
 
         private void btnLamLai_Click(object sender, EventArgs e)
         {
+            
             dateTimePickerTu.Value = DateTime.Now;
+            boolTu = false;
             dateTimePickerDen.Value = DateTime.Now;
+            boolDen = false;  
             comboBoxTrangThai.SelectedIndex = 0;
             txtMaDonHang.Text = null;
             txtNguoiDat.Text = null;
             txtThanhTien.Text = null;
+            
             if (dataGridView_TraCuuDonHang.RowCount > 0)
             {
                 dataGridView_TraCuuDonHang.CurrentCell = dataGridView_TraCuuDonHang.Rows[0].Cells[0];
@@ -301,8 +328,11 @@ namespace GUI
 
         private void FormQuanLyDonHang_Activated(object sender, EventArgs e)
         {
-            FormQuanLyDonHang_Load(sender, e);
-            btnLamLai_Click(sender, e);
+            if (activeForm)
+            {
+                FormQuanLyDonHang_Load(sender, e);
+                btnLamLai_Click(sender, e);
+            }
         }
 
     }

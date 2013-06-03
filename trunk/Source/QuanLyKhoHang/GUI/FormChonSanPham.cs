@@ -33,22 +33,30 @@ namespace GUI
                     vt = i;
                     dataGridView_ChoSanPham.Rows[i].Visible = true;
                 }
+            }
 
-                if (vt == -1)
-                {
-                    btn_Xong.Enabled = false;
-                }
-                else
-                {
-                    dataGridView_ChoSanPham.CurrentCell = dataGridView_ChoSanPham.Rows[vt].Cells[clCheck.Index];
-                    dataGridView_ChoSanPham.CurrentCell.Selected = true;
-                    btn_Xong.Enabled = true;
-                }
+            if (vt == -1)
+            {
+                btn_Xong.Enabled = false;
+            }
+            else
+            {
+                dataGridView_ChoSanPham.CurrentCell = dataGridView_ChoSanPham.Rows[vt].Cells[clCheck.Index];
+                dataGridView_ChoSanPham.CurrentCell.Selected = true;
+                btn_Xong.Enabled = true;
             }
         }
 
         private void FormChonSanPham_Load(object sender, EventArgs e)
         {
+            List<SanPhamDTO> sanPhamDTO = new List<SanPhamDTO>();
+            sanPhamDTO = SanPhamBUS.SelectSanPhamAll();
+
+            for (int i = 0; i < sanPhamDTO.Count; i++)
+            {
+                dataGridView_ChoSanPham.Rows.Add(i + 1, sanPhamDTO[i].MaSanPham, sanPhamDTO[i].TenSanPham, LoaiSanPhamBUS.SelectLoaiSanPhamById(sanPhamDTO[i].MaLoaiSanPham).TenLoaiSanPham, false);
+            }
+
 
             List<LoaiSanPhamDTO> lstcbspDTO = LoaiSanPhamBUS.SelectLoaiSanPhamAll();
 
@@ -62,14 +70,6 @@ namespace GUI
             comboBoxLoaiSanPham.ValueMember = "TenLoaiSanPham";
             comboBoxLoaiSanPham.DataSource = lstcbspDTO;
             comboBoxLoaiSanPham.SelectedIndex = 0;
-
-            List<SanPhamDTO> sanPhamDTO = new List<SanPhamDTO>();
-            sanPhamDTO = SanPhamBUS.SelectSanPhamAll();
-
-            for (int i = 0; i < sanPhamDTO.Count; i++)
-            {
-                dataGridView_ChoSanPham.Rows.Add(i + 1, sanPhamDTO[i].MaSanPham, sanPhamDTO[i].TenSanPham, LoaiSanPhamBUS.SelectLoaiSanPhamById(sanPhamDTO[i].MaLoaiSanPham).TenLoaiSanPham, false);
-            }
 
         }
 
