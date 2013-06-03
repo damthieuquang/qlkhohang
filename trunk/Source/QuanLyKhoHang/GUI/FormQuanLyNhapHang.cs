@@ -18,6 +18,22 @@ namespace GUI
         }
         private bool boolTu = false;
         private bool boolDen = false;
+
+        private void enableButton()
+        {
+            btnXemChiTiet.Enabled = true;
+            btnCapNhat.Enabled = true;
+            btnXoa.Enabled = true;
+        }
+
+        private void disableButton()
+        {
+            btnXemChiTiet.Enabled = false;
+            btnCapNhat.Enabled = false;
+            btnXoa.Enabled = false;
+        }
+
+
         private void KhoiTao()
         {
             int stt = 1;
@@ -26,27 +42,21 @@ namespace GUI
             {
                 dataGridView_TraCuuNhapHang.Rows.Clear();
                 PhieuNhapDTO item = new PhieuNhapDTO();
-                ChiTietPhieuNhapDTO item1 = new ChiTietPhieuNhapDTO();
+            
                 for (int i = 0; i < listPhieuNhapDTO.Count; i++)
                 {
                     item = listPhieuNhapDTO[i];
-                    DonHangDTO donHangDTO = DonHangBUS.SelectDonHangById(item.MaDonHang);
-                    List<ChiTietPhieuNhapDTO> listChiTietPhieuNhapDTO = ChiTietPhieuNhapBUS.SelectChiTietPhieuNhapByMaPhieuNhap(item.MaPhieuNhap);
-                    
-                    for (int j = 0; j < listChiTietPhieuNhapDTO.Count;j++ )
-                    {
-                        item1 = listChiTietPhieuNhapDTO[j];
-                        dataGridView_TraCuuNhapHang.Rows.Add(
-                            (stt++).ToString(),
-                            item.MaPhieuNhap,
-                           donHangDTO.NgayLap.ToString("dd/MM/yyy"),
-                           item.NgayNhan.ToString("dd/MM/yyy"),
-                            NhanVienBUS.SelectNhanVienById(item.MaNhanVien).TenNhanVien, item1.SLNhan);
-                    }
-                    
+                    dataGridView_TraCuuNhapHang.Rows.Add(
+                           (stt++).ToString(),
+                           item.MaPhieuNhap,
+                          DonHangBUS.SelectDonHangById(item.MaDonHang).NgayLap.ToString("dd/MM/yyy"),
+                          item.NgayNhan.ToString("dd/MM/yyy"),
+                           NhanVienBUS.SelectNhanVienById(item.MaNhanVien).TenNhanVien);
                 }
             }
+
         }
+
         private void Search()
         {
             DateTime dateTu = new DateTime();
@@ -89,7 +99,7 @@ namespace GUI
 
         private void FormQuanLyNhapHang_Load(object sender, EventArgs e)
         {
-            KhoiTao();
+           // KhoiTao();
         }
         private void dateTimePickerTu_ValueChanged(object sender, EventArgs e)
         {
@@ -120,8 +130,8 @@ namespace GUI
         private void btnXemChiTiet_Click(object sender, EventArgs e)
         {
             FormNhapHang fQLNhapHang = new FormNhapHang();
-            fQLNhapHang.MaPhieuNhap = dataGridView_TraCuuNhapHang.CurrentRow.Cells["clMaPhieuNhap"].Value.ToString();
-            fQLNhapHang.Status = 1;
+            fQLNhapHang.MaPhieuNhap = dataGridView_TraCuuNhapHang.CurrentRow.Cells[clMaPhieuNhap.Index].Value.ToString();
+            fQLNhapHang.Status = 3;//Xem Dialog
             fQLNhapHang.ShowDialog();
         }
 
@@ -162,6 +172,11 @@ namespace GUI
             {
                 btnCapNhat.Enabled = false;
             }
+        }
+
+        private void FormQuanLyNhapHang_Activated(object sender, EventArgs e)
+        {
+            KhoiTao();
         }
     }
 }
