@@ -52,11 +52,14 @@ namespace GUI
                     listChiTietPhieuXuatDTO = ChiTietPhieuXuatBUS.SelectChiTietPhieuXuatByMaPhieuXuat(phieuXuatDTO.MaPhieuXuat);
                     if (listChiTietPhieuXuatDTO != null)
                     {
+                        soLuong = 0;
+                        thanhTien = 0;
                         for (int j = 0; j < listChiTietPhieuXuatDTO.Count; j++)
                         {
                             soLuong += listChiTietPhieuXuatDTO[j].SoLuong;
                             thanhTien += listChiTietPhieuXuatDTO[j].ThanhTien;
                         }
+                        
                     }
 
                     dataGridView_TraCuuXuatHang.Rows.Add(
@@ -66,7 +69,7 @@ namespace GUI
                         phieuXuatDTO.TenKhachHang,
                         NhanVienBUS.SelectNhanVienById(phieuXuatDTO.MaNhanVien).TenNhanVien,
                         soLuong.ToString(),
-                        string.Format("{0:0,0.##}", thanhTien));
+                        string.Format("{0:#,0.##}", thanhTien));
                 }
                 btnLamLai.Enabled = true;
             }
@@ -209,7 +212,7 @@ namespace GUI
         private void dateTimePickerTu_ValueChanged(object sender, EventArgs e)
         {
             boolTu = true;
-            Search();//
+            Search();
         }
 
         private void dateTimePickerDen_ValueChanged(object sender, EventArgs e)
@@ -241,25 +244,7 @@ namespace GUI
         }
 
         private void btnXemChiTiet_Click(object sender, EventArgs e)
-        {
-            /*int dem = 0;
-            for (int i = 0; i < dataGridView_TraCuuXuatHang.Rows.Count; i++)
-            {
-                if (dataGridView_TraCuuXuatHang.Rows[i].Visible == true)
-                    dem++;
-            }
-            if (dem == 0)
-            {
-                MessageBox.Show("Không có dữ liệu", "Quản lý xuất hàng");
-            }
-            else
-            {
-                FormXuatHang fQLXuatHang = new FormXuatHang();
-                fQLXuatHang.MaPhieuXuat = dataGridView_TraCuuXuatHang.CurrentRow.Cells["clMaPhieuXuat"].Value.ToString();
-                fQLXuatHang.Status = 1;
-                fQLXuatHang.ShowDialog();
-            }*/
-            
+        {                      
             if (KiemTraDong_KhongTonTai() == false)
             {
                 FormXuatHang fQLXuatHang = new FormXuatHang();
@@ -282,8 +267,9 @@ namespace GUI
                             thanhTien += listChiTietPhieuXuatDTO[j].ThanhTien;
                         }
                     }
-                    dataGridView_TraCuuXuatHang.CurrentRow.Cells[clSoLuong.Index].Value = soLuong;
-                    dataGridView_TraCuuXuatHang.CurrentRow.Cells[clSoTien.Index].Value = string.Format("{0:#,0.##}",thanhTien);
+                    
+                    dataGridView_TraCuuXuatHang.CurrentRow.Cells[clSoLuong.Index].Value = soLuong.ToString();
+                    dataGridView_TraCuuXuatHang.CurrentRow.Cells[clSoTien.Index].Value = string.Format("{0:#,0.##}", thanhTien);
                 }
                 
             }
@@ -294,31 +280,7 @@ namespace GUI
         }
 
         private void btnCapNhat_Click(object sender, EventArgs e)
-        {
-            /*int dem = 0;
-            for (int i = 0; i < dataGridView_TraCuuXuatHang.Rows.Count; i++)
-            {
-                if (dataGridView_TraCuuXuatHang.Rows[i].Visible == true)
-                    dem++;
-            }
-            if (dem == 0)
-            {
-                MessageBox.Show("Không có dữ liệu để cập nhật", "Quản lý xuất hàng");
-               */ /*
-                 * txtMaPhieuXuat.Clear();
-                txtNguoiMua.Clear();
-                txtNguoiBan.Clear();
-                txtSoLuong.Clear();
-                txtSoTien.Clear();
-                */
-            /*}
-            else
-            {
-                FormXuatHang fQLXuatHang = new FormXuatHang();
-                fQLXuatHang.Status = 2;
-                fQLXuatHang.MaPhieuXuat = dataGridView_TraCuuXuatHang.CurrentRow.Cells[clMaPhieuXuat.Index].Value.ToString();
-                fQLXuatHang.ShowDialog();
-            }*/
+        {            
             if (KiemTraDong_KhongTonTai() == false)
             {
                 FormXuatHang fQLXuatHang = new FormXuatHang();
@@ -357,6 +319,7 @@ namespace GUI
             if (result == DialogResult.Yes)
             {
                 int Index = dataGridView_TraCuuXuatHang.CurrentRow.Index;
+                int stt = int.Parse(dataGridView_TraCuuXuatHang.CurrentRow.Cells[clSTT.Index].Value.ToString());
                 string id = dataGridView_TraCuuXuatHang.CurrentRow.Cells["clMaPhieuXuat"].Value.ToString();
                 if (PhieuXuatBUS.DeletePhieuXuatById(id))
                 {
@@ -369,6 +332,7 @@ namespace GUI
                             if(dataGridView_TraCuuXuatHang.Rows[i].Visible == true)
                             {
                                 f = true;
+                                break;
                             }
                         }
 
@@ -376,13 +340,19 @@ namespace GUI
                         {
                             if (dataGridView_TraCuuXuatHang.Rows[i].Visible == true)
                             {
-                                dataGridView_TraCuuXuatHang.Rows[i].Cells["clSTT"].Value = i.ToString();
+                                dataGridView_TraCuuXuatHang.Rows[i].Cells["clSTT"].Value = stt.ToString();
+                                stt++;
                                 f = true;
                             }
                         }
-                        if(f == false)
+
+                        if (f == false)
                         {
                             buttonDisabled();
+                        }
+                        else
+                        {
+                            buttonEnabled();
                         }
                     }
                     else
@@ -420,7 +390,5 @@ namespace GUI
         {
             KhoiTao();
         }
-
-       
     }
 }

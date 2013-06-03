@@ -109,14 +109,15 @@ namespace GUI
             //Truy vấn lấy ChiTietPhieuXuat theo MaDonHang
             List<ChiTietPhieuXuatDTO> listChiTietPhieuXuatDTO = new List<ChiTietPhieuXuatDTO>();
             listChiTietPhieuXuatDTO = ChiTietPhieuXuatBUS.SelectChiTietPhieuXuatByMaPhieuXuat(MaPhieuXuat);
-            //dataGridView_XuatHang.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            
+            dataGridView_XuatHang.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
 
             //Lấy tên sản phẩm
             SanPhamDTO sanphamDTO = new SanPhamDTO();
             for (int i = 0; i < listChiTietPhieuXuatDTO.Count; i++)
             {
                 sanphamDTO = SanPhamBUS.SelectSanPhamById(listChiTietPhieuXuatDTO[i].MaSanPham);
-                dataGridView_XuatHang.Rows.Add(i + 1, listChiTietPhieuXuatDTO[i].MaSanPham, sanphamDTO.TenSanPham, listChiTietPhieuXuatDTO[i].CV, listChiTietPhieuXuatDTO[i].DonGia, sanphamDTO.SoLuongTon, 0, 0);
+                dataGridView_XuatHang.Rows.Add(i + 1, listChiTietPhieuXuatDTO[i].MaSanPham, sanphamDTO.TenSanPham, listChiTietPhieuXuatDTO[i].CV, listChiTietPhieuXuatDTO[i].DonGia, sanphamDTO.SoLuongTon, listChiTietPhieuXuatDTO[i].SoLuong,string.Format("{0:#,0.##}",listChiTietPhieuXuatDTO[i].ThanhTien) );
                 dataGridView_XuatHang.Rows[i].ReadOnly = true;
             }
 
