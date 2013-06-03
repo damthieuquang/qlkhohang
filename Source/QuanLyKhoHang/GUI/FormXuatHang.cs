@@ -72,6 +72,7 @@ namespace GUI
                     stt++;
                 }
             }
+            btnTao.Enabled = true;
         }
 
         //Load khi status =1
@@ -99,6 +100,8 @@ namespace GUI
 
             //Thay đổi button Tạo thành Cập nhật
             btnTao.Text = "Cập nhật";
+            btnTao.Enabled = true;
+
             btnTaoMoi.Visible = false;
             btnLamLai.Visible = false;
             btnTimPhieuXuat.Visible = false;
@@ -489,9 +492,10 @@ namespace GUI
             }
         }
         
+        //Chuyen sang quan ly phieu xuat
         private void btnTimPhieuXuat_Click(object sender, EventArgs e)
         {
-            Form frm = ThongTin.KiemTraTonTai(typeof(FormXuatHang), this.ParentForm);
+            Form frm = ThongTin.KiemTraTonTai(typeof(FormQuanLyXuatHang), this.ParentForm);
             if (frm != null)
             {
                 frm.Activate();
