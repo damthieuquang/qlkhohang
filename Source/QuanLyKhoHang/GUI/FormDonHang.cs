@@ -26,7 +26,7 @@ namespace GUI
         // Toàn cục
         private DateTime DateTimeSystem;
         private float MoneySum = 0;
-        public int Status = 0;// Biến trạng thái của Form 0: Tạo, 1: Cập nhật
+        public int Status = 0;// Biến trạng thái của Form 0: Tạo, 1: Cập nhật, 2 chuyển sang cập nhật từ nút cập nhật của QLDonHang
         float ChietKhau = 0;
         public string MaDonHang;
         private bool huy = false;
@@ -149,6 +149,7 @@ namespace GUI
         #endregion
 
         #region Nhóm hàm Xử lý
+
         // kiểm tra tồn tại dòng có thành tiền khác 0
         private bool CheckDataOn_Row_DataGridView(DataGridView data)
         {
