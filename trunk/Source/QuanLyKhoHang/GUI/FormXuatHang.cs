@@ -46,29 +46,7 @@ namespace GUI
             txtMaPhieuXuat.Text = MaPhieuXuat.ToString();
         }
 
-        /*Kiểm tra la ThanhVien
-         * */
-        private void txtMaThanhVien_Leave(object sender, EventArgs e)
-        {
-            thanhVienDTO = new ThanhVienDTO();
-            if (txtMaThanhVien.TextLength == 5 && ThanhVienBUS.SelectThanhVienById(txtMaThanhVien.Text) != null)
-            {
-                thanhVienDTO = ThanhVienBUS.SelectThanhVienById(txtMaThanhVien.Text);
-                txtTenKhachHang.Text = thanhVienDTO.TenThanhVien;
-                txtDiaChi.Text = thanhVienDTO.DiaChi;
-                txtTenKhachHang.ReadOnly = true;
-                txtDiaChi.ReadOnly = true;
-                IsThanhVien = true;
-            }
-            else
-            {
-                MessageBox.Show("Thành viên này không tồn tại");
-                IsThanhVien = false;
-            }
-        }
-       
-        
-        //Load Load_Default(), thanhphanNhap và DataGripView khi status = 0
+        //Status=0 Load_Default(), thanhphanNhap và DataGripView khi status = 0
         private void Load_Create()
         {
             Load_Default();
@@ -90,7 +68,7 @@ namespace GUI
                 for (int i = 0; i < listSanPhamDTO.Count; i++)
                 {
                     sanPhamDTO = listSanPhamDTO[i];
-                    dataGridView_XuatHang.Rows.Add(stt, sanPhamDTO.MaSanPham, sanPhamDTO.TenSanPham, sanPhamDTO.CV, sanPhamDTO.DonGia,sanPhamDTO.SoLuongTon, 0, 0);
+                    dataGridView_XuatHang.Rows.Add(stt, sanPhamDTO.MaSanPham, sanPhamDTO.TenSanPham, sanPhamDTO.CV, sanPhamDTO.DonGia, sanPhamDTO.SoLuongTon, 0, 0);
                     stt++;
                 }
             }
@@ -101,6 +79,22 @@ namespace GUI
         private void Load_Update()
         {
             Load_Default();
+
+            //Load Thong tin PhieuXuat
+            PhieuXuatDTO phieuXuatDTO = PhieuXuatBUS.SelectPhieuXuatById(MaPhieuXuat);
+            txtMaPhieuXuat.Text = phieuXuatDTO.MaPhieuXuat;
+            txtMaThanhVien.Text = phieuXuatDTO.MaThanhVien;
+            txtTenKhachHang.Text = phieuXuatDTO.TenKhachHang;
+            txtDiaChi.Text = phieuXuatDTO.DiaChi;
+            txtMaThanhVien.ReadOnly = true;
+            txtTenKhachHang.ReadOnly = true;
+            txtDiaChi.ReadOnly = true;
+            txtNgayBan.Text = phieuXuatDTO.NgayBan.ToString("dd/MM/yyyy");
+            txtMaNhanVien.Text = phieuXuatDTO.MaNhanVien;
+            txtNhanVienBanHang.Text = NhanVienBUS.SelectNhanVienById(phieuXuatDTO.MaNhanVien).TenNhanVien;
+
+
+            //Load panel YesNo(hien tai dang an)
             panelYesNo.Location = new Point(16, 412);
 
             //Thay đổi button Tạo thành Cập nhật
@@ -108,7 +102,7 @@ namespace GUI
             btnTaoMoi.Visible = false;
             btnLamLai.Visible = false;
             btnTimPhieuXuat.Visible = false;
-            
+
             //Truy vấn lấy ChiTietPhieuXuat theo MaDonHang
             List<ChiTietPhieuXuatDTO> listChiTietPhieuXuatDTO = new List<ChiTietPhieuXuatDTO>();
             listChiTietPhieuXuatDTO = ChiTietPhieuXuatBUS.SelectChiTietPhieuXuatByMaPhieuXuat(MaPhieuXuat);
@@ -119,7 +113,7 @@ namespace GUI
             for (int i = 0; i < listChiTietPhieuXuatDTO.Count; i++)
             {
                 sanphamDTO = SanPhamBUS.SelectSanPhamById(listChiTietPhieuXuatDTO[i].MaSanPham);
-                dataGridView_XuatHang.Rows.Add(i + 1, listChiTietPhieuXuatDTO[i].MaSanPham,sanphamDTO.TenSanPham , listChiTietPhieuXuatDTO[i].CV, listChiTietPhieuXuatDTO[i].DonGia, sanphamDTO.SoLuongTon, 0, 0);
+                dataGridView_XuatHang.Rows.Add(i + 1, listChiTietPhieuXuatDTO[i].MaSanPham, sanphamDTO.TenSanPham, listChiTietPhieuXuatDTO[i].CV, listChiTietPhieuXuatDTO[i].DonGia, sanphamDTO.SoLuongTon, 0, 0);
                 dataGridView_XuatHang.Rows[i].ReadOnly = true;
             }
 
@@ -153,15 +147,34 @@ namespace GUI
                 dataGridView_XuatHang.Rows.Add(i + 1, listChiPhieuXuatDTO[i].MaSanPham, SanPhamBUS.SelectSanPhamById(listChiPhieuXuatDTO[i].MaSanPham).TenSanPham, listChiPhieuXuatDTO[i].CV, listChiPhieuXuatDTO[i].DonGia, listChiPhieuXuatDTO[i].SoLuong, listChiPhieuXuatDTO[i].ThanhTien);
             }*/
         }
-
+        /*Kiểm tra la ThanhVien
+         * */
+        private void txtMaThanhVien_Leave(object sender, EventArgs e)
+        {
+            thanhVienDTO = new ThanhVienDTO();
+            if (txtMaThanhVien.TextLength == 5 && ThanhVienBUS.SelectThanhVienById(txtMaThanhVien.Text) != null)
+            {
+                thanhVienDTO = ThanhVienBUS.SelectThanhVienById(txtMaThanhVien.Text);
+                txtTenKhachHang.Text = thanhVienDTO.TenThanhVien;
+                txtDiaChi.Text = thanhVienDTO.DiaChi;
+                txtTenKhachHang.ReadOnly = true;
+                txtDiaChi.ReadOnly = true;
+                IsThanhVien = true;
+            }
+            else
+            {
+                MessageBox.Show("Thành viên này không tồn tại");
+                IsThanhVien = false;
+            }
+        }
+       
         private void FormXuatHang_Load(object sender, EventArgs e)
         {
-            if (Status == 0)
+            if (Status == 0 || Status == 4)
             {
                 Load_Create();
-                return;
             }
-            else if (Status == 1)
+            else if (Status == 1)//????
             {
                 btnTao.Text = "Cập nhật";
                 Load_Update();
@@ -308,6 +321,10 @@ namespace GUI
             {
                 dataGridView_XuatHang.Rows[i].ReadOnly = false;
             }
+            Status = 2;
+            dataGridView_XuatHang.CurrentCell=dataGridView_XuatHang.Rows[0].Cells[clSoLuong.Index];
+            dataGridView_XuatHang.CurrentCell.Selected = true;
+            dataGridView_XuatHang.BeginEdit(true);
         }
 
         //Thực thi khi button Làm Lại có status = 0: reset thanhphanNhap,clSoLuong,clThanhTien
@@ -373,6 +390,7 @@ namespace GUI
 
         private void dataGridView_XuatHang_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
+            btnTao.Enabled = true;
             float thanhtien = 0;
             int SoLuong = 0;
             float DonGia;
@@ -400,15 +418,15 @@ namespace GUI
             {
                 thanhtien = SoLuong * DonGia;
             }
-            dataGridView_XuatHang.CurrentRow.Cells[e.ColumnIndex + 1].Value = string.Format("{0:0,0.##}",thanhtien.ToString());
+            dataGridView_XuatHang.CurrentRow.Cells[e.ColumnIndex + 1].Value = string.Format("{0:#,0.##}",thanhtien);
         }
 
         //Kiem tra datagripview co tồn tại dòng có clSoLuong !=0 không
-        private static bool CheckOut_clSoLuong(DataGridView data)
+        private bool CheckOut_clSoLuong(DataGridView data)
         {
             for(int i=0;i<data.Rows.Count;i++)
             {
-                if (int.Parse(data.Rows[i].Cells["clSoLuong"].Value.ToString()) != 0)
+                if (int.Parse(data.Rows[i].Cells["clSoLuong"].Value.ToString()) > 0)
                 {
                     return true;
                 }             
@@ -418,7 +436,7 @@ namespace GUI
 
         private void btnTao_Click(object sender, EventArgs e)
         {
-            if (Status == 0)
+            if (Status == 0 || Status == 4)
             {
                 if (CheckOut_clSoLuong(dataGridView_XuatHang))
                 {
@@ -426,12 +444,18 @@ namespace GUI
                     {
                         dataGridView_XuatHang.Rows.Clear();
                         FormXuatHang_Load(sender, e);
-                       
+
                     }
                 }
-                return; //nếu KHÔNG có dòng có SoLuong !=0 thì không cho Tạo PhieuXuat
+                else
+                {
+                    dataGridView_XuatHang.CurrentCell = dataGridView_XuatHang.Rows[0].Cells[clSoLuong.Index];
+                    dataGridView_XuatHang.CurrentCell.Selected = true;
+                    dataGridView_XuatHang.BeginEdit(true);
+                    MessageBox.Show("Phiếu xuất không hợp lệ, tất cả số lượng sản phẩm đều bằng không","Phiếu xuất");
+                }
             }
-            else if (Status == 1)//
+            else
             {
                 Update();
             }
@@ -440,22 +464,19 @@ namespace GUI
 
         private void btnTaoMoi_Click(object sender, EventArgs e)
         {
-            if (Status == 0)
-            {
-                //Nếu người dùng không chọn Sản Phẩm nào hết
-                if (CheckOut_clSoLuong(dataGridView_XuatHang) == false)
-                {
-                    dataGridView_XuatHang.Rows.Clear();
-                    FormXuatHang_Load(sender, e);
-                    return;
-                }
-                //Ngược lại
+            if (Status == 0 || Status == 4)
+            {           
                 DialogResult result = MessageBox.Show("Bạn Muốn Lưu Đơn Hàng Không:", "Đơn hàng", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
                 if (result == DialogResult.Yes)
                 {
                     btnTao_Click(sender, e);
                 }
                 else if (result == DialogResult.No)
+                {
+                    dataGridView_XuatHang.Rows.Clear();
+                    FormXuatHang_Load(sender, e);
+                }
+                else if (Status == 4)
                 {
                     dataGridView_XuatHang.Rows.Clear();
                     FormXuatHang_Load(sender, e);
@@ -467,14 +488,20 @@ namespace GUI
                 Close();
             }
         }
-
-
         
-
         private void btnTimPhieuXuat_Click(object sender, EventArgs e)
         {
-            FormQuanLyXuatHang QLXuatHang = new FormQuanLyXuatHang();
-            QLXuatHang.ShowDialog();
+            Form frm = ThongTin.KiemTraTonTai(typeof(FormXuatHang), this.ParentForm);
+            if (frm != null)
+            {
+                frm.Activate();
+            }
+            else
+            {
+                FormQuanLyXuatHang fQLXuatHang = new FormQuanLyXuatHang();
+                fQLXuatHang.MdiParent = this.ParentForm;
+                fQLXuatHang.Show();
+            }
         }
 
         private void btnNo_Click(object sender, EventArgs e)
@@ -485,37 +512,55 @@ namespace GUI
         //Cập nhật lại phiếu xuất
         private void btnYes_Click(object sender, EventArgs e)
         {
-            List<ChiTietPhieuXuatDTO> listChiTietPhieuXuatDTO = new List<ChiTietPhieuXuatDTO>();
-            listChiTietPhieuXuatDTO = ChiTietPhieuXuatBUS.SelectChiTietPhieuXuatByMaPhieuXuat(MaPhieuXuat);
-
-            int cv, SoLuongTon;
-            SanPhamDTO sanPhamDTO = new SanPhamDTO();
-            for (int i = 0; i < listChiTietPhieuXuatDTO.Count; i++)
+            if (CheckOut_clSoLuong(dataGridView_XuatHang))
             {
-                listChiTietPhieuXuatDTO[i].SoLuong = int.Parse(dataGridView_XuatHang.Rows[i].Cells["clSoLuong"].Value.ToString());
-                listChiTietPhieuXuatDTO[i].ThanhTien = float.Parse(dataGridView_XuatHang.Rows[i].Cells["clThanhTien"].Value.ToString());
-                ChiTietPhieuXuatBUS.UpdateChiTietPhieuXuatById(listChiTietPhieuXuatDTO[i]);
+                List<ChiTietPhieuXuatDTO> listChiTietPhieuXuatDTO = new List<ChiTietPhieuXuatDTO>();
+                listChiTietPhieuXuatDTO = ChiTietPhieuXuatBUS.SelectChiTietPhieuXuatByMaPhieuXuat(MaPhieuXuat);
 
-                //Tính lại SoLuongTon của sản phẩm
-                SoLuongTon = 0;
-                SoLuongTon = listChiTietPhieuXuatDTO[i].SoLuong - int.Parse(dataGridView_XuatHang.Rows[i].Cells["clSoLuong"].Value.ToString());
-                sanPhamDTO = SanPhamBUS.SelectSanPhamById(listChiTietPhieuXuatDTO[i].MaSanPham);
-                sanPhamDTO.SoLuongTon += SoLuongTon;
-                SanPhamBUS.UpdateSanPhamById(sanPhamDTO);
-
-                //Tinh lai TongCV
-                if (IsThanhVien == true)
+                int cv, SoLuongTon;
+                SanPhamDTO sanPhamDTO = new SanPhamDTO();
+                for (int i = 0; i < listChiTietPhieuXuatDTO.Count; i++)
                 {
-                    cv = 0;
-                    cv += listChiTietPhieuXuatDTO[i].CV * listChiTietPhieuXuatDTO[i].SoLuong;
-                    TongCV = TongCV - cv;
-                    this.thanhVienDTO.CV -= TongCV;
-                    ThanhVienBUS.UpdateThanhVienById(this.thanhVienDTO);
+                    listChiTietPhieuXuatDTO[i].SoLuong = int.Parse(dataGridView_XuatHang.Rows[i].Cells["clSoLuong"].Value.ToString());
+                    listChiTietPhieuXuatDTO[i].ThanhTien = float.Parse(dataGridView_XuatHang.Rows[i].Cells["clThanhTien"].Value.ToString());
+                    ChiTietPhieuXuatBUS.UpdateChiTietPhieuXuatById(listChiTietPhieuXuatDTO[i]);
+
+                    //Tính lại SoLuongTon của sản phẩm
+                    SoLuongTon = 0;
+                    SoLuongTon = listChiTietPhieuXuatDTO[i].SoLuong - int.Parse(dataGridView_XuatHang.Rows[i].Cells["clSoLuong"].Value.ToString());
+                    sanPhamDTO = SanPhamBUS.SelectSanPhamById(listChiTietPhieuXuatDTO[i].MaSanPham);
+                    sanPhamDTO.SoLuongTon += SoLuongTon;
+                    SanPhamBUS.UpdateSanPhamById(sanPhamDTO);
+
+                    //Tinh lai TongCV
+                    if (IsThanhVien == true)
+                    {
+                        cv = 0;
+                        cv += listChiTietPhieuXuatDTO[i].CV * listChiTietPhieuXuatDTO[i].SoLuong;
+                        TongCV = TongCV - cv;
+                        this.thanhVienDTO.CV -= TongCV;
+                        ThanhVienBUS.UpdateThanhVienById(this.thanhVienDTO);
+                    }
                 }
+                MessageBox.Show("Cập nhật thành công", "Cập nhật đơn hàng");
+                this.Dispose();
             }
-            MessageBox.Show("Cập nhật thành công", "Cập nhật đơn hàng");
+            else
+            {
+                MessageBox.Show("Phiếu xuất không hợp lệ, tất cả số lượng sản phẩm đều bằng không", "Phiếu xuất");
+                dataGridView_XuatHang.CurrentCell = dataGridView_XuatHang.Rows[0].Cells[clSoLuong.Index];
+                dataGridView_XuatHang.CurrentCell.Selected = true;
+                dataGridView_XuatHang.BeginEdit(true);
+            }
         }
 
-         
+        private void FormXuatHang_Activated(object sender, EventArgs e)
+        {
+            if (Status == 4)
+            {
+                btnTaoMoi_Click(sender, e);
+            }
+        }
+
     }
 }

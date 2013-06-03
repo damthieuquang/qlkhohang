@@ -214,7 +214,6 @@
             this.txtMaThanhVien.Name = "txtMaThanhVien";
             this.txtMaThanhVien.Size = new System.Drawing.Size(154, 20);
             this.txtMaThanhVien.TabIndex = 46;
-            //this.txtMaThanhVien.TextChanged += new System.EventHandler(this.txtMaThanhVien_TextChanged);
             this.txtMaThanhVien.Leave += new System.EventHandler(this.txtMaThanhVien_Leave);
             // 
             // groupBox1
@@ -422,6 +421,7 @@
             this.Name = "FormXuatHang";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Xuất hàng";
+            this.Activated += new System.EventHandler(this.FormXuatHang_Activated);
             this.Load += new System.EventHandler(this.FormXuatHang_Load);
             this.groupBox2.ResumeLayout(false);
             this.panelYesNo.ResumeLayout(false);
