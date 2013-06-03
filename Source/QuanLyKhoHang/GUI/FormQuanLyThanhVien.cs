@@ -330,11 +330,11 @@ namespace GUI
                     dataGridView_QuanLyThanhVien.Rows.Add((i + 1).ToString(), item.MaThanhVien, item.TenThanhVien, item.DiaChi, item.CV, item.TienNo);
                     dataGridView_QuanLyThanhVien.Rows[i].ReadOnly = true;
                 }
-                buttonLamLai.Enabled = false;
+                buttonLamLai.Enabled = true;
             }
             else
             {
-                buttonLamLai.Enabled = true;
+                buttonLamLai.Enabled = false;
                 buttonDisabled();
             }
 
