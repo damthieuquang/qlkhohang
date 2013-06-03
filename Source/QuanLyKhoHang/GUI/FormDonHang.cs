@@ -99,6 +99,7 @@ namespace GUI
                     dataGridView_TaoDonHang.Rows.Add(stt, sanPhamDTO.MaSanPham, sanPhamDTO.TenSanPham, sanPhamDTO.CV, sanPhamDTO.DonGia, 0, 0);
                     stt++;
                 }
+                btnTao.Enabled = true;
 
                 label_TongTienTruoc.Text = "Tổng tiền trước chiết khấu: 0";
                 label_TongTienSau.Text = "Tổng tiền: 0";
@@ -123,6 +124,7 @@ namespace GUI
 
             // Thay đổi button Tạo thành Cập nhật
             btnTao.Text = "Cập nhật";
+            btnTao.Enabled = true;
 
             btnTaoMoi.Visible = false;
             btnLamLai.Visible = false;
@@ -257,6 +259,7 @@ namespace GUI
         // Thực thi khi button Làm Lại có status = 0
         private void Process_ButtonRemake()
         {
+            btnTao.Enabled = false;
             for (int i = 0; i < dataGridView_TaoDonHang.Rows.Count; i++)
             {
                 dataGridView_TaoDonHang.Rows[i].Cells["clSoLuong"].Value = 0;
@@ -312,7 +315,6 @@ namespace GUI
         //Bắt sự kiện thay đổi dữ liện liên quan đến số lượng
         private void dataGridView_TaoDonHang_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
-            btnTao.Enabled = true;
             float kq = 0;
             DataGridViewCell cell = dataGridView_TaoDonHang.CurrentCell;
             // Sửa lỗi trường hợp để ô ở cột số lượng rỗng
@@ -509,9 +511,12 @@ namespace GUI
         //Chuyển sang quản lý đơn hàng
         private void btnTimDonHang_Click(object sender, EventArgs e)
         {
-            Form frm = ThongTin.KiemTraTonTai(typeof(FormQuanLyDonHang), this.ParentForm);
+            FormQuanLyDonHang frm = (FormQuanLyDonHang)ThongTin.KiemTraTonTai(typeof(FormQuanLyDonHang), this.ParentForm);
             if (frm != null)
+            {
+                frm.activeForm = true;
                 frm.Activate();
+            }
             else
             {
                 FormQuanLyDonHang fQLDonHang = new FormQuanLyDonHang();
