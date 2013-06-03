@@ -161,7 +161,7 @@ namespace GUI
                 }
             }
 
-            if (vt == -1)
+            if (vt == -1)// khon co dong nao thoa
             {
                 buttonDisabled();
             }
@@ -291,10 +291,27 @@ namespace GUI
                     dataGridView_TraCuuDonHang.Rows.RemoveAt(Index);
                     if (dataGridView_TraCuuDonHang.RowCount > 0)
                     {
+                        bool f = false;
+                        for (int i = 0; i < Index;  i++)
+                        {
+                            if (dataGridView_TraCuuDonHang.Rows[i].Visible == true)
+                            {
+                                f = true;
+                            }
+                        } 
                         for (int i = Index; i < dataGridView_TraCuuDonHang.RowCount; i++)
                         {
-                            dataGridView_TraCuuDonHang.Rows[i].Cells["clSTT"].Value = (i + 1).ToString();
+                            if (dataGridView_TraCuuDonHang.Rows[i].Visible == true)
+                            {
+                                dataGridView_TraCuuDonHang.Rows[i].Cells["clSTT"].Value = i.ToString();
+                                f = true;
+                            }
                         }
+
+                        if (f == false)
+                        {
+                            buttonDisabled();
+                        }  
                     }
                     else
                     {
