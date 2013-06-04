@@ -214,6 +214,7 @@
             this.txtMaThanhVien.Name = "txtMaThanhVien";
             this.txtMaThanhVien.Size = new System.Drawing.Size(154, 20);
             this.txtMaThanhVien.TabIndex = 46;
+            this.txtMaThanhVien.TextChanged += new System.EventHandler(this.txtMaThanhVien_TextChanged);
             this.txtMaThanhVien.Leave += new System.EventHandler(this.txtMaThanhVien_Leave);
             // 
             // groupBox1
@@ -286,6 +287,7 @@
             this.txtTenKhachHang.Name = "txtTenKhachHang";
             this.txtTenKhachHang.Size = new System.Drawing.Size(154, 20);
             this.txtTenKhachHang.TabIndex = 45;
+            this.txtTenKhachHang.TextChanged += new System.EventHandler(this.txtTenKhachHang_TextChanged);
             // 
             // txtNhanVienBanHang
             // 
