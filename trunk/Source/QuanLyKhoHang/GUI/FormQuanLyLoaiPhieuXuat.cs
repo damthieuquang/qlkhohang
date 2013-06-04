@@ -152,6 +152,9 @@ namespace GUI
             groupBoxTimKiem.Enabled = true;
             groupBoxDSLoaiPhieuXuat.Text = "Danh sách loại phiếu xuất";
 
+            textBoxMaLoaiPhieuXuat.Text = null;
+            textBoxTenLoaiPhieuXuat.Text = null;
+
             Status = 0;
             Index = -1;
 

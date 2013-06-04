@@ -72,7 +72,7 @@ namespace GUI
                     stt++;
                 }
             }
-            btnTao.Enabled = true;
+            btnTao.Enabled = false;
         }
 
         //Load khi status =1
@@ -154,7 +154,7 @@ namespace GUI
         /*Kiểm tra la ThanhVien
          * */
         private void txtMaThanhVien_Leave(object sender, EventArgs e)
-        {
+        {/*
             thanhVienDTO = new ThanhVienDTO();
             if (txtMaThanhVien.TextLength == 5 && ThanhVienBUS.SelectThanhVienById(txtMaThanhVien.Text) != null)
             {
@@ -169,7 +169,7 @@ namespace GUI
             {
                 MessageBox.Show("Thành viên này không tồn tại");
                 IsThanhVien = false;
-            }
+            }*/
         }
        
         private void FormXuatHang_Load(object sender, EventArgs e)
@@ -469,23 +469,31 @@ namespace GUI
         private void btnTaoMoi_Click(object sender, EventArgs e)
         {
             if (Status == 0 || Status == 4)
-            {           
-                DialogResult result = MessageBox.Show("Bạn Muốn Lưu Đơn Hàng Không:", "Đơn hàng", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
-                if (result == DialogResult.Yes)
+            {
+                if (btnTao.Enabled == true)
                 {
-                    btnTao_Click(sender, e);
+                    DialogResult result = MessageBox.Show("Bạn Muốn Lưu Đơn Hàng Không:", "Đơn hàng", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
+                    if (result == DialogResult.Yes)
+                    {
+                        btnTao_Click(sender, e);
+                    }
+                    else if (result == DialogResult.No)
+                    {
+                        dataGridView_XuatHang.Rows.Clear();
+                        FormXuatHang_Load(sender, e);
+                    }
+                    else if (Status == 4)
+                    {
+                        dataGridView_XuatHang.Rows.Clear();
+                        FormXuatHang_Load(sender, e);
+                    }
+                    return;
                 }
-                else if (result == DialogResult.No)
+                else
                 {
                     dataGridView_XuatHang.Rows.Clear();
                     FormXuatHang_Load(sender, e);
                 }
-                else if (Status == 4)
-                {
-                    dataGridView_XuatHang.Rows.Clear();
-                    FormXuatHang_Load(sender, e);
-                }
-                return;
             }
             else
             {
@@ -564,6 +572,46 @@ namespace GUI
             if (Status == 4)
             {
                 btnTaoMoi_Click(sender, e);
+            }
+        }
+
+        private void txtMaThanhVien_TextChanged(object sender, EventArgs e)
+        {
+           
+                thanhVienDTO = new ThanhVienDTO();
+                if (ThanhVienBUS.SelectThanhVienById(txtMaThanhVien.Text) != null)
+                {
+                    thanhVienDTO = ThanhVienBUS.SelectThanhVienById(txtMaThanhVien.Text);
+                    txtTenKhachHang.Text = thanhVienDTO.TenThanhVien;
+                    txtDiaChi.Text = thanhVienDTO.DiaChi;
+                    txtTenKhachHang.ReadOnly = true;
+                    txtDiaChi.ReadOnly = true;
+                    IsThanhVien = true;
+                }
+                else
+                {
+                    txtTenKhachHang.Text = "";
+                    txtDiaChi.Text = "";
+                    txtTenKhachHang.ReadOnly = false;
+                    txtDiaChi.ReadOnly = false;
+                    IsThanhVien = false;
+                }
+            
+        }
+
+        private void txtTenKhachHang_TextChanged(object sender, EventArgs e)
+        {
+            if (txtTenKhachHang.Text == "")
+            {
+                btnTao.Enabled = false;
+            }
+            else
+            {
+                btnTao.Enabled = true;
+                if (txtMaThanhVien.Focused == false)
+                {
+                    txtMaThanhVien.Text = "";
+                }
             }
         }
 
