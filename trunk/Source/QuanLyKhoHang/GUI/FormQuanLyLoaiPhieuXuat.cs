@@ -59,11 +59,32 @@ namespace GUI
                 for (int i = 0; i < listLoaiPhieuXuatDTO.Count; i++)
                 {
                     loaiPhieuXuatDTO = listLoaiPhieuXuatDTO[i];
-                    dataGridViewLoaiPhieuXuat.Rows.Add((i+1).ToString(),loaiPhieuXuatDTO.MaLoaiPhieuXuat,loaiPhieuXuatDTO.TenLoaiPhieuXuat);
+                    dataGridViewLoaiPhieuXuat.Rows.Add((i + 1).ToString(), loaiPhieuXuatDTO.MaLoaiPhieuXuat, loaiPhieuXuatDTO.TenLoaiPhieuXuat);
                     dataGridViewLoaiPhieuXuat.Rows[i].ReadOnly = true;
                 }
+                buttonLamLai.Enabled = true;
+                buttonEnabled();
+            }
+            else
+            {
+                buttonLamLai.Enabled = false;
+                buttonDisabled();
             }
         }
+
+        //ham hieu chinh cac button:
+        private void buttonEnabled()
+        {
+            buttonCapNhat.Enabled = true;
+            buttonXoa.Enabled = true;
+        }
+
+        private void buttonDisabled()
+        {
+            buttonCapNhat.Enabled = false;
+            buttonXoa.Enabled = false;
+        }
+
 
         /*
          * Hàm Search 
@@ -72,7 +93,8 @@ namespace GUI
         private void Search()
         {
             int stt = 0;
-            for (int i = 0; i < dataGridViewLoaiPhieuXuat.RowCount; i++)
+            int vt = -1;
+            for (int i = 0; i < dataGridViewLoaiPhieuXuat.Rows.Count; i++)
             {
                 dataGridViewLoaiPhieuXuat.Rows[i].Visible = false;
                 if (dataGridViewLoaiPhieuXuat.Rows[i].Cells["ColMaLoaiPhieuXuat"].Value.ToString().ToUpper().IndexOf(textBoxMaLoaiPhieuXuat.Text.ToString().ToUpper()) >= 0
@@ -82,7 +104,33 @@ namespace GUI
                     stt++;
                     dataGridViewLoaiPhieuXuat.Rows[i].Visible = true;
                     dataGridViewLoaiPhieuXuat.Rows[i].Cells["ColSTT"].Value = stt.ToString();
+                    vt = i;
+                    break;
                 }
+            }
+
+            for (int i = vt + 1; i < dataGridViewLoaiPhieuXuat.Rows.Count; i++)
+            {
+                dataGridViewLoaiPhieuXuat.Rows[i].Visible = false;
+                if (dataGridViewLoaiPhieuXuat.Rows[i].Cells["ColMaLoaiPhieuXuat"].Value.ToString().ToUpper().IndexOf(textBoxMaLoaiPhieuXuat.Text.ToString().ToUpper()) >= 0
+                    && dataGridViewLoaiPhieuXuat.Rows[i].Cells["ColTenLoaiPhieuXuat"].Value.ToString().ToUpper().IndexOf(textBoxTenLoaiPhieuXuat.Text.ToString().ToUpper()) >= 0
+                    )
+                {
+                    stt++;
+                    dataGridViewLoaiPhieuXuat.Rows[i].Visible = true;
+                    dataGridViewLoaiPhieuXuat.Rows[i].Cells["ColSTT"].Value = stt.ToString();                    
+                }
+            }
+
+            if (vt == -1)
+            {
+                buttonDisabled();
+            }
+            else
+            {
+                buttonEnabled();
+                dataGridViewLoaiPhieuXuat.CurrentCell = dataGridViewLoaiPhieuXuat.Rows[vt].Cells[0];
+                dataGridViewLoaiPhieuXuat.CurrentCell.Selected = true;
             }
         }
 
@@ -112,6 +160,23 @@ namespace GUI
                 dataGridViewLoaiPhieuXuat.Rows[i].Visible = true;
             }
             dataGridViewLoaiPhieuXuat.CurrentCell = dataGridViewLoaiPhieuXuat.Rows[0].Cells[0];
+
+            //Khởi động lại các nút:
+            if (dataGridViewLoaiPhieuXuat.Rows.Count > 0)
+            {
+                for (int i = 0; i < dataGridViewLoaiPhieuXuat.Rows.Count; i++)
+                {
+                    if (dataGridViewLoaiPhieuXuat.Rows[i].Visible == true)
+                    {
+                        buttonEnabled();
+                        break;
+                    }
+                }
+            }
+            else
+            {
+                buttonDisabled();
+            }
         }
 
         private void FormQuanLyLoaiPhieuXuat_Load(object sender, EventArgs e)
@@ -305,23 +370,41 @@ namespace GUI
             //Lấy vị trí xóa
             if (result == DialogResult.Yes)
             {
-                int i;
-                /*int vtri = Count_RowsVisable(dataGridViewLoaiPhieuXuat);
-                
-                if (vtri != -1)
-                {
-                    dataGridViewLoaiPhieuXuat.Rows[vtri].Selected =true;
-                    //Index = vtri;
-                }*/
-                    
+                int i;                           
                 Index = dataGridViewLoaiPhieuXuat.CurrentRow.Index;
                 string id = dataGridViewLoaiPhieuXuat.CurrentRow.Cells["ColMaLoaiPhieuXuat"].Value.ToString();
+                int stt = int.Parse(dataGridViewLoaiPhieuXuat.CurrentRow.Cells["ColSTT"].Value.ToString());
                 if (LoaiPhieuXuatBUS.DeleteLoaiPhieuXuatById(id))
                 {
                     dataGridViewLoaiPhieuXuat.Rows.RemoveAt(Index);
-                    for ( i = 0; i < dataGridViewLoaiPhieuXuat.RowCount; i++)
+                    if (dataGridViewLoaiPhieuXuat.Rows.Count > 0)
                     {
-                        dataGridViewLoaiPhieuXuat.Rows[i].Cells["ColSTT"].Value = (i + 1).ToString();
+                        bool flag = false;
+                        for (i = 0; i < Index; i++)
+                        {
+                            if (dataGridViewLoaiPhieuXuat.Rows[i].Visible == true)
+                            {
+                                flag = true;
+                            }
+                        }
+                        for (i = Index; i < dataGridViewLoaiPhieuXuat.Rows.Count; i++)
+                        {
+                            if (dataGridViewLoaiPhieuXuat.Rows[i].Visible == true)
+                            {
+                                dataGridViewLoaiPhieuXuat.Rows[i].Cells["ColSTT"].Value = stt.ToString();
+                                stt++;
+                                flag = true;
+                            }
+                        }
+
+                        if (flag == false)
+                        {
+                            buttonDisabled();
+                        }
+                    }
+                    else
+                    {
+                        buttonDisabled();
                     }
                 }
             }
@@ -329,7 +412,7 @@ namespace GUI
 
         private void buttonThoat_Click(object sender, EventArgs e)
         {
-            this.Close();
+            Dispose();
         }        
     }
 }
