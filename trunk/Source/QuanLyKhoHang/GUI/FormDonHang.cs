@@ -10,6 +10,9 @@ using System.Windows.Forms;
 using System.Configuration;
 using System.IO;
 using Microsoft;// Dùng để sử dụng thư viện Microsoft.Office.Interop.Excel
+using Microsoft.Office.Core;
+using Microsoft.Office;
+using System.Xml;
 
 using BUS;
 using DTO;
@@ -355,11 +358,11 @@ namespace GUI
             float MoneyCurrent = CalcMoney(dataGridView_TaoDonHang);
             label_TongTienTruoc.Text = "Tổng tiền trước: " + string.Format("{0:#,0.##}", MoneyCurrent);
 
-            label_TongTienSau.Text = "Tổng tiền: " + string.Format("{0:#,0.##}", (MoneyCurrent * float.Parse(ChietKhau.ToString())));
+            label_TongTienSau.Text = "Tổng tiền: " + string.Format("{0:#,0.##}", (MoneyCurrent * (1.0-(ChietKhau/10))));
         }
 
         // Hàm xử lý xuất file Excel sử dụng thư viện Microsoft
-        public static void ExportToExcel(DataGridView dgView)
+        private void ExportToExcel(DataGridView dgView)
         {
             Microsoft.Office.Interop.Excel.Application excelApp = null;
             try
@@ -372,32 +375,80 @@ namespace GUI
                 currentWorksheet.Columns.ColumnWidth = 18;
                 if (dgView.Rows.Count > 0)
                 {
-                    currentWorksheet.Cells[1, 1] = "Ngày tạo:";
-                    currentWorksheet.Cells[1, 2] = DateTime.Now.ToString("s");
+                    currentWorksheet.Cells[4, 1] = "Mã Stockist";
+                    currentWorksheet.Cells[4, 2] = "____________";
+                    currentWorksheet.Cells[5, 1] = "Địa chỉ Stockist";
+                    currentWorksheet.Cells[5, 2] = "____________";
+                    currentWorksheet.Cells[6, 1] = "Ngày Tạo:";
+                    currentWorksheet.Cells[6, 2] = DateTime.Now.ToString("s");
+
+                    Microsoft.Office.Interop.Excel.Range mm = currentWorksheet.get_Range("C1", "G1");
+                    mm.MergeCells = true;
+                    mm.Font.Bold = true;
+                    mm.Font.Size = 20;
+                    mm.HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignRight;
+                    mm.Cells[1, 1] = "ĐƠN ĐẶT HÀNG STOCKIST";
+                    //currentWorksheet.Cells[1, 7] = "ĐƠN ĐẶT HÀNG STOCKIST";                                        
+                    
+                    currentWorksheet.Cells[2, 6] = "VIET NAM";
+                    currentWorksheet.Cells[3, 7] = "Công ty TNHH Synergy Việt Nam";
+                    currentWorksheet.Cells[4, 7] = "Số 27 - tổ 41, Phường Trung Hoà";
+                    currentWorksheet.Cells[5, 7] = "Quận Cầu Giấy, Hà Nội, Việt Nam";
+                    currentWorksheet.Cells[6, 7] = "Tel: 84-4 35562535   - Fax: 84-4 35562356";
                     int i = 1;
                     foreach (DataGridViewColumn dgviewColumn in dgView.Columns)
                     {
                         // Excel work sheet indexing starts with 1
-                        currentWorksheet.Cells[2, i] = dgviewColumn.HeaderText.ToString().ToUpper();
+                        currentWorksheet.Cells[7, i] = dgviewColumn.HeaderText.ToString().ToUpper();
                         ++i;
                     }
-                    Microsoft.Office.Interop.Excel.Range headerColumnRange = currentWorksheet.get_Range("A2", "G2");
+                    Microsoft.Office.Interop.Excel.Range headerColumnRange = currentWorksheet.get_Range("A7", "G7");
                     headerColumnRange.Font.Bold = true;
-                    headerColumnRange.Font.Color = 0xFF0000;
-
-                    //headerColumnRange.EntireColumn.AutoFit();
+                    headerColumnRange.Font.Color = 0x000000;
+                    
+                    
                     int rowIndex = 0;
                     for (rowIndex = 0; rowIndex < dgView.Rows.Count; rowIndex++)
                     {
                         DataGridViewRow dgRow = dgView.Rows[rowIndex];
                         for (int cellIndex = 0; cellIndex < dgRow.Cells.Count; cellIndex++)
                         {
-                            currentWorksheet.Cells[rowIndex + 3, cellIndex + 1] = dgRow.Cells[cellIndex].Value;
+                            currentWorksheet.Cells[rowIndex + 8, cellIndex + 1] = dgRow.Cells[cellIndex].Value;
                         }
                     }
-                    Microsoft.Office.Interop.Excel.Range fullTextRange = currentWorksheet.get_Range("A1", "G" + (rowIndex + 1).ToString());
+                    Microsoft.Office.Interop.Excel.Range fullTextRange = currentWorksheet.get_Range("A8", "G" + (rowIndex + 1).ToString());
                     fullTextRange.WrapText = true;//Tự động xuống dòng khi chữ quá dài
-                    fullTextRange.HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignLeft;//Canh lề trái cho chữ
+                    fullTextRange.HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignLeft;//Canh lề trái cho chữ                  
+
+                    for (int row = 0; row < 3; row++)
+                    {
+                        string cell1, cell2;
+                        cell1 = "A" + (rowIndex + 8 + row).ToString();
+                        cell2 = "F" + (rowIndex + 8 + row).ToString();
+                        Microsoft.Office.Interop.Excel.Range MergeRowRange = currentWorksheet.get_Range(cell1, cell2);
+                        MergeRowRange.MergeCells = true;
+                        MergeRowRange.HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignRight;
+                        
+                    }
+                    currentWorksheet.Cells[rowIndex + 8, 1] = "Tổng tiền trước chiết khấu:";
+                    currentWorksheet.Cells[rowIndex + 8, 7] = CalcMoney(dgView);
+
+                    currentWorksheet.Cells[rowIndex + 9, 1] = "Chiết khấu:";
+                    currentWorksheet.Cells[rowIndex + 9, 7] = ChietKhau;
+
+                    currentWorksheet.Cells[rowIndex + 10, 1] = "Tổng tiền thanh toán:";
+                    currentWorksheet.Cells[rowIndex + 10, 7] = CalcMoney(dgView) * (1.0 - (ChietKhau / 10));
+
+                    Microsoft.Office.Interop.Excel.Range AllRange = currentWorksheet.get_Range("A1", "G" + (rowIndex + 10).ToString());
+                    AllRange.Columns.AutoFit();
+                    AllRange = currentWorksheet.get_Range("A7", "G" + (rowIndex + 10).ToString());
+                    AllRange.Borders.Color = 0x000000;
+
+                    currentWorksheet.Shapes.AddPicture("D:\\QuanLyKhoHang\\qlkhohang\\Database\\logo.jpg",Microsoft.Office.Core.MsoTriState.msoFalse, Microsoft.Office.Core.MsoTriState.msoCTrue, 0, 0, 140, 40);
+
+                    currentWorksheet.Shapes.AddPicture("D:\\QuanLyKhoHang\\qlkhohang\\Database\\flag.jpg", Microsoft.Office.Core.MsoTriState.msoFalse, Microsoft.Office.Core.MsoTriState.msoCTrue, 450, 27, 23, 15);
+                    
+                    
                 }
                 else
                 {
@@ -444,6 +495,7 @@ namespace GUI
         private void btnXuatFile_Click(object sender, EventArgs e)
         {
             ExportToExcel(dataGridView_TaoDonHang);
+            
         }
 
         private void btnTao_Click(object sender, EventArgs e)
