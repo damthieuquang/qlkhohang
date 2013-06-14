@@ -380,7 +380,7 @@ namespace GUI
                     currentWorksheet.Cells[5, 1] = "Địa chỉ Stockist";
                     currentWorksheet.Cells[5, 2] = "____________";
                     currentWorksheet.Cells[6, 1] = "Ngày Tạo:";
-                    currentWorksheet.Cells[6, 2] = DateTime.Now.ToString("s");
+                    currentWorksheet.Cells[6, 2] = txtNgayLap.Text;
 
                     Microsoft.Office.Interop.Excel.Range mm = currentWorksheet.get_Range("C1", "G1");
                     mm.MergeCells = true;
@@ -389,12 +389,17 @@ namespace GUI
                     mm.HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignRight;
                     mm.Cells[1, 1] = "ĐƠN ĐẶT HÀNG STOCKIST";
                     //currentWorksheet.Cells[1, 7] = "ĐƠN ĐẶT HÀNG STOCKIST";                                        
-                    
+
+                    mm = currentWorksheet.get_Range("D3", "G6");
+                    mm.MergeCells = true;
+                    mm.WrapText = true;
+                    mm.Cells[Type.Missing, Type.Missing] = "Công ty TNHH Synergy Việt Nam; Số 27 - tổ 41, Phường Trung Hoà; Quận Cầu Giấy, Hà Nội, Việt Nam; Tel: 84-4 35562535 - Fax: 84-4 35562356";
+
                     currentWorksheet.Cells[2, 6] = "VIET NAM";
-                    currentWorksheet.Cells[3, 7] = "Công ty TNHH Synergy Việt Nam";
-                    currentWorksheet.Cells[4, 7] = "Số 27 - tổ 41, Phường Trung Hoà";
-                    currentWorksheet.Cells[5, 7] = "Quận Cầu Giấy, Hà Nội, Việt Nam";
-                    currentWorksheet.Cells[6, 7] = "Tel: 84-4 35562535   - Fax: 84-4 35562356";
+                    //currentWorksheet.Cells[3, 7] = "Công ty TNHH Synergy Việt Nam";
+                    //currentWorksheet.Cells[4, 7] = "Số 27 - tổ 41, Phường Trung Hoà";
+                    //currentWorksheet.Cells[5, 7] = "Quận Cầu Giấy, Hà Nội, Việt Nam";
+                    //currentWorksheet.Cells[6, 7] = "Tel: 84-4 35562535   - Fax: 84-4 35562356";
                     int i = 1;
                     foreach (DataGridViewColumn dgviewColumn in dgView.Columns)
                     {
@@ -434,10 +439,10 @@ namespace GUI
                     currentWorksheet.Cells[rowIndex + 8, 7] = CalcMoney(dgView);
 
                     currentWorksheet.Cells[rowIndex + 9, 1] = "Chiết khấu:";
-                    currentWorksheet.Cells[rowIndex + 9, 7] = ChietKhau;
+                    currentWorksheet.Cells[rowIndex + 9, 7] = string.Format("{0:#,0.##}", ChietKhau);
 
                     currentWorksheet.Cells[rowIndex + 10, 1] = "Tổng tiền thanh toán:";
-                    currentWorksheet.Cells[rowIndex + 10, 7] = CalcMoney(dgView) * (1.0 - (ChietKhau / 10));
+                    currentWorksheet.Cells[rowIndex + 10, 7] = string.Format("{0:#,0.##}", CalcMoney(dgView) * (1.0 - (ChietKhau / 10)));
 
                     Microsoft.Office.Interop.Excel.Range AllRange = currentWorksheet.get_Range("A1", "G" + (rowIndex + 10).ToString());
                     AllRange.Columns.AutoFit();
@@ -446,7 +451,7 @@ namespace GUI
 
                     currentWorksheet.Shapes.AddPicture("D:\\QuanLyKhoHang\\qlkhohang\\Database\\logo.jpg",Microsoft.Office.Core.MsoTriState.msoFalse, Microsoft.Office.Core.MsoTriState.msoCTrue, 0, 0, 140, 40);
 
-                    currentWorksheet.Shapes.AddPicture("D:\\QuanLyKhoHang\\qlkhohang\\Database\\flag.jpg", Microsoft.Office.Core.MsoTriState.msoFalse, Microsoft.Office.Core.MsoTriState.msoCTrue, 450, 27, 23, 15);
+                    currentWorksheet.Shapes.AddPicture("D:\\QuanLyKhoHang\\qlkhohang\\Database\\flag.jpg", Microsoft.Office.Core.MsoTriState.msoFalse, Microsoft.Office.Core.MsoTriState.msoCTrue, 380, 27, 23, 15);
                     
                     
                 }
