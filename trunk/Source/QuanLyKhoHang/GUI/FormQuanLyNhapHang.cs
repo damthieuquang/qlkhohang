@@ -243,86 +243,108 @@ namespace GUI
             //Lấy vị trí cần xóa
             if (res == DialogResult.Yes)
             {
-                int Index = dataGridView_TraCuuNhapHang.CurrentRow.Index;
-                int stt = int.Parse(dataGridView_TraCuuNhapHang.CurrentRow.Cells[clSTT.Index].Value.ToString());
                 string id = dataGridView_TraCuuNhapHang.CurrentRow.Cells["clMaPhieuNhap"].Value.ToString();
                 List<ChiTietPhieuNhapDTO> listChiTietPhieuNhapDTO = ChiTietPhieuNhapBUS.SelectChiTietPhieuNhapByMaPhieuNhap(id);
-                string maDonHang = PhieuNhapBUS.SelectPhieuNhapById(id).MaDonHang;
-                if (PhieuNhapBUS.DeletePhieuNhapByID(id))
+                bool xoa = true;
+                for (int i = 0; i < listChiTietPhieuNhapDTO.Count; i++)
                 {
-                    dataGridView_TraCuuNhapHang.Rows.RemoveAt(Index);
-                    if (dataGridView_TraCuuNhapHang.RowCount > 0)
+                    if (SanPhamBUS.SelectSanPhamById(listChiTietPhieuNhapDTO[i].MaSanPham).SoLuongTon < listChiTietPhieuNhapDTO[i].SLNhan)
                     {
-                        bool f = false;
-                        for (int i = 0; i < Index; i++)
+                        xoa = false;
+                    }
+                }
+                if (xoa)
+                {
+                    int Index = dataGridView_TraCuuNhapHang.CurrentRow.Index;
+                    int stt = int.Parse(dataGridView_TraCuuNhapHang.CurrentRow.Cells[clSTT.Index].Value.ToString());
+                    string maDonHang = PhieuNhapBUS.SelectPhieuNhapById(id).MaDonHang;
+                    if (PhieuNhapBUS.DeletePhieuNhapByID(id))
+                    {
+                        dataGridView_TraCuuNhapHang.Rows.RemoveAt(Index);
+                        if (dataGridView_TraCuuNhapHang.RowCount > 0)
                         {
-                            if (dataGridView_TraCuuNhapHang.Rows[i].Visible == true)
+                            bool f = false;
+                            for (int i = 0; i < Index; i++)
                             {
-                                f = true;
-                                break;
+                                if (dataGridView_TraCuuNhapHang.Rows[i].Visible == true)
+                                {
+                                    f = true;
+                                    break;
+                                }
                             }
-                        }
 
 
-                        for (int i = Index; i < dataGridView_TraCuuNhapHang.RowCount; i++)
-                        {
-                            if (dataGridView_TraCuuNhapHang.Rows[i].Visible == true)
+                            for (int i = Index; i < dataGridView_TraCuuNhapHang.RowCount; i++)
                             {
-                                dataGridView_TraCuuNhapHang.Rows[i].Cells["clSTT"].Value = stt.ToString();
-                                stt++;
-                                f = true;
+                                if (dataGridView_TraCuuNhapHang.Rows[i].Visible == true)
+                                {
+                                    dataGridView_TraCuuNhapHang.Rows[i].Cells["clSTT"].Value = stt.ToString();
+                                    stt++;
+                                    f = true;
+                                }
                             }
-                        }
 
-                        if (f == false)
-                        {
-                            disableButton();
+                            if (f == false)
+                            {
+                                disableButton();
+                            }
+                            else
+                            {
+                                enableButton();
+                            }
                         }
                         else
                         {
-                            enableButton();
+                            disableButton();
                         }
-                    }
-                    else
-                    {
-                        disableButton();
-                    }
 
-                    //Update
+                        //Update
 
-                    //Up date  so luong da nhan trong bang chi tiet don hang va so luong ton
-                    List<ChiTietDonHangDTO> listchiTietDonHangDTO = ChiTietDonHangBUS.SelectChiTietDonHangByMaDonHang(maDonHang);
-                    SanPhamDTO sanPhamDTO = new SanPhamDTO();
-                    bool falg = true;
-                    for (int i = 0; i < listchiTietDonHangDTO.Count; i++)
-                    {
-                        //chi tiet don hang
-                        listchiTietDonHangDTO[i].SLDaNhan = listchiTietDonHangDTO[i].SLDaNhan - listChiTietPhieuNhapDTO[i].SLNhan;
-                        ChiTietDonHangBUS.UpdateChiTietDonHangById(listchiTietDonHangDTO[i]);
-                        if (listchiTietDonHangDTO[i].SLDaNhan != listchiTietDonHangDTO[i].SoLuong)
+                        //Up date  so luong da nhan trong bang chi tiet don hang va so luong ton
+                        List<ChiTietDonHangDTO> listchiTietDonHangDTO = ChiTietDonHangBUS.SelectChiTietDonHangByMaDonHang(maDonHang);
+                        SanPhamDTO sanPhamDTO = new SanPhamDTO();
+                        bool falg = true;
+                        int tongCV = 0;
+                        for (int i = 0; i < listchiTietDonHangDTO.Count; i++)
                         {
-                            falg = false;
+                            //chi tiet don hang
+                            listchiTietDonHangDTO[i].SLDaNhan = listchiTietDonHangDTO[i].SLDaNhan - listChiTietPhieuNhapDTO[i].SLNhan;
+                            tongCV += listChiTietPhieuNhapDTO[i].SLNhan * SanPhamBUS.SelectSanPhamById(listChiTietPhieuNhapDTO[i].MaSanPham).CV;
+                            ChiTietDonHangBUS.UpdateChiTietDonHangById(listchiTietDonHangDTO[i]);
+                            if (listchiTietDonHangDTO[i].SLDaNhan != listchiTietDonHangDTO[i].SoLuong)
+                            {
+                                falg = false;
+                            }
+
+                            //so luong ton
+                            sanPhamDTO = SanPhamBUS.SelectSanPhamById(listChiTietPhieuNhapDTO[i].MaSanPham);
+                            sanPhamDTO.SoLuongTon = sanPhamDTO.SoLuongTon - listChiTietPhieuNhapDTO[i].SLNhan;
+                            SanPhamBUS.UpdateSanPhamById(sanPhamDTO);
                         }
 
-                        //so luong ton
-                        sanPhamDTO = SanPhamBUS.SelectSanPhamById(listChiTietPhieuNhapDTO[i].MaSanPham);
-                        sanPhamDTO.SoLuongTon = sanPhamDTO.SoLuongTon - listChiTietPhieuNhapDTO[i].SLNhan;
-                        SanPhamBUS.UpdateSanPhamById(sanPhamDTO);
-                    }
+                        //update trang thai don hang
+                        DonHangDTO donHangDTO = DonHangBUS.SelectDonHangById(maDonHang);
+                        if (falg)//Da nhan (tat ca SlDaNhan == SoLuong)
+                        {
+                            donHangDTO.TrangThai = "Đã nhận";
+                        }
+                        else//Nhan mot phan (con it nhat mot san pham chua nhan het)
+                        {
+                            donHangDTO.TrangThai = "Nhận một phần";
+                        }
+                        DonHangBUS.UpdateDonHangById(donHangDTO);
 
-                    //update trang thai don hang
-                    DonHangDTO donHangDTO = DonHangBUS.SelectDonHangById(maDonHang);
-                    if (falg)//Da nhan (tat ca SlDaNhan == SoLuong)
-                    {
-                        donHangDTO.TrangThai = "Đã nhận";
-                    }
-                    else//Nhan mot phan (con it nhat mot san pham chua nhan het)
-                    {
-                        donHangDTO.TrangThai = "Nhận một phần";
-                    }
-                    DonHangBUS.UpdateDonHangById(donHangDTO);
+                        //update tong cv
+                        ThamSoDTO thamSoDTO = ThamSoBUS.SelectThamSoById("TS004");
+                        thamSoDTO.GiaTri = (int.Parse(thamSoDTO.GiaTri) - tongCV).ToString();
+                        ThamSoBUS.UpdateThamSoById(thamSoDTO);
 
-                    MessageBox.Show("Xóa thành công");
+                        MessageBox.Show("Xóa thành công");
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Sản phẩm đã bán, không cho phép xóa phiếu nhập " + id);
                 }
 
             }

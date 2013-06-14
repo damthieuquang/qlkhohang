@@ -17,7 +17,8 @@ namespace GUI
         {
             InitializeComponent();
         }
-        private void FormQuanLyThanhVien_Load(object sender, EventArgs e)
+
+        private void FormQuanLyThanhVien_Activated(object sender, EventArgs e)
         {
             panelYesNo.Location = new Point(12, 350);
             KhoiTao();
@@ -455,5 +456,14 @@ namespace GUI
             else
                 buttonDisabled();
         }
+
+        private void buttonXemChiTiet_Click(object sender, EventArgs e)
+        {
+            FormChiTietThanhVien form = new FormChiTietThanhVien();
+            form.maThanhVien = dataGridView_QuanLyThanhVien.CurrentRow.Cells[ColMaThanhVien.Index].Value.ToString();
+            form.ShowDialog();
+        }
+
+       
     }
 }

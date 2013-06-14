@@ -110,6 +110,33 @@ namespace DAO
 
             return listPhieuNhapDTO;
         }
+
+        public static List<PhieuNhapDTO> SelectPhieuNhapByMaNhanVien(string MaNhanVien)
+        {
+            List<SqlParameter> sqlParamas = new List<SqlParameter>();
+            sqlParamas.Add(new SqlParameter("@MaNhanVien", MaNhanVien));
+            DataTable dataTable = DataProvider.ExecuteReader("usp_SelectPhieuNhapByMaNhanVien", sqlParamas);
+
+            List<PhieuNhapDTO> listPhieuNhapDTO = new List<PhieuNhapDTO>();
+            if (dataTable.Rows.Count > 0)
+            {
+                foreach (DataRow dataRow in dataTable.Rows)
+                {
+                    PhieuNhapDTO phieuNhapDTO = new PhieuNhapDTO();
+                    phieuNhapDTO.MaPhieuNhap = dataRow["MaPhieuNhap"].ToString();
+                    phieuNhapDTO.MaDonHang = dataRow["MaDonHang"].ToString();
+                    phieuNhapDTO.NgayNhan = DateTime.Parse(dataRow["NgayNhan"].ToString());
+                    phieuNhapDTO.MaNhanVien = dataRow["MaNhanVien"].ToString();
+                    listPhieuNhapDTO.Add(phieuNhapDTO);
+                }
+            }
+            else
+            {
+                listPhieuNhapDTO = null;
+            }
+
+            return listPhieuNhapDTO;
+        }
         
     }
 }

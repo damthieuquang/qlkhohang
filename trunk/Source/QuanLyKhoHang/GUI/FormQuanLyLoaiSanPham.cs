@@ -17,8 +17,7 @@ namespace GUI
             InitializeComponent();
         }
 
-
-        private void FormQuanLyLoaiSanPham_Load(object sender, EventArgs e)
+        private void FormQuanLyLoaiSanPham_Activated(object sender, EventArgs e)
         {
             panelYesNo.Location = new Point(12, 350);
             KhoiTao();
@@ -409,6 +408,8 @@ namespace GUI
             else
                 buttonDisabled();
         }
+
+       
 
 
     }
