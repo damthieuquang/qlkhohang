@@ -265,7 +265,7 @@
             this.Name = "FormQuanLyLoaiSanPham";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Quản lý loại sản phẩm";
-            this.Load += new System.EventHandler(this.FormQuanLyLoaiSanPham_Load);
+            this.Activated += new System.EventHandler(this.FormQuanLyLoaiSanPham_Activated);
             this.panelTimKiem.ResumeLayout(false);
             this.groupBoxTimKiem.ResumeLayout(false);
             this.groupBoxTimKiem.PerformLayout();

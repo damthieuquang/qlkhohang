@@ -198,13 +198,12 @@ namespace GUI
                 buttonDisabled();
         }
 
-        private void FormQuanLyNhanVien_Load(object sender, EventArgs e)
+        private void FormQuanLyNhanVien_Activated(object sender, EventArgs e)
         {
             KhoiTaoComboBoxLoaiNhanVien();
             KhoiTao();
             panelYesNo.Parent = panelFull;
             panelYesNo.Location = new Point(17, 390);
-
         }
 
         private void FormQuanLyNhanVien_Resize(object sender, EventArgs e)
@@ -462,6 +461,8 @@ namespace GUI
             fChiTietNhanVien.maNhanVien = dataGridView_NhanVien.CurrentRow.Cells[clMaNhanVien.Index].Value.ToString();
             fChiTietNhanVien.ShowDialog();
         }
+
+
 
     }
 }

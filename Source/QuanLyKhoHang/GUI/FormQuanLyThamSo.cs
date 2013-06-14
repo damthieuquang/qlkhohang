@@ -180,12 +180,11 @@ namespace GUI
 
         }
 
-        private void FormQuanLyThamSo_Load(object sender, EventArgs e)
+        private void FormQuanLyThamSo_Activated(object sender, EventArgs e)
         {
             panelYesNo.Location = new Point(12, 400);
             KhoiTao();
         }
-
 
         private void textBoxTenThamSo_TextChanged(object sender, EventArgs e)
         {
@@ -414,5 +413,7 @@ namespace GUI
         {
             Dispose();
         }
+
+      
     }
 }

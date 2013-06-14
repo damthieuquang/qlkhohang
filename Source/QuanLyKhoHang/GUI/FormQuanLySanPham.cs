@@ -17,8 +17,7 @@ namespace GUI
             InitializeComponent();
         }
 
-
-        private void FormQuanLySanPham_Load(object sender, EventArgs e)
+        private void FormQuanLySanPham_Activated(object sender, EventArgs e)
         {
             panelYesNo.Location = new Point(12, 400);
             panelYesNo.Parent = this;
@@ -561,5 +560,7 @@ namespace GUI
             Reset();
 
         }
+
+        
     }
 }

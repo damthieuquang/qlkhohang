@@ -30,6 +30,7 @@
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panelTimKiem = new System.Windows.Forms.Panel();
+            this.buttonXemChiTiet = new System.Windows.Forms.Button();
             this.buttonThoat = new System.Windows.Forms.Button();
             this.buttonXoa = new System.Windows.Forms.Button();
             this.buttonCapNhat = new System.Windows.Forms.Button();
@@ -57,7 +58,6 @@
             this.ColCV = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColTienNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBoxDSThamSo = new System.Windows.Forms.GroupBox();
-            this.buttonXemChiTiet = new System.Windows.Forms.Button();
             this.panelTimKiem.SuspendLayout();
             this.groupBoxTimKiem.SuspendLayout();
             this.panelYesNo.SuspendLayout();
@@ -77,6 +77,16 @@
             this.panelTimKiem.Name = "panelTimKiem";
             this.panelTimKiem.Size = new System.Drawing.Size(860, 52);
             this.panelTimKiem.TabIndex = 9;
+            // 
+            // buttonXemChiTiet
+            // 
+            this.buttonXemChiTiet.Location = new System.Drawing.Point(356, 14);
+            this.buttonXemChiTiet.Name = "buttonXemChiTiet";
+            this.buttonXemChiTiet.Size = new System.Drawing.Size(75, 23);
+            this.buttonXemChiTiet.TabIndex = 6;
+            this.buttonXemChiTiet.Text = "Xem chi tiết";
+            this.buttonXemChiTiet.UseVisualStyleBackColor = true;
+            this.buttonXemChiTiet.Click += new System.EventHandler(this.buttonXemChiTiet_Click);
             // 
             // buttonThoat
             // 
@@ -342,15 +352,6 @@
             this.groupBoxDSThamSo.TabStop = false;
             this.groupBoxDSThamSo.Text = "Danh sách tham số";
             // 
-            // buttonXemChiTiet
-            // 
-            this.buttonXemChiTiet.Location = new System.Drawing.Point(356, 14);
-            this.buttonXemChiTiet.Name = "buttonXemChiTiet";
-            this.buttonXemChiTiet.Size = new System.Drawing.Size(75, 23);
-            this.buttonXemChiTiet.TabIndex = 6;
-            this.buttonXemChiTiet.Text = "Xem chi tiết";
-            this.buttonXemChiTiet.UseVisualStyleBackColor = true;
-            // 
             // FormQuanLyThanhVien
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -363,7 +364,7 @@
             this.Name = "FormQuanLyThanhVien";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Quản lý thành viên";
-            this.Load += new System.EventHandler(this.FormQuanLyThanhVien_Load);
+            this.Activated += new System.EventHandler(this.FormQuanLyThanhVien_Activated);
             this.panelTimKiem.ResumeLayout(false);
             this.groupBoxTimKiem.ResumeLayout(false);
             this.groupBoxTimKiem.PerformLayout();

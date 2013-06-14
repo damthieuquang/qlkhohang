@@ -321,6 +321,8 @@ namespace GUI
                 int Index = dataGridView_TraCuuXuatHang.CurrentRow.Index;
                 int stt = int.Parse(dataGridView_TraCuuXuatHang.CurrentRow.Cells[clSTT.Index].Value.ToString());
                 string id = dataGridView_TraCuuXuatHang.CurrentRow.Cells["clMaPhieuXuat"].Value.ToString();
+                List<ChiTietPhieuXuatDTO> listChiTietPhieuXuatDTO = ChiTietPhieuXuatBUS.SelectChiTietPhieuXuatByMaPhieuXuat(id);
+                PhieuXuatDTO phieuXuatDTO = PhieuXuatBUS.SelectPhieuXuatById(id);
                 if (PhieuXuatBUS.DeletePhieuXuatById(id))
                 {
                     dataGridView_TraCuuXuatHang.Rows.RemoveAt(Index);
@@ -359,6 +361,30 @@ namespace GUI
                     {
                         buttonDisabled();
                     }
+
+
+                    int cv = 0;
+                    SanPhamDTO sanPhamDTO = new SanPhamDTO();
+                    for (int i = 0; i < listChiTietPhieuXuatDTO.Count; i++)
+                    {
+                        //Tính lại SoLuongTon của sản phẩm
+                        sanPhamDTO = SanPhamBUS.SelectSanPhamById(listChiTietPhieuXuatDTO[i].MaSanPham);
+                        sanPhamDTO.SoLuongTon = sanPhamDTO.SoLuongTon + listChiTietPhieuXuatDTO[i].SoLuong;
+                        SanPhamBUS.UpdateSanPhamById(sanPhamDTO);
+
+                        //cv
+                        cv += listChiTietPhieuXuatDTO[i].CV * listChiTietPhieuXuatDTO[i].SoLuong;
+                    }
+
+                    //Tinh lai TongCV
+                    if (phieuXuatDTO.MaThanhVien != "")
+                    {
+                        ThanhVienDTO thanhVien = ThanhVienBUS.SelectThanhVienById(phieuXuatDTO.MaThanhVien);
+                        thanhVien.CV = thanhVien.CV - cv;
+                        ThanhVienBUS.UpdateThanhVienById(thanhVien);
+                    }
+
+                    MessageBox.Show("Xóa thành công");
                 }
             }
 

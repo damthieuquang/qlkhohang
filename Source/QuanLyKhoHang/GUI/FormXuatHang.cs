@@ -79,24 +79,28 @@ namespace GUI
         //Chuyen sang trang thai cho XemChiTiet phieuxuat
         private void Load_Update()
         {
-            Load_Default();
+            //Load_Default();
 
             //Load Thong tin PhieuXuat
             PhieuXuatDTO phieuXuatDTO = PhieuXuatBUS.SelectPhieuXuatById(MaPhieuXuat);
             txtMaPhieuXuat.Text = phieuXuatDTO.MaPhieuXuat;
-            txtMaThanhVien.Text = phieuXuatDTO.MaThanhVien;
-            txtTenKhachHang.Text = phieuXuatDTO.TenKhachHang;
-            txtDiaChi.Text = phieuXuatDTO.DiaChi;
-            txtMaThanhVien.ReadOnly = true;
-            txtTenKhachHang.ReadOnly = true;
-            txtDiaChi.ReadOnly = true;
+            if (phieuXuatDTO.MaThanhVien != "")
+            {
+                txtMaThanhVien.Text = phieuXuatDTO.MaThanhVien;
+                txtMaThanhVien.ReadOnly = true;
+            }
+            else
+            {
+                txtTenKhachHang.Text = phieuXuatDTO.TenKhachHang;
+                txtDiaChi.Text = phieuXuatDTO.DiaChi;
+            }
+
             txtNgayBan.Text = phieuXuatDTO.NgayBan.ToString("dd/MM/yyyy");
             txtMaNhanVien.Text = phieuXuatDTO.MaNhanVien;
             txtNhanVienBanHang.Text = NhanVienBUS.SelectNhanVienById(phieuXuatDTO.MaNhanVien).TenNhanVien;
 
 
-            //Load panel YesNo(hien tai dang an)
-            panelYesNo.Location = new Point(16, 412);
+            
 
             //Thay đổi button Tạo thành Cập nhật
             btnTao.Text = "Cập nhật";
@@ -110,7 +114,7 @@ namespace GUI
             List<ChiTietPhieuXuatDTO> listChiTietPhieuXuatDTO = new List<ChiTietPhieuXuatDTO>();
             listChiTietPhieuXuatDTO = ChiTietPhieuXuatBUS.SelectChiTietPhieuXuatByMaPhieuXuat(MaPhieuXuat);
             
-            dataGridView_XuatHang.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+           
 
             //Lấy tên sản phẩm
             SanPhamDTO sanphamDTO = new SanPhamDTO();
@@ -120,6 +124,7 @@ namespace GUI
                 dataGridView_XuatHang.Rows.Add(i + 1, listChiTietPhieuXuatDTO[i].MaSanPham, sanphamDTO.TenSanPham, listChiTietPhieuXuatDTO[i].CV, listChiTietPhieuXuatDTO[i].DonGia, sanphamDTO.SoLuongTon, listChiTietPhieuXuatDTO[i].SoLuong,string.Format("{0:#,0.##}",listChiTietPhieuXuatDTO[i].ThanhTien) );
                 dataGridView_XuatHang.Rows[i].ReadOnly = true;
             }
+            dataGridView_XuatHang.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
 
             /*
              * //Thay đổi button Làm lại thành Hủy
@@ -174,6 +179,8 @@ namespace GUI
        
         private void FormXuatHang_Load(object sender, EventArgs e)
         {
+            //Load panel YesNo(hien tai dang an)
+            panelYesNo.Location = new Point(16, 412);
             if (Status == 0 || Status == 4)
             {
                 Load_Create();
@@ -320,7 +327,7 @@ namespace GUI
             panelYesNo.Visible = true;
             panelYesNo.Parent = this;
             panelChucNang.Visible = false;
-            //dataGridView_XuatHang.SelectionMode = DataGridViewSelectionMode.CellSelect;
+            dataGridView_XuatHang.SelectionMode = DataGridViewSelectionMode.CellSelect;
             for (int i = 0; i < dataGridView_XuatHang.RowCount; i++)
             {
                 dataGridView_XuatHang.Rows[i].ReadOnly = false;
@@ -530,30 +537,34 @@ namespace GUI
                 List<ChiTietPhieuXuatDTO> listChiTietPhieuXuatDTO = new List<ChiTietPhieuXuatDTO>();
                 listChiTietPhieuXuatDTO = ChiTietPhieuXuatBUS.SelectChiTietPhieuXuatByMaPhieuXuat(MaPhieuXuat);
 
-                int cv, SoLuongTon;
+                int cv = 0;
+                int cv2 = 0;
+                int SoLuongTon = 0;
                 SanPhamDTO sanPhamDTO = new SanPhamDTO();
                 for (int i = 0; i < listChiTietPhieuXuatDTO.Count; i++)
                 {
-                    listChiTietPhieuXuatDTO[i].SoLuong = int.Parse(dataGridView_XuatHang.Rows[i].Cells["clSoLuong"].Value.ToString());
-                    listChiTietPhieuXuatDTO[i].ThanhTien = float.Parse(dataGridView_XuatHang.Rows[i].Cells["clThanhTien"].Value.ToString());
-                    ChiTietPhieuXuatBUS.UpdateChiTietPhieuXuatById(listChiTietPhieuXuatDTO[i]);
 
                     //Tính lại SoLuongTon của sản phẩm
-                    SoLuongTon = 0;
                     SoLuongTon = listChiTietPhieuXuatDTO[i].SoLuong - int.Parse(dataGridView_XuatHang.Rows[i].Cells["clSoLuong"].Value.ToString());
                     sanPhamDTO = SanPhamBUS.SelectSanPhamById(listChiTietPhieuXuatDTO[i].MaSanPham);
                     sanPhamDTO.SoLuongTon += SoLuongTon;
                     SanPhamBUS.UpdateSanPhamById(sanPhamDTO);
 
-                    //Tinh lai TongCV
-                    if (IsThanhVien == true)
-                    {
-                        cv = 0;
-                        cv += listChiTietPhieuXuatDTO[i].CV * listChiTietPhieuXuatDTO[i].SoLuong;
-                        TongCV = TongCV - cv;
-                        this.thanhVienDTO.CV -= TongCV;
-                        ThanhVienBUS.UpdateThanhVienById(this.thanhVienDTO);
-                    }
+                   //cv
+                    cv2 += int.Parse(dataGridView_XuatHang.Rows[i].Cells["clSoLuong"].Value.ToString()) * int.Parse(dataGridView_XuatHang.Rows[i].Cells[clCV.Index].Value.ToString());
+                    cv += listChiTietPhieuXuatDTO[i].CV * listChiTietPhieuXuatDTO[i].SoLuong;
+
+                    listChiTietPhieuXuatDTO[i].SoLuong = int.Parse(dataGridView_XuatHang.Rows[i].Cells["clSoLuong"].Value.ToString());
+                    listChiTietPhieuXuatDTO[i].ThanhTien = float.Parse(dataGridView_XuatHang.Rows[i].Cells["clThanhTien"].Value.ToString());
+                    ChiTietPhieuXuatBUS.UpdateChiTietPhieuXuatById(listChiTietPhieuXuatDTO[i]);
+
+                }
+
+                //Tinh lai TongCV
+                if (IsThanhVien == true)
+                {
+                    this.thanhVienDTO.CV = this.thanhVienDTO.CV - cv + cv2;
+                    ThanhVienBUS.UpdateThanhVienById(this.thanhVienDTO);
                 }
                 MessageBox.Show("Cập nhật thành công", "Cập nhật đơn hàng");
                 this.Dispose();
@@ -608,7 +619,7 @@ namespace GUI
             else
             {
                 btnTao.Enabled = true;
-                if (txtMaThanhVien.Focused == false)
+                if (txtMaThanhVien.Focused == false && Status == 0)
                 {
                     txtMaThanhVien.Text = "";
                 }

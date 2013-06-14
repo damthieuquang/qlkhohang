@@ -18,6 +18,10 @@ namespace BUS
         {
             return PhieuNhapDAO.SelectPhieuNhapById(MaPhieuNhap);
         }
+        public static List<PhieuNhapDTO> SelectPhieuNhapByMaNhanVien(string MaNhanVien)
+        {
+            return PhieuNhapDAO.SelectPhieuNhapByMaNhanVien(MaNhanVien);
+        }
         public static List<PhieuNhapDTO> SelectPhieuNhapByMaDonHang(string MaDonHang)
         {
             return PhieuNhapDAO.SelectPhieuNhapByMaDonHang(MaDonHang);

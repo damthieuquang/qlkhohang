@@ -194,7 +194,7 @@ namespace GUI
                     phieuNhapDTO.MaDonHang = txtDonDatHang.Text;
 
                     List<ChiTietPhieuNhapDTO> listChiTietPhieuNhapDTO = new List<ChiTietPhieuNhapDTO>();
-
+                    int tongCV = 0;
                     for (int i = 0; i < dataGridView_NhapHang.RowCount; i++)
                     {
                         ChiTietPhieuNhapDTO chiTietPhieuNhapDTO = new ChiTietPhieuNhapDTO();
@@ -215,6 +215,7 @@ namespace GUI
                         chiTietPhieuNhapDTO.MaPhieuNhap = txtMaPhieuNhap.Text;
                         chiTietPhieuNhapDTO.MaSanPham = dataGridView_NhapHang.Rows[i].Cells[clMaSanPham.Index].Value.ToString();
                         chiTietPhieuNhapDTO.SLNhan = int.Parse(dataGridView_NhapHang.Rows[i].Cells[clSLNhan.Index].Value.ToString());
+                        tongCV += SanPhamBUS.SelectSanPhamById(chiTietPhieuNhapDTO.MaSanPham).CV * chiTietPhieuNhapDTO.SLNhan;
                         chiTietPhieuNhapDTO.GhiChu = dataGridView_NhapHang.Rows[i].Cells[clGhiChu.Index].Value.ToString();
                         listChiTietPhieuNhapDTO.Add(chiTietPhieuNhapDTO);
                     }
@@ -242,6 +243,12 @@ namespace GUI
                             }
                         }
 
+                        //update tong cv
+                        ThamSoDTO thamsoDTO = ThamSoBUS.SelectThamSoById("TS004");
+                        thamsoDTO.GiaTri = (int.Parse(thamsoDTO.GiaTri) + tongCV).ToString();
+                        ThamSoBUS.UpdateThamSoById(thamsoDTO);
+
+
                         //update trang thai don hang
                         DonHangDTO donHangDTO = DonHangBUS.SelectDonHangById(id);
                         if (f)//Da nhan (tat ca SlDaNhan == SoLuong)
@@ -263,6 +270,9 @@ namespace GUI
                             sanPhamDTO.SoLuongTon += listChiTietPhieuNhapDTO[i].SLNhan;
                             SanPhamBUS.UpdateSanPhamById(sanPhamDTO);
                         }
+
+                       
+
 
                         MessageBox.Show("Tạo Thành Công");
                     }
@@ -303,11 +313,15 @@ namespace GUI
                 SanPhamDTO sanPhamDTO = new SanPhamDTO();
                 bool f = true;
                 int SLNhan = 0;
+                int tongCVTruoc = 0;
+                int tongCVSau = 0;
                 for (int i = 0; i < listchiTietDonHangDTO.Count; i++)
                 {
                     //chi tiet don hang
                     SLNhan = int.Parse(dataGridView_NhapHang.Rows[i].Cells[clSLNhan.Index].Value.ToString());
                     listchiTietDonHangDTO[i].SLDaNhan = listchiTietDonHangDTO[i].SLDaNhan - listChiTietPhieuNhapDTO[i].SLNhan + SLNhan;
+                    tongCVTruoc += listChiTietPhieuNhapDTO[i].SLNhan * SanPhamBUS.SelectSanPhamById(listChiTietPhieuNhapDTO[i].MaSanPham).CV;
+                    tongCVSau += SLNhan * SanPhamBUS.SelectSanPhamById(listChiTietPhieuNhapDTO[i].MaSanPham).CV;
                     ChiTietDonHangBUS.UpdateChiTietDonHangById(listchiTietDonHangDTO[i]);
                     if (listchiTietDonHangDTO[i].SLDaNhan != listchiTietDonHangDTO[i].SoLuong)
                     {
@@ -324,6 +338,11 @@ namespace GUI
                     listChiTietPhieuNhapDTO[i].GhiChu = dataGridView_NhapHang.Rows[i].Cells[clGhiChu.Index].Value.ToString();
                     ChiTietPhieuNhapBUS.UpdateChiTietPhieuNhapById(listChiTietPhieuNhapDTO[i]);
                 }
+
+                //update tong cv
+                ThamSoDTO thamSoDTO = ThamSoBUS.SelectThamSoById("TS004");
+                thamSoDTO.GiaTri = (int.Parse(thamSoDTO.GiaTri) - tongCVTruoc + tongCVSau).ToString();
+                ThamSoBUS.UpdateThamSoById(thamSoDTO);
 
                 //update trang thai don hang
                 DonHangDTO donHangDTO = DonHangBUS.SelectDonHangById(id);

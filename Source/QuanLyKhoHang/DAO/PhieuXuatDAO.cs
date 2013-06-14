@@ -97,5 +97,67 @@ namespace DAO
             return phieuXuatDTO;
         }
 
+        public static List<PhieuXuatDTO> SelectPhieuXuatByMaThanhVien(string MaThanhVien)
+        {
+            List<SqlParameter> sqlParamas = new List<SqlParameter>();
+            sqlParamas.Add(new SqlParameter("@MaThanhVien", MaThanhVien));
+            DataTable dataTable = DataProvider.ExecuteReader("usp_SelectPhieuXuatByMaThanhVien", sqlParamas);
+
+            List<PhieuXuatDTO> listPhieuXuatDTO = new List<PhieuXuatDTO>();
+
+            if (dataTable.Rows.Count > 0)
+            {
+                foreach (DataRow dataRow in dataTable.Rows)
+                {
+                    PhieuXuatDTO phieuXuatDTO = new PhieuXuatDTO();
+                    phieuXuatDTO.MaPhieuXuat = dataRow["MaPhieuXuat"].ToString();
+                    phieuXuatDTO.NgayBan = DateTime.Parse(dataRow["NgayBan"].ToString());
+                    phieuXuatDTO.MaThanhVien = dataRow["MaThanhVien"].ToString();
+                    phieuXuatDTO.MaNhanVien = dataRow["MaNhanVien"].ToString();
+                    phieuXuatDTO.TenKhachHang = dataRow["TenKhachHang"].ToString();
+                    phieuXuatDTO.DiaChi = dataRow["DiaChi"].ToString();
+                    phieuXuatDTO.MaLoaiPhieuXuat = dataRow["MaLoaiPhieuXuat"].ToString();
+                    listPhieuXuatDTO.Add(phieuXuatDTO);
+                }
+            }
+            else
+            {
+                listPhieuXuatDTO = null;
+            }
+
+            return listPhieuXuatDTO;
+        }
+
+        public static List<PhieuXuatDTO> SelectPhieuXuatByMaNhanVien(string MaNhanVien)
+        {
+            List<SqlParameter> sqlParamas = new List<SqlParameter>();
+            sqlParamas.Add(new SqlParameter("@MaNhanVien", MaNhanVien));
+            DataTable dataTable = DataProvider.ExecuteReader("usp_SelectPhieuXuatByMaNhanVien", sqlParamas);
+
+            List<PhieuXuatDTO> listPhieuXuatDTO = new List<PhieuXuatDTO>();
+
+            if (dataTable.Rows.Count > 0)
+            {
+                foreach (DataRow dataRow in dataTable.Rows)
+                {
+                    PhieuXuatDTO phieuXuatDTO = new PhieuXuatDTO();
+                    phieuXuatDTO.MaPhieuXuat = dataRow["MaPhieuXuat"].ToString();
+                    phieuXuatDTO.NgayBan = DateTime.Parse(dataRow["NgayBan"].ToString());
+                    phieuXuatDTO.MaThanhVien = dataRow["MaThanhVien"].ToString();
+                    phieuXuatDTO.MaNhanVien = dataRow["MaNhanVien"].ToString();
+                    phieuXuatDTO.TenKhachHang = dataRow["TenKhachHang"].ToString();
+                    phieuXuatDTO.DiaChi = dataRow["DiaChi"].ToString();
+                    phieuXuatDTO.MaLoaiPhieuXuat = dataRow["MaLoaiPhieuXuat"].ToString();
+                    listPhieuXuatDTO.Add(phieuXuatDTO);
+                }
+            }
+            else
+            {
+                listPhieuXuatDTO = null;
+            }
+
+            return listPhieuXuatDTO;
+        }
+
     }
 }

@@ -339,7 +339,7 @@
             this.Name = "FormQuanLyNhanVien";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Quản lý nhân viên";
-            this.Load += new System.EventHandler(this.FormQuanLyNhanVien_Load);
+            this.Activated += new System.EventHandler(this.FormQuanLyNhanVien_Activated);
             this.Resize += new System.EventHandler(this.FormQuanLyNhanVien_Resize);
             this.panelFull.ResumeLayout(false);
             this.panelTimKiem.ResumeLayout(false);
