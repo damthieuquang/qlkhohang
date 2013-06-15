@@ -286,43 +286,51 @@ namespace GUI
                 int Index = dataGridView_TraCuuDonHang.CurrentRow.Index;
                 int stt = int.Parse(dataGridView_TraCuuDonHang.CurrentRow.Cells[clSTT.Index].Value.ToString());
                 string id = dataGridView_TraCuuDonHang.CurrentRow.Cells["clMaDonHang"].Value.ToString();
-                if (DonHangBUS.DeleteDonHangById(id))
-                {                    
-                    dataGridView_TraCuuDonHang.Rows.RemoveAt(Index);
-                    if (dataGridView_TraCuuDonHang.RowCount > 0)
+                if (DonHangBUS.SelectDonHangById(id).TrangThai == "Chưa nhận")
+                {
+                    if (DonHangBUS.DeleteDonHangById(id))
                     {
-                        bool f = false;
-                        for (int i = 0; i < Index;  i++)
+                        dataGridView_TraCuuDonHang.Rows.RemoveAt(Index);
+                        if (dataGridView_TraCuuDonHang.RowCount > 0)
                         {
-                            if (dataGridView_TraCuuDonHang.Rows[i].Visible == true)
+                            bool f = false;
+                            for (int i = 0; i < Index; i++)
                             {
-                                f = true;
-                                break;
+                                if (dataGridView_TraCuuDonHang.Rows[i].Visible == true)
+                                {
+                                    f = true;
+                                    break;
+                                }
                             }
-                        } 
-                        for (int i = Index; i < dataGridView_TraCuuDonHang.RowCount; i++)
-                        {
-                            if (dataGridView_TraCuuDonHang.Rows[i].Visible == true)
+                            for (int i = Index; i < dataGridView_TraCuuDonHang.RowCount; i++)
                             {
-                                dataGridView_TraCuuDonHang.Rows[i].Cells["clSTT"].Value = stt.ToString();
-                                stt++;
-                                f = true;
+                                if (dataGridView_TraCuuDonHang.Rows[i].Visible == true)
+                                {
+                                    dataGridView_TraCuuDonHang.Rows[i].Cells["clSTT"].Value = stt.ToString();
+                                    stt++;
+                                    f = true;
+                                }
                             }
-                        }
 
-                        if (f == false)
-                        {
-                            buttonDisabled();
+                            if (f == false)
+                            {
+                                buttonDisabled();
+                            }
+                            else
+                            {
+                                buttonEnabled();
+                            }
                         }
                         else
                         {
-                            buttonEnabled();
+                            buttonDisabled();
                         }
+                        MessageBox.Show("Xóa thành công");
                     }
-                    else
-                    {
-                        buttonDisabled();
-                    }
+                }
+                else
+                {
+                    MessageBox.Show("Đơn hàng " + id + " đã nhận, không cho phép xóa");
                 }
             }
         }
