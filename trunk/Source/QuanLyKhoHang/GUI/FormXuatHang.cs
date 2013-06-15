@@ -99,6 +99,11 @@ namespace GUI
             txtMaNhanVien.Text = phieuXuatDTO.MaNhanVien;
             txtNhanVienBanHang.Text = NhanVienBUS.SelectNhanVienById(phieuXuatDTO.MaNhanVien).TenNhanVien;
 
+            //Kiểm tra Khách hàng có là Thành viên không
+            if (txtMaThanhVien.Text == "")
+            {
+                IsThanhVien = false;
+            }
 
             
 
@@ -126,55 +131,11 @@ namespace GUI
             }
             dataGridView_XuatHang.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
 
-            /*
-             * //Thay đổi button Làm lại thành Hủy
-            btnLamLai.Text = "Hủy";
-
-            //Thay đổi button Tạo mới thành Xong
-            btnTaoMoi.Text = "Xong";
-
-            //Ẩn button Tìm phiếu xuất
-            btnTimPhieuXuat.Visible = false;
-
-            //Ẩn button Thoát
-            btnThoat.Visible = false;
-
-            //Ẩn button Thoát
-            btnThoat.Visible = false;
-
-            //Nhận Mã Phiếu Xuất từ Quản lý phiếu xuất
-            PhieuXuatDTO phieuXuatDTO = new PhieuXuatDTO();
-            phieuXuatDTO.MaPhieuXuat = MaPhieuXuat;
-
-            //Truy vấn lấy ra Chi Tiết Phiếu Xuất theo Mã đơn hàng
-            List<ChiTietPhieuXuatDTO> listChiPhieuXuatDTO = new List<ChiTietPhieuXuatDTO>();
-            listChiPhieuXuatDTO = ChiTietPhieuXuatBUS.SelectChiTietPhieuXuatByMaPhieuXuat(phieuXuatDTO.MaPhieuXuat.ToString());
-
-            //Lấy Tên sản phẩm 
-            for (int i = 0; i < listChiPhieuXuatDTO.Count; i++)
-            {
-                dataGridView_XuatHang.Rows.Add(i + 1, listChiPhieuXuatDTO[i].MaSanPham, SanPhamBUS.SelectSanPhamById(listChiPhieuXuatDTO[i].MaSanPham).TenSanPham, listChiPhieuXuatDTO[i].CV, listChiPhieuXuatDTO[i].DonGia, listChiPhieuXuatDTO[i].SoLuong, listChiPhieuXuatDTO[i].ThanhTien);
-            }*/
+            
         }
-        /*Kiểm tra la ThanhVien
-         * */
+        
         private void txtMaThanhVien_Leave(object sender, EventArgs e)
-        {/*
-            thanhVienDTO = new ThanhVienDTO();
-            if (txtMaThanhVien.TextLength == 5 && ThanhVienBUS.SelectThanhVienById(txtMaThanhVien.Text) != null)
-            {
-                thanhVienDTO = ThanhVienBUS.SelectThanhVienById(txtMaThanhVien.Text);
-                txtTenKhachHang.Text = thanhVienDTO.TenThanhVien;
-                txtDiaChi.Text = thanhVienDTO.DiaChi;
-                txtTenKhachHang.ReadOnly = true;
-                txtDiaChi.ReadOnly = true;
-                IsThanhVien = true;
-            }
-            else
-            {
-                MessageBox.Show("Thành viên này không tồn tại");
-                IsThanhVien = false;
-            }*/
+        {
         }
        
         private void FormXuatHang_Load(object sender, EventArgs e)
@@ -185,7 +146,7 @@ namespace GUI
             {
                 Load_Create();
             }
-            else if (Status == 1)//????
+            else if (Status == 1)
             {
                 btnTao.Text = "Cập nhật";
                 Load_Update();
@@ -197,19 +158,7 @@ namespace GUI
             }
         }
         
-        // kiểm tra tồn tại dòng có thành tiền khác 0
-        /*private bool CheckDataOn_Row_DataGriView(DataGridView data)
-        {
-            for (int i = 0; i < data.Rows.Count; i++)
-            {
-                DataGridViewRow Row = data.Rows[i];
-                if (int.Parse(Row.Cells["clThanhTien"].Value.ToString()) > 0)
-                {
-                    return true;
-                }
-            }
-            return false;
-        }*/
+       
 
         private bool Process_Button()
         {
