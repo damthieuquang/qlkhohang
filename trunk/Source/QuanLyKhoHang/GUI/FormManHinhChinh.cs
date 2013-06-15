@@ -32,6 +32,20 @@ namespace GUI
         {
             FormDangNhap fDangNhap = new FormDangNhap();
             fDangNhap.ShowDialog();
+            if (ThongTin.NhanVienDTO.LoaiNhanVien == 1)
+            {
+                donHangToolStripMenuItem.Enabled = false;
+                xuatHangToolStripMenuItemQLLoaiPhieuXuat.Enabled = false;
+                sanPhamToolStripMenuItem.Enabled = false;
+                thanhVienToolStripMenuItem.Enabled = false;
+                nhanVienToolStripMenuItem.Enabled = false;
+                heThongToolStripMenuItemQLThamSo.Visible = false;
+                heThongToolStripMenuItemSLDuLieu.Visible = false;
+                heThongToolStripMenuItemPHDuLieu.Visible = false;
+                heThongToolStripMenuItemCauHinhThietBi.Visible = false;
+                heThongToolStripMenuItemCauHinhPhanMem.Visible = false;
+                heThongToolStripMenuItemQLDuLieuXoa.Visible = false;
+            }
         }
 
         private void donHangToolStripMenuItemTaoDonHang_Click(object sender, EventArgs e)
@@ -192,7 +206,7 @@ namespace GUI
 
         private void heThongToolStripMenuItemThoat_Click(object sender, EventArgs e)
         {
-            this.Close();
+            this.Dispose();
         }
 
     }

@@ -448,11 +448,15 @@ namespace GUI
                     AllRange.Columns.AutoFit();
                     AllRange = currentWorksheet.get_Range("A7", "G" + (rowIndex + 10).ToString());
                     AllRange.Borders.Color = 0x000000;
-
-                    currentWorksheet.Shapes.AddPicture("D:\\QuanLyKhoHang\\qlkhohang\\Database\\logo.jpg",Microsoft.Office.Core.MsoTriState.msoFalse, Microsoft.Office.Core.MsoTriState.msoCTrue, 0, 0, 140, 40);
-
-                    currentWorksheet.Shapes.AddPicture("D:\\QuanLyKhoHang\\qlkhohang\\Database\\flag.jpg", Microsoft.Office.Core.MsoTriState.msoFalse, Microsoft.Office.Core.MsoTriState.msoCTrue, 380, 27, 23, 15);
-                    
+                    try
+                    {
+                        currentWorksheet.Shapes.AddPicture(@"D:\Subject\2013-HKI-Nhap Mon Cong Nghe Phan Mem\DoAn\SVN\Database\logo.jpg", Microsoft.Office.Core.MsoTriState.msoFalse, Microsoft.Office.Core.MsoTriState.msoCTrue, 0, 0, 140, 40);
+                        currentWorksheet.Shapes.AddPicture(@"D:\Subject\2013-HKI-Nhap Mon Cong Nghe Phan Mem\DoAn\SVN\Database\flag.jpg", Microsoft.Office.Core.MsoTriState.msoFalse, Microsoft.Office.Core.MsoTriState.msoCTrue, 380, 27, 23, 15);
+                    }
+                    catch
+                    {
+                        MessageBox.Show("Không tìm thấy tập tin ảnh");
+                    }
                     
                 }
                 else
