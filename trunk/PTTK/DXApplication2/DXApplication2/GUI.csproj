@@ -124,6 +124,12 @@
     <Compile Include="FormQuanLySanPham.Designer.cs">
       <DependentUpon>FormQuanLySanPham.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormQuanLyThamSo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormQuanLyThamSo.Designer.cs">
+      <DependentUpon>FormQuanLyThamSo.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormQuanLyThanhVien.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -156,6 +162,7 @@
     <Compile Include="FormDangNhap.Designer.cs">
       <DependentUpon>FormDangNhap.cs</DependentUpon>
     </Compile>
+    <Compile Include="ThongTin.cs" />
     <EmbeddedResource Include="FormChonSanPham.resx">
       <DependentUpon>FormChonSanPham.cs</DependentUpon>
     </EmbeddedResource>
@@ -182,6 +189,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormQuanLySanPham.resx">
       <DependentUpon>FormQuanLySanPham.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormQuanLyThamSo.resx">
+      <DependentUpon>FormQuanLyThamSo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormQuanLyThanhVien.resx">
       <DependentUpon>FormQuanLyThanhVien.cs</DependentUpon>
