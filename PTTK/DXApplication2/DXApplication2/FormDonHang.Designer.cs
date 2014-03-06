@@ -354,6 +354,7 @@
             this.Controls.Add(this.groupControl_NghiepVu);
             this.Name = "FormDonHang";
             this.Text = "Đơn hàng";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             ((System.ComponentModel.ISupportInitialize)(this.ThongTin_navBarControl)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl_NghiepVu)).EndInit();
             this.groupControl_NghiepVu.ResumeLayout(false);
