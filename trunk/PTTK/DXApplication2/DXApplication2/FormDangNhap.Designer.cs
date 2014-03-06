@@ -47,6 +47,7 @@
             // 
             // textBoxMatKhau
             // 
+            this.textBoxMatKhau.EditValue = "";
             this.textBoxMatKhau.Location = new System.Drawing.Point(211, 131);
             this.textBoxMatKhau.Name = "textBoxMatKhau";
             this.textBoxMatKhau.Size = new System.Drawing.Size(144, 20);
@@ -79,6 +80,7 @@
             this.buttonDangNhap.Size = new System.Drawing.Size(75, 23);
             this.buttonDangNhap.TabIndex = 4;
             this.buttonDangNhap.Text = "Đăng nhập";
+            this.buttonDangNhap.Click += new System.EventHandler(this.buttonDangNhap_Click);
             // 
             // buttonThoat
             // 
@@ -89,6 +91,8 @@
             this.buttonThoat.Size = new System.Drawing.Size(75, 23);
             this.buttonThoat.TabIndex = 5;
             this.buttonThoat.Text = "Thoát";
+            this.buttonThoat.Click += new System.EventHandler(this.buttonThoat_Click);
+            this.buttonThoat.KeyDown += new System.Windows.Forms.KeyEventHandler(this.buttonThoat_KeyDown);
             // 
             // FormDangNhap
             // 
@@ -104,6 +108,7 @@
             this.Controls.Add(this.textBoxMaNhanVien);
             this.Name = "FormDangNhap";
             this.Text = "Đăng nhập";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormDangNhap_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.textBoxMaNhanVien.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.textBoxMatKhau.Properties)).EndInit();
             this.ResumeLayout(false);

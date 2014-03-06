@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DevExpress.XtraBars;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -14,7 +15,8 @@ namespace DXApplication2
     {
         public FormTrangChu()
         {
-            InitializeComponent();                        
+            InitializeComponent();
+
         }
 
         //Kiem tra cua so da duoc bat hay chua
@@ -47,33 +49,39 @@ namespace DXApplication2
 
             con.Close();
             return tb;
-        }        
+        }
 
         private void DonHang_barButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            ribbonControl1.SelectedPage = ribbonControl1.Pages[1];            
+            ribbonControl1.SelectedPage = ribbonControl1.Pages[1];
         }
 
         private void FormTrangChu_Load(object sender, EventArgs e)
         {
-            //FormDangNhap fDangNhap = new FormDangNhap();
-            //fDangNhap.ShowDialog();
-            //if (ThongTin.NhanVienDTO.LoaiNhanVien == 1)
-            //{
-            //    donHangToolStripMenuItem.Enabled = false;
-            //    xuatHangToolStripMenuItemQLLoaiPhieuXuat.Enabled = false;
-            //    sanPhamToolStripMenuItem.Enabled = false;
-            //    thanhVienToolStripMenuItem.Enabled = false;
-            //    nhanVienToolStripMenuItem.Enabled = false;
-            //    heThongToolStripMenuItemQLThamSo.Visible = false;
-            //    heThongToolStripMenuItemSLDuLieu.Visible = false;
-            //    heThongToolStripMenuItemPHDuLieu.Visible = false;
-            //    heThongToolStripMenuItemCauHinhThietBi.Visible = false;
-            //    heThongToolStripMenuItemCauHinhPhanMem.Visible = false;
-            //    heThongToolStripMenuItemQLDuLieuXoa.Visible = false;
-            //}
-            //ribbonControl1.SelectedPage = ribbonControl1.Pages[3];
-            
+            FormDangNhap fDangNhap = new FormDangNhap();
+            fDangNhap.ShowDialog();
+            //Phan quyen user
+            if (ThongTin.NhanVienDTO.LoaiNhanVien == 1)
+            {
+                DonHang_barButtonItem.Visibility = BarItemVisibility.Never;                
+
+                SanPham_ribbonPageGroup.Visible = false;
+
+                ConNguoi_ribbonPageGroup.Visible = false;                
+
+                DonHang_ribbonPage.Visible = false;
+
+                LoaiPhieuXuat_barButtonItem.Visibility = BarItemVisibility.Never;
+
+                SanPham_ribbonPage.Visible = false;
+
+                ThanhVien_ribbonPage.Visible = false;
+
+                NhanVien_ribbonPage.Visible = false;
+
+                ThamSo_barButtonItem.Visibility = BarItemVisibility.Never;
+
+            }
         }
 
         private void NhapHang_barButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -265,6 +273,59 @@ namespace DXApplication2
                 fQLThamSo.MdiParent = this;
                 fQLThamSo.Show();
             }
+        }
+
+        private void barButtonItem_DangXuat_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            CloseForm();
+            FormTrangChu_Load(sender, e);
+        }
+
+        private void CloseForm()
+        {
+            Form frm = new Form();
+            frm = KiemTraTonTai(typeof(FormChiTietNhanVien));
+            if (frm != null)
+                frm.Close();
+            frm = KiemTraTonTai(typeof(FormChiTietThanhVien));
+            if (frm != null)
+                frm.Close();
+            frm = KiemTraTonTai(typeof(FormChonSanPham));
+            if (frm != null)
+                frm.Close();
+            frm = KiemTraTonTai(typeof(FormNhapHang));
+            if (frm != null)
+                frm.Close();
+            frm = KiemTraTonTai(typeof(FormQuanLyDonHang));
+            if (frm != null)
+                frm.Close();
+            frm = KiemTraTonTai(typeof(FormQuanLyLoaiPhieuXuat));
+            if (frm != null)
+                frm.Close();
+            frm = KiemTraTonTai(typeof(FormQuanLyLoaiSanPham));
+            if (frm != null)
+                frm.Close();
+            frm = KiemTraTonTai(typeof(FormQuanLyNhanVien));
+            if (frm != null)
+                frm.Close();
+            frm = KiemTraTonTai(typeof(FormQuanLyNhapHang));
+            if (frm != null)
+                frm.Close(); 
+            frm = KiemTraTonTai(typeof(FormQuanLySanPham));
+            if (frm != null)
+                frm.Close(); 
+            frm = KiemTraTonTai(typeof(FormQuanLyThamSo));
+            if (frm != null)
+                frm.Close(); 
+            frm = KiemTraTonTai(typeof(FormQuanLyThanhVien));
+            if (frm != null)
+                frm.Close(); 
+            frm = KiemTraTonTai(typeof(FormQuanLyXuatHang));
+            if (frm != null)
+                frm.Close();
+            frm = KiemTraTonTai(typeof(FormXuatHang));
+            if (frm != null)
+                frm.Close();
         }
     }
 }

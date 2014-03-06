@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DTO;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,23 +9,23 @@ namespace DXApplication2
 {
     public class ThongTin
     {
-        //private static NhanVienDTO _nhanVienDTO;
+        private static NhanVienDTO _nhanVienDTO;
 
-        //public static NhanVienDTO NhanVienDTO
-        //{
-        //    get { return ThongTin._nhanVienDTO; }
-        //    set { ThongTin._nhanVienDTO = value; }
-        //}
+        public static NhanVienDTO NhanVienDTO
+        {
+            get { return ThongTin._nhanVienDTO; }
+            set { ThongTin._nhanVienDTO = value; }
+        }
 
-        //private static ThamSoDTO _thamSoDTO;
+        private static ThamSoDTO _thamSoDTO;
 
-        //public static ThamSoDTO ThamSoDTO
-        //{
-        //    get { return _thamSoDTO; }
-        //    set { _thamSoDTO = value; }
-        //}
+        public static ThamSoDTO ThamSoDTO
+        {
+            get { return _thamSoDTO; }
+            set { _thamSoDTO = value; }
+        }
 
-        ////Kiểm tra datagridview có rỗng không
+        //Kiểm tra datagridview có rỗng không
         //public static bool CheckOut(DataGridView data)
         //{
         //    if (data.Rows.Count != 0)
