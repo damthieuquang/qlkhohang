@@ -77,6 +77,7 @@
             this.btnTao.TabIndex = 56;
             this.btnTao.Text = "Tạo";
             this.btnTao.UseVisualStyleBackColor = true;
+            this.btnTao.Click += new System.EventHandler(this.btnTao_Click);
             // 
             // btnThoat
             // 

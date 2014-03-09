@@ -60,7 +60,7 @@
             this.groupBoxDSLoaiPhieuXuat.Controls.Add(this.dataGridViewLoaiPhieuXuat);
             this.groupBoxDSLoaiPhieuXuat.Location = new System.Drawing.Point(71, 87);
             this.groupBoxDSLoaiPhieuXuat.Name = "groupBoxDSLoaiPhieuXuat";
-            this.groupBoxDSLoaiPhieuXuat.Size = new System.Drawing.Size(860, 371);
+            this.groupBoxDSLoaiPhieuXuat.Size = new System.Drawing.Size(860, 319);
             this.groupBoxDSLoaiPhieuXuat.TabIndex = 12;
             this.groupBoxDSLoaiPhieuXuat.TabStop = false;
             this.groupBoxDSLoaiPhieuXuat.Text = "Danh sách loại phiếu xuất ";
@@ -90,7 +90,7 @@
             this.dataGridViewLoaiPhieuXuat.Name = "dataGridViewLoaiPhieuXuat";
             this.dataGridViewLoaiPhieuXuat.RowHeadersVisible = false;
             this.dataGridViewLoaiPhieuXuat.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewLoaiPhieuXuat.Size = new System.Drawing.Size(854, 352);
+            this.dataGridViewLoaiPhieuXuat.Size = new System.Drawing.Size(854, 300);
             this.dataGridViewLoaiPhieuXuat.TabIndex = 0;
             // 
             // ColSTT
@@ -129,7 +129,7 @@
             // 
             this.panelYesNo.Controls.Add(this.buttonNo);
             this.panelYesNo.Controls.Add(this.buttonYes);
-            this.panelYesNo.Location = new System.Drawing.Point(41, 372);
+            this.panelYesNo.Location = new System.Drawing.Point(74, 412);
             this.panelYesNo.Name = "panelYesNo";
             this.panelYesNo.Size = new System.Drawing.Size(860, 52);
             this.panelYesNo.TabIndex = 14;
@@ -236,7 +236,7 @@
             this.panelTimKiem.Controls.Add(this.buttonCapNhat);
             this.panelTimKiem.Controls.Add(this.buttonThem);
             this.panelTimKiem.Controls.Add(this.buttonLamLai);
-            this.panelTimKiem.Location = new System.Drawing.Point(68, 464);
+            this.panelTimKiem.Location = new System.Drawing.Point(74, 446);
             this.panelTimKiem.Name = "panelTimKiem";
             this.panelTimKiem.Size = new System.Drawing.Size(860, 52);
             this.panelTimKiem.TabIndex = 13;

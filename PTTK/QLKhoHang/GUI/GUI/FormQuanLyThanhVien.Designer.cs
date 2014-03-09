@@ -68,9 +68,9 @@
             // groupBoxDSThamSo
             // 
             this.groupBoxDSThamSo.Controls.Add(this.dataGridView_QuanLyThanhVien);
-            this.groupBoxDSThamSo.Location = new System.Drawing.Point(61, 152);
+            this.groupBoxDSThamSo.Location = new System.Drawing.Point(64, 139);
             this.groupBoxDSThamSo.Name = "groupBoxDSThamSo";
-            this.groupBoxDSThamSo.Size = new System.Drawing.Size(860, 288);
+            this.groupBoxDSThamSo.Size = new System.Drawing.Size(860, 301);
             this.groupBoxDSThamSo.TabIndex = 12;
             this.groupBoxDSThamSo.TabStop = false;
             this.groupBoxDSThamSo.Text = "Danh sách tham số";
@@ -103,7 +103,7 @@
             this.dataGridView_QuanLyThanhVien.Name = "dataGridView_QuanLyThanhVien";
             this.dataGridView_QuanLyThanhVien.RowHeadersVisible = false;
             this.dataGridView_QuanLyThanhVien.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView_QuanLyThanhVien.Size = new System.Drawing.Size(854, 269);
+            this.dataGridView_QuanLyThanhVien.Size = new System.Drawing.Size(854, 282);
             this.dataGridView_QuanLyThanhVien.TabIndex = 0;
             // 
             // ColSTT
@@ -150,9 +150,9 @@
             // 
             this.panelYesNo.Controls.Add(this.buttonNo);
             this.panelYesNo.Controls.Add(this.buttonYes);
-            this.panelYesNo.Location = new System.Drawing.Point(12, 370);
+            this.panelYesNo.Location = new System.Drawing.Point(12, 363);
             this.panelYesNo.Name = "panelYesNo";
-            this.panelYesNo.Size = new System.Drawing.Size(860, 61);
+            this.panelYesNo.Size = new System.Drawing.Size(854, 61);
             this.panelYesNo.TabIndex = 14;
             this.panelYesNo.Visible = false;
             // 
@@ -261,7 +261,7 @@
             this.groupBoxTimKiem.Controls.Add(this.label2);
             this.groupBoxTimKiem.Controls.Add(this.label1);
             this.groupBoxTimKiem.Controls.Add(this.textBoxMaThanhVien);
-            this.groupBoxTimKiem.Location = new System.Drawing.Point(61, 25);
+            this.groupBoxTimKiem.Location = new System.Drawing.Point(64, 12);
             this.groupBoxTimKiem.Name = "groupBoxTimKiem";
             this.groupBoxTimKiem.Size = new System.Drawing.Size(860, 121);
             this.groupBoxTimKiem.TabIndex = 11;
@@ -345,7 +345,7 @@
             this.panelTimKiem.Controls.Add(this.buttonCapNhat);
             this.panelTimKiem.Controls.Add(this.buttonThem);
             this.panelTimKiem.Controls.Add(this.buttonLamLai);
-            this.panelTimKiem.Location = new System.Drawing.Point(64, 446);
+            this.panelTimKiem.Location = new System.Drawing.Point(61, 446);
             this.panelTimKiem.Name = "panelTimKiem";
             this.panelTimKiem.Size = new System.Drawing.Size(860, 52);
             this.panelTimKiem.TabIndex = 13;
