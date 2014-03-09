@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.btnTaoMoi = new System.Windows.Forms.Button();
             this.btnXoa = new System.Windows.Forms.Button();
             this.groupBoxTimKiem = new System.Windows.Forms.GroupBox();
@@ -329,14 +329,14 @@
             this.dataGridView_TraCuuXuatHang.AllowUserToResizeColumns = false;
             this.dataGridView_TraCuuXuatHang.AllowUserToResizeRows = false;
             this.dataGridView_TraCuuXuatHang.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle15.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle15.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle15.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle15.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView_TraCuuXuatHang.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle15;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView_TraCuuXuatHang.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridView_TraCuuXuatHang.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView_TraCuuXuatHang.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.clSTT,
@@ -346,11 +346,12 @@
             this.clNguoiBan,
             this.clSoLuong,
             this.clSoTien});
-            this.dataGridView_TraCuuXuatHang.Location = new System.Drawing.Point(16, 20);
+            this.dataGridView_TraCuuXuatHang.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridView_TraCuuXuatHang.Location = new System.Drawing.Point(3, 16);
             this.dataGridView_TraCuuXuatHang.Name = "dataGridView_TraCuuXuatHang";
             this.dataGridView_TraCuuXuatHang.RowHeadersVisible = false;
             this.dataGridView_TraCuuXuatHang.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView_TraCuuXuatHang.Size = new System.Drawing.Size(831, 239);
+            this.dataGridView_TraCuuXuatHang.Size = new System.Drawing.Size(854, 248);
             this.dataGridView_TraCuuXuatHang.TabIndex = 14;
             // 
             // groupBoxDanhSach
@@ -380,14 +381,13 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(984, 560);
+            this.ClientSize = new System.Drawing.Size(984, 510);
             this.Controls.Add(this.groupBoxTimKiem);
             this.Controls.Add(this.groupBoxDanhSach);
             this.Controls.Add(this.panelChucNang);
             this.Name = "FormQuanLyXuatHang";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Quản lý xuất hàng";
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Activated += new System.EventHandler(this.FormQuanLyXuatHang_Activated);
             this.groupBoxTimKiem.ResumeLayout(false);
             this.groupBoxTimKiem.PerformLayout();

@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.buttonYes = new System.Windows.Forms.Button();
             this.panelYesNo = new System.Windows.Forms.Panel();
             this.buttonNo = new System.Windows.Forms.Button();
@@ -185,33 +185,34 @@
             this.dataGridViewThamSo.AllowUserToResizeColumns = false;
             this.dataGridViewThamSo.AllowUserToResizeRows = false;
             this.dataGridViewThamSo.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle12.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewThamSo.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewThamSo.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridViewThamSo.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewThamSo.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ColSTT,
             this.ColMaThamSo,
             this.ColTenThamSo,
             this.ColGiaTri});
-            this.dataGridViewThamSo.Location = new System.Drawing.Point(13, 26);
+            this.dataGridViewThamSo.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridViewThamSo.Location = new System.Drawing.Point(3, 16);
             this.dataGridViewThamSo.Name = "dataGridViewThamSo";
             this.dataGridViewThamSo.RowHeadersVisible = false;
             this.dataGridViewThamSo.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewThamSo.Size = new System.Drawing.Size(835, 243);
+            this.dataGridViewThamSo.Size = new System.Drawing.Size(854, 285);
             this.dataGridViewThamSo.TabIndex = 0;
             // 
             // groupBoxDSThamSo
             // 
             this.groupBoxDSThamSo.Controls.Add(this.dataGridViewThamSo);
-            this.groupBoxDSThamSo.Location = new System.Drawing.Point(64, 118);
+            this.groupBoxDSThamSo.Location = new System.Drawing.Point(64, 98);
             this.groupBoxDSThamSo.Name = "groupBoxDSThamSo";
-            this.groupBoxDSThamSo.Size = new System.Drawing.Size(860, 284);
+            this.groupBoxDSThamSo.Size = new System.Drawing.Size(860, 304);
             this.groupBoxDSThamSo.TabIndex = 8;
             this.groupBoxDSThamSo.TabStop = false;
             this.groupBoxDSThamSo.Text = "Danh sách tham số";
@@ -286,14 +287,14 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(984, 560);
+            this.ClientSize = new System.Drawing.Size(984, 510);
             this.Controls.Add(this.panelYesNo);
             this.Controls.Add(this.panelTimKiem);
             this.Controls.Add(this.groupBoxDSThamSo);
             this.Controls.Add(this.groupBoxTimKiem);
             this.Name = "FormQuanLyThamSo";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Quản lý tham số";
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Activated += new System.EventHandler(this.FormQuanLyThamSo_Activated);
             this.panelYesNo.ResumeLayout(false);
             this.panelTimKiem.ResumeLayout(false);

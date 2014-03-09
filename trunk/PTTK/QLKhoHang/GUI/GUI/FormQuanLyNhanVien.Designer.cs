@@ -131,12 +131,13 @@
             this.clTenNhanVien,
             this.clMatKhau,
             this.clComboBoxLoaiNhanVien});
-            this.dataGridView_NhanVien.Location = new System.Drawing.Point(6, 17);
+            this.dataGridView_NhanVien.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridView_NhanVien.Location = new System.Drawing.Point(3, 16);
             this.dataGridView_NhanVien.MultiSelect = false;
             this.dataGridView_NhanVien.Name = "dataGridView_NhanVien";
             this.dataGridView_NhanVien.RowHeadersVisible = false;
             this.dataGridView_NhanVien.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView_NhanVien.Size = new System.Drawing.Size(848, 243);
+            this.dataGridView_NhanVien.Size = new System.Drawing.Size(854, 261);
             this.dataGridView_NhanVien.TabIndex = 44;
             // 
             // buttonYes
@@ -314,9 +315,9 @@
             // 
             this.groupBoxDanhSach.Controls.Add(this.panelYesNo);
             this.groupBoxDanhSach.Controls.Add(this.dataGridView_NhanVien);
-            this.groupBoxDanhSach.Location = new System.Drawing.Point(5, 104);
+            this.groupBoxDanhSach.Location = new System.Drawing.Point(5, 93);
             this.groupBoxDanhSach.Name = "groupBoxDanhSach";
-            this.groupBoxDanhSach.Size = new System.Drawing.Size(860, 269);
+            this.groupBoxDanhSach.Size = new System.Drawing.Size(860, 280);
             this.groupBoxDanhSach.TabIndex = 46;
             this.groupBoxDanhSach.TabStop = false;
             this.groupBoxDanhSach.Text = "Danh sách nhân viên";
@@ -334,11 +335,11 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(984, 560);
+            this.ClientSize = new System.Drawing.Size(984, 510);
             this.Controls.Add(this.panelFull);
             this.Name = "FormQuanLyNhanVien";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Quản lý nhân viên";
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Activated += new System.EventHandler(this.FormQuanLyNhanVien_Activated);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_NhanVien)).EndInit();
             this.panelYesNo.ResumeLayout(false);

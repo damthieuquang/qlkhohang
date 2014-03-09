@@ -344,10 +344,11 @@
             this.clSoLuongTon,
             this.clSoLuong,
             this.clThanhTien});
-            this.dataGridView_XuatHang.Location = new System.Drawing.Point(6, 18);
+            this.dataGridView_XuatHang.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridView_XuatHang.Location = new System.Drawing.Point(3, 16);
             this.dataGridView_XuatHang.Name = "dataGridView_XuatHang";
             this.dataGridView_XuatHang.RowHeadersVisible = false;
-            this.dataGridView_XuatHang.Size = new System.Drawing.Size(848, 210);
+            this.dataGridView_XuatHang.Size = new System.Drawing.Size(854, 215);
             this.dataGridView_XuatHang.TabIndex = 65;
             this.dataGridView_XuatHang.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_XuatHang_CellEndEdit);
             this.dataGridView_XuatHang.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.dataGridView_XuatHang_EditingControlShowing);
@@ -413,13 +414,13 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(984, 560);
+            this.ClientSize = new System.Drawing.Size(984, 510);
             this.Controls.Add(this.panelChucNang);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBox2);
             this.Name = "FormXuatHang";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Xuất hàng";
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Activated += new System.EventHandler(this.FormXuatHang_Activated);
             this.Load += new System.EventHandler(this.FormXuatHang_Load);
             this.panelChucNang.ResumeLayout(false);

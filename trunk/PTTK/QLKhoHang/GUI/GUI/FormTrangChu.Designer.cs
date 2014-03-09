@@ -151,6 +151,7 @@
             this.SanPham_barButtonItem.Id = 5;
             this.SanPham_barButtonItem.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("SanPham_barButtonItem.LargeGlyph")));
             this.SanPham_barButtonItem.Name = "SanPham_barButtonItem";
+            this.SanPham_barButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.SanPham_barButtonItem_ItemClick);
             // 
             // ThanhVien_barButtonItem
             // 
@@ -185,6 +186,7 @@
             this.barButtonItem8.Id = 9;
             this.barButtonItem8.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("barButtonItem8.LargeGlyph")));
             this.barButtonItem8.Name = "barButtonItem8";
+            this.barButtonItem8.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem8_ItemClick);
             // 
             // barButtonItem1
             // 
@@ -454,6 +456,7 @@
             this.IsMdiContainer = true;
             this.Name = "FormTrangChu";
             this.Text = "Chương trình quản lý kho hàng";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.FormTrangChu_Load);
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).EndInit();
             this.ResumeLayout(false);

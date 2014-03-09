@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using BUS;
 using DTO;
+using System.IO;
 
 namespace GUI
 {
@@ -445,8 +446,14 @@ namespace GUI
                     AllRange.Borders.Color = 0x000000;
                     try
                     {
-                        currentWorksheet.Shapes.AddPicture(@"D:\Subject\2013-HKI-Nhap Mon Cong Nghe Phan Mem\DoAn\SVN\Database\logo.jpg", Microsoft.Office.Core.MsoTriState.msoFalse, Microsoft.Office.Core.MsoTriState.msoCTrue, 0, 0, 140, 40);
-                        currentWorksheet.Shapes.AddPicture(@"D:\Subject\2013-HKI-Nhap Mon Cong Nghe Phan Mem\DoAn\SVN\Database\flag.jpg", Microsoft.Office.Core.MsoTriState.msoFalse, Microsoft.Office.Core.MsoTriState.msoCTrue, 380, 27, 23, 15);
+                        string currentpath = Directory.GetCurrentDirectory().ToString();
+                        string dir = Directory.GetParent(currentpath).ToString();
+                        for (int j = 0; j < 2; j++)
+                            dir = Directory.GetParent(dir).ToString();
+                        string logo = dir + @"\Images\logo.jpg";
+                        string flag = dir + @"\Images\logo.jpg";
+                        currentWorksheet.Shapes.AddPicture(logo, Microsoft.Office.Core.MsoTriState.msoFalse, Microsoft.Office.Core.MsoTriState.msoCTrue, 0, 0, 140, 40);
+                        currentWorksheet.Shapes.AddPicture(flag, Microsoft.Office.Core.MsoTriState.msoFalse, Microsoft.Office.Core.MsoTriState.msoCTrue, 380, 27, 23, 15);
                     }
                     catch
                     {
