@@ -184,7 +184,7 @@ namespace GUI
 
         private void FormQuanLyLoaiPhieuXuat_Load(object sender, EventArgs e)
         {
-            panelYesNo.Location = new Point(12, 400);
+            panelYesNo.Location = new Point(74, 446);
             KhoiTao();
         }
 

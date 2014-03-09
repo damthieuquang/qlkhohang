@@ -21,7 +21,7 @@ namespace GUI
 
         private void FormQuanLyLoaiSanPham_Activated(object sender, EventArgs e)
         {
-            panelYesNo.Location = new Point(12, 350);
+            panelYesNo.Location = new Point(66, 409);
             KhoiTao();
         }
 

@@ -72,7 +72,7 @@
             // 
             this.panelYesNo.Controls.Add(this.buttonNo);
             this.panelYesNo.Controls.Add(this.buttonYes);
-            this.panelYesNo.Location = new System.Drawing.Point(52, 344);
+            this.panelYesNo.Location = new System.Drawing.Point(49, 334);
             this.panelYesNo.Name = "panelYesNo";
             this.panelYesNo.Size = new System.Drawing.Size(860, 52);
             this.panelYesNo.TabIndex = 10;
@@ -90,7 +90,7 @@
             // 
             // buttonThoat
             // 
-            this.buttonThoat.Location = new System.Drawing.Point(758, 14);
+            this.buttonThoat.Location = new System.Drawing.Point(703, 14);
             this.buttonThoat.Name = "buttonThoat";
             this.buttonThoat.Size = new System.Drawing.Size(75, 23);
             this.buttonThoat.TabIndex = 5;
@@ -145,7 +145,7 @@
             this.panelTimKiem.Controls.Add(this.buttonCapNhat);
             this.panelTimKiem.Controls.Add(this.buttonThem);
             this.panelTimKiem.Controls.Add(this.buttonLamLai);
-            this.panelTimKiem.Location = new System.Drawing.Point(64, 411);
+            this.panelTimKiem.Location = new System.Drawing.Point(64, 408);
             this.panelTimKiem.Name = "panelTimKiem";
             this.panelTimKiem.Size = new System.Drawing.Size(860, 52);
             this.panelTimKiem.TabIndex = 9;

@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.groupBoxDSThamSo = new System.Windows.Forms.GroupBox();
             this.dataGridView_QuanLyLoaiSanPham = new System.Windows.Forms.DataGridView();
             this.ColSTT = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -58,10 +58,9 @@
             // groupBoxDSThamSo
             // 
             this.groupBoxDSThamSo.Controls.Add(this.dataGridView_QuanLyLoaiSanPham);
-            this.groupBoxDSThamSo.Controls.Add(this.panelYesNo);
             this.groupBoxDSThamSo.Location = new System.Drawing.Point(60, 96);
             this.groupBoxDSThamSo.Name = "groupBoxDSThamSo";
-            this.groupBoxDSThamSo.Size = new System.Drawing.Size(860, 304);
+            this.groupBoxDSThamSo.Size = new System.Drawing.Size(860, 307);
             this.groupBoxDSThamSo.TabIndex = 12;
             this.groupBoxDSThamSo.TabStop = false;
             this.groupBoxDSThamSo.Text = "Danh sách tham số";
@@ -73,14 +72,14 @@
             this.dataGridView_QuanLyLoaiSanPham.AllowUserToResizeColumns = false;
             this.dataGridView_QuanLyLoaiSanPham.AllowUserToResizeRows = false;
             this.dataGridView_QuanLyLoaiSanPham.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView_QuanLyLoaiSanPham.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView_QuanLyLoaiSanPham.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridView_QuanLyLoaiSanPham.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView_QuanLyLoaiSanPham.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ColSTT,
@@ -91,7 +90,7 @@
             this.dataGridView_QuanLyLoaiSanPham.Name = "dataGridView_QuanLyLoaiSanPham";
             this.dataGridView_QuanLyLoaiSanPham.RowHeadersVisible = false;
             this.dataGridView_QuanLyLoaiSanPham.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView_QuanLyLoaiSanPham.Size = new System.Drawing.Size(854, 285);
+            this.dataGridView_QuanLyLoaiSanPham.Size = new System.Drawing.Size(854, 288);
             this.dataGridView_QuanLyLoaiSanPham.TabIndex = 0;
             // 
             // ColSTT
@@ -120,7 +119,7 @@
             // 
             this.panelYesNo.Controls.Add(this.buttonNo);
             this.panelYesNo.Controls.Add(this.buttonYes);
-            this.panelYesNo.Location = new System.Drawing.Point(13, 249);
+            this.panelYesNo.Location = new System.Drawing.Point(12, 212);
             this.panelYesNo.Name = "panelYesNo";
             this.panelYesNo.Size = new System.Drawing.Size(860, 52);
             this.panelYesNo.TabIndex = 14;
@@ -250,7 +249,7 @@
             this.panelTimKiem.Controls.Add(this.buttonCapNhat);
             this.panelTimKiem.Controls.Add(this.buttonThem);
             this.panelTimKiem.Controls.Add(this.buttonLamLai);
-            this.panelTimKiem.Location = new System.Drawing.Point(60, 409);
+            this.panelTimKiem.Location = new System.Drawing.Point(66, 409);
             this.panelTimKiem.Name = "panelTimKiem";
             this.panelTimKiem.Size = new System.Drawing.Size(860, 52);
             this.panelTimKiem.TabIndex = 13;
@@ -261,6 +260,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(984, 510);
             this.Controls.Add(this.groupBoxDSThamSo);
+            this.Controls.Add(this.panelYesNo);
             this.Controls.Add(this.groupBoxTimKiem);
             this.Controls.Add(this.panelTimKiem);
             this.Name = "FormQuanLyLoaiSanPham";

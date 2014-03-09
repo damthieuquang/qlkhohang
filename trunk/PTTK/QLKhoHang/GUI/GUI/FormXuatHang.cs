@@ -131,7 +131,7 @@ namespace GUI
         private void FormXuatHang_Load(object sender, EventArgs e)
         {
             //Load panel YesNo(hien tai dang an)
-            panelYesNo.Location = new Point(16, 412);
+            panelYesNo.Location = new Point(67, 437);
             if (Status == 0 || Status == 4)
             {
                 Load_Create();
@@ -502,6 +502,33 @@ namespace GUI
                 txtTenKhachHang.ReadOnly = false;
                 txtDiaChi.ReadOnly = false;
                 IsThanhVien = false;
+            }
+        }
+
+        private void btnTao_Click(object sender, EventArgs e)
+        {
+            if (Status == 0 || Status == 4)
+            {
+                if (CheckOut_clSoLuong(dataGridView_XuatHang))
+                {
+                    if (Process_Button() == true)
+                    {
+                        dataGridView_XuatHang.Rows.Clear();
+                        FormXuatHang_Load(sender, e);
+
+                    }
+                }
+                else
+                {
+                    dataGridView_XuatHang.CurrentCell = dataGridView_XuatHang.Rows[0].Cells[clSoLuong.Index];
+                    dataGridView_XuatHang.CurrentCell.Selected = true;
+                    dataGridView_XuatHang.BeginEdit(true);
+                    MessageBox.Show("Phiếu xuất không hợp lệ, tất cả số lượng sản phẩm đều bằng không", "Phiếu xuất");
+                }
+            }
+            else
+            {
+                Update();
             }
         }        
 

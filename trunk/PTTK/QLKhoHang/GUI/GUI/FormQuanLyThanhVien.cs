@@ -21,7 +21,7 @@ namespace GUI
 
         private void FormQuanLyThanhVien_Activated(object sender, EventArgs e)
         {
-            panelYesNo.Location = new Point(12, 350);
+            panelYesNo.Location = new Point(61, 460);
             KhoiTao();
         }
 

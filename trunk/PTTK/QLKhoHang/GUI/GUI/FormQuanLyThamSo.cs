@@ -183,7 +183,7 @@ namespace GUI
 
         private void FormQuanLyThamSo_Activated(object sender, EventArgs e)
         {
-            panelYesNo.Location = new Point(12, 400);
+            panelYesNo.Location = new Point(64, 408);
             KhoiTao();
         }
 
