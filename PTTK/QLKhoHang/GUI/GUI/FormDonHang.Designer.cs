@@ -435,7 +435,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(984, 560);
+            this.ClientSize = new System.Drawing.Size(984, 510);
             this.Controls.Add(this.panelChucNang);
             this.Controls.Add(this.label_TongTienSau);
             this.Controls.Add(this.Label_ChietKhau);
@@ -443,8 +443,8 @@
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Name = "FormDonHang";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Đơn hàng";
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Activated += new System.EventHandler(this.FormDonHang_Activated);
             this.Load += new System.EventHandler(this.FormDonHang_Load);
             this.panelChucNang.ResumeLayout(false);

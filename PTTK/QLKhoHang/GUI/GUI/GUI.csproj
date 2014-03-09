@@ -141,6 +141,12 @@
     <Compile Include="FormQuanLyXuatHang.Designer.cs">
       <DependentUpon>FormQuanLyXuatHang.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormThongTin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormThongTin.Designer.cs">
+      <DependentUpon>FormThongTin.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormTrangChu.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -200,6 +206,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormQuanLyXuatHang.resx">
       <DependentUpon>FormQuanLyXuatHang.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormThongTin.resx">
+      <DependentUpon>FormThongTin.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormTrangChu.resx">
       <DependentUpon>FormTrangChu.cs</DependentUpon>

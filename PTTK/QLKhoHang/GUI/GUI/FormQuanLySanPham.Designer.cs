@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.ColSTT = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColTenSanPham = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColCV = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -195,9 +195,9 @@
             // 
             this.groupBoxDanhSach.Controls.Add(this.panelYesNo);
             this.groupBoxDanhSach.Controls.Add(this.dataGridView_QuanLySanPham);
-            this.groupBoxDanhSach.Location = new System.Drawing.Point(64, 153);
+            this.groupBoxDanhSach.Location = new System.Drawing.Point(64, 141);
             this.groupBoxDanhSach.Name = "groupBoxDanhSach";
-            this.groupBoxDanhSach.Size = new System.Drawing.Size(860, 250);
+            this.groupBoxDanhSach.Size = new System.Drawing.Size(860, 280);
             this.groupBoxDanhSach.TabIndex = 11;
             this.groupBoxDanhSach.TabStop = false;
             this.groupBoxDanhSach.Text = "Danh sách sản phẩm";
@@ -239,14 +239,14 @@
             this.dataGridView_QuanLySanPham.AllowUserToResizeColumns = false;
             this.dataGridView_QuanLySanPham.AllowUserToResizeRows = false;
             this.dataGridView_QuanLySanPham.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle15.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle15.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle15.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle15.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView_QuanLySanPham.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle15;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView_QuanLySanPham.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridView_QuanLySanPham.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView_QuanLySanPham.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ColSTT,
@@ -257,12 +257,13 @@
             this.ColDonGiaTV,
             this.ColSoLuongTon,
             this.ColLoaiSanPham});
-            this.dataGridView_QuanLySanPham.Location = new System.Drawing.Point(13, 19);
+            this.dataGridView_QuanLySanPham.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridView_QuanLySanPham.Location = new System.Drawing.Point(3, 16);
             this.dataGridView_QuanLySanPham.MultiSelect = false;
             this.dataGridView_QuanLySanPham.Name = "dataGridView_QuanLySanPham";
             this.dataGridView_QuanLySanPham.RowHeadersVisible = false;
             this.dataGridView_QuanLySanPham.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView_QuanLySanPham.Size = new System.Drawing.Size(835, 218);
+            this.dataGridView_QuanLySanPham.Size = new System.Drawing.Size(854, 261);
             this.dataGridView_QuanLySanPham.TabIndex = 0;
             // 
             // ColDonGiaTV
@@ -394,13 +395,13 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(984, 560);
+            this.ClientSize = new System.Drawing.Size(984, 510);
             this.Controls.Add(this.groupBoxDanhSach);
             this.Controls.Add(this.groupBoxTimKiem);
             this.Controls.Add(this.panelTimKiem);
             this.Name = "FormQuanLySanPham";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Quản lý sản phẩm";
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Activated += new System.EventHandler(this.FormQuanLySanPham_Activated);
             this.groupBoxDanhSach.ResumeLayout(false);
             this.panelYesNo.ResumeLayout(false);

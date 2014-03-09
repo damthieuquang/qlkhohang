@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.groupBoxDSLoaiPhieuXuat = new System.Windows.Forms.GroupBox();
             this.dataGridViewLoaiPhieuXuat = new System.Windows.Forms.DataGridView();
             this.ColSTT = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -58,9 +58,9 @@
             // groupBoxDSLoaiPhieuXuat
             // 
             this.groupBoxDSLoaiPhieuXuat.Controls.Add(this.dataGridViewLoaiPhieuXuat);
-            this.groupBoxDSLoaiPhieuXuat.Location = new System.Drawing.Point(72, 125);
+            this.groupBoxDSLoaiPhieuXuat.Location = new System.Drawing.Point(71, 87);
             this.groupBoxDSLoaiPhieuXuat.Name = "groupBoxDSLoaiPhieuXuat";
-            this.groupBoxDSLoaiPhieuXuat.Size = new System.Drawing.Size(860, 284);
+            this.groupBoxDSLoaiPhieuXuat.Size = new System.Drawing.Size(860, 371);
             this.groupBoxDSLoaiPhieuXuat.TabIndex = 12;
             this.groupBoxDSLoaiPhieuXuat.TabStop = false;
             this.groupBoxDSLoaiPhieuXuat.Text = "Danh sách loại phiếu xuất ";
@@ -72,24 +72,25 @@
             this.dataGridViewLoaiPhieuXuat.AllowUserToResizeColumns = false;
             this.dataGridViewLoaiPhieuXuat.AllowUserToResizeRows = false;
             this.dataGridViewLoaiPhieuXuat.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle11.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewLoaiPhieuXuat.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewLoaiPhieuXuat.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridViewLoaiPhieuXuat.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewLoaiPhieuXuat.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ColSTT,
             this.ColMaLoaiPhieuXuat,
             this.ColTenLoaiPhieuXuat});
-            this.dataGridViewLoaiPhieuXuat.Location = new System.Drawing.Point(13, 26);
+            this.dataGridViewLoaiPhieuXuat.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridViewLoaiPhieuXuat.Location = new System.Drawing.Point(3, 16);
             this.dataGridViewLoaiPhieuXuat.Name = "dataGridViewLoaiPhieuXuat";
             this.dataGridViewLoaiPhieuXuat.RowHeadersVisible = false;
             this.dataGridViewLoaiPhieuXuat.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewLoaiPhieuXuat.Size = new System.Drawing.Size(835, 243);
+            this.dataGridViewLoaiPhieuXuat.Size = new System.Drawing.Size(854, 352);
             this.dataGridViewLoaiPhieuXuat.TabIndex = 0;
             // 
             // ColSTT
@@ -128,7 +129,7 @@
             // 
             this.panelYesNo.Controls.Add(this.buttonNo);
             this.panelYesNo.Controls.Add(this.buttonYes);
-            this.panelYesNo.Location = new System.Drawing.Point(60, 388);
+            this.panelYesNo.Location = new System.Drawing.Point(41, 372);
             this.panelYesNo.Name = "panelYesNo";
             this.panelYesNo.Size = new System.Drawing.Size(860, 52);
             this.panelYesNo.TabIndex = 14;
@@ -235,7 +236,7 @@
             this.panelTimKiem.Controls.Add(this.buttonCapNhat);
             this.panelTimKiem.Controls.Add(this.buttonThem);
             this.panelTimKiem.Controls.Add(this.buttonLamLai);
-            this.panelTimKiem.Location = new System.Drawing.Point(66, 420);
+            this.panelTimKiem.Location = new System.Drawing.Point(68, 464);
             this.panelTimKiem.Name = "panelTimKiem";
             this.panelTimKiem.Size = new System.Drawing.Size(860, 52);
             this.panelTimKiem.TabIndex = 13;
@@ -246,7 +247,7 @@
             this.groupBoxTimKiem.Controls.Add(this.label2);
             this.groupBoxTimKiem.Controls.Add(this.label1);
             this.groupBoxTimKiem.Controls.Add(this.textBoxMaLoaiPhieuXuat);
-            this.groupBoxTimKiem.Location = new System.Drawing.Point(72, 30);
+            this.groupBoxTimKiem.Location = new System.Drawing.Point(71, 12);
             this.groupBoxTimKiem.Name = "groupBoxTimKiem";
             this.groupBoxTimKiem.Size = new System.Drawing.Size(860, 69);
             this.groupBoxTimKiem.TabIndex = 11;
@@ -257,15 +258,14 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(984, 560);
+            this.ClientSize = new System.Drawing.Size(984, 510);
             this.Controls.Add(this.groupBoxDSLoaiPhieuXuat);
             this.Controls.Add(this.panelYesNo);
             this.Controls.Add(this.panelTimKiem);
             this.Controls.Add(this.groupBoxTimKiem);
             this.Name = "FormQuanLyLoaiPhieuXuat";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Quản lý loại phiếu xuất";
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.FormQuanLyLoaiPhieuXuat_Load);
             this.groupBoxDSLoaiPhieuXuat.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewLoaiPhieuXuat)).EndInit();

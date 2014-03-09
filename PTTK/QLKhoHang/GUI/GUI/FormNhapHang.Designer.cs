@@ -28,11 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
             this.btnYes = new System.Windows.Forms.Button();
             this.dataGridView_NhapHang = new System.Windows.Forms.DataGridView();
             this.clSTT = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -93,14 +93,14 @@
             this.dataGridView_NhapHang.AllowUserToResizeColumns = false;
             this.dataGridView_NhapHang.AllowUserToResizeRows = false;
             this.dataGridView_NhapHang.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle16.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle16.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle16.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle16.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle16.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle16.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView_NhapHang.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle16;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView_NhapHang.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
             this.dataGridView_NhapHang.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView_NhapHang.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.clSTT,
@@ -121,8 +121,8 @@
             // clSTT
             // 
             this.clSTT.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.clSTT.DefaultCellStyle = dataGridViewCellStyle17;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.clSTT.DefaultCellStyle = dataGridViewCellStyle7;
             this.clSTT.HeaderText = "STT";
             this.clSTT.Name = "clSTT";
             this.clSTT.ReadOnly = true;
@@ -147,8 +147,8 @@
             // clSoLuong
             // 
             this.clSoLuong.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.clSoLuong.DefaultCellStyle = dataGridViewCellStyle18;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.clSoLuong.DefaultCellStyle = dataGridViewCellStyle8;
             this.clSoLuong.HeaderText = "Số lượng";
             this.clSoLuong.Name = "clSoLuong";
             this.clSoLuong.ReadOnly = true;
@@ -157,8 +157,8 @@
             // clDaNhan
             // 
             this.clDaNhan.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            dataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.clDaNhan.DefaultCellStyle = dataGridViewCellStyle19;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.clDaNhan.DefaultCellStyle = dataGridViewCellStyle9;
             this.clDaNhan.HeaderText = "Đã nhận";
             this.clDaNhan.Name = "clDaNhan";
             this.clDaNhan.ReadOnly = true;
@@ -167,8 +167,8 @@
             // clSLNhan
             // 
             this.clSLNhan.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            dataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.clSLNhan.DefaultCellStyle = dataGridViewCellStyle20;
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.clSLNhan.DefaultCellStyle = dataGridViewCellStyle10;
             this.clSLNhan.HeaderText = "SL Nhận";
             this.clSLNhan.Name = "clSLNhan";
             this.clSLNhan.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
@@ -221,7 +221,7 @@
             // 
             this.groupBoxChiTietPhieuNhap.Controls.Add(this.panelYesNo);
             this.groupBoxChiTietPhieuNhap.Controls.Add(this.dataGridView_NhapHang);
-            this.groupBoxChiTietPhieuNhap.Location = new System.Drawing.Point(64, 194);
+            this.groupBoxChiTietPhieuNhap.Location = new System.Drawing.Point(70, 174);
             this.groupBoxChiTietPhieuNhap.Name = "groupBoxChiTietPhieuNhap";
             this.groupBoxChiTietPhieuNhap.Size = new System.Drawing.Size(860, 232);
             this.groupBoxChiTietPhieuNhap.TabIndex = 96;
@@ -256,7 +256,7 @@
             this.panelChucNang.Controls.Add(this.btnTaoMoi);
             this.panelChucNang.Controls.Add(this.btnTimPhieuNhap);
             this.panelChucNang.Controls.Add(this.btnTao);
-            this.panelChucNang.Location = new System.Drawing.Point(74, 432);
+            this.panelChucNang.Location = new System.Drawing.Point(80, 412);
             this.panelChucNang.Name = "panelChucNang";
             this.panelChucNang.Size = new System.Drawing.Size(841, 47);
             this.panelChucNang.TabIndex = 97;
@@ -329,7 +329,7 @@
             this.groupBoxThongTinPhieuNhap.Controls.Add(this.label6);
             this.groupBoxThongTinPhieuNhap.Controls.Add(this.label4);
             this.groupBoxThongTinPhieuNhap.Controls.Add(this.label5);
-            this.groupBoxThongTinPhieuNhap.Location = new System.Drawing.Point(64, 32);
+            this.groupBoxThongTinPhieuNhap.Location = new System.Drawing.Point(70, 12);
             this.groupBoxThongTinPhieuNhap.Name = "groupBoxThongTinPhieuNhap";
             this.groupBoxThongTinPhieuNhap.Size = new System.Drawing.Size(860, 144);
             this.groupBoxThongTinPhieuNhap.TabIndex = 95;
@@ -450,14 +450,13 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(984, 560);
+            this.ClientSize = new System.Drawing.Size(984, 510);
             this.Controls.Add(this.groupBoxChiTietPhieuNhap);
             this.Controls.Add(this.panelChucNang);
             this.Controls.Add(this.groupBoxThongTinPhieuNhap);
             this.Name = "FormNhapHang";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Nhập hàng";
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Activated += new System.EventHandler(this.FormNhapHang_Activated);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_NhapHang)).EndInit();
             this.groupBoxChiTietPhieuNhap.ResumeLayout(false);

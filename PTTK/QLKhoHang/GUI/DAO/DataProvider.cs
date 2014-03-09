@@ -26,8 +26,7 @@ namespace DAO
                 string currentpath = Directory.GetCurrentDirectory().ToString();
                 string dir = Directory.GetParent(currentpath).ToString();
                 for (int i = 0; i < 2; i++)                
-                    dir = Directory.GetParent(dir).ToString();
-                                
+                    dir = Directory.GetParent(dir).ToString();                                
                 dir+=@"\ConnectText.txt";
                 StreamReader reader = new StreamReader(dir);
                 while (!reader.EndOfStream)

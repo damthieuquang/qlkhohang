@@ -59,9 +59,9 @@
             // 
             this.groupBoxDSThamSo.Controls.Add(this.dataGridView_QuanLyLoaiSanPham);
             this.groupBoxDSThamSo.Controls.Add(this.panelYesNo);
-            this.groupBoxDSThamSo.Location = new System.Drawing.Point(57, 124);
+            this.groupBoxDSThamSo.Location = new System.Drawing.Point(60, 96);
             this.groupBoxDSThamSo.Name = "groupBoxDSThamSo";
-            this.groupBoxDSThamSo.Size = new System.Drawing.Size(860, 284);
+            this.groupBoxDSThamSo.Size = new System.Drawing.Size(860, 304);
             this.groupBoxDSThamSo.TabIndex = 12;
             this.groupBoxDSThamSo.TabStop = false;
             this.groupBoxDSThamSo.Text = "Danh sách tham số";
@@ -86,11 +86,12 @@
             this.ColSTT,
             this.ColMaLoaiSanPham,
             this.ColTenLoaiSanPham});
-            this.dataGridView_QuanLyLoaiSanPham.Location = new System.Drawing.Point(13, 26);
+            this.dataGridView_QuanLyLoaiSanPham.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridView_QuanLyLoaiSanPham.Location = new System.Drawing.Point(3, 16);
             this.dataGridView_QuanLyLoaiSanPham.Name = "dataGridView_QuanLyLoaiSanPham";
             this.dataGridView_QuanLyLoaiSanPham.RowHeadersVisible = false;
             this.dataGridView_QuanLyLoaiSanPham.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView_QuanLyLoaiSanPham.Size = new System.Drawing.Size(835, 243);
+            this.dataGridView_QuanLyLoaiSanPham.Size = new System.Drawing.Size(854, 285);
             this.dataGridView_QuanLyLoaiSanPham.TabIndex = 0;
             // 
             // ColSTT
@@ -185,7 +186,7 @@
             this.groupBoxTimKiem.Controls.Add(this.label2);
             this.groupBoxTimKiem.Controls.Add(this.label1);
             this.groupBoxTimKiem.Controls.Add(this.textBoxMaLoaiSanPham);
-            this.groupBoxTimKiem.Location = new System.Drawing.Point(57, 29);
+            this.groupBoxTimKiem.Location = new System.Drawing.Point(60, 21);
             this.groupBoxTimKiem.Name = "groupBoxTimKiem";
             this.groupBoxTimKiem.Size = new System.Drawing.Size(860, 69);
             this.groupBoxTimKiem.TabIndex = 11;
@@ -249,7 +250,7 @@
             this.panelTimKiem.Controls.Add(this.buttonCapNhat);
             this.panelTimKiem.Controls.Add(this.buttonThem);
             this.panelTimKiem.Controls.Add(this.buttonLamLai);
-            this.panelTimKiem.Location = new System.Drawing.Point(57, 417);
+            this.panelTimKiem.Location = new System.Drawing.Point(60, 409);
             this.panelTimKiem.Name = "panelTimKiem";
             this.panelTimKiem.Size = new System.Drawing.Size(860, 52);
             this.panelTimKiem.TabIndex = 13;
@@ -258,13 +259,13 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(984, 560);
+            this.ClientSize = new System.Drawing.Size(984, 510);
             this.Controls.Add(this.groupBoxDSThamSo);
             this.Controls.Add(this.groupBoxTimKiem);
             this.Controls.Add(this.panelTimKiem);
             this.Name = "FormQuanLyLoaiSanPham";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Quản lý loại sản phẩm";
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Activated += new System.EventHandler(this.FormQuanLyLoaiSanPham_Activated);
             this.groupBoxDSThamSo.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_QuanLyLoaiSanPham)).EndInit();

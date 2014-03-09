@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.groupBoxDSThamSo = new System.Windows.Forms.GroupBox();
             this.dataGridView_QuanLyThanhVien = new System.Windows.Forms.DataGridView();
             this.ColSTT = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -70,7 +70,7 @@
             this.groupBoxDSThamSo.Controls.Add(this.dataGridView_QuanLyThanhVien);
             this.groupBoxDSThamSo.Location = new System.Drawing.Point(61, 152);
             this.groupBoxDSThamSo.Name = "groupBoxDSThamSo";
-            this.groupBoxDSThamSo.Size = new System.Drawing.Size(860, 215);
+            this.groupBoxDSThamSo.Size = new System.Drawing.Size(860, 288);
             this.groupBoxDSThamSo.TabIndex = 12;
             this.groupBoxDSThamSo.TabStop = false;
             this.groupBoxDSThamSo.Text = "Danh sách tham số";
@@ -82,14 +82,14 @@
             this.dataGridView_QuanLyThanhVien.AllowUserToResizeColumns = false;
             this.dataGridView_QuanLyThanhVien.AllowUserToResizeRows = false;
             this.dataGridView_QuanLyThanhVien.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle12.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView_QuanLyThanhVien.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView_QuanLyThanhVien.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridView_QuanLyThanhVien.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView_QuanLyThanhVien.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ColSTT,
@@ -98,11 +98,12 @@
             this.ColDiaChi,
             this.ColCV,
             this.ColTienNo});
-            this.dataGridView_QuanLyThanhVien.Location = new System.Drawing.Point(13, 26);
+            this.dataGridView_QuanLyThanhVien.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridView_QuanLyThanhVien.Location = new System.Drawing.Point(3, 16);
             this.dataGridView_QuanLyThanhVien.Name = "dataGridView_QuanLyThanhVien";
             this.dataGridView_QuanLyThanhVien.RowHeadersVisible = false;
             this.dataGridView_QuanLyThanhVien.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView_QuanLyThanhVien.Size = new System.Drawing.Size(835, 183);
+            this.dataGridView_QuanLyThanhVien.Size = new System.Drawing.Size(854, 269);
             this.dataGridView_QuanLyThanhVien.TabIndex = 0;
             // 
             // ColSTT
@@ -149,7 +150,7 @@
             // 
             this.panelYesNo.Controls.Add(this.buttonNo);
             this.panelYesNo.Controls.Add(this.buttonYes);
-            this.panelYesNo.Location = new System.Drawing.Point(61, 373);
+            this.panelYesNo.Location = new System.Drawing.Point(12, 370);
             this.panelYesNo.Name = "panelYesNo";
             this.panelYesNo.Size = new System.Drawing.Size(860, 61);
             this.panelYesNo.TabIndex = 14;
@@ -344,7 +345,7 @@
             this.panelTimKiem.Controls.Add(this.buttonCapNhat);
             this.panelTimKiem.Controls.Add(this.buttonThem);
             this.panelTimKiem.Controls.Add(this.buttonLamLai);
-            this.panelTimKiem.Location = new System.Drawing.Point(61, 440);
+            this.panelTimKiem.Location = new System.Drawing.Point(64, 446);
             this.panelTimKiem.Name = "panelTimKiem";
             this.panelTimKiem.Size = new System.Drawing.Size(860, 52);
             this.panelTimKiem.TabIndex = 13;
@@ -353,11 +354,11 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(984, 560);
+            this.ClientSize = new System.Drawing.Size(984, 510);
             this.Controls.Add(this.groupBoxDSThamSo);
             this.Controls.Add(this.panelYesNo);
-            this.Controls.Add(this.groupBoxTimKiem);
             this.Controls.Add(this.panelTimKiem);
+            this.Controls.Add(this.groupBoxTimKiem);
             this.Name = "FormQuanLyThanhVien";
             this.Text = "Quản lý thành viên";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;

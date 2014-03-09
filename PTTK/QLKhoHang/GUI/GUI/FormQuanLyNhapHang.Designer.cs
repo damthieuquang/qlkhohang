@@ -162,7 +162,7 @@
             // 
             // btnXoa
             // 
-            this.btnXoa.Location = new System.Drawing.Point(396, 447);
+            this.btnXoa.Location = new System.Drawing.Point(397, 434);
             this.btnXoa.Name = "btnXoa";
             this.btnXoa.Size = new System.Drawing.Size(100, 23);
             this.btnXoa.TabIndex = 28;
@@ -172,7 +172,7 @@
             // 
             // btnThoat
             // 
-            this.btnThoat.Location = new System.Drawing.Point(800, 447);
+            this.btnThoat.Location = new System.Drawing.Point(801, 434);
             this.btnThoat.Name = "btnThoat";
             this.btnThoat.Size = new System.Drawing.Size(100, 23);
             this.btnThoat.TabIndex = 29;
@@ -182,7 +182,7 @@
             // 
             // btnLamLai
             // 
-            this.btnLamLai.Location = new System.Drawing.Point(502, 447);
+            this.btnLamLai.Location = new System.Drawing.Point(503, 434);
             this.btnLamLai.Name = "btnLamLai";
             this.btnLamLai.Size = new System.Drawing.Size(100, 23);
             this.btnLamLai.TabIndex = 27;
@@ -192,7 +192,7 @@
             // 
             // btnXemChiTiet
             // 
-            this.btnXemChiTiet.Location = new System.Drawing.Point(75, 447);
+            this.btnXemChiTiet.Location = new System.Drawing.Point(76, 434);
             this.btnXemChiTiet.Name = "btnXemChiTiet";
             this.btnXemChiTiet.Size = new System.Drawing.Size(100, 23);
             this.btnXemChiTiet.TabIndex = 26;
@@ -256,7 +256,7 @@
             // 
             // btnTaoMoi
             // 
-            this.btnTaoMoi.Location = new System.Drawing.Point(181, 447);
+            this.btnTaoMoi.Location = new System.Drawing.Point(182, 434);
             this.btnTaoMoi.Name = "btnTaoMoi";
             this.btnTaoMoi.Size = new System.Drawing.Size(100, 23);
             this.btnTaoMoi.TabIndex = 33;
@@ -317,7 +317,7 @@
             this.dataGridView_TraCuuNhapHang.Name = "dataGridView_TraCuuNhapHang";
             this.dataGridView_TraCuuNhapHang.RowHeadersVisible = false;
             this.dataGridView_TraCuuNhapHang.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView_TraCuuNhapHang.Size = new System.Drawing.Size(854, 238);
+            this.dataGridView_TraCuuNhapHang.Size = new System.Drawing.Size(854, 250);
             this.dataGridView_TraCuuNhapHang.TabIndex = 14;
             // 
             // clMaDonHang
@@ -330,9 +330,9 @@
             // groupBoxDanhSach
             // 
             this.groupBoxDanhSach.Controls.Add(this.dataGridView_TraCuuNhapHang);
-            this.groupBoxDanhSach.Location = new System.Drawing.Point(61, 161);
+            this.groupBoxDanhSach.Location = new System.Drawing.Point(62, 136);
             this.groupBoxDanhSach.Name = "groupBoxDanhSach";
-            this.groupBoxDanhSach.Size = new System.Drawing.Size(860, 257);
+            this.groupBoxDanhSach.Size = new System.Drawing.Size(860, 269);
             this.groupBoxDanhSach.TabIndex = 31;
             this.groupBoxDanhSach.TabStop = false;
             this.groupBoxDanhSach.Text = "Danh sách phiếu nhập";
@@ -348,7 +348,7 @@
             // 
             // btnCapNhat
             // 
-            this.btnCapNhat.Location = new System.Drawing.Point(287, 447);
+            this.btnCapNhat.Location = new System.Drawing.Point(288, 434);
             this.btnCapNhat.Name = "btnCapNhat";
             this.btnCapNhat.Size = new System.Drawing.Size(103, 23);
             this.btnCapNhat.TabIndex = 32;
@@ -374,7 +374,7 @@
             this.groupBoxTimKiem.Controls.Add(this.label1);
             this.groupBoxTimKiem.Controls.Add(this.label3);
             this.groupBoxTimKiem.Controls.Add(this.label4);
-            this.groupBoxTimKiem.Location = new System.Drawing.Point(61, 38);
+            this.groupBoxTimKiem.Location = new System.Drawing.Point(62, 25);
             this.groupBoxTimKiem.Name = "groupBoxTimKiem";
             this.groupBoxTimKiem.Size = new System.Drawing.Size(860, 105);
             this.groupBoxTimKiem.TabIndex = 30;
@@ -385,7 +385,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(984, 560);
+            this.ClientSize = new System.Drawing.Size(984, 510);
             this.Controls.Add(this.btnXoa);
             this.Controls.Add(this.btnThoat);
             this.Controls.Add(this.btnLamLai);
@@ -395,8 +395,8 @@
             this.Controls.Add(this.btnCapNhat);
             this.Controls.Add(this.groupBoxTimKiem);
             this.Name = "FormQuanLyNhapHang";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Quản lý nhập hàng";
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Activated += new System.EventHandler(this.FormQuanLyNhapHang_Activated);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_TraCuuNhapHang)).EndInit();
             this.groupBoxDanhSach.ResumeLayout(false);

@@ -70,14 +70,19 @@ namespace GUI
             ribbonControl1.SelectedPage = ribbonControl1.Pages[3];
         }
 
-        private void ThanhVien_barButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        private void SanPham_barButtonItem_ItemClick(object sender, ItemClickEventArgs e)
         {
             ribbonControl1.SelectedPage = ribbonControl1.Pages[4];
         }
 
-        private void NhanVien_barButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        private void ThanhVien_barButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             ribbonControl1.SelectedPage = ribbonControl1.Pages[5];
+        }
+
+        private void NhanVien_barButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            ribbonControl1.SelectedPage = ribbonControl1.Pages[6];
         }
 
         private void barButtonItem_DangXuat_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -297,5 +302,20 @@ namespace GUI
             if (frm != null)
                 frm.Close();
         }
+
+        private void barButtonItem8_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            Form frm = KiemTraTonTai(typeof(FormThongTin));
+            if (frm != null)
+                frm.Activate();
+            else
+            {
+                FormThongTin fThongTin = new FormThongTin();
+                fThongTin.MdiParent = this;
+                fThongTin.Show();
+            }
+        }
+
+        
     }
 }
