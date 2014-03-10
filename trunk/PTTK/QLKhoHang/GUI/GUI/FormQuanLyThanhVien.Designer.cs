@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.groupBoxDSThamSo = new System.Windows.Forms.GroupBox();
             this.dataGridView_QuanLyThanhVien = new System.Windows.Forms.DataGridView();
             this.ColSTT = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -82,14 +82,14 @@
             this.dataGridView_QuanLyThanhVien.AllowUserToResizeColumns = false;
             this.dataGridView_QuanLyThanhVien.AllowUserToResizeRows = false;
             this.dataGridView_QuanLyThanhVien.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView_QuanLyThanhVien.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView_QuanLyThanhVien.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.dataGridView_QuanLyThanhVien.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView_QuanLyThanhVien.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ColSTT,
@@ -183,6 +183,7 @@
             this.textBoxTienNo.Name = "textBoxTienNo";
             this.textBoxTienNo.Size = new System.Drawing.Size(125, 20);
             this.textBoxTienNo.TabIndex = 4;
+            this.textBoxTienNo.TextChanged += new System.EventHandler(this.textBoxTienNo_TextChanged);
             // 
             // textBoxCV
             // 
@@ -190,6 +191,7 @@
             this.textBoxCV.Name = "textBoxCV";
             this.textBoxCV.Size = new System.Drawing.Size(125, 20);
             this.textBoxCV.TabIndex = 4;
+            this.textBoxCV.TextChanged += new System.EventHandler(this.textBoxCV_TextChanged);
             // 
             // label5
             // 
@@ -215,6 +217,7 @@
             this.textBoxDiaChi.Name = "textBoxDiaChi";
             this.textBoxDiaChi.Size = new System.Drawing.Size(125, 20);
             this.textBoxDiaChi.TabIndex = 4;
+            this.textBoxDiaChi.TextChanged += new System.EventHandler(this.textBoxDiaChi_TextChanged);
             // 
             // label4
             // 
@@ -248,6 +251,7 @@
             this.textBoxMaThanhVien.Name = "textBoxMaThanhVien";
             this.textBoxMaThanhVien.Size = new System.Drawing.Size(125, 20);
             this.textBoxMaThanhVien.TabIndex = 0;
+            this.textBoxMaThanhVien.TextChanged += new System.EventHandler(this.textBoxMaThanhVien_TextChanged);
             // 
             // groupBoxTimKiem
             // 
