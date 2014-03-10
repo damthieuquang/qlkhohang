@@ -52,7 +52,26 @@ namespace GUI
                 NhanVien_ribbonPage.Visible = false;
 
                 ThamSo_barButtonItem.Visibility = BarItemVisibility.Never;
+            }
+            else
+            {
+                DonHang_barButtonItem.Visibility = BarItemVisibility.Always;
 
+                SanPham_ribbonPageGroup.Visible = true;
+
+                ConNguoi_ribbonPageGroup.Visible = true;
+
+                DonHang_ribbonPage.Visible = true;
+
+                LoaiPhieuXuat_barButtonItem.Visibility = BarItemVisibility.Always;
+
+                SanPham_ribbonPage.Visible = true;
+
+                ThanhVien_ribbonPage.Visible = true;
+
+                NhanVien_ribbonPage.Visible = true;
+
+                ThamSo_barButtonItem.Visibility = BarItemVisibility.Always;
             }
         }
         
