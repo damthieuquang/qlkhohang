@@ -460,5 +460,25 @@ namespace GUI
             form.maThanhVien = dataGridView_QuanLyThanhVien.CurrentRow.Cells[ColMaThanhVien.Index].Value.ToString();
             form.ShowDialog();
         }
+
+        private void textBoxMaThanhVien_TextChanged(object sender, EventArgs e)
+        {
+            Search();
+        }
+
+        private void textBoxDiaChi_TextChanged(object sender, EventArgs e)
+        {
+            Search();
+        }
+
+        private void textBoxCV_TextChanged(object sender, EventArgs e)
+        {
+            Search();
+        }
+
+        private void textBoxTienNo_TextChanged(object sender, EventArgs e)
+        {
+            Search();
+        }
     }
 }
