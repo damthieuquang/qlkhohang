@@ -42,16 +42,19 @@ namespace GUI
                 foreach (PhieuXuatDTO itemPhieuXuat in listPhieuXuatDTO)
                 {
                     listChiTietPhieuXuatDTO = ChiTietPhieuXuatBUS.SelectChiTietPhieuXuatByMaPhieuXuat(itemPhieuXuat.MaPhieuXuat);
-                    foreach (ChiTietPhieuXuatDTO itemCTPX in listChiTietPhieuXuatDTO)
+                    if (listChiTietPhieuXuatDTO != null)
                     {
-                        dataGridViewXuatHang.Rows.Add(
-                            itemPhieuXuat.MaPhieuXuat,
-                            itemPhieuXuat.NgayBan.ToString("dd/MM/yyyy"),
-                            NhanVienBUS.SelectNhanVienById(itemPhieuXuat.MaNhanVien).TenNhanVien,
-                            SanPhamBUS.SelectSanPhamById(itemCTPX.MaSanPham).TenSanPham,
-                            itemCTPX.SoLuong.ToString(),
-                            string.Format("{0:#,0.##}", itemCTPX.ThanhTien)
-                            );
+                        foreach (ChiTietPhieuXuatDTO itemCTPX in listChiTietPhieuXuatDTO)
+                        {
+                            dataGridViewXuatHang.Rows.Add(
+                                itemPhieuXuat.MaPhieuXuat,
+                                itemPhieuXuat.NgayBan.ToString("dd/MM/yyyy"),
+                                NhanVienBUS.SelectNhanVienById(itemPhieuXuat.MaNhanVien).TenNhanVien,
+                                SanPhamBUS.SelectSanPhamById(itemCTPX.MaSanPham).TenSanPham,
+                                itemCTPX.SoLuong.ToString(),
+                                string.Format("{0:#,0.##}", itemCTPX.ThanhTien)
+                                );
+                        }
                     }
                 }
 
@@ -65,17 +68,20 @@ namespace GUI
                 foreach (PhieuNhapDTO itemPhieuNhap in listPhieuNhapDTO)
                 {
                     listChiTietPhieuNhapDTO = ChiTietPhieuNhapBUS.SelectChiTietPhieuNhapByMaPhieuNhap(itemPhieuNhap.MaPhieuNhap);
-                    foreach (ChiTietPhieuNhapDTO itemCTPN in listChiTietPhieuNhapDTO)
+                    if (listChiTietPhieuNhapDTO != null)
                     {
-                        dataGridViewNhapHang.Rows.Add(
-                            itemPhieuNhap.MaPhieuNhap,
-                            itemPhieuNhap.NgayNhan.ToString("dd/MM/yyyy"),
-                            itemPhieuNhap.MaDonHang,
-                            DonHangBUS.SelectDonHangById(itemPhieuNhap.MaDonHang).NgayLap.ToString("dd/MM/yyyy"),
-                            NhanVienBUS.SelectNhanVienById(itemPhieuNhap.MaNhanVien).TenNhanVien,
-                            SanPhamBUS.SelectSanPhamById(itemCTPN.MaSanPham).TenSanPham,
-                            itemCTPN.SLNhan.ToString()
-                            );
+                        foreach (ChiTietPhieuNhapDTO itemCTPN in listChiTietPhieuNhapDTO)
+                        {
+                            dataGridViewNhapHang.Rows.Add(
+                                itemPhieuNhap.MaPhieuNhap,
+                                itemPhieuNhap.NgayNhan.ToString("dd/MM/yyyy"),
+                                itemPhieuNhap.MaDonHang,
+                                DonHangBUS.SelectDonHangById(itemPhieuNhap.MaDonHang).NgayLap.ToString("dd/MM/yyyy"),
+                                NhanVienBUS.SelectNhanVienById(itemPhieuNhap.MaNhanVien).TenNhanVien,
+                                SanPhamBUS.SelectSanPhamById(itemCTPN.MaSanPham).TenSanPham,
+                                itemCTPN.SLNhan.ToString()
+                                );
+                        }
                     }
                 }
 
