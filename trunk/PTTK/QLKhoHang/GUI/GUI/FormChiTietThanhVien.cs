@@ -39,17 +39,20 @@ namespace GUI
                 foreach (PhieuXuatDTO itemPhieuXuat in listPhieuXuatDTO)
                 {
                     listChiTietPhieuXuatDTO = ChiTietPhieuXuatBUS.SelectChiTietPhieuXuatByMaPhieuXuat(itemPhieuXuat.MaPhieuXuat);
-                    foreach (ChiTietPhieuXuatDTO itemCTPX in listChiTietPhieuXuatDTO)
+                    if (listChiTietPhieuXuatDTO!=null)
                     {
-                        dataGridViewChiTiet.Rows.Add(
-                            itemPhieuXuat.MaPhieuXuat,
-                            itemPhieuXuat.NgayBan.ToString("dd/MM/yyyy"),
-                            NhanVienBUS.SelectNhanVienById(itemPhieuXuat.MaNhanVien).TenNhanVien,
-                            SanPhamBUS.SelectSanPhamById(itemCTPX.MaSanPham).TenSanPham,
-                            itemCTPX.SoLuong.ToString(),
-                            string.Format("{0:#,0.##}", itemCTPX.ThanhTien)
-                            );
-                    }
+                        foreach (ChiTietPhieuXuatDTO itemCTPX in listChiTietPhieuXuatDTO)
+                        {
+                            dataGridViewChiTiet.Rows.Add(
+                                itemPhieuXuat.MaPhieuXuat,
+                                itemPhieuXuat.NgayBan.ToString("dd/MM/yyyy"),
+                                NhanVienBUS.SelectNhanVienById(itemPhieuXuat.MaNhanVien).TenNhanVien,
+                                SanPhamBUS.SelectSanPhamById(itemCTPX.MaSanPham).TenSanPham,
+                                itemCTPX.SoLuong.ToString(),
+                                string.Format("{0:#,0.##}", itemCTPX.ThanhTien)
+                                );
+                        }
+                    }                    
                 }
 
             }
